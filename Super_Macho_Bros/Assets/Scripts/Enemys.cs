@@ -11,6 +11,7 @@ public class Enemys : MonoBehaviour
     [SerializeField] Transform point1, point2;
     [SerializeField] LayerMask layer;
     [SerializeField] bool isColliding;
+    private bool isDead = false;
 
     private void Awake()
     {
@@ -37,7 +38,8 @@ public class Enemys : MonoBehaviour
 
     void Update()
     {
-        // Example call to change prefab every few seconds
+        
+
         StartCoroutine(ChangePrefabCoroutine());
     }
 

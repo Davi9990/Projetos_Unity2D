@@ -5,24 +5,29 @@ using System.Xml.Resolvers;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class Barra_de_Vida : MonoBehaviour
 {
     public int maxHealth = 300;
     public int currentHealth;
     public int defense = 10;
+    public TextMeshProUGUI vidasText; // Referência ao TextMeshPro para exibir vidas
 
     private criarPoder playerController;
 
+    private bool isDead = false;
+
     void Start()
     {
-        currentHealth = 1; // Início com 1 ponto de vida
+        currentHealth = maxHealth; // Início com vida máxima
         playerController = GetComponent<criarPoder>(); // Referência ao PlayerController
+        UpdateVidasText(); // Atualizar texto inicial de vidas
     }
 
     void Update()
     {
-        if (currentHealth <= 0)
+        if (currentHealth <= 0 && !isDead)
         {
             Die();
         }
@@ -30,8 +35,22 @@ public class Barra_de_Vida : MonoBehaviour
 
     void Die()
     {
-        // Implementar lógica de morte, por exemplo, recarregar a cena
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Fase1");
+        if (isDead) return; // Se já está morto, não fazer nada
+        isDead = true; // Marca o jogador como morto
+        GameManager.vidas--; // Reduzir o número de vidas
+        UpdateVidasText(); // Atualizar o texto de vidas
+
+
+        if (GameManager.vidas > 0)
+        {
+            // Recarregar a cena ou posicionar o jogador no início
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Fase1");
+        }
+        else
+        {
+            // Redirecionar para a tela de Game Over
+            UnityEngine.SceneManagement.SceneManager.LoadScene("GameOver");
+        }
     }
 
     public void TakeDamage(int damage)
@@ -56,6 +75,15 @@ public class Barra_de_Vida : MonoBehaviour
         if (currentHealth > maxHealth)
         {
             currentHealth = maxHealth;
+        }
+    }
+
+    public void UpdateVidasText()
+    {
+        // Atualizar o texto do TextMeshPro com o número de vidas restantes
+        if (vidasText != null)
+        {
+            vidasText.text = "" + GameManager.vidas;
         }
     }
 }

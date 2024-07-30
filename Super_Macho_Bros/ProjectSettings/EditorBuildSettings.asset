@@ -29,4 +29,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Pre_Fase_2.unity
     guid: 398e59cd8f3abb84ab8568f54c3fa18f
+  - enabled: 1
+    path: Assets/Scenes/GameOver.unity
+    guid: 37a2f6e1b72173d4aad29e676857c546
+  - enabled: 1
+    path: Assets/Scenes/MenuPrincipal.unity
+    guid: a889b66e92a010f489c2d95de88e143c
   m_configObjects: {}
