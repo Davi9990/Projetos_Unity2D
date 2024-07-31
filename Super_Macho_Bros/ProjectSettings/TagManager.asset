@@ -9,6 +9,7 @@ TagManager:
   - Chao
   - Ground
   - Wall
+  - Checkpoint
   layers:
   - Default
   - TransparentFX

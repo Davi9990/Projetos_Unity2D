@@ -4,29 +4,33 @@ using UnityEngine;
 
 public class Camera : MonoBehaviour
 {
-    [SerializeField] Transform Player;
+    [SerializeField] Transform player;
     [SerializeField] float minX, maxX;
+    
 
     private void Start()
     {
-        Player = GameObject.FindWithTag("Player").transform;
+        // Certifique-se de que o jogador é encontrado e referenciado
+        player = GameObject.FindWithTag("Player").transform;
     }
 
     private void FixedUpdate()
     {
-        // Mover a câmera para seguir o jogador
-        if (Player.position.x >= transform.position.x)
-        {
-            transform.position = new Vector3(Player.position.x, transform.position.y, transform.position.z);
-        }
+        if (player == null) return; // Se o jogador não estiver definido, não faça nada
 
-        // Restringir o movimento da câmera dentro dos limites especificados
-        transform.position = new Vector3(Mathf.Clamp(transform.position.x, minX, maxX), transform.position.y, transform.position.z);
+        // Atualizar a posição da câmera para seguir o jogador
+        float newX = Mathf.Clamp(player.position.x, minX, maxX);
+        transform.position = new Vector3(newX, transform.position.y, transform.position.z);
+    }
+
+    public void UpdatePlayer(Transform newPlayer)
+    {
+        player = newPlayer;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // Ignorar colisão com objetos na camada "enemys"
+        // Ignorar colisão com objetos na camada "Enemys"
         if (collision.gameObject.layer == LayerMask.NameToLayer("Enemys"))
         {
             Physics2D.IgnoreCollision(collision.collider, GetComponent<Collider2D>());
