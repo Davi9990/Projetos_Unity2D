@@ -10,10 +10,12 @@ public class Movimentacao : MonoBehaviour
 
     [SerializeField] private float speed = 5f;
     [SerializeField] private float jumpForce = 15f;
-    [SerializeField] private bool isJump;
-    [SerializeField] private bool inFloor = true;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
+
+    private bool isJumping;
+    private bool isGrounded;
+    private bool jumpRequest;
 
     private static Movimentacao instance;
 
@@ -34,22 +36,38 @@ public class Movimentacao : MonoBehaviour
 
     private void Update()
     {
-        inFloor = Physics2D.Linecast(transform.position, groundCheck.position, groundLayer);
+        // Atualiza o estado do jogador se está no chão
+        isGrounded = Physics2D.Linecast(transform.position, groundCheck.position, groundLayer);
 
         // Atualiza os parâmetros do Animator
-        animator.SetBool("IsGrounded", inFloor);
+        animator.SetBool("IsGrounded", isGrounded);
         animator.SetFloat("Speed", Mathf.Abs(rbPlayer.velocity.x));
 
-        if (Input.GetButtonDown("Jump") && inFloor)
-            isJump = true;
-        else if (Input.GetButtonUp("Jump") && rbPlayer.velocity.y > 0)
+        // Verifica se o botão de pulo foi pressionado
+        if (Input.GetButtonDown("Jump") && isGrounded)
+        {
+            jumpRequest = true;
+        }
+
+        // Reduz a velocidade de subida ao soltar o botão de pulo
+        if (Input.GetButtonUp("Jump") && rbPlayer.velocity.y > 0)
+        {
             rbPlayer.velocity = new Vector2(rbPlayer.velocity.x, rbPlayer.velocity.y * 0.5f);
+        }
     }
 
     private void FixedUpdate()
     {
         Move();
-        JumpPlayer();
+
+        if (jumpRequest && isGrounded)
+        {
+            JumpPlayer();
+            jumpRequest = false;
+        }
+
+        // Atualiza o parâmetro IsJumping do Animator
+        animator.SetBool("IsJumping", !isGrounded);
     }
 
     void Move()
@@ -69,13 +87,6 @@ public class Movimentacao : MonoBehaviour
 
     void JumpPlayer()
     {
-        if (isJump)
-        {
-            rbPlayer.velocity = Vector2.up * jumpForce;
-            isJump = false;
-        }
-
-        // Atualiza o parâmetro IsJumping do Animator
-        animator.SetBool("IsJumping", !inFloor);
+        rbPlayer.velocity = new Vector2(rbPlayer.velocity.x, jumpForce);
     }
 }

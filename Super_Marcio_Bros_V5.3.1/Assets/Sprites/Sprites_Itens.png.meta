@@ -207,7 +207,7 @@ TextureImporter:
         width: 19
         height: 20
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -215,6 +215,27 @@ TextureImporter:
       bones: []
       spriteID: aed4336592550e24d8a1937c93abd3a3
       internalID: 473492067
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Toldy
+      rect:
+        serializedVersion: 2
+        x: 243
+        y: 88
+        width: 17
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5f18faeaaa94614ebc09fb28655449c
+      internalID: 1191917894
       vertices: []
       indices: 
       edges: []
@@ -233,6 +254,7 @@ TextureImporter:
       Cogumelo: -1619123828
       Flor: 934521058
       Sprites_Itens_0: 508450617
+      Toldy: 1191917894
       Vida: 473492067
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0

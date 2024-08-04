@@ -35,4 +35,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Pre_Fase_2.unity
     guid: 398e59cd8f3abb84ab8568f54c3fa18f
+  - enabled: 1
+    path: Assets/Scenes/Tela_Final.unity
+    guid: c4305780884f4c64dbb99b823516f1b5
   m_configObjects: {}
