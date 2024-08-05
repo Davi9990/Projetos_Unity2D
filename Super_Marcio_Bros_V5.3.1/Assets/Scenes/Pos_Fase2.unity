@@ -41812,7 +41812,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5900380491479234590, guid: 7dc056286c275704ab6fdacdc1b0a48b, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5903473293782139149, guid: 7dc056286c275704ab6fdacdc1b0a48b, type: 3}
       propertyPath: vidasText
