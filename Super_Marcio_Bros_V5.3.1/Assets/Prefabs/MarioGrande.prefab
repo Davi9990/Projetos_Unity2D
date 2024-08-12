@@ -74,7 +74,6 @@ GameObject:
   - component: {fileID: 1329407150634554389}
   - component: {fileID: 4043417191338022601}
   - component: {fileID: 9221279156345374808}
-  - component: {fileID: 6619001593839160889}
   - component: {fileID: 5350947317908129682}
   - component: {fileID: 2588393388843922172}
   - component: {fileID: 83692669615626585}
@@ -226,26 +225,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &6619001593839160889
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3946121863406495694}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 667724cb642614a4699153fd7e5ff717, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 5
-  jumpForce: 15
-  isJump: 0
-  inFloor: 0
-  groundCheck: {fileID: 2231421625567617719}
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 584
 --- !u!114 &5350947317908129682
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -261,8 +240,9 @@ MonoBehaviour:
   maxHealth: 2
   currentHealth: 1
   defense: 0
-  originalPrefab: {fileID: 5900380491479234590, guid: 7dc056286c275704ab6fdacdc1b0a48b, type: 3}
-  poweredUpPrefab: {fileID: 3946121863406495694}
+  vidasText: {fileID: 0}
+  countdownTimer: {fileID: 0}
+  cameraController: {fileID: 0}
 --- !u!114 &2588393388843922172
 MonoBehaviour:
   m_ObjectHideFlags: 0

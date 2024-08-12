@@ -33,11 +33,12 @@ public class Itens_Spawner : MonoBehaviour
             // Spawna o próximo item do vetor
             Instantiate(items[currentIndex], spawnPoint.position, Quaternion.identity);
             currentIndex++; // Incrementa o índice para o próximo item
-        }
-        else
-        {
-            // Substitui o bloco pelo novo prefab instantaneamente
-            ChangeBlockInstantly(newBlockPrefab);
+
+            // Verifica se foi o último item e já troca o bloco
+            if (currentIndex >= items.Length)
+            {
+                ChangeBlockInstantly(newBlockPrefab);
+            }
         }
     }
 
