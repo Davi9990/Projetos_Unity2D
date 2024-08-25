@@ -20,4 +20,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Dinossauros.unity
     guid: 1c958b40f06fce3438fe9704ba7e6c9f
+  - enabled: 1
+    path: "Assets/Scenes/QuebraCabe\xE7a.unity"
+    guid: 49e450a608ab8f340b5757c14697f8f6
+  - enabled: 1
+    path: Assets/Scenes/TelaFinal.unity
+    guid: 5febc34f1c2ec834cbed19b50b52fb7d
   m_configObjects: {}

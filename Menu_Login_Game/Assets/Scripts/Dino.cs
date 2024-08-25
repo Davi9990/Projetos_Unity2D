@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ovo : MonoBehaviour
+public class Dino : MonoBehaviour
 {
-    private EspacoCerto gameManeger;
+    
     private DinossaurosCertos gameManeger2;
 
     public string espacoCorretoTag;
@@ -13,8 +13,8 @@ public class Ovo : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gameManeger =  GameObject.Find("GameManeger").GetComponent<EspacoCerto>();
-        gameManeger2 =  GameObject.Find("GameManeger").GetComponent<DinossaurosCertos>();
+        
+        gameManeger2 = GameObject.Find("GameManeger").GetComponent<DinossaurosCertos>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -22,13 +22,11 @@ public class Ovo : MonoBehaviour
         if (collision.CompareTag(espacoCorretoTag))
         {
             Debug.Log($"{gameObject.tag} foi colocada no espaço correto");
-            gameManeger.AtualizarPosicaoOvo(gameObject.tag, true);
             gameManeger2.AtualizarPosicaoOvo(gameObject.tag, true);
         }
-        else 
+        else
         {
             Debug.Log($"{gameObject.tag} foi colocada no espaço errado!");
-            gameManeger.AtualizarPosicaoOvo(gameObject.tag, false);
             gameManeger2.AtualizarPosicaoOvo(gameObject.tag, false);
         }
     }
@@ -38,7 +36,7 @@ public class Ovo : MonoBehaviour
         if (collision.CompareTag(espacoCorretoTag))
         {
             Debug.Log($"{gameObject.tag} foi removida do espaço correto");
-            gameManeger.AtualizarPosicaoOvo(gameObject.tag, false);
+            gameManeger2.AtualizarPosicaoOvo(gameObject.tag, false);
         }
     }
 }

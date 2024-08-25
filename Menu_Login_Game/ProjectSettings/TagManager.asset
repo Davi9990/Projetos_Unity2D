@@ -10,6 +10,8 @@ TagManager:
   - Ovo1
   - Ovo2
   - Ovo3
+  - Ovo4
+  - AreaAlvo4
   layers:
   - Default
   - TransparentFX
