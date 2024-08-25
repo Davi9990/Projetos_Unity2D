@@ -4,12 +4,12 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Peca
-  - Peca2
-  - Peca3
-  - "Espa\xE7o1"
-  - "Espa\xE7os2"
-  - "Espa\xE7os3"
+  - AreaAlvo
+  - AreaAlvo2
+  - AreaAlvo3
+  - Ovo1
+  - Ovo2
+  - Ovo3
   layers:
   - Default
   - TransparentFX

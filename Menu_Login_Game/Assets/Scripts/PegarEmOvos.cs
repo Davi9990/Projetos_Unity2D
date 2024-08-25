@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class Drag : MonoBehaviour
+public class PegarEmOvos : MonoBehaviour
 {
+    
     private bool dragging = false;
     private Vector3 offset;
-
 
     private void Update()
     {
@@ -17,17 +18,15 @@ public class Drag : MonoBehaviour
         }
     }
 
-    
     private void OnMouseDown()
     {
-        //registre a diferença entre o centro do objeto e o ponto clicado no plano da câmera
+        //Registre a diferença entre o centro do objeto e o ponto clicado no plano da camera
         offset = transform.position - Camera.main.ScreenToWorldPoint(Input.mousePosition);
         dragging = true;
     }
 
-    private void OnMouseUp() 
+    private void OnMouseUp()
     {
-        //Para de se movimentar
         dragging = false;
     }
 }
