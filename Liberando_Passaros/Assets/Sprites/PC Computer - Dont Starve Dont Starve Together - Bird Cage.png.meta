@@ -165,7 +165,7 @@ TextureImporter:
         width: 173
         height: 214
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -173,6 +173,27 @@ TextureImporter:
       bones: []
       spriteID: 6f8db38ed818d204c8327349c5a79138
       internalID: -360744381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gaiola_Quebrada
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 282
+        width: 166
+        height: 230
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 691dfcaf5642de1428ed29b164b47e93
+      internalID: 1306847839
       vertices: []
       indices: 
       edges: []
@@ -188,6 +209,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      Gaiola_Quebrada: 1306847839
       Gaiolha: -360744381
       Tiro1: -311569000
   mipmapLimitGroupName: 

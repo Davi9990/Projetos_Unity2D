@@ -8,7 +8,7 @@ public class Movimentacao : MonoBehaviour
     private Rigidbody2D corpo;
     public float xAxis;
     public float yAxis;
-
+    private bool isFacingRight = true;
 
     void Start()
     {
@@ -32,5 +32,24 @@ public class Movimentacao : MonoBehaviour
     {
         corpo.velocity = new Vector2(velocidade * xAxis, corpo.velocity.y);
         corpo.velocity = new Vector2(velocidade * yAxis, corpo.velocity.x);
+
+        //Checa a direção do movimento e flipa o personagem se necessario
+
+        if(yAxis > 0 && !isFacingRight)
+        {
+            Flip();
+        }
+        else if(yAxis < 00 && isFacingRight)
+        {
+            Flip();
+        }
+    }
+
+    private void Flip()
+    {
+        isFacingRight = !isFacingRight;
+        Vector3 scaler = transform.localScale;
+        scaler.x *= -1;
+        transform.localScale = scaler;
     }
 }
