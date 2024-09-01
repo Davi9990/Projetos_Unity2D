@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 9121889701809407163}
   - component: {fileID: 1462648687743254667}
   - component: {fileID: 8278202900733306786}
+  - component: {fileID: 6970217496148720370}
   m_Layer: 0
   m_Name: Fogo
   m_TagString: Untagged
@@ -158,3 +159,17 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &6970217496148720370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6963048201267156063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66bce194dcf40ee4f8793fdcbfd402f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
+  attackCooldown: 1

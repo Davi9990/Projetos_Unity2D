@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6933881271920714725}
   - component: {fileID: 6329786800886975920}
   - component: {fileID: 2516699647154983407}
+  - component: {fileID: 7443474842400072165}
   m_Layer: 0
   m_Name: Gelo
   m_TagString: Untagged
@@ -148,3 +149,17 @@ CircleCollider2D:
   m_Offset: {x: 0.009148522, y: -0.029622326}
   serializedVersion: 2
   m_Radius: 1.0049332
+--- !u!114 &7443474842400072165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1252858440759935894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98e3ee840b14f7846ab178c57745ebca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
+  attackCooldown: 1
