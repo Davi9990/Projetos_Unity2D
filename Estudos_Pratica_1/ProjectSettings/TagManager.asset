@@ -4,14 +4,12 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Ground
-  - Scorpion
-  - Otaku
+  - chao
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Chao
+  - chao
   - Water
   - UI
   - 

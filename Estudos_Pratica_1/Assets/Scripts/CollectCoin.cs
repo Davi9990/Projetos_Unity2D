@@ -1,0 +1,30 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using TMPro;
+
+public class CollectCoin : MonoBehaviour
+{
+    public float Valor = 3;
+    public TextMeshProUGUI Score;
+
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag("Player"))
+        {
+            Debug.Log("Coletando Moeda");
+            Score.text = "" + Score.ToString();
+        }
+    }
+}
