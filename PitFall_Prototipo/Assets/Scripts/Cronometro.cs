@@ -5,14 +5,22 @@ using TMPro;
 
 public class Cronometro : MonoBehaviour
 {
-    public float timeRemaining = 1200;
+    public float timeRemaining;
     public TextMeshProUGUI timerText;
 
     private bool timerIsRunning = false;
 
     void Start()
     {
-        
+        if(timerText != null)
+        {
+            timerIsRunning = true;
+            UpdateTimerText();
+        }
+        else
+        {
+            Debug.Log("TextMeshPro não atribuido");
+        }
     }
 
     // Update is called once per frame
@@ -23,10 +31,11 @@ public class Cronometro : MonoBehaviour
             if(timeRemaining > 0)
             {
                 timeRemaining -= Time.deltaTime;
+                UpdateTimerText();
             }
             else
             {
-
+                TimeExpired();
             }
         }
     }
@@ -36,7 +45,15 @@ public class Cronometro : MonoBehaviour
         //Atualiza o texto do cronometro
         if(timerText != null)
         {
-            timerText.text = Mathf.Round(timeRemaining).ToString();
+            int minutes = Mathf.FloorToInt(timeRemaining / 60);
+            int seconds = Mathf.FloorToInt(timeRemaining % 60);
+            timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds); ;
         }
+    }
+
+    private void TimeExpired()
+    {
+        timerIsRunning = false;
+        Debug.Log("Tempo Esgotado");
     }
 }
