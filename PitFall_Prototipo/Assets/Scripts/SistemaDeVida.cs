@@ -5,36 +5,36 @@ using UnityEngine.UI;
 
 public class SistemaDeVida : MonoBehaviour
 {
-    public int vida;
-    public int vidaMaxima;
+    public int vida;  // Vida atual do jogador
+    public int vidaMaxima;  // Vida máxima possível do jogador
 
-    public Image[] Hits;
-    public Sprite cheio;
-    public Sprite vazio;
-
+    public Image[] Hits;  // Referências às imagens de vida no HUD
+    public Sprite cheio;  // Sprite para vida cheia
+    public Sprite vazio;  // Sprite para vida vazia
 
     void Start()
     {
-        
+        AtualizarHudDeVida();  // Atualiza o HUD assim que o jogo começa
     }
 
-    // Update is called once per frame
     void Update()
     {
-        HealthLogic();
-        DeadState();
+        AtualizarHudDeVida();
+        VerificarMorte();
     }
 
-    void HealthLogic()
+    void AtualizarHudDeVida()
     {
-        if(vida > vidaMaxima)
+        // Se a vida estiver maior que a vida máxima, ajusta para a vida máxima
+        if (vida > vidaMaxima)
         {
             vida = vidaMaxima;
         }
 
-        for(int i = 0; i < Hits.Length; i++)
+        // Atualiza cada barra de vida no HUD
+        for (int i = 0; i < Hits.Length; i++)
         {
-            if(i< vida)
+            if (i < vida)
             {
                 Hits[i].sprite = cheio;
             }
@@ -43,20 +43,14 @@ public class SistemaDeVida : MonoBehaviour
                 Hits[i].sprite = vazio;
             }
 
-            if(i < vidaMaxima)
-            {
-                Hits[i].enabled = true;
-            }
-            else
-            {
-                Hits[i].enabled = false;
-            }
+            // Ativa ou desativa a barra de vida dependendo do valor da vida máxima
+            Hits[i].enabled = i < vidaMaxima;
         }
     }
 
-    void DeadState()
+    void VerificarMorte()
     {
-        if(vida <= 0)
+        if (vida <= 0)
         {
             Destroy(gameObject);
         }
