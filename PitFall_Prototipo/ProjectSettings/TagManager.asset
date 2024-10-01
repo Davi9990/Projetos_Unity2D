@@ -7,6 +7,7 @@ TagManager:
   - EndPoint
   - Inimigo
   - PontoDePulo
+  - Escada
   layers:
   - Default
   - TransparentFX

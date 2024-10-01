@@ -17,6 +17,11 @@ public class Movimentacao : MonoBehaviour
     public LayerMask chao;
     public float JumpForce;
 
+    //Escadas
+    private float vertical;
+    private bool escada;
+    private bool escalando;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -27,6 +32,13 @@ public class Movimentacao : MonoBehaviour
     {
         Move();
         Jump();
+
+        vertical = Input.GetAxis("Vertical");
+
+        if (escada && Mathf.Abs(vertical) > 0)
+        {
+            escalando = true;
+        }
     }
 
     private void Move()
@@ -62,6 +74,38 @@ public class Movimentacao : MonoBehaviour
         if(Input.GetButtonDown("Jump") && EstaNoChao == true)
         {
             rb.velocity = Vector2.up * JumpForce;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Escada"))
+        {
+            escada = true;
+
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Escada"))
+        {
+            escada = false;
+            escalando = false; // Parando de escalar
+            rb.velocity = new Vector2(rb.velocity.x, 0);
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if(escalando)
+        {
+            rb.gravityScale = 0;
+            rb.velocity = new Vector2(rb.velocity.x, vertical * velocidade);
+        }
+        else
+        {
+            rb.gravityScale = 2f;
         }
     }
 }

@@ -11,7 +11,7 @@ public class DanoAcido : MonoBehaviour
 
     void Start()
     {
-
+        PodeAtacar = true;
     }
 
     // Update is called once per frame
@@ -20,13 +20,15 @@ public class DanoAcido : MonoBehaviour
 
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnTrigggerEnter2D(Collision2D collision)
     {
         if(collision.gameObject.CompareTag("Player") && PodeAtacar)
         {
             AplicarDano(collision);
         }
     }
+
+    
 
     void OnCollisionStay2D(Collision2D collision)
     {
