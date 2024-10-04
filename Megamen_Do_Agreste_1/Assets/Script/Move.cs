@@ -7,6 +7,7 @@ public class Move : MonoBehaviour
     //Movimentação
     public float speed;
     private Rigidbody2D rg;
+    private bool isFacingRight = true;
 
     //Pulos
     public float JP;
@@ -31,6 +32,7 @@ public class Move : MonoBehaviour
         
         m();
         pular();
+        Atirar();
 
         if (tempinho <= 0)
         {
@@ -43,6 +45,24 @@ public class Move : MonoBehaviour
     {
         float n = Input.GetAxisRaw("Horizontal");
         rg.velocity = new Vector2(n * speed, rg.velocity.y);
+
+        //Verifica a direção do movimento e inverte o sprite se necessario
+
+        if (n > 0 && !isFacingRight)
+        {
+            //Inverte a direção do sprite
+            isFacingRight = !isFacingRight;
+            Vector3 scaler = transform.localScale;
+            scaler.x *= -1;
+            transform.localScale = scaler;
+        }
+        else if (n < 0 && isFacingRight)
+        {
+            isFacingRight = !isFacingRight;
+            Vector3 scaler = transform.localScale;
+            scaler.x *= -1;
+            transform.localScale = scaler;
+        }
     }
 
     void pular()
@@ -52,17 +72,30 @@ public class Move : MonoBehaviour
             rg.AddForce(new Vector2(0, JP), ForceMode2D.Impulse);
             CnJmp = false;
         }
+
+        // Pulo variável: reduz a velocidade do pulo se o jogador soltar o botão antes do pulo atingir o ponto máximo
+        if (Input.GetButtonUp("Jump") && rg.velocity.y > 0)
+        {
+            rg.velocity = new Vector2(rg.velocity.x, rg.velocity.y * 0.5f);
+        }
     }
 
     private void Atirar()
     {
         if(Input.GetKeyDown(KeyCode.F) && Time.time >= nextFireTime)
         {
-            GameObject newFire = Instantiate(Balas,Hand.position, Quaternion.identity);
-            //Acessa o RigidBody2d do porjetil instanciado
+            GameObject newFire = Instantiate(Balas, Hand.position, Quaternion.identity);
+            // Acessa o Rigidbody2D do projétil instanciado
             Rigidbody2D firerb = newFire.GetComponent<Rigidbody2D>();
-            //Acessa uma força ao projetil na direção para a qual a mão está apontando
-            firerb.velocity = Hand.right * speed;
+
+            // Verifica a direção do player usando o isFacingRight
+            float direction = isFacingRight ? 1 : -1;
+
+            // Atribui uma velocidade ao projétil considerando a velocidade do jogador
+            float bulletSpeed = speedBulllets + Mathf.Abs(rg.velocity.x); // Soma a velocidade do projétil à do jogador
+            firerb.velocity = new Vector2(direction * bulletSpeed, 0);
+
+            Destroy(newFire, 6f);
             nextFireTime = Time.time + fireRate;
         }
     }
