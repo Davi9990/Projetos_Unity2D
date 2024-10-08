@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 6345001610037384225}
   - component: {fileID: 8153209856906537366}
   - component: {fileID: 1470069855064209578}
+  - component: {fileID: 286559159352800231}
   m_Layer: 0
   m_Name: ProjetilEnemy
-  m_TagString: Untagged
+  m_TagString: EnemysBullets
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -148,3 +149,16 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &286559159352800231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2610141958796565837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 946525a0dc65a4b4eaf862dfc6184f7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1

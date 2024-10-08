@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Chao
   - BalasPlayer
+  - EnemysBullets
+  - EnemySniper
   layers:
   - Default
   - TransparentFX

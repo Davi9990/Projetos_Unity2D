@@ -8,8 +8,9 @@ public class EnemyShild : MonoBehaviour
     public float followDistance = 10f;
     public float moveSpeed = 2f;
     public float attackCooldown = 1f;
+    public float delayBeforeAttack = 1f;
+    public float waitingTimeAfterAttack = 2f;
     private float lastAttackTime;
-    public GameObject projectilePrefab; // Use um prefab para criar projéteis
 
     private Rigidbody2D rb;
 
@@ -21,8 +22,11 @@ public class EnemyShild : MonoBehaviour
 
     void Update()
     {
-        Caminhando();
-        CheckAttack(); // Chama uma função separada para verificar o ataque
+        // Só movimenta o inimigo se ele não estiver atacando
+        if (Time.time > lastAttackTime + attackCooldown + delayBeforeAttack + waitingTimeAfterAttack)
+        {
+            Caminhando();
+        }
     }
 
     public void Caminhando()
@@ -43,56 +47,45 @@ public class EnemyShild : MonoBehaviour
         }
     }
 
-    private void CheckAttack()
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        Collider2D col = Physics2D.OverlapCircle(transform.position, followDistance, LayerMask.GetMask("Player"));
-        if (col != null && col.CompareTag("Player"))
+        if (collision.collider.CompareTag("BalasPlayer"))
         {
-            Atacando(col);
-        }
-    }
-
-    public void Atacando(Collider2D col)
-    {
-        // Evita iniciar múltiplas corrotinas
-        if (Time.time > lastAttackTime + attackCooldown)
-        {
-            StartCoroutine(ChegandoPerto(col));
-        }
-    }
-
-    private IEnumerator ChegandoPerto(Collider2D col)
-    {
-        // Mantém a referência da distância do jogador
-        float distancePlayer = Vector2.Distance(transform.position, player.position);
-
-        // Enquanto o jogador estiver próximo, aguarda
-        while (distancePlayer <= followDistance)
-        {
-            // Atualiza a distância
-            distancePlayer = Vector2.Distance(transform.position, player.position);
-
-            // Verifica se a colisão é com uma bala do jogador
-            if (col.gameObject.CompareTag("BalasPlayer"))
+            float distancePlayer = Vector2.Distance(transform.position, player.position);
+            if (distancePlayer < followDistance)
             {
-                Destroy(col.gameObject); // Destroi a instância da bala
-                yield break; // Sai do loop
+                // Quando estiver perto do jogador, bala não destrói o inimigo
+                Destroy(collision.gameObject);
             }
+        }
+    }
 
-            yield return null; // Espera até o próximo frame
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.collider.CompareTag("Player") && Time.time > lastAttackTime + attackCooldown)
+        {
+            StartCoroutine(AtacarJogador());
         }
+    }
 
-        // Se ainda estiver dentro da distância e for o jogador
-        if (col.gameObject.CompareTag("Player"))
-        {
-            rb.bodyType = RigidbodyType2D.Static;
-            lastAttackTime = Time.time; // Atualiza o tempo do último ataque
-            Debug.Log("Atacando");
-        }
-        else
-        {
-            rb.bodyType = RigidbodyType2D.Dynamic;
-            Debug.Log("CoolDawn Iniciado");
-        }
+    private IEnumerator AtacarJogador()
+    {
+        // Para o inimigo completamente antes de atacar
+        rb.velocity = Vector2.zero;
+        rb.bodyType = RigidbodyType2D.Static;
+
+        // Espera antes de atacar
+        yield return new WaitForSeconds(delayBeforeAttack);
+
+
+        // Realiza o ataque
+        Debug.Log("Atacando o jogador");
+        lastAttackTime = Time.time;
+
+        // Espera um tempo antes de voltar a perseguir o jogador
+        yield return new WaitForSeconds(waitingTimeAfterAttack);
+
+        // Retorna ao estado normal, continuando a perseguir o jogador
+        rb.bodyType = RigidbodyType2D.Dynamic;
     }
 }

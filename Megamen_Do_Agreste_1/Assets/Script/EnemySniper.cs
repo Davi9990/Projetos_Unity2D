@@ -12,9 +12,13 @@ public class EnemySniper : MonoBehaviour
     public Transform pontoDisparo;    // Ponto de onde o projetil é disparado
     public float velocidadeProjetil = 10f; // Velocidade do projetil
     public float tempoVidaProjetil = 5f; // Tempo de vida do projetil em segundos
+    private SpriteRenderer render; // Referência do sprite para o flip
+
 
     private float tempoUltimoTiro;
     private Transform jogador;
+
+    private Vector3 pontoDisparoOffset; // Guarda o offset original do ponto de disparo
 
     void Start()
     {
@@ -24,6 +28,10 @@ public class EnemySniper : MonoBehaviour
         {
             jogador = objetoJogador.transform;
         }
+
+        render = GetComponent<SpriteRenderer>();
+
+        pontoDisparoOffset = pontoDisparo.localPosition;
     }
 
     void Update()
@@ -36,10 +44,13 @@ public class EnemySniper : MonoBehaviour
         // Calcula a distância entre o inimigo e o jogador
         float distanciaParaJogador = Vector2.Distance(transform.position, jogador.position);
 
+        Flip();
+
         // Se o jogador estiver dentro do raio de fuga, o inimigo foge
         if (distanciaParaJogador <= alcanceFuga)
         {
             FugirDoJogador();
+            
         }
         // Se o jogador estiver dentro do raio de tiro, o inimigo atira
         else if (distanciaParaJogador <= alcanceTiro)
@@ -70,6 +81,26 @@ public class EnemySniper : MonoBehaviour
             }
             Destroy(projetil, tempoVidaProjetil);
             tempoUltimoTiro = Time.time;
+        }
+    }
+
+    public void Flip()
+    {
+        // Verifica a posição do jogador em relação ao inimigo
+        if (jogador != null)
+        {
+            if (jogador.position.x < transform.position.x)
+            {
+                // Se o jogador estiver à esquerda, vira o inimigo para a direita
+                render.flipX = true;
+                pontoDisparo.localPosition = new Vector3(pontoDisparoOffset.x,pontoDisparoOffset.y,pontoDisparoOffset.z);
+            }
+            else
+            {
+                // Se o jogador estiver à direita, vira o inimigo para a esquerda
+                render.flipX = false;
+                pontoDisparo.localPosition = -pontoDisparoOffset;
+            }
         }
     }
 }
