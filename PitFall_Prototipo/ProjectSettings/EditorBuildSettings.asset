@@ -8,4 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/Tela1.unity
+    guid: 6f7330467565c9f49ba3a67f5df224d4
+  - enabled: 1
+    path: Assets/Scenes/TelaTitulo.unity
+    guid: 05af21f5d3b4c41469f80fdc21999ab0
   m_configObjects: {}

@@ -12,8 +12,20 @@ public class MovimentacaoInimigo : MonoBehaviour
     private Rigidbody2D rb;
     private Vector2 direction;
 
+    public AudioSource src;
+
+    public AudioClip pulo, surgir;
+
+    private void Awake()
+    {
+        src.clip = surgir;
+        src.Play();
+    }
+
     void Start()
     {
+        
+        
         rb = GetComponent<Rigidbody2D>();
         transform.position = startPoint.position;
         direction = (endPoint.position - startPoint.position).normalized;
@@ -44,6 +56,8 @@ public class MovimentacaoInimigo : MonoBehaviour
         if (collision.gameObject.CompareTag("PontoDePulo"))
         {
             rb.velocity = Vector2.up * JumpForce;
+            src.clip = pulo;
+            src.Play();
         }
     }
 

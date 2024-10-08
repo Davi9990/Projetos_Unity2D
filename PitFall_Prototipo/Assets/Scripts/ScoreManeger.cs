@@ -9,6 +9,7 @@ public class ScoreManeger : MonoBehaviour
 {
     public static ScoreManeger Instance { get; private set; }
 
+
     private int score;
     public TextMeshProUGUI scoreText;
 

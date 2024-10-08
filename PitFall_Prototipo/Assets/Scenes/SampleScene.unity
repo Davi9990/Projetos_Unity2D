@@ -862,6 +862,9 @@ MonoBehaviour:
   endPoint: {fileID: 1402837572}
   speed: 5
   JumpForce: 9
+  src: {fileID: 0}
+  pulo: {fileID: 0}
+  surgir: {fileID: 0}
 --- !u!50 &556403822
 Rigidbody2D:
   serializedVersion: 4
@@ -3190,6 +3193,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   JumpForce: 7
+  pulo: {fileID: 0}
+  Escada: {fileID: 0}
 --- !u!50 &1764105949
 Rigidbody2D:
   serializedVersion: 4
@@ -3397,6 +3402,7 @@ MonoBehaviour:
   - {fileID: 536987888}
   cheio: {fileID: 21300000, guid: e9a974776e11a3a4daa16e82d06e3c4b, type: 3}
   vazio: {fileID: 21300000, guid: 5c7f48e899e57354d8843ce1699cd430, type: 3}
+  Dano: {fileID: 0}
 --- !u!1 &1802516939
 GameObject:
   m_ObjectHideFlags: 0

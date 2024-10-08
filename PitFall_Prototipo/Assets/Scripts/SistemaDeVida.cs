@@ -12,6 +12,11 @@ public class SistemaDeVida : MonoBehaviour
     public Sprite cheio;  // Sprite para vida cheia
     public Sprite vazio;  // Sprite para vida vazia
 
+    //Sons
+
+    //Ainda não dá pra tocar os sons aqui
+    public AudioSource Dano;
+    
     void Start()
     {
         AtualizarHudDeVida();  // Atualiza o HUD assim que o jogo começa
@@ -36,6 +41,7 @@ public class SistemaDeVida : MonoBehaviour
         {
             if (i < vida)
             {
+                
                 Hits[i].sprite = cheio;
             }
             else
