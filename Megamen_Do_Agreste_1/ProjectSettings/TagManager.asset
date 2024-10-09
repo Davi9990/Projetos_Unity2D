@@ -8,6 +8,8 @@ TagManager:
   - BalasPlayer
   - EnemysBullets
   - EnemySniper
+  - Circle
+  - Circle2
   layers:
   - Default
   - TransparentFX
