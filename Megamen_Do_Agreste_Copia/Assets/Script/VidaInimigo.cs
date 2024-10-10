@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class VidaInimigo : MonoBehaviour
 {
-    public GameObject[] SpawnItens;
-    int Random;
     public int maxHealth = 5;
-    public int currentHealth;
+    private int currentHealth;
 
     void Start()
     {
         currentHealth = maxHealth;
-
     }
 
     // Update is called once per frame
@@ -23,12 +20,6 @@ public class VidaInimigo : MonoBehaviour
         if(currentHealth < 0)
         {
             Destroy(gameObject);
-            SpawnRandom();
         }
-    }
-
-    void SpawnRandom()
-    {
-        Instantiate(SpawnItens[Random],transform.position,transform.rotation);
     }
 }

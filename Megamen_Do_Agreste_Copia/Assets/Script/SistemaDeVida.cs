@@ -23,17 +23,7 @@ public class SistemaDeVida : MonoBehaviour
         VerificarMorte();
     }
 
-    public void GanharVida(int quantidade)
-    {
-        vida += quantidade;
-
-        if (vidaMaxima > vida)
-        {
-            vidaMaxima = vida;
-        }
-        AtualizarHudDeVida();
-    }
-    public void AtualizarHudDeVida()
+    void AtualizarHudDeVida()
     {
         // Se a vida estiver maior que a vida máxima, ajusta para a vida máxima
         if (vida > vidaMaxima)
