@@ -5,7 +5,7 @@ using UnityEngine;
 public class VidaInimigo : MonoBehaviour
 {
     public int maxHealth = 5;
-    private int currentHealth;
+    public int currentHealth;
 
     void Start()
     {
