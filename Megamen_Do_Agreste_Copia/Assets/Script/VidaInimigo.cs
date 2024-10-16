@@ -17,7 +17,7 @@ public class VidaInimigo : MonoBehaviour
     {
         currentHealth -= damage;
 
-        if(currentHealth < 0)
+        if(currentHealth <= 0)
         {
             Destroy(gameObject);
         }
