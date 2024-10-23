@@ -55,4 +55,14 @@ public class SistemaDeVida : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    public void GanharVida(int quantidade)
+    {
+        vida += quantidade;
+        if(vida > vidaMaxima)
+        {
+            vida = vidaMaxima;
+        }
+        AtualizarHudDeVida();
+    }
 }

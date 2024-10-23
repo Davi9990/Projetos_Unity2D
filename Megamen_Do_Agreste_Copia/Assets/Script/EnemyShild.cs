@@ -16,6 +16,7 @@ public class EnemyShild : MonoBehaviour
     private Rigidbody2D rb;
     private bool isAttacking = false;  // Controla se o inimigo está no estado de ataque
     public bool isApproaching = true; // Controla se o inimigo está na fase de aproximação
+    private bool facingRight = true; // Controla a direção que o inimigo está virado
 
     void Start()
     {
@@ -41,6 +42,16 @@ public class EnemyShild : MonoBehaviour
             isApproaching = true;  // O inimigo está se aproximando do jogador
             Vector2 direction = (player.position - transform.position).normalized;
             rb.velocity = direction * moveSpeed;
+
+            // Verifica se precisa virar para a esquerda ou para a direita
+            if (player.position.x > transform.position.x && facingRight) // Player à esquerda e inimigo virado à direita
+            {
+                Flip(); // Vira para a esquerda
+            }
+            else if (player.position.x < transform.position.x && !facingRight) // Player à direita e inimigo virado à esquerda
+            {
+                Flip(); // Vira para a direita
+            }
         }
         else if (distancePlayer <= stopDistance)
         {
@@ -52,6 +63,14 @@ public class EnemyShild : MonoBehaviour
             isApproaching = false;  // O inimigo está fora do alcance
             rb.velocity = Vector2.zero;
         }
+    }
+
+    private void Flip()
+    {
+        facingRight = !facingRight;
+        Vector3 scale = transform.localScale;
+        scale.x *= -1;  // Inverte a escala no eixo X para fazer o flip
+        transform.localScale = scale;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

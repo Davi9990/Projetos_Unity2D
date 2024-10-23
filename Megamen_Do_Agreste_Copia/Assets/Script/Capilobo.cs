@@ -15,16 +15,20 @@ public class Capilobo : MonoBehaviour
     public float TempoLinguada;
 
     private float lastAttackTime;
-
     private Rigidbody2D rb;
     public Rigidbody2D PlayerRb;
     private SistemaDeVida vida;
 
     public BoxCollider2D boxCollider1; // Colisor normal (para dano)
     public BoxCollider2D boxCollider2; // Colisor da linguada (Trigger)
+    
+    // Referência para o objeto vazio que servirá de guia
+    public Transform GuiaLinguada;
 
     private Vector2 initialColliderSize;
     private Vector2 initialColliderOffset;
+
+    private bool facingRight = true; // Controla a direção que o inimigo está virado
 
     void Start()
     {
@@ -53,6 +57,16 @@ public class Capilobo : MonoBehaviour
         {
             Vector2 direction = (player.position - transform.position).normalized;
             rb.velocity = direction * velocidade;
+
+            // Verifica se precisa virar para a esquerda ou direita
+            if (player.position.x > transform.position.x && !facingRight) // Player à direita e inimigo virado para a esquerda
+            {
+                Flip(); // Vira para a direita
+            }
+            else if (player.position.x < transform.position.x && facingRight) // Player à esquerda e inimigo virado para a direita
+            {
+                Flip(); // Vira para a esquerda
+            }
         }
         // O inimigo tenta dar a "linguada" se o jogador estiver na distância adequada
         else if (distancePlayer <= LinguadaDistance && !Lambida)
@@ -70,24 +84,30 @@ public class Capilobo : MonoBehaviour
         }
     }
 
+    private void Flip()
+    {
+        facingRight = !facingRight;
+        Vector3 scale = transform.localScale;
+        scale.x *= -1; // Inverte a escala no eixo X para fazer o flip
+        transform.localScale = scale;
+    }
+
     private IEnumerator LinguadaRoutine()
     {
         Lambida = true;
         rb.velocity = Vector2.zero; // Para o movimento do inimigo
 
-        // Expande o colisor da linguada
-        Vector2 direction = (player.position - transform.position).normalized;
-        if (player.position.x > transform.position.x)
+        // Ajusta o tamanho do colisor de acordo com a distância
+        boxCollider2.size = new Vector2(distanciaLinguada, boxCollider2.size.y);
+
+        // Ajusta o offset de acordo com a direção do inimigo
+        if (!facingRight)
         {
-            // Expande o colisor para a direita
-            boxCollider2.offset = new Vector2(distanciaLinguada / 2, boxCollider2.offset.y);
-            boxCollider2.size = new Vector2(distanciaLinguada, boxCollider2.size.y);
+            boxCollider2.offset = new Vector2(distanciaLinguada / 2, boxCollider2.offset.y); // Para a direita
         }
         else
         {
-            // Expande o colisor para a esquerda
-            boxCollider2.offset = new Vector2(-distanciaLinguada / 2, boxCollider2.offset.y);
-            boxCollider2.size = new Vector2(distanciaLinguada, boxCollider2.size.y);
+            boxCollider2.offset = new Vector2(-distanciaLinguada / 2, boxCollider2.offset.y); // Para a esquerda
         }
 
         // Aguarda o tempo da linguada
