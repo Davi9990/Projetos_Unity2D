@@ -12,8 +12,11 @@ public class Baiacu : MonoBehaviour
     private bool EstaExpandindo = false; // Flag para verificar se está expandindo
     private float lastAttackTime; // Controla o último ataque
 
+    private Animator anim;
+
     void Start()
     {
+        anim = GetComponent<Animator>();
         circleCollider = GetComponent<CircleCollider2D>(); // Pega o CircleCollider2D do inimigo
         StartCoroutine(ExpandindoAreaDeDano()); // Inicia o ciclo de expansão e contração
     }
@@ -39,12 +42,14 @@ public class Baiacu : MonoBehaviour
             // Expande a área de colisão
             EstaExpandindo = true;
             circleCollider.radius = AreaDeDano;
+            anim.SetBool("Choque", true);
 
             yield return new WaitForSeconds(TempoDeExpansao); // Espera o tempo de expansão
 
             // Retorna ao tamanho normal
             EstaExpandindo = false;
-            circleCollider.radius = 0.5f;
+            circleCollider.radius = 0.07f;
+            anim.SetBool("Choque", false);
 
             yield return new WaitForSeconds(TempoDeRecarga); // Espera o tempo de recarga
         }

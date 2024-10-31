@@ -22,9 +22,11 @@ public class CabocloDaAgua : MonoBehaviour
     private bool IsAttack = false;
     private bool causouDano = false; // Controle para garantir que o dano só seja aplicado uma vez
     private float lastAttackTime;
+    private Animator anim;
 
     void Start()
     {
+        anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         rb.gravityScale = 0; // Inimigo "voa" no começo
         player = GameObject.FindWithTag("Player").transform; // Localiza o jogador automaticamente
@@ -38,6 +40,8 @@ public class CabocloDaAgua : MonoBehaviour
             // Seguir o jogador apenas horizontalmente (eixo x)
             Vector2 targetPosition = new Vector2(player.position.x, transform.position.y);
             transform.position = Vector2.MoveTowards(transform.position, targetPosition, velocidade * Time.deltaTime);
+            anim.SetBool("Movendo", true);
+            anim.SetBool("Estocada", false);
 
             // Verifica se o inimigo está alinhado com o jogador no eixo x para atacar
             if (Mathf.Abs(player.position.x - transform.position.x) < 0.5f && Time.time > lastAttackTime + attackCooldown)
@@ -59,11 +63,15 @@ public class CabocloDaAgua : MonoBehaviour
         IsAttack = true;
         causouDano = false; // Reseta a variável para permitir dano no próximo ataque
 
+        
         // Aumenta a gravidade para fazê-lo cair rapidamente
         rb.gravityScale = gravidadeAlta;
 
         // Desce rapidamente para atacar
         rb.velocity = Vector2.down * velocidadeDeDescida;
+
+        anim.SetBool("Movendo", false);
+        anim.SetBool("Estocada", true);
 
         // Espera até atingir o jogador (ou passar por ele)
         while (transform.position.y > player.position.y)
@@ -75,6 +83,8 @@ public class CabocloDaAgua : MonoBehaviour
         rb.velocity = Vector2.zero; // Zera a velocidade após descer
         yield return new WaitForSeconds(0.1f);
 
+        anim.SetBool("Movendo", true);
+        anim.SetBool("Estocada", false);
         // Reseta a gravidade para zero para voar de volta para cima
         rb.gravityScale = 0;
 

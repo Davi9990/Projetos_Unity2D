@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class EnemySniper : MonoBehaviour
 {
-    public float alcanceTiro = 15f;   // Distância em que o inimigo começa a atirar no jogador
-    public float alcanceFuga = 5f;     // Distância em que o inimigo começa a fugir do jogador
+    public float alcanceTiro = 15f;   // Distï¿½ncia em que o inimigo comeï¿½a a atirar no jogador
+    public float alcanceFuga = 5f;     // Distï¿½ncia em que o inimigo comeï¿½a a fugir do jogador
     public float velocidadeMovimento = 2f; // Velocidade de movimento do inimigo
     public float tempoRecargaTiro = 1f; // Tempo de recarga entre disparos
     public GameObject prefabProjetil; // Prefab do projetil
-    public Transform pontoDisparo;    // Ponto de onde o projetil é disparado
+    public Transform pontoDisparo;    // Ponto de onde o projetil ï¿½ disparado
     public float velocidadeProjetil = 10f; // Velocidade do projetil
     public float tempoVidaProjetil = 5f; // Tempo de vida do projetil em segundos
-    private SpriteRenderer render; // Referência do sprite para o flip
-
+    private SpriteRenderer render; // Referï¿½ncia do sprite para o flip
+    private Animator anim;
 
     private float tempoUltimoTiro;
     private Transform jogador;
@@ -30,6 +30,7 @@ public class EnemySniper : MonoBehaviour
         }
 
         render = GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animator>();
 
         pontoDisparoOffset = pontoDisparo.localPosition;
     }
@@ -41,7 +42,7 @@ public class EnemySniper : MonoBehaviour
             return;
         }
 
-        // Calcula a distância entre o inimigo e o jogador
+        // Calcula a distï¿½ncia entre o inimigo e o jogador
         float distanciaParaJogador = Vector2.Distance(transform.position, jogador.position);
 
         Flip();
@@ -50,18 +51,22 @@ public class EnemySniper : MonoBehaviour
         if (distanciaParaJogador <= alcanceFuga)
         {
             FugirDoJogador();
-            
+            anim.SetBool("Fugindo",true);
         }
         // Se o jogador estiver dentro do raio de tiro, o inimigo atira
         else if (distanciaParaJogador <= alcanceTiro)
         {
             AtirarNoJogador();
         }
+        else if(distanciaParaJogador > alcanceFuga)
+        {
+            anim.SetBool("Fugindo",false);
+        }
     }
 
     void FugirDoJogador()
     {
-        // Move o inimigo na direção oposta ao jogador
+        // Move o inimigo na direï¿½ï¿½o oposta ao jogador
         Vector2 direcao = (transform.position - jogador.position).normalized;
         transform.position += (Vector3)(direcao * velocidadeMovimento * Time.deltaTime);
     }
@@ -70,7 +75,7 @@ public class EnemySniper : MonoBehaviour
     {
         if (Time.time > tempoUltimoTiro + tempoRecargaTiro)
         {
-            // Cria o projetil na posição do ponto de disparo e na direção do jogador
+            // Cria o projetil na posiï¿½ï¿½o do ponto de disparo e na direï¿½ï¿½o do jogador
             GameObject projetil = Instantiate(prefabProjetil, pontoDisparo.position, Quaternion.identity);
             Vector2 direcao = (jogador.position - pontoDisparo.position).normalized;
             Rigidbody2D rb = projetil.GetComponent<Rigidbody2D>();
@@ -86,19 +91,19 @@ public class EnemySniper : MonoBehaviour
 
     public void Flip()
     {
-        // Verifica a posição do jogador em relação ao inimigo
+        // Verifica a posiï¿½ï¿½o do jogador em relaï¿½ï¿½o ao inimigo
         if (jogador != null)
         {
             if (jogador.position.x < transform.position.x)
             {
-                // Se o jogador estiver à esquerda, vira o inimigo para a direita
-                render.flipX = true;
+                // Se o jogador estiver ï¿½ esquerda, vira o inimigo para a direita
+                render.flipX = false;
                 pontoDisparo.localPosition = new Vector3(pontoDisparoOffset.x,pontoDisparoOffset.y,pontoDisparoOffset.z);
             }
             else
             {
-                // Se o jogador estiver à direita, vira o inimigo para a esquerda
-                render.flipX = false;
+                // Se o jogador estiver ï¿½ direita, vira o inimigo para a esquerda
+                render.flipX = true;
                 pontoDisparo.localPosition = -pontoDisparoOffset;
             }
         }

@@ -13,12 +13,15 @@ public class Bombardeiro : MonoBehaviour
     public Transform shootingPoint2;
     public float projectileSpeed = 10f; //Velocidade do projetil
     public float projectileLifeTime = 5f; //Tempo de Vida do Projetil em segundos
+    private Animator anim;
 
     private float lastShotTime;
     private Transform player;
 
     void Start()
     {
+        anim = GetComponent<Animator>();
+
         //Encontra o jogador pela "Player"
         GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
         if (playerObject != null)
@@ -42,11 +45,16 @@ public class Bombardeiro : MonoBehaviour
         if (distanceToPlayer <= fleeingRange)
         {
             FleeFromPlayer();
+            anim.SetBool("Atirando", true);
         }
         //Se o inimigo estiver dentro do raio de fuga, o inmigo foge
         else if (distanceToPlayer <= shootingRange)
         {
             ShootAtPlayer();
+        }
+        else if(distanceToPlayer >= fleeingRange)
+        {
+            anim.SetBool("Atirando", false);
         }
     }
 

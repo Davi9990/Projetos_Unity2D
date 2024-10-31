@@ -47,7 +47,7 @@ public class EstatuaCuspidora : MonoBehaviour
 public class ProjectileMovement : MonoBehaviour
 {
     public Transform target; // Alvo que o projétil deve seguir
-    public float speed = 5f; // Velocidade do projétil
+    public float speed = 3f; // Velocidade do projétil
     public string targetTag; // Tag do alvo para verificação de colisão
 
     void Update()

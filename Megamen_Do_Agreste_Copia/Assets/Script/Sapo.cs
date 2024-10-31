@@ -14,9 +14,11 @@ public class Sapo : MonoBehaviour
     private SistemaDeVida vida;
     private bool podePular = false;
     private float lastJumpTime = 0f;
+    private Animator anim;
 
     void Start()
     {
+        anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         vida = player.GetComponent<SistemaDeVida>();
     }
@@ -29,12 +31,15 @@ public class Sapo : MonoBehaviour
         // Se a distância for menor ou igual ao followDistance e o inimigo puder pular
         if (distanceToPlayer <= followDistance && podePular && Time.time >= lastJumpTime + jumpCooldown)
         {
+             
+
             // Calcula a direção do pulo em direção ao jogador
             Vector2 jumpDirection = (player.position - transform.position).normalized;
 
             // Aplica a força de pulo
             rb.velocity = new Vector2(jumpDirection.x, 1) * jumpForce; // Direção horizontal + pulo para cima
 
+            
             // Registra o tempo do último pulo
             lastJumpTime = Time.time;
         }
@@ -45,6 +50,7 @@ public class Sapo : MonoBehaviour
         if (collision.gameObject.CompareTag("Chao"))
         {
             podePular = true;
+            anim.SetBool("Pulando", true);
         }
 
         if (collision.gameObject.CompareTag("Player"))
@@ -61,6 +67,7 @@ public class Sapo : MonoBehaviour
         if (collision.gameObject.CompareTag("Chao"))
         {
             podePular = false;
+            anim.SetBool("Pulando", false);
         }
     }
 }

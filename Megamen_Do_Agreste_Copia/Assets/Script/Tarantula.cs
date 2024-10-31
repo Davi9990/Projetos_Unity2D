@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class Tarantula : MonoBehaviour
 {
-    public Transform player; // Referência ao transform do Jogador
-    public float Distancia = 10f; // Distância em que o inimigo começa a seguir o jogador
+    public Transform player; // Referï¿½ncia ao transform do Jogador
+    public float Distancia = 10f; // Distï¿½ncia em que o inimigo comeï¿½a a seguir o jogador
     public float velocidade = 10f; // Velocidade do dash
-    public float dashduration = 0.2f; // Duração do dash
+    public float dashduration = 0.2f; // Duraï¿½ï¿½o do dash
     public float dashCooldown = 1f; // Tempo de recarga do dash
-    public float recoilDistance = 1f; // Distância para recuar após o dash
-    private SpriteRenderer render; // Referência do sprite para o flip
+    public float recoilDistance = 1f; // Distï¿½ncia para recuar apï¿½s o dash
+    private SpriteRenderer render; // Referï¿½ncia do sprite para o flip
     public bool isDashing = false;
+    private Animator anim;
 
     private Rigidbody2D EnemyRb;
     private float lastDashTime = 0f;
@@ -19,8 +20,9 @@ public class Tarantula : MonoBehaviour
     void Start()
     {
         EnemyRb = GetComponent<Rigidbody2D>();
-        EnemyRb.gravityScale = 0; // Mantém no teto até o player se aproximar
+        EnemyRb.gravityScale = 0; // Mantï¿½m no teto atï¿½ o player se aproximar
         render = GetComponent<SpriteRenderer>(); // Inicializa o SpriteRenderer
+        anim = GetComponent<Animator>();
     }
 
     void Update()
@@ -35,7 +37,7 @@ public class Tarantula : MonoBehaviour
 
         if (distanceToPlayer <= Distancia)
         {
-            EnemyRb.gravityScale = 1; // Começa a cair quando o player se aproxima
+            EnemyRb.gravityScale = 1; // Comeï¿½a a cair quando o player se aproxima
             FlipVertically(); // Adiciona o flip vertical
         }
     }
@@ -60,33 +62,35 @@ public class Tarantula : MonoBehaviour
 
         float dashStartTime = Time.time;
 
-        // Aplica a velocidade do dash por um curto período
+        // Aplica a velocidade do dash por um curto perï¿½odo
         while (Time.time < dashStartTime + dashduration)
         {
             EnemyRb.velocity = dashVelocity; // Aplica a velocidade do dash
+            anim.SetBool("Perseguindo", true);
             yield return null;
         }
 
-        // Para o movimento após o dash
+        // Para o movimento apï¿½s o dash
         EnemyRb.velocity = Vector2.zero;
+        anim.SetBool("Perseguindo",false);
 
-        // Recuar um pouco após o dash
+        // Recuar um pouco apï¿½s o dash
         Vector2 recoilDirection = -direction * recoilDistance;
-        EnemyRb.position += recoilDirection; // Move o inimigo para trás
+        EnemyRb.position += recoilDirection; // Move o inimigo para trï¿½s
 
         isDashing = false;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // Verifica se a Tarântula colidiu com o jogador
+        // Verifica se a Tarï¿½ntula colidiu com o jogador
         if (collision.gameObject.CompareTag("Player") && isDashing)
         {
             // Para o movimento imediatamente e recua
             EnemyRb.velocity = Vector2.zero; // Para o movimento
             Vector2 direction = (player.position - transform.position).normalized;
             Vector2 recoilDirection = -direction * recoilDistance;
-            EnemyRb.position += recoilDirection; // Move o inimigo para trás
+            EnemyRb.position += recoilDirection; // Move o inimigo para trï¿½s
             isDashing = false; // Reseta o estado de dashing
         }
     }
@@ -94,7 +98,7 @@ public class Tarantula : MonoBehaviour
     private void FlipVertically()
     {
         // Inverte o sprite verticalmente ao descer
-        if (!render.flipY) // Verifica se já está invertido
+        if (!render.flipY) // Verifica se jï¿½ estï¿½ invertido
         {
             render.flipY = true; // Inverte o sprite
         }

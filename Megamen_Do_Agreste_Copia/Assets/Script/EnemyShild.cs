@@ -6,27 +6,29 @@ public class EnemyShild : MonoBehaviour
 {
     public Transform player;
     public float followDistance = 10f;
-    public float stopDistance = 1.5f;  // Distância mínima para parar antes do ataque
+    public float stopDistance = 1.5f;  // Distï¿½ncia mï¿½nima para parar antes do ataque
     public float moveSpeed = 2f;
     public float attackCooldown = 1f;
     public float delayBeforeAttack = 1f;
     public float waitingTimeAfterAttack = 2f;
     private float lastAttackTime;
+    private Animator anim;
 
     private Rigidbody2D rb;
-    private bool isAttacking = false;  // Controla se o inimigo está no estado de ataque
-    public bool isApproaching = true; // Controla se o inimigo está na fase de aproximação
-    private bool facingRight = true; // Controla a direção que o inimigo está virado
+    private bool isAttacking = false;  // Controla se o inimigo estï¿½ no estado de ataque
+    public bool isApproaching = true; // Controla se o inimigo estï¿½ na fase de aproximaï¿½ï¿½o
+    private bool facingRight = true; // Controla a direï¿½ï¿½o que o inimigo estï¿½ virado
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        rb.gravityScale = 6;  // Mantém a gravidade como dinâmica desde o início
+        rb.gravityScale = 6;  // Mantï¿½m a gravidade como dinï¿½mica desde o inï¿½cio
+        anim = GetComponent<Animator>();
     }
 
     void Update()
     {
-        // Controla o movimento enquanto não está atacando
+        // Controla o movimento enquanto nï¿½o estï¿½ atacando
         if (!isAttacking && Time.time > lastAttackTime + attackCooldown + waitingTimeAfterAttack)
         {
             Caminhando();
@@ -39,28 +41,31 @@ public class EnemyShild : MonoBehaviour
 
         if (distancePlayer < followDistance && distancePlayer > stopDistance)
         {
-            isApproaching = true;  // O inimigo está se aproximando do jogador
+            isApproaching = true;  // O inimigo estï¿½ se aproximando do jogador
             Vector2 direction = (player.position - transform.position).normalized;
             rb.velocity = direction * moveSpeed;
+            anim.SetBool("Perseguindo",true);
+            anim.SetBool("Atacando",false);
 
             // Verifica se precisa virar para a esquerda ou para a direita
-            if (player.position.x > transform.position.x && facingRight) // Player à esquerda e inimigo virado à direita
+            if (player.position.x > transform.position.x && facingRight) // Player ï¿½ esquerda e inimigo virado ï¿½ direita
             {
                 Flip(); // Vira para a esquerda
             }
-            else if (player.position.x < transform.position.x && !facingRight) // Player à direita e inimigo virado à esquerda
+            else if (player.position.x < transform.position.x && !facingRight) // Player ï¿½ direita e inimigo virado ï¿½ esquerda
             {
                 Flip(); // Vira para a direita
             }
         }
         else if (distancePlayer <= stopDistance)
         {
-            isApproaching = false;  // O inimigo está pronto para atacar
+            isApproaching = false;  // O inimigo estï¿½ pronto para atacar
             rb.velocity = Vector2.zero;
+            anim.SetBool("Perseguindo",false);
         }
         else
         {
-            isApproaching = false;  // O inimigo está fora do alcance
+            isApproaching = false;  // O inimigo estï¿½ fora do alcance
             rb.velocity = Vector2.zero;
         }
     }
@@ -77,10 +82,10 @@ public class EnemyShild : MonoBehaviour
     {
         if (collision.collider.CompareTag("BalasPlayer"))
         {
-            // O inimigo só pode tomar dano se não estiver se aproximando do jogador
+            // O inimigo sï¿½ pode tomar dano se nï¿½o estiver se aproximando do jogador
             if (!isApproaching)
             {
-                // Obtém a referência ao script de vida do inimigo
+                // Obtï¿½m a referï¿½ncia ao script de vida do inimigo
                 VidaShield vidaInimigo = GetComponent<VidaShield>();
 
                 if (vidaInimigo != null)
@@ -91,7 +96,7 @@ public class EnemyShild : MonoBehaviour
             }
             else
             {
-                // Bala é destruída, mas o inimigo permanece intacto
+                // Bala ï¿½ destruï¿½da, mas o inimigo permanece intacto
                 Destroy(collision.gameObject);
             }
         }
@@ -116,12 +121,14 @@ public class EnemyShild : MonoBehaviour
 
         // Realiza o ataque
         Debug.Log("Atacando o jogador");
+        anim.SetBool("Atacando",true);
         lastAttackTime = Time.time;
 
-        // Espera após o ataque
+        // Espera apï¿½s o ataque
         yield return new WaitForSeconds(waitingTimeAfterAttack);
-
-        // Sai do estado de ataque e continua a perseguição
+        anim.SetBool("Atacando", false);
+        anim.SetBool("Perseguindo",true);
+        // Sai do estado de ataque e continua a perseguiï¿½ï¿½o
         isAttacking = false;
     }
 }
