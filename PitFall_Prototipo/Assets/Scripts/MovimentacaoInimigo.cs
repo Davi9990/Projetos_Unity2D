@@ -24,8 +24,6 @@ public class MovimentacaoInimigo : MonoBehaviour
 
     void Start()
     {
-        
-        
         rb = GetComponent<Rigidbody2D>();
         transform.position = startPoint.position;
         direction = (endPoint.position - startPoint.position).normalized;

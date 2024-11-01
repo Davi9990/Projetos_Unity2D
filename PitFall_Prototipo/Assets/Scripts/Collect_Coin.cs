@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class Collect_Coin : MonoBehaviour
 {
-    public int scoreValue = 2000;//Valor do  item
+    public int scoreValue;//Valor do  item
+
+    //Creatina 1000
+    //Batata Doce 2000
+    //Suco 8000
 
     
 
@@ -16,6 +20,7 @@ public class Collect_Coin : MonoBehaviour
             {
                 
                 ScoreManeger.Instance.AddScore(scoreValue);
+                Movimentacao.pontuacao += scoreValue;
             }
 
             Destroy(gameObject);

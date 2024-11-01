@@ -38,6 +38,7 @@ public class DanoAcido : MonoBehaviour
         }
     }
 
+
     public void AplicarDano(Collision2D collision)
     {
         SistemaDeVida vida = collision.gameObject.GetComponent<SistemaDeVida>();

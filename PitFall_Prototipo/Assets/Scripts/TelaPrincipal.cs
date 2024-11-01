@@ -7,9 +7,14 @@ using UnityEngine.SceneManagement;
 public class TelaPrincipal : MonoBehaviour
 {
     public GameObject Mensagem;
+    public GameObject TelaDeFundo;
+
+    private AudioSource som;
+
+
 
     [SerializeField] TextMeshProUGUI Principal;
-    public GameObject TelaDeFundo;
+    
 
     public Color c1;
     public Color c2;
@@ -17,22 +22,34 @@ public class TelaPrincipal : MonoBehaviour
     public Color c4;
     public Color c5;
 
-    int cor;
+    int cor = 0;
+    int coratual = 0;
 
     int ciclo = 0;
+
+    bool Play = true;
     void Start()
     {
         StartCoroutine(pisca());
+
+        som = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        if(Input.touchCount > 0)
+        if(Input.touchCount > 0 && Play == true)
         {
             Touch toque = Input.GetTouch(0);
-            StartCoroutine(transicao());
+            if(toque.phase == TouchPhase.Began)
+            {
+                Play = false;
+                som.Play();
+                Mensagem.SetActive(false);
+                StartCoroutine(transicao());
+            }
+            
         }
 
 
@@ -48,16 +65,28 @@ public class TelaPrincipal : MonoBehaviour
         
         yield return new WaitForSecondsRealtime(1f);
         Mensagem.SetActive(true);
-        
 
 
-        StartCoroutine(pisca());
+        if (Play)
+        {
+            StartCoroutine(pisca());
+        }
+        else
+        {
+            Mensagem.SetActive(false);
+        }
     }
 
     IEnumerator transicao()
     {
         ciclo++;
-        cor = Random.Range(1,5);
+        coratual = cor;
+        
+
+        while(cor == coratual)
+        {
+            cor = Random.Range(1, 5);
+        }
 
         switch (cor)
         {
@@ -85,10 +114,10 @@ public class TelaPrincipal : MonoBehaviour
 
         
 
-        yield return new WaitForSecondsRealtime(3f);
+        yield return new WaitForSecondsRealtime(0.2f);
         
 
-        if(ciclo >= 10)
+        if(ciclo >= 30)
         {
             //Lembrar de criar um script especifico para telas aleatórias de gameplay e fazer ela ser chamada tanto aqui quanto no fim de cada tela
             SceneManager.LoadScene("Tela1");

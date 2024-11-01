@@ -19,7 +19,7 @@ public class Cronometro : MonoBehaviour
         }
         else
         {
-            Debug.Log("TextMeshPro não atribuido");
+            //Debug.Log("TextMeshPro não atribuido");
         }
     }
 
@@ -54,6 +54,6 @@ public class Cronometro : MonoBehaviour
     private void TimeExpired()
     {
         timerIsRunning = false;
-        Debug.Log("Tempo Esgotado");
+        //Debug.Log("Tempo Esgotado");
     }
 }

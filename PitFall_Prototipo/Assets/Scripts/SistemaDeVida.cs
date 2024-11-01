@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class SistemaDeVida : MonoBehaviour
 {
     public int vida;  // Vida atual do jogador
+    public int vidaatual;
     public int vidaMaxima;  // Vida máxima possível do jogador
 
     public Image[] Hits;  // Referências às imagens de vida no HUD
@@ -16,6 +17,7 @@ public class SistemaDeVida : MonoBehaviour
 
     //Ainda não dá pra tocar os sons aqui
     public AudioSource Dano;
+
     
     void Start()
     {
@@ -24,17 +26,23 @@ public class SistemaDeVida : MonoBehaviour
 
     void Update()
     {
-        AtualizarHudDeVida();
+        
         VerificarMorte();
     }
 
-    void AtualizarHudDeVida()
+    public void AtualizarHudDeVida()
     {
         // Se a vida estiver maior que a vida máxima, ajusta para a vida máxima
         if (vida > vidaMaxima)
         {
             vida = vidaMaxima;
         }
+        
+        if(vida < vidaatual)
+        {
+            Dano.Play();
+        }
+        
 
         // Atualiza cada barra de vida no HUD
         for (int i = 0; i < Hits.Length; i++)
@@ -46,6 +54,7 @@ public class SistemaDeVida : MonoBehaviour
             }
             else
             {
+
                 Hits[i].sprite = vazio;
             }
 

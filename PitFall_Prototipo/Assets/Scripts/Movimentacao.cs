@@ -2,12 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.Tracing;
 using TMPro;
+using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Movimentacao : MonoBehaviour
 {
+    public static int pontuacao = 0;
+    public static bool n1 = false, n2 = false, n3 = false;
+    //Do jeito que está agora, isso nunca irá parar de somar. Ou seja, a pontuação nunca irá resetar
+
+
     // Movimentação
     public float velocidade;
     private Rigidbody2D rb;
@@ -24,10 +31,14 @@ public class Movimentacao : MonoBehaviour
     private float vertical;
     private bool escada;
     private bool escalando;
+    bool comecouEscalar = true;
+    float tocar = 0;
 
     // Sons
     public AudioSource pulo;
     public AudioSource Escada;
+    public AudioSource Coletar;
+    public AudioSource Upar;
 
     // UI Buttons 
     public Button buttonLeft;
@@ -58,13 +69,20 @@ public class Movimentacao : MonoBehaviour
 
         if (escalando)
         {
-            Escada.Play();
+            tocar += Time.deltaTime;
+            if(tocar >= 0.2)
+            {
+                Escada.Play();
+                tocar = 0;
+            }
             rb.gravityScale = 0;
             rb.velocity = new Vector2(rb.velocity.x, vertical * velocidade); // Move para cima ou para baixo na escada
         }
         else
         {
             Escada.Stop();
+            tocar = 0;
+            //Debug.Log("Parou de escalar " + tocar);
             rb.gravityScale = 2f;
         }
     }
@@ -105,15 +123,28 @@ public class Movimentacao : MonoBehaviour
         trigger.triggers.Add(entry);
     }
 
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "chaoteorico")
+        {
+            Escada.Stop();
+            tocar = 0;
+        }
+    }
+
+
+
     // Funções chamadas pelos botões
     public void MoveLeft(bool isPressed)
     {
         moveLeft = isPressed;
+        //Debug.Log("MoveLeft: " + isPressed);
     }
 
     public void MoveRight(bool isPressed)
     {
         moveRight = isPressed;
+        //Debug.Log("MoveRight: " + isPressed);
     }
 
     public void MoveDown(bool isPressed)
@@ -170,6 +201,9 @@ public class Movimentacao : MonoBehaviour
         // Atualiza a velocidade no eixo X, mantendo a velocidade Y existente
         rb.velocity = new Vector2(xAxis * velocidade, rb.velocity.y);
 
+        // Logando os valores
+        //Debug.Log("xAxis: " + xAxis + ", rb.velocity: " + rb.velocity);
+
         // Atualiza a direção do movimento e inverte o sprite se necessário
         if (xAxis > 0 && !isFacingRight)
         {
@@ -197,6 +231,47 @@ public class Movimentacao : MonoBehaviour
             escada = true;
             buttonDown.interactable = true; // Habilita o botão de descer ao estar na escada
             buttonUp.interactable = true;   // Habilita o botão de subir ao estar na escada
+        }
+
+        if (collision.gameObject.tag == "item")
+        {
+            Coletar.Play();
+
+            if(pontuacao >= 16000 && n1 == false)
+            {
+                Fortalecer(1);
+                
+            }
+            else if (pontuacao >= 32000 && n2 == false)
+            {
+                Fortalecer(2);
+                
+            }
+            else if (pontuacao >= 64000 && n3 == false)
+            {
+                Fortalecer(3);
+                
+            }
+            
+        }
+    }
+
+    void Fortalecer(int nivel)
+    {
+        Upar.Play();
+
+        switch (nivel)
+        {
+            case 1: //BOTAR NO NÍVEL 2
+                n1 = true; break;
+
+            case 2: //BOTAR NO NÍVEL 3
+                n2 = true; break;
+
+            case 3: SceneManager.LoadScene("Vitoria"); break;
+
+
+
         }
     }
 
