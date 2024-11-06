@@ -6,13 +6,14 @@ public class Capilobo : MonoBehaviour
 {
     public Transform player;
     public float followDistance = 10f;
-    public float LinguadaDistance = 2f;
+    public float LinguadaDistance;
     public float velocidade = 2f;
     public bool Lambida;
     public float distanciaLinguada;
     public int damage;
     public float TempoAgarrando;
     public float TempoLinguada;
+    private Animator anim;
 
     private float lastAttackTime;
     private Rigidbody2D rb;
@@ -32,8 +33,10 @@ public class Capilobo : MonoBehaviour
 
     void Start()
     {
+        anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         PlayerRb = player.GetComponent<Rigidbody2D>();
+        anim.SetBool("Linguada", false);
 
         // Armazena o tamanho e offset inicial do BoxCollider2D para resetá-los depois
         initialColliderSize = boxCollider2.size;
@@ -58,12 +61,14 @@ public class Capilobo : MonoBehaviour
             Vector2 direction = (player.position - transform.position).normalized;
             rb.velocity = direction * velocidade;
 
+            anim.SetBool("Andando", true);
+
             // Verifica se precisa virar para a esquerda ou direita
-            if (player.position.x > transform.position.x && !facingRight) // Player à direita e inimigo virado para a esquerda
+            if (player.position.x > transform.position.x && facingRight) // Player à direita e inimigo virado para a esquerda
             {
                 Flip(); // Vira para a direita
             }
-            else if (player.position.x < transform.position.x && facingRight) // Player à esquerda e inimigo virado para a direita
+            else if (player.position.x < transform.position.x && !facingRight) // Player à esquerda e inimigo virado para a direita
             {
                 Flip(); // Vira para a esquerda
             }
@@ -96,6 +101,8 @@ public class Capilobo : MonoBehaviour
     {
         Lambida = true;
         rb.velocity = Vector2.zero; // Para o movimento do inimigo
+        anim.SetBool("Andando", false);
+        anim.SetBool("Linguada", true);
 
         // Ajusta o tamanho do colisor de acordo com a distância
         boxCollider2.size = new Vector2(distanciaLinguada, boxCollider2.size.y);
@@ -123,6 +130,9 @@ public class Capilobo : MonoBehaviour
         // Reseta o tamanho e o offset do BoxCollider2D de linguada para o estado inicial
         boxCollider2.size = initialColliderSize;
         boxCollider2.offset = initialColliderOffset;
+
+        anim.SetBool("Andando", true);
+        anim.SetBool("Linguada", false);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
