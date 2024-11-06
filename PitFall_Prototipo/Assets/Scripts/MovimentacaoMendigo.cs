@@ -52,6 +52,7 @@ public class MovimentacaoMendigo : MonoBehaviour
             {
                 vida.vida -= damege;
                 lastAttackTime = Time.time;
+                vida.AtualizarHudDeVida();
             }
         }
     }

@@ -49,6 +49,7 @@ public class DanoAcido : MonoBehaviour
             PodeAtacar = false;
             Debug.Log("Ataque aplicado, cooldawn Iniciado.");
             StartCoroutine (RecarregarAtaque());
+            vida.AtualizarHudDeVida();
         }
         else
         {

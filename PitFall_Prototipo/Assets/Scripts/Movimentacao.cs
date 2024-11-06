@@ -45,11 +45,15 @@ public class Movimentacao : MonoBehaviour
     public Button buttonRight;
     public Button buttonJump;
     public Button buttonDown;
-    public Button buttonUp; 
+    public Button buttonUp;
+
+    //Animator
+    private Animator anim;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
 
         // Associa as funções de movimentação aos eventos de pressionar e soltar os botões
         AddButtonListeners();
@@ -132,8 +136,6 @@ public class Movimentacao : MonoBehaviour
         }
     }
 
-
-
     // Funções chamadas pelos botões
     public void MoveLeft(bool isPressed)
     {
@@ -200,6 +202,7 @@ public class Movimentacao : MonoBehaviour
 
         // Atualiza a velocidade no eixo X, mantendo a velocidade Y existente
         rb.velocity = new Vector2(xAxis * velocidade, rb.velocity.y);
+        
 
         // Logando os valores
         //Debug.Log("xAxis: " + xAxis + ", rb.velocity: " + rb.velocity);
@@ -208,10 +211,17 @@ public class Movimentacao : MonoBehaviour
         if (xAxis > 0 && !isFacingRight)
         {
             Flip();
+            anim.SetBool("Andando", true);
         }
         else if (xAxis < 0 && isFacingRight)
         {
             Flip();
+            anim.SetBool("Andando", true);
+        }
+
+        else if (xAxis <= 0)
+        {
+            anim.SetBool("Andando", false);
         }
     }
 
