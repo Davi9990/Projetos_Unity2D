@@ -10,7 +10,7 @@ public class ScoreManeger : MonoBehaviour
     public static ScoreManeger Instance { get; private set; }
 
 
-    private int score;
+    public int score;
     public TextMeshProUGUI scoreText;
 
     private void Awake()
@@ -28,7 +28,7 @@ public class ScoreManeger : MonoBehaviour
 
     private void Start()
     {
-
+        //ResetScore();
     }
 
     public void AddScore(int value)

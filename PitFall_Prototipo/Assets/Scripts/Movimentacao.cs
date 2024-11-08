@@ -12,14 +12,14 @@ public class Movimentacao : MonoBehaviour
 {
     public static int pontuacao = 0;
     public static bool n1 = false, n2 = false, n3 = false;
-    //Do jeito que está agora, isso nunca irá parar de somar. Ou seja, a pontuação nunca irá resetar
+    //Do jeito que estï¿½ agora, isso nunca irï¿½ parar de somar. Ou seja, a pontuaï¿½ï¿½o nunca irï¿½ resetar
 
 
-    // Movimentação
+    // Movimentaï¿½ï¿½o
     public float velocidade;
     private Rigidbody2D rb;
     private bool isFacingRight = true;
-    private bool moveLeft, moveRight, moveDown, moveUp; // Variáveis para controlar os botões de movimento
+    private bool moveLeft, moveRight, moveDown, moveUp; // Variï¿½veis para controlar os botï¿½es de movimento
 
     // Pulos
     public Transform VerificarChao;
@@ -50,25 +50,40 @@ public class Movimentacao : MonoBehaviour
     //Animator
     private Animator anim;
 
+    //Score Maneger
+    private ScoreManeger valor;
+
+    //Troca de Sprites
+    public Sprite Osvaldo_Forte;
+    public Sprite Osvaldo_Giga;
+    private SpriteRenderer SpriteRenderer;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        valor = GetComponent<ScoreManeger>();
+        SpriteRenderer = GetComponent<SpriteRenderer>();
+        //Osvaldo_Forte = GetComponent<SpriteRenderer>();
 
-        // Associa as funções de movimentação aos eventos de pressionar e soltar os botões
+        // Associa as funï¿½ï¿½es de movimentaï¿½ï¿½o aos eventos de pressionar e soltar os botï¿½es
         AddButtonListeners();
     }
 
     void Update()
     {
-        if (escada && (moveUp || moveDown)) // Verifica se está escalando
+        if (escada && (moveUp || moveDown)) // Verifica se estï¿½ escalando
         {
             escalando = true;
         }
+
+        Fortalecer();
     }
 
     private void FixedUpdate()
     {
+        EstaNoChao = Physics2D.OverlapCircle(VerificarChao.position, 0.1f,chao);
+        anim.SetBool("Pulando",!EstaNoChao);
         Move(); // Movimenta o jogador baseado nos inputs
 
         if (escalando)
@@ -91,34 +106,34 @@ public class Movimentacao : MonoBehaviour
         }
     }
 
-    // Adiciona listeners para pressionar e soltar os botões
+    // Adiciona listeners para pressionar e soltar os botï¿½es
     private void AddButtonListeners()
     {
-        // Botão de movimentação para a esquerda
+        // Botï¿½o de movimentaï¿½ï¿½o para a esquerda
         EventTrigger triggerLeft = buttonLeft.gameObject.AddComponent<EventTrigger>();
         AddEventTrigger(triggerLeft, EventTriggerType.PointerDown, () => MoveLeft(true));
         AddEventTrigger(triggerLeft, EventTriggerType.PointerUp, () => MoveLeft(false));
 
-        // Botão de movimentação para a direita
+        // Botï¿½o de movimentaï¿½ï¿½o para a direita
         EventTrigger triggerRight = buttonRight.gameObject.AddComponent<EventTrigger>();
         AddEventTrigger(triggerRight, EventTriggerType.PointerDown, () => MoveRight(true));
         AddEventTrigger(triggerRight, EventTriggerType.PointerUp, () => MoveRight(false));
 
-        // Botão de pulo (um clique)
+        // Botï¿½o de pulo (um clique)
         buttonJump.onClick.AddListener(() => Jump());
 
-        // Botão de descida
+        // Botï¿½o de descida
         EventTrigger triggerDown = buttonDown.gameObject.AddComponent<EventTrigger>();
         AddEventTrigger(triggerDown, EventTriggerType.PointerDown, () => MoveDown(true));
         AddEventTrigger(triggerDown, EventTriggerType.PointerUp, () => MoveDown(false));
 
-        // Botão de subida
+        // Botï¿½o de subida
         EventTrigger triggerUp = buttonUp.gameObject.AddComponent<EventTrigger>();
         AddEventTrigger(triggerUp, EventTriggerType.PointerDown, () => MoveUp(true));
         AddEventTrigger(triggerUp, EventTriggerType.PointerUp, () => MoveUp(false));
     }
 
-    // Função utilitária para adicionar eventos de clique
+    // Funï¿½ï¿½o utilitï¿½ria para adicionar eventos de clique
     private void AddEventTrigger(EventTrigger trigger, EventTriggerType eventType, System.Action action)
     {
         EventTrigger.Entry entry = new EventTrigger.Entry();
@@ -136,7 +151,7 @@ public class Movimentacao : MonoBehaviour
         }
     }
 
-    // Funções chamadas pelos botões
+    // Funï¿½ï¿½es chamadas pelos botï¿½es
     public void MoveLeft(bool isPressed)
     {
         moveLeft = isPressed;
@@ -183,10 +198,11 @@ public class Movimentacao : MonoBehaviour
         {
             pulo.Play();
             rb.velocity = Vector2.up * JumpForce;
+            anim.SetBool("Pulando",true);
         }
     }
 
-    // Movimenta o jogador de acordo com os botões pressionados
+    // Movimenta o jogador de acordo com os botï¿½es pressionados
     private void Move()
     {
         float xAxis = 0;
@@ -203,25 +219,28 @@ public class Movimentacao : MonoBehaviour
         // Atualiza a velocidade no eixo X, mantendo a velocidade Y existente
         rb.velocity = new Vector2(xAxis * velocidade, rb.velocity.y);
         
+        if(moveLeft || moveRight)
+        {
+            anim.SetBool("Andando", true);
+        }
+        else
+        {
+            anim.SetBool("Andando",false);
+        }
 
         // Logando os valores
         //Debug.Log("xAxis: " + xAxis + ", rb.velocity: " + rb.velocity);
 
-        // Atualiza a direção do movimento e inverte o sprite se necessário
+        // Atualiza a direï¿½ï¿½o do movimento e inverte o sprite se necessï¿½rio
         if (xAxis > 0 && !isFacingRight)
         {
             Flip();
-            anim.SetBool("Andando", true);
+           
         }
         else if (xAxis < 0 && isFacingRight)
         {
             Flip();
-            anim.SetBool("Andando", true);
-        }
-
-        else if (xAxis <= 0)
-        {
-            anim.SetBool("Andando", false);
+           
         }
     }
 
@@ -233,55 +252,65 @@ public class Movimentacao : MonoBehaviour
         transform.localScale = scaler;
     }
 
-    // Verifica se o jogador está numa escada
+    // Verifica se o jogador estï¿½ numa escada
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Escada"))
         {
             escada = true;
-            buttonDown.interactable = true; // Habilita o botão de descer ao estar na escada
-            buttonUp.interactable = true;   // Habilita o botão de subir ao estar na escada
+            buttonDown.interactable = true; // Habilita o botï¿½o de descer ao estar na escada
+            buttonUp.interactable = true;   // Habilita o botï¿½o de subir ao estar na escada
+            anim.SetBool("Escalando",true);
         }
 
-        if (collision.gameObject.tag == "item")
-        {
-            Coletar.Play();
+        //if (collision.gameObject.tag == "item")
+        //{
+        //    Coletar.Play();
 
-            if(pontuacao >= 16000 && n1 == false)
-            {
-                Fortalecer(1);
+        //    if(pontuacao >= 16000 && n1 == false)
+        //    {
+        //        //Fortalecer(1);
                 
-            }
-            else if (pontuacao >= 32000 && n2 == false)
-            {
-                Fortalecer(2);
+        //    }
+        //    else if (pontuacao >= 32000 && n2 == false)
+        //    {
+        //        //Fortalecer(2);
                 
-            }
-            else if (pontuacao >= 64000 && n3 == false)
-            {
-                Fortalecer(3);
+        //    }
+        //    else if (pontuacao >= 64000 && n3 == false)
+        //    {
+        //        //Fortalecer(3);
                 
-            }
+        //    }
             
-        }
+        //}
     }
 
-    void Fortalecer(int nivel)
+    void Fortalecer()
     {
-        Upar.Play();
+        //Upar.Play();
 
-        switch (nivel)
+        switch (valor.score)
         {
-            case 1: //BOTAR NO NÍVEL 2
-                n1 = true; break;
+            case 4000: //BOTAR NO Nï¿½VEL 2
+                if (Osvaldo_Forte != null && !n1)
+                {
+                    SpriteRenderer.sprite = Osvaldo_Forte;
+                    n1 = true;
+                    Upar.Play();
+                }
+                break;
 
-            case 2: //BOTAR NO NÍVEL 3
-                n2 = true; break;
+            case 16000: //BOTAR NO Nï¿½VEL 3
+                if (Osvaldo_Giga != null && !n2)
+                {
+                    SpriteRenderer.sprite = Osvaldo_Giga;
+                    n2 = true;
+                    Upar.Play();
+                }
+                break;
 
-            case 3: SceneManager.LoadScene("Vitoria"); break;
-
-
-
+            case 40000: SceneManager.LoadScene("Vitoria"); break;
         }
     }
 
@@ -292,8 +321,9 @@ public class Movimentacao : MonoBehaviour
             escada = false;
             escalando = false; // Para de escalar
             rb.velocity = new Vector2(rb.velocity.x, 0);
-            buttonDown.interactable = false; // Desabilita o botão de descer ao sair da escada
-            buttonUp.interactable = false;   // Desabilita o botão de subir ao sair da escada
+            buttonDown.interactable = false; // Desabilita o botï¿½o de descer ao sair da escada
+            buttonUp.interactable = false;   // Desabilita o botï¿½o de subir ao sair da escada
+            anim.SetBool("Escalando",false);
         }
     }
 }
