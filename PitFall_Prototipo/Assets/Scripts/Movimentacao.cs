@@ -77,7 +77,7 @@ public class Movimentacao : MonoBehaviour
             escalando = true;
         }
 
-        Fortalecer();
+        //Fortalecer();
     }
 
     private void FixedUpdate()
@@ -286,33 +286,33 @@ public class Movimentacao : MonoBehaviour
         //}
     }
 
-    void Fortalecer()
-    {
-        //Upar.Play();
+    //void Fortalecer()
+    //{
+    //    //Upar.Play();
 
-        switch (valor.score)
-        {
-            case 4000: //BOTAR NO N�VEL 2
-                if (Osvaldo_Forte != null && !n1)
-                {
-                    SpriteRenderer.sprite = Osvaldo_Forte;
-                    n1 = true;
-                    Upar.Play();
-                }
-                break;
+    //    switch (valor.score)
+    //    {
+    //        case 4000: //BOTAR NO N�VEL 2
+    //            if (Osvaldo_Forte != null && !n1)
+    //            {
+    //                SpriteRenderer.sprite = Osvaldo_Forte;
+    //                n1 = true;
+    //                Upar.Play();
+    //            }
+    //            break;
 
-            case 16000: //BOTAR NO N�VEL 3
-                if (Osvaldo_Giga != null && !n2)
-                {
-                    SpriteRenderer.sprite = Osvaldo_Giga;
-                    n2 = true;
-                    Upar.Play();
-                }
-                break;
+    //        case 16000: //BOTAR NO N�VEL 3
+    //            if (Osvaldo_Giga != null && !n2)
+    //            {
+    //                SpriteRenderer.sprite = Osvaldo_Giga;
+    //                n2 = true;
+    //                Upar.Play();
+    //            }
+    //            break;
 
-            case 40000: SceneManager.LoadScene("Vitoria"); break;
-        }
-    }
+    //        case 40000: SceneManager.LoadScene("Vitoria"); break;
+    //    }
+    //}
 
     private void OnTriggerExit2D(Collider2D collision)
     {

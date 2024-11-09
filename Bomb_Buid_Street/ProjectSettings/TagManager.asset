@@ -3,12 +3,20 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - item
+  - Escada
+  - Inimigo
+  - EndPoint
+  - PontoDePulo
+  - chaoteorico
+  - EndPoint2
+  - Bola
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Chao
   - Water
   - UI
   - 

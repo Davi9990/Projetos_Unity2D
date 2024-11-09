@@ -10,8 +10,6 @@ public class Collect_Coin : MonoBehaviour
     //Batata Doce 2000
     //Suco 8000
 
-    
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
@@ -19,7 +17,7 @@ public class Collect_Coin : MonoBehaviour
             if (ScoreManeger.Instance != null)
             {
                 ScoreManeger.Instance.AddScore(scoreValue);
-                Movimentacao.pontuacao += scoreValue;
+                //Movimentacao.pontuacao += scoreValue;
             }
 
             Destroy(gameObject);
