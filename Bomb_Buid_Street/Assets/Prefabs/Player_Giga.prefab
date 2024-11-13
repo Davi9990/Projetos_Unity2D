@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6341917118255448941}
   - component: {fileID: 1462352760018928035}
   m_Layer: 0
-  m_Name: Osvaldao_Giga_Idle_0
+  m_Name: Player_Giga
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -54,17 +54,24 @@ public class Movimentacao : MonoBehaviour
     private ScoreManeger valor;
 
     //Troca de Sprites
-    public Sprite Osvaldo_Forte;
-    public Sprite Osvaldo_Giga;
-    private SpriteRenderer SpriteRenderer;
+    //public Sprite Osvaldo_Forte;
+    //public Sprite Osvaldo_Giga;
+    //private SpriteRenderer SpriteRenderer;
+
+    //Troca De Prefab
+    public GameObject Osvaldo_Normal;
+    public GameObject Osvaldo_Grande;
+    public GameObject Osvaldo_Giga;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         valor = GetComponent<ScoreManeger>();
-        SpriteRenderer = GetComponent<SpriteRenderer>();
+        //SpriteRenderer = GetComponent<SpriteRenderer>();
         //Osvaldo_Forte = GetComponent<SpriteRenderer>();
+        Osvaldo_Normal.gameObject.SetActive(true);
+        Osvaldo_Grande.gameObject.SetActive(false);
 
         // Associa as fun��es de movimenta��o aos eventos de pressionar e soltar os bot�es
         AddButtonListeners();
@@ -293,21 +300,11 @@ public class Movimentacao : MonoBehaviour
         switch (valor.score)
         {
             case 4000: //BOTAR NO N�VEL 2
-                if (Osvaldo_Forte != null && !n1)
-                {
-                    SpriteRenderer.sprite = Osvaldo_Forte;
-                    n1 = true;
-                    Upar.Play();
-                }
+                
                 break;
 
             case 16000: //BOTAR NO N�VEL 3
-                if (Osvaldo_Giga != null && !n2)
-                {
-                    SpriteRenderer.sprite = Osvaldo_Giga;
-                    n2 = true;
-                    Upar.Play();
-                }
+                
                 break;
 
             case 40000: SceneManager.LoadScene("Vitoria"); break;

@@ -534,6 +534,7 @@ GameObject:
   - component: {fileID: 706106318}
   - component: {fileID: 706106317}
   - component: {fileID: 706106316}
+  - component: {fileID: 706106319}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -615,6 +616,44 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &706106319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 706106315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c166348de2989924d8a569e4ffd71115, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  correctSequence:
+  - {r: 1, g: 0, b: 0, a: 0}
+  - {r: 1, g: 0.6117647, b: 0, a: 0}
+  - {r: 1, g: 0.8980392, b: 0.015686275, a: 0}
+  - {r: 0.1882353, g: 1, b: 0.023529412, a: 0}
+  - {r: 0, g: 1, b: 0.90588236, a: 0}
+  - {r: 0, g: 0.06666667, b: 1, a: 0}
+  - {r: 0.87058824, g: 0, b: 1, a: 0}
+  squares:
+  - {fileID: 191075375}
+  - {fileID: 1831073733}
+  - {fileID: 768709900}
+  - {fileID: 1453548531}
+  - {fileID: 876870444}
+  - {fileID: 530314552}
+  - {fileID: 1722000732}
+  paletteColors:
+  - {fileID: 809727507}
+  - {fileID: 954737975}
+  - {fileID: 2144274794}
+  - {fileID: 2021992178}
+  - {fileID: 1150916448}
+  - {fileID: 943713273}
+  - {fileID: 837207399}
+  victoryText: {fileID: 575111046}
+  door: {fileID: 1254118835}
 --- !u!1 &768709898
 GameObject:
   m_ObjectHideFlags: 0
