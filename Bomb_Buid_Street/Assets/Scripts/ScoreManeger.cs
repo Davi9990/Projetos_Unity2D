@@ -34,6 +34,8 @@ public class ScoreManeger : MonoBehaviour
     public void AddScore(int value)
     {
         score += value;
+        Debug.Log("Score Incrementado: " + value);
+        //Movimentacao.pontuacao = score;
         UpdateScoreText();
     }
 

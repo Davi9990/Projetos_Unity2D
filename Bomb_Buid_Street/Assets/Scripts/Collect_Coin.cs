@@ -19,7 +19,7 @@ public class Collect_Coin : MonoBehaviour
             if (ScoreManeger.Instance != null)
             {
                 ScoreManeger.Instance.AddScore(scoreValue);
-                Movimentacao.pontuacao += scoreValue;
+                //Movimentacao.pontuacao += scoreValue;
             }
 
             Destroy(gameObject);

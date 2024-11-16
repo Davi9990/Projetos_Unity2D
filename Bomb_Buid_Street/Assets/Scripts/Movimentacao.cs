@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Unity.VisualScripting;
 
 public class Movimentacao : MonoBehaviour
 {
@@ -31,7 +32,7 @@ public class Movimentacao : MonoBehaviour
     private float vertical;
     private bool escada;
     private bool escalando;
-    bool comecouEscalar = true;
+    //bool comecouEscalar = true;
     float tocar = 0;
 
     // Sons
@@ -51,14 +52,14 @@ public class Movimentacao : MonoBehaviour
     private Animator anim;
 
     //Score Maneger
-    private ScoreManeger valor;
+    //public ScoreManeger valor;
 
     //Troca de Sprites
     //public Sprite Osvaldo_Forte;
     //public Sprite Osvaldo_Giga;
     //private SpriteRenderer SpriteRenderer;
 
-    //Troca De Prefab
+    //Trocando Prefabs
     public GameObject Osvaldo_Normal;
     public GameObject Osvaldo_Grande;
     public GameObject Osvaldo_Giga;
@@ -67,11 +68,12 @@ public class Movimentacao : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        valor = GetComponent<ScoreManeger>();
+        //valor = GetComponent<ScoreManeger>();
         //SpriteRenderer = GetComponent<SpriteRenderer>();
         //Osvaldo_Forte = GetComponent<SpriteRenderer>();
         Osvaldo_Normal.gameObject.SetActive(true);
         Osvaldo_Grande.gameObject.SetActive(false);
+        Osvaldo_Giga.gameObject.SetActive(false);
 
         // Associa as fun��es de movimenta��o aos eventos de pressionar e soltar os bot�es
         AddButtonListeners();
@@ -297,14 +299,18 @@ public class Movimentacao : MonoBehaviour
     {
         //Upar.Play();
 
-        switch (valor.score)
+        int scoreAtual = ScoreManeger.Instance.score;
+
+        switch (scoreAtual)
         {
             case 4000: //BOTAR NO N�VEL 2
-                
+                Osvaldo_Normal.gameObject.SetActive(false);
+                Osvaldo_Grande.gameObject.SetActive(true);
                 break;
 
             case 16000: //BOTAR NO N�VEL 3
-                
+                Osvaldo_Grande.gameObject.SetActive(false);
+                Osvaldo_Giga.gameObject.SetActive(true);
                 break;
 
             case 40000: SceneManager.LoadScene("Vitoria"); break;
