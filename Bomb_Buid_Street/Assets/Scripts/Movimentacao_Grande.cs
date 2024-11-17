@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.Tracing;
 using TMPro;
@@ -9,7 +9,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using Unity.VisualScripting;
 
-public class Movimentacao : MonoBehaviour
+public class Movimentacao_Grande : MonoBehaviour
 {
     public static int pontuacao = 0;
     public static bool n1 = false, n2 = false, n3 = false;
@@ -60,7 +60,6 @@ public class Movimentacao : MonoBehaviour
     //private SpriteRenderer SpriteRenderer;
 
     //Trocando Prefabs
-    public GameObject Osvaldo_Normal;
     public GameObject Osvaldo_Grande;
     public GameObject Osvaldo_Giga;
 
@@ -71,8 +70,7 @@ public class Movimentacao : MonoBehaviour
         //valor = GetComponent<ScoreManeger>();
         //SpriteRenderer = GetComponent<SpriteRenderer>();
         //Osvaldo_Forte = GetComponent<SpriteRenderer>();
-        Osvaldo_Normal.gameObject.SetActive(true);
-        Osvaldo_Grande.gameObject.SetActive(false);
+        Osvaldo_Grande.gameObject.SetActive(true);
         Osvaldo_Giga.gameObject.SetActive(false);
 
         // Associa as fun��es de movimenta��o aos eventos de pressionar e soltar os bot�es
@@ -91,14 +89,14 @@ public class Movimentacao : MonoBehaviour
 
     private void FixedUpdate()
     {
-        EstaNoChao = Physics2D.OverlapCircle(VerificarChao.position, 0.1f,chao);
-        anim.SetBool("Pulando",!EstaNoChao);
+        EstaNoChao = Physics2D.OverlapCircle(VerificarChao.position, 0.1f, chao);
+        anim.SetBool("Pulando_Grande", !EstaNoChao);
         Move(); // Movimenta o jogador baseado nos inputs
 
         if (escalando)
         {
             tocar += Time.deltaTime;
-            if(tocar >= 0.2)
+            if (tocar >= 0.2)
             {
                 Escada.Play();
                 tocar = 0;
@@ -153,7 +151,7 @@ public class Movimentacao : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "chaoteorico")
+        if (collision.gameObject.tag == "chaoteorico")
         {
             Escada.Stop();
             tocar = 0;
@@ -207,7 +205,7 @@ public class Movimentacao : MonoBehaviour
         {
             pulo.Play();
             rb.velocity = Vector2.up * JumpForce;
-            anim.SetBool("Pulando",true);
+            anim.SetBool("Pulando_Grande", true);
         }
     }
 
@@ -227,14 +225,14 @@ public class Movimentacao : MonoBehaviour
 
         // Atualiza a velocidade no eixo X, mantendo a velocidade Y existente
         rb.velocity = new Vector2(xAxis * velocidade, rb.velocity.y);
-        
-        if(moveLeft || moveRight)
+
+        if (moveLeft || moveRight)
         {
-            anim.SetBool("Andando", true);
+            anim.SetBool("Andando_Grande", true);
         }
         else
         {
-            anim.SetBool("Andando",false);
+            anim.SetBool("Andando_Grande", false);
         }
 
         // Logando os valores
@@ -244,12 +242,12 @@ public class Movimentacao : MonoBehaviour
         if (xAxis > 0 && !isFacingRight)
         {
             Flip();
-           
+
         }
         else if (xAxis < 0 && isFacingRight)
         {
             Flip();
-           
+
         }
     }
 
@@ -269,7 +267,7 @@ public class Movimentacao : MonoBehaviour
             escada = true;
             buttonDown.interactable = true; // Habilita o bot�o de descer ao estar na escada
             buttonUp.interactable = true;   // Habilita o bot�o de subir ao estar na escada
-            anim.SetBool("Escalando",true);
+            anim.SetBool("Escalando_Grande", true);
         }
 
         //if (collision.gameObject.tag == "item")
@@ -279,19 +277,19 @@ public class Movimentacao : MonoBehaviour
         //    if(pontuacao >= 16000 && n1 == false)
         //    {
         //        //Fortalecer(1);
-                
+
         //    }
         //    else if (pontuacao >= 32000 && n2 == false)
         //    {
         //        //Fortalecer(2);
-                
+
         //    }
         //    else if (pontuacao >= 64000 && n3 == false)
         //    {
         //        //Fortalecer(3);
-                
+
         //    }
-            
+
         //}
     }
 
@@ -305,11 +303,6 @@ public class Movimentacao : MonoBehaviour
 
         switch (scoreAtual)
         {
-            case 4000: // Troca para o Nível 2
-                prefabAtual = Osvaldo_Normal;
-                proximoPrefab = Osvaldo_Grande;
-                break;
-
             case 16000: // Troca para o Nível 3
                 prefabAtual = Osvaldo_Grande;
                 proximoPrefab = Osvaldo_Giga;
@@ -345,7 +338,7 @@ public class Movimentacao : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, 0);
             buttonDown.interactable = false; // Desabilita o bot�o de descer ao sair da escada
             buttonUp.interactable = false;   // Desabilita o bot�o de subir ao sair da escada
-            anim.SetBool("Escalando",false);
+            anim.SetBool("Escalando_Grande", false);
         }
     }
 }

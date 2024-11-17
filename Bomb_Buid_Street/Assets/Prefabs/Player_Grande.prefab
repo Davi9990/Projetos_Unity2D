@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 783188923149518579}
   - component: {fileID: 2372734331546150414}
   - component: {fileID: 6564250976783043698}
+  - component: {fileID: 5456277835106747706}
   - component: {fileID: 5341275787845289883}
   - component: {fileID: 132557524871722377}
   - component: {fileID: 2022821540660533375}
@@ -21,11 +22,11 @@ GameObject:
   - component: {fileID: 5078769068308445145}
   m_Layer: 0
   m_Name: Player_Grande
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6024398092143342841
 Transform:
   m_ObjectHideFlags: 0
@@ -38,7 +39,8 @@ Transform:
   m_LocalPosition: {x: -8.87, y: -0.68, z: 0}
   m_LocalScale: {x: 14.13403, y: 14.59065, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 556663984422201065}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8108873052222227992
@@ -210,6 +212,36 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.11, y: 0.15}
   m_EdgeRadius: 0
+--- !u!114 &5456277835106747706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1171337842902898323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9824ba156a2f7db48a2b4bb4353179dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocidade: 6
+  VerificarChao: {fileID: 0}
+  EstaNoChao: 0
+  chao:
+    serializedVersion: 2
+    m_Bits: 8
+  JumpForce: 10
+  pulo: {fileID: 0}
+  Escada: {fileID: 0}
+  Coletar: {fileID: 0}
+  Upar: {fileID: 0}
+  buttonLeft: {fileID: 0}
+  buttonRight: {fileID: 0}
+  buttonJump: {fileID: 0}
+  buttonDown: {fileID: 0}
+  buttonUp: {fileID: 0}
+  Osvaldo_Grande: {fileID: 0}
+  Osvaldo_Giga: {fileID: 0}
 --- !u!82 &5341275787845289883
 AudioSource:
   m_ObjectHideFlags: 0
@@ -220,7 +252,7 @@ AudioSource:
   m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 6c72c4906822bb244bddd8fcb0de899a, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -316,7 +348,7 @@ AudioSource:
   m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 470e65bbc1ff6364b8578624576208f3, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -412,7 +444,7 @@ AudioSource:
   m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: eda364dfb96d54143a47e5892c3b5711, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -508,7 +540,7 @@ AudioSource:
   m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 854dff3a1bb7341469564e5af2e72e31, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -604,7 +636,7 @@ AudioSource:
   m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: b33649119f9dc9d488561ea335accd17, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -711,3 +743,34 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &5555478176046541560
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 556663984422201065}
+  m_Layer: 0
+  m_Name: Ground_Check2
+  m_TagString: Untagged
+  m_Icon: {fileID: 2488908585195742037, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &556663984422201065
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5555478176046541560}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.016, y: -0.098, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6024398092143342841}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

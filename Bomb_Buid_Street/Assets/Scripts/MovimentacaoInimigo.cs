@@ -43,7 +43,8 @@ public class MovimentacaoInimigo : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
         // Verifica se o inimigo colidiu com o ponto final
-        if (collision.gameObject.CompareTag("EndPoint") || collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("EndPoint") || collision.gameObject.CompareTag("Player") 
+            || collision.gameObject.CompareTag("Player_Grande"))
         {
             TeleportToStart();
         }

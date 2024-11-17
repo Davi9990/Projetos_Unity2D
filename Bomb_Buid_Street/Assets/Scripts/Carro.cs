@@ -38,7 +38,8 @@ public class Carro : MonoBehaviour
         // Se o carro colidir com um dos objetos especificados
         if (collision.gameObject.CompareTag("Player") ||
             collision.gameObject.CompareTag("EndPoint2") ||
-            collision.gameObject.CompareTag("Bola"))
+            collision.gameObject.CompareTag("Bola") ||
+            collision.gameObject.CompareTag("Player_Grande"))
         {
             // Retorna o carro ao ponto inicial
             transform.position = startPoint.position; // Redefine a posição para o ponto inicial

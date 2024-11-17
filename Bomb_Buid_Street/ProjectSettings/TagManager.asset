@@ -12,6 +12,7 @@ TagManager:
   - chaoteorico
   - EndPoint2
   - Bola
+  - Player_Grande
   layers:
   - Default
   - TransparentFX
