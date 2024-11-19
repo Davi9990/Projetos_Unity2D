@@ -4,94 +4,118 @@ using UnityEngine;
 
 public class Carro : MonoBehaviour
 {
-    [SerializeField] Transform startPoint; // Ponto inicial
+   [SerializeField] Transform startPoint; // Ponto inicial
     [SerializeField] Transform endPoint; // Ponto final
     [SerializeField] float speed = 10f;
-    [SerializeField] float tempoParado; // Agora é SerializeField para ser visualizado no Inspector
-    public GameObject objeto; // Referência ao objeto do inimigo
+    [SerializeField] float tempoParadoThreshold = 10f; // Tempo necessÃ¡rio para spawnar o carro
     public SpriteRenderer sprite;
 
-    private Rigidbody2D playerRb; // Referência ao Rigidbody2D do jogador
-    private bool carroSpawnado = false; // Nova variável para verificar se o carro foi spawnado
+    public Rigidbody2D playerRb; // ReferÃªncia ao Player Normal
+    public Rigidbody2D playerRbGrande; // ReferÃªncia ao Player Grande
+
+    private bool carroSpawnado = false;
+
+    public float tempoParadoPlayer = 0f; // Tempo parado do Player Normal
+    public float tempoParadoPlayerGrande = 0f; // Tempo parado do Player Grande
 
     void Start()
     {
-        // Encontre o Rigidbody2D do jogador na cena
-        GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
-        if (playerObject != null)
+        // Encontre os jogadores na cena
+        if (playerRb == null)
         {
-            playerRb = playerObject.GetComponent<Rigidbody2D>();
+            GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
+            if (playerObject != null)
+                playerRb = playerObject.GetComponent<Rigidbody2D>();
         }
 
-        if (sprite == null) sprite = GetComponent<SpriteRenderer>();
-        sprite.enabled = false; // Inicia o sprite como invisível
+        if (playerRbGrande == null)
+        {
+            GameObject playerObject2 = GameObject.FindGameObjectWithTag("Player_Grande");
+            if (playerObject2 != null)
+                playerRbGrande = playerObject2.GetComponent<Rigidbody2D>();
+        }
+
+        if (sprite == null)
+            sprite = GetComponent<SpriteRenderer>();
+
+        sprite.enabled = false; // Inicia o sprite como invisÃ­vel
     }
 
     void Update()
     {
         Spawnando();
-        MoveObjects(); // Move o carro independentemente do estado do jogador
+        MoveObjects();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // Se o carro colidir com um dos objetos especificados
         if (collision.gameObject.CompareTag("Player") ||
             collision.gameObject.CompareTag("EndPoint2") ||
             collision.gameObject.CompareTag("Bola") ||
             collision.gameObject.CompareTag("Player_Grande"))
         {
-            // Retorna o carro ao ponto inicial
-            transform.position = startPoint.position; // Redefine a posição para o ponto inicial
-            carroSpawnado = false; // Reinicia o estado de spawn para permitir que ele seja spawnado novamente
-            sprite.enabled = false; // Torna o sprite invisível novamente
-            tempoParado = 0; // Reinicia o tempo parado
+            transform.position = startPoint.position;
+            carroSpawnado = false;
+            sprite.enabled = false;
+            tempoParadoPlayer = 0f;
+            tempoParadoPlayerGrande = 0f;
         }
     }
 
     public void Spawnando()
     {
-        // Verifica se o Rigidbody2D do jogador foi encontrado
-        if (playerRb != null)
-        {
-            // Obtém a velocidade do jogador
-            float playerSpeed = playerRb.velocity.magnitude; // Usamos magnitude para obter a velocidade total
+        bool playerParado = false;
 
-            //Debug.Log("Velocidade do jogador: " + playerSpeed); // Debug para verificar a velocidade do jogador
+        // Verifica o estado do Player Normal apenas se ele estiver ativo
+        if (playerRb != null && playerRb.gameObject.activeInHierarchy)
+        {
+            float playerSpeed = playerRb.velocity.magnitude;
 
             if (playerSpeed == 0)
-            {
-                tempoParado += Time.deltaTime; // Adiciona tempo em segundos
-                //Debug.Log("Tempo parado: " + tempoParado); // Log para verificar tempo parado
-
-                if (!carroSpawnado && tempoParado >= 10f) // Verifica se passou 10 segundos e o carro ainda não foi spawnado
-                {
-                    sprite.enabled = true; // Ativa o sprite do inimigo
-                    carroSpawnado = true; // Marca que o carro foi spawnado
-                }
-            }
+                tempoParadoPlayer += Time.deltaTime;
             else
-            {
-                //Debug.Log("Jogador se movendo. Reiniciando tempo parado.");
-                tempoParado = 0; // Reinicia o tempo quando o jogador se move
-            }
+                tempoParadoPlayer = 0f;
+
+            playerParado = tempoParadoPlayer >= tempoParadoThreshold;
         }
         else
         {
-            //Debug.LogWarning("Rigidbody2D do jogador não encontrado!");
+            tempoParadoPlayer = 0f; // Reseta o tempo parado quando o jogador estÃ¡ desativado
+        }
+
+        // Verifica o estado do Player Grande apenas se ele estiver ativo
+        if (playerRbGrande != null && playerRbGrande.gameObject.activeInHierarchy)
+        {
+            float playerSpeed2 = playerRbGrande.velocity.magnitude;
+
+            if (playerSpeed2 == 0)
+                tempoParadoPlayerGrande += Time.deltaTime;
+            else
+                tempoParadoPlayerGrande = 0f;
+
+            playerParado = tempoParadoPlayerGrande >= tempoParadoThreshold;
+        }
+        else
+        {
+            tempoParadoPlayerGrande = 0f; // Reseta o tempo parado quando o jogador estÃ¡ desativado
+        }
+
+        // Spawn do carro
+        if (!carroSpawnado && playerParado)
+        {
+            sprite.enabled = true;
+            carroSpawnado = true;
         }
     }
 
     void MoveObjects()
     {
-        // Move o carro se ele já tiver sido spawnado
         if (carroSpawnado)
         {
             transform.position = Vector2.MoveTowards(transform.position, endPoint.position, speed * Time.deltaTime);
-            if (Vector2.Distance(transform.position, endPoint.position) < 0.1f) // Para de se mover ao chegar ao ponto final
+            if (Vector2.Distance(transform.position, endPoint.position) < 0.1f)
             {
-                // Aqui você pode adicionar qualquer ação adicional que queira fazer quando o carro chegar ao final
-                Destroy(gameObject); // Exemplo: destrói o carro
+                Destroy(gameObject);
             }
         }
     }

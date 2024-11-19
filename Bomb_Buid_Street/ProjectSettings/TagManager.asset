@@ -13,6 +13,7 @@ TagManager:
   - EndPoint2
   - Bola
   - Player_Grande
+  - Player_Giga
   layers:
   - Default
   - TransparentFX

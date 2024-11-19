@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2372734331546150414}
   - component: {fileID: 6564250976783043698}
   - component: {fileID: 5456277835106747706}
+  - component: {fileID: 7587381924462019041}
   - component: {fileID: 5341275787845289883}
   - component: {fileID: 132557524871722377}
   - component: {fileID: 2022821540660533375}
@@ -22,7 +23,7 @@ GameObject:
   - component: {fileID: 5078769068308445145}
   m_Layer: 0
   m_Name: Player_Grande
-  m_TagString: Player
+  m_TagString: Player_Grande
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -166,7 +167,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &6564250976783043698
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -174,7 +175,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1171337842902898323}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -225,23 +226,46 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocidade: 6
-  VerificarChao: {fileID: 0}
+  VerificarChao: {fileID: 556663984422201065}
   EstaNoChao: 0
   chao:
     serializedVersion: 2
     m_Bits: 8
   JumpForce: 10
-  pulo: {fileID: 0}
-  Escada: {fileID: 0}
-  Coletar: {fileID: 0}
-  Upar: {fileID: 0}
+  pulo: {fileID: 5341275787845289883}
+  Escada: {fileID: 132557524871722377}
+  Coletar: {fileID: 2022821540660533375}
+  Upar: {fileID: 8752215743317216130}
   buttonLeft: {fileID: 0}
   buttonRight: {fileID: 0}
   buttonJump: {fileID: 0}
   buttonDown: {fileID: 0}
   buttonUp: {fileID: 0}
-  Osvaldo_Grande: {fileID: 0}
+  Osvaldo_Grande: {fileID: 1171337842902898323}
   Osvaldo_Giga: {fileID: 0}
+--- !u!114 &7587381924462019041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1171337842902898323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3048e0d3be6894c49aa976859cad3a84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vida: 4
+  vidaatual: 0
+  vidaMaxima: 4
+  Hits:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  cheio: {fileID: 21300000, guid: e9a974776e11a3a4daa16e82d06e3c4b, type: 3}
+  vazio: {fileID: 21300000, guid: 5c7f48e899e57354d8843ce1699cd430, type: 3}
+  Dano: {fileID: 5341275787845289883}
 --- !u!82 &5341275787845289883
 AudioSource:
   m_ObjectHideFlags: 0
@@ -249,7 +273,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1171337842902898323}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 6c72c4906822bb244bddd8fcb0de899a, type: 3}
@@ -345,7 +369,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1171337842902898323}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 470e65bbc1ff6364b8578624576208f3, type: 3}
@@ -441,7 +465,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1171337842902898323}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: eda364dfb96d54143a47e5892c3b5711, type: 3}
@@ -537,7 +561,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1171337842902898323}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 854dff3a1bb7341469564e5af2e72e31, type: 3}
@@ -633,7 +657,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1171337842902898323}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: b33649119f9dc9d488561ea335accd17, type: 3}

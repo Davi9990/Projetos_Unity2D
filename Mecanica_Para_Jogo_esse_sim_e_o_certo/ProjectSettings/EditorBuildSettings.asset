@@ -12,18 +12,18 @@ EditorBuildSettings:
     path: Assets/Scenes/Jogo6.unity
     guid: 042a4f7216cd76b468fb09cb45e6f84d
   - enabled: 1
-    path: Assets/Scenes/Jogo6.2.unity
+    path: Assets/Scenes/Pergunta1.unity
     guid: 52899dd9b20e27a4584d0a2c5fe6773a
   - enabled: 1
-    path: Assets/Scenes/Jogo6.3.unity
+    path: Assets/Scenes/Pergunta2.unity
     guid: 3a0864e3dfad30841af6745f2afd6425
   - enabled: 1
-    path: Assets/Scenes/Jogo6.4.unity
+    path: Assets/Scenes/Pergunta3.unity
     guid: bfe9f3818ce9de14aa8496556e235d96
   - enabled: 1
-    path: Assets/Scenes/Jogo6.5.unity
+    path: Assets/Scenes/Tela_De_Vitoria.unity
     guid: 04326a220b2d3d742ab50fb954095779
   - enabled: 1
-    path: Assets/Scenes/Jogo6.6.unity
+    path: Assets/Scenes/Sala_De_Trofeu.unity
     guid: 3419da0e4850eb84591967e547404234
   m_configObjects: {}

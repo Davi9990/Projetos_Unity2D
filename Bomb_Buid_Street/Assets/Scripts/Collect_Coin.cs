@@ -14,7 +14,8 @@ public class Collect_Coin : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player") || collision.CompareTag("Player_Grande"))
+        if (collision.CompareTag("Player") || collision.CompareTag("Player_Grande") 
+            || collision.CompareTag("Player_Giga"))
         {
             if (ScoreManeger.Instance != null)
             {

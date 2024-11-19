@@ -9,7 +9,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using Unity.VisualScripting;
 
-public class Movimentacao_Grande : MonoBehaviour
+public class Movimentacao_Giga : MonoBehaviour
 {
     public static int pontuacao = 0;
     public static bool n1 = false, n2 = false, n3 = false;
@@ -60,27 +60,27 @@ public class Movimentacao_Grande : MonoBehaviour
     //private SpriteRenderer SpriteRenderer;
 
     //Trocando Prefabs
-    public GameObject Osvaldo_Grande;
-    public GameObject Osvaldo_Giga;
+    //public GameObject Osvaldo_Grande;
+    //public GameObject Osvaldo_Giga;
 
     void Start()
     {
-        if (Osvaldo_Grande == null)
-        {
-            Debug.LogError("O prefab 'Osvaldo_Grande' não foi configurado no Inspector!");
-        }
-        if (Osvaldo_Giga == null)
-        {
-            Debug.LogError("O prefab 'Osvaldo_Giga' não foi configurado no Inspector!");
-        }
+        //if (Osvaldo_Grande == null)
+        //{
+        //    Debug.LogError("O prefab 'Osvaldo_Grande' não foi configurado no Inspector!");
+        //}
+        //if (Osvaldo_Giga == null)
+        //{
+        //    Debug.LogError("O prefab 'Osvaldo_Giga' não foi configurado no Inspector!");
+        //}
 
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         //valor = GetComponent<ScoreManeger>();
         //SpriteRenderer = GetComponent<SpriteRenderer>();
         //Osvaldo_Forte = GetComponent<SpriteRenderer>();
-        Osvaldo_Grande.gameObject.SetActive(true);
-        Osvaldo_Giga.gameObject.SetActive(false);
+        //Osvaldo_Grande.gameObject.SetActive(true);
+        //Osvaldo_Giga.gameObject.SetActive(false);
 
         // Associa as fun��es de movimenta��o aos eventos de pressionar e soltar os bot�es
         AddButtonListeners();
@@ -99,7 +99,7 @@ public class Movimentacao_Grande : MonoBehaviour
     private void FixedUpdate()
     {
         EstaNoChao = Physics2D.OverlapCircle(VerificarChao.position, 0.1f, chao);
-        anim.SetBool("Pulando_Grande", !EstaNoChao);
+        anim.SetBool("Pulando_Giga", !EstaNoChao);
         Move(); // Movimenta o jogador baseado nos inputs
 
         if (escalando)
@@ -214,7 +214,7 @@ public class Movimentacao_Grande : MonoBehaviour
         {
             pulo.Play();
             rb.velocity = Vector2.up * JumpForce;
-            anim.SetBool("Pulando_Grande", true);
+            anim.SetBool("Pulando_Giga", true);
         }
     }
 
@@ -237,11 +237,11 @@ public class Movimentacao_Grande : MonoBehaviour
 
         if (moveLeft || moveRight)
         {
-            anim.SetBool("Andando_Grande", true);
+            anim.SetBool("Andando_Giga", true);
         }
         else
         {
-            anim.SetBool("Andando_Grande", false);
+            anim.SetBool("Andando_Giga", false);
         }
 
         // Logando os valores
@@ -276,7 +276,7 @@ public class Movimentacao_Grande : MonoBehaviour
             escada = true;
             buttonDown.interactable = true; // Habilita o bot�o de descer ao estar na escada
             buttonUp.interactable = true;   // Habilita o bot�o de subir ao estar na escada
-            anim.SetBool("Escalando_Grande", true);
+            anim.SetBool("Escalando_Giga", true);
         }
 
         //if (collision.gameObject.tag == "item")
@@ -305,51 +305,22 @@ public class Movimentacao_Grande : MonoBehaviour
     void Fortalecer()
     {
         // Reproduz som de evolução (se necessário)
-    // Upar.Play();
+        // Upar.Play();
 
-    // Captura o score atual
-    int scoreAtual = ScoreManeger.Instance.score;
+        // Captura o score atual
+        int scoreAtual = ScoreManeger.Instance.score;
 
-    // Variáveis para armazenar os prefabs atual e próximo
-    GameObject prefabAtual = null;
-    GameObject proximoPrefab = null;
+        // Variáveis para armazenar os prefabs atual e próximo
+        //GameObject prefabAtual = null;
+        //GameObject proximoPrefab = null;
 
-    // Determinar quais prefabs serão usados
-    switch (scoreAtual)
-    {
-        case 16000: // Troca para o Osvaldo_Giga
-            prefabAtual = Osvaldo_Grande;
-            proximoPrefab = Osvaldo_Giga;
-            break;
-
-        case 40000: // Carrega a cena de vitória
-            SceneManager.LoadScene("Vitoria");
-            return; // Sai da função para evitar execução adicional
-    }
-
-    if (prefabAtual != null && proximoPrefab != null)
-    {
-        // Captura posição e rotação do prefab atual
-        Vector3 posicaoAtual = prefabAtual.transform.position;
-        Quaternion rotacaoAtual = prefabAtual.transform.rotation;
-
-        // Certifica-se de desativar o prefab atual
-        prefabAtual.SetActive(false);
-
-        // Configura o próximo prefab para a mesma posição e rotação
-        proximoPrefab.transform.position = posicaoAtual;
-        proximoPrefab.transform.rotation = rotacaoAtual;
-
-        // Ativa o próximo prefab
-        proximoPrefab.SetActive(true);
-
-        // Logs para depuração
-        Debug.Log($"Troca realizada: {prefabAtual.name} desativado, {proximoPrefab.name} ativado.");
-    }
-    else
-    {
-        //Debug.LogWarning("Os prefabs não foram configurados corretamente para a troca.");
-    }
+        // Determinar quais prefabs serão usados
+        switch (scoreAtual)
+        {
+            case 40000: // Carrega a cena de vitória
+                SceneManager.LoadScene("Vitoria");
+                return; // Sai da função para evitar execução adicional
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -361,7 +332,7 @@ public class Movimentacao_Grande : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, 0);
             buttonDown.interactable = false; // Desabilita o bot�o de descer ao sair da escada
             buttonUp.interactable = false;   // Desabilita o bot�o de subir ao sair da escada
-            anim.SetBool("Escalando_Grande", false);
+            anim.SetBool("Escalando_Giga", false);
         }
     }
 }

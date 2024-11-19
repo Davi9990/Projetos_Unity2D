@@ -6,6 +6,7 @@ public class EnemyDamege : MonoBehaviour
 {
     public SistemaDeVida vida;
     public SistemaDeVida vida2;
+    public SistemaDeVida vida3;
     public int damage = 1;
     //public MovimentacaoInimigo inimigo;
 
@@ -30,6 +31,12 @@ public class EnemyDamege : MonoBehaviour
             vida2.vidaatual = vida.vida;
             vida2.vida -= damage;
             vida2.AtualizarHudDeVida();
+        }
+        else if(collision.gameObject.tag == "Player_Giga")
+        {
+            vida3.vidaatual = vida.vida;
+            vida3.vida -= damage;
+            vida3.AtualizarHudDeVida();
         }
 
     }

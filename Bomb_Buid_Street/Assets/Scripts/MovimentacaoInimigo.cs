@@ -44,7 +44,8 @@ public class MovimentacaoInimigo : MonoBehaviour
     {
         // Verifica se o inimigo colidiu com o ponto final
         if (collision.gameObject.CompareTag("EndPoint") || collision.gameObject.CompareTag("Player") 
-            || collision.gameObject.CompareTag("Player_Grande"))
+            || collision.gameObject.CompareTag("Player_Grande") 
+            || collision.gameObject.CompareTag("Player_Giga"))
         {
             TeleportToStart();
         }
