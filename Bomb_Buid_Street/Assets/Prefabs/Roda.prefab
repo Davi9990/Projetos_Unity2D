@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 1371447212457361101}
   - component: {fileID: 3284858670547838189}
   - component: {fileID: 1835279391502086387}
+  - component: {fileID: 7084383115808938565}
   m_Layer: 0
   m_Name: Roda
   m_TagString: Inimigo
@@ -33,7 +34,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 15.43, y: -1.36, z: 0}
-  m_LocalScale: {x: 0.9034937, y: 0.95104605, z: 0.95104605}
+  m_LocalScale: {x: 7.9984446, y: 8.419416, z: 8.419416}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -79,8 +80,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.46226418, g: 0, b: 0, a: 1}
+  m_Sprite: {fileID: -789993323, guid: 7e556c8a51edaab4fa1a29a2187ecfbf, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -122,9 +123,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0034542568, y: 0}
+  m_Offset: {x: 0.0022945097, y: 0.00029909165}
   serializedVersion: 2
-  m_Radius: 0.45162115
+  m_Radius: 0.07003513
 --- !u!50 &3024167315433757303
 Rigidbody2D:
   serializedVersion: 4
@@ -203,9 +204,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0017163091, y: 0.006402018}
+  m_Offset: {x: 0.0025920393, y: 0.00081808446}
   serializedVersion: 2
-  m_Radius: 0.49181592
+  m_Radius: 0.070011966
 --- !u!114 &3284858670547838189
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -219,6 +220,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vida: {fileID: 0}
+  vida2: {fileID: 0}
+  vida3: {fileID: 0}
   damage: 1
 --- !u!82 &1835279391502086387
 AudioSource:
@@ -316,3 +319,24 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &7084383115808938565
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2856509690943013229}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 54a231003dd324b4d81d668a290d5b5e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

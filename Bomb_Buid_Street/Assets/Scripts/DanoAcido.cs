@@ -5,6 +5,8 @@ using UnityEngine;
 public class DanoAcido : MonoBehaviour
 {
     public SistemaDeVida Vida;
+    public SistemaDeVida Vida2;
+    public SistemaDeVida Vida3;
     public int damage = 1;
     public float NextTimeAttack;
     public bool PodeAtacar;
@@ -22,7 +24,9 @@ public class DanoAcido : MonoBehaviour
 
     void OnTrigggerEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.CompareTag("Player") && PodeAtacar)
+        if(collision.gameObject.CompareTag("Player") && PodeAtacar ||
+            collision.gameObject.CompareTag("Player_Grande") && PodeAtacar ||
+            collision.gameObject.CompareTag("Player_Giga") && PodeAtacar)
         {
             AplicarDano(collision);
         }
@@ -32,7 +36,9 @@ public class DanoAcido : MonoBehaviour
 
     void OnCollisionStay2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player") && PodeAtacar)
+        if (collision.gameObject.CompareTag("Player") && PodeAtacar ||
+            collision.gameObject.CompareTag("Player_Grande") && PodeAtacar ||
+            collision.gameObject.CompareTag("Player_Giga") && PodeAtacar)
         {
             AplicarDano(collision);
         }

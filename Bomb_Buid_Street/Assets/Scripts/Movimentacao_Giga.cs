@@ -278,28 +278,6 @@ public class Movimentacao_Giga : MonoBehaviour
             buttonUp.interactable = true;   // Habilita o bot�o de subir ao estar na escada
             anim.SetBool("Escalando_Giga", true);
         }
-
-        //if (collision.gameObject.tag == "item")
-        //{
-        //    Coletar.Play();
-
-        //    if(pontuacao >= 16000 && n1 == false)
-        //    {
-        //        //Fortalecer(1);
-
-        //    }
-        //    else if (pontuacao >= 32000 && n2 == false)
-        //    {
-        //        //Fortalecer(2);
-
-        //    }
-        //    else if (pontuacao >= 64000 && n3 == false)
-        //    {
-        //        //Fortalecer(3);
-
-        //    }
-
-        //}
     }
 
     void Fortalecer()
@@ -310,16 +288,10 @@ public class Movimentacao_Giga : MonoBehaviour
         // Captura o score atual
         int scoreAtual = ScoreManeger.Instance.score;
 
-        // Variáveis para armazenar os prefabs atual e próximo
-        //GameObject prefabAtual = null;
-        //GameObject proximoPrefab = null;
-
-        // Determinar quais prefabs serão usados
-        switch (scoreAtual)
+            // Determinar quais prefabs serão usados
+        if (scoreAtual >= 40000)
         {
-            case 40000: // Carrega a cena de vitória
-                SceneManager.LoadScene("Vitoria");
-                return; // Sai da função para evitar execução adicional
+            SceneManager.LoadScene("Vitoria");
         }
     }
 

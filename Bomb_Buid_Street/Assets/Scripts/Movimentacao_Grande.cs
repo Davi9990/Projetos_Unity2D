@@ -27,6 +27,8 @@ public class Movimentacao_Grande : MonoBehaviour
     public bool EstaNoChao;
     public LayerMask chao;
     public float JumpForce;
+    private bool podePularDuplo;
+    public float JumpForceDuplo;
 
     // Escadas
     private float vertical;
@@ -119,6 +121,11 @@ public class Movimentacao_Grande : MonoBehaviour
             tocar = 0;
             //Debug.Log("Parou de escalar " + tocar);
             rb.gravityScale = 2f;
+        }
+
+        if(EstaNoChao)
+        {
+            podePularDuplo = true;
         }
     }
 
@@ -215,6 +222,17 @@ public class Movimentacao_Grande : MonoBehaviour
             pulo.Play();
             rb.velocity = Vector2.up * JumpForce;
             anim.SetBool("Pulando_Grande", true);
+
+            podePularDuplo = true;
+        }
+        else if (podePularDuplo)
+        {
+            pulo.Play();
+            rb.velocity = Vector2.up * JumpForceDuplo;
+            anim.SetBool("Pulando_Grande", true);
+
+            //Desabilita o pulo duplo após usa-lo
+            podePularDuplo = false;
         }
     }
 
@@ -314,18 +332,17 @@ public class Movimentacao_Grande : MonoBehaviour
     GameObject prefabAtual = null;
     GameObject proximoPrefab = null;
 
-    // Determinar quais prefabs serão usados
-    switch (scoreAtual)
+    if (scoreAtual >= 16000 && scoreAtual < 40000)
     {
-        case 16000: // Troca para o Osvaldo_Giga
-            prefabAtual = Osvaldo_Grande;
-            proximoPrefab = Osvaldo_Giga;
-            break;
-
-        case 40000: // Carrega a cena de vitória
-            SceneManager.LoadScene("Vitoria");
-            return; // Sai da função para evitar execução adicional
+        prefabAtual = Osvaldo_Grande;
+        proximoPrefab = Osvaldo_Giga;
     }
+    else if (scoreAtual >= 40000)
+    {
+        SceneManager.LoadScene("Vitoria");
+    }
+
+
 
     if (prefabAtual != null && proximoPrefab != null)
     {

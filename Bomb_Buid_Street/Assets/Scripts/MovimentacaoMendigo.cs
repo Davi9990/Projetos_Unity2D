@@ -6,6 +6,7 @@ public class MovimentacaoMendigo : MonoBehaviour
 {
     public Transform player;
     public Transform Player_Grande;
+    public Transform Player_Giga;
     public float followDistance = 10f; //Distancia em que o inimigo come�a a seguir o jogador
     public float moveSpeed = 2f; //Velocidade de movimento do inimigo
     public int damege = 10;
@@ -29,6 +30,7 @@ public class MovimentacaoMendigo : MonoBehaviour
     {
         float distanceToPlayer = Vector2.Distance(transform.position, player.position);
         float distanceToPlayer2 = Vector2.Distance(transform.position, Player_Grande.position);
+        float distanceToPlayer3 = Vector2.Distance(transform.position, Player_Giga.position);
        
         // Se a dist�ncia for menor ou igual ao followDistance, o inimigo segue o jogador
         if (distanceToPlayer <= followDistance) 
@@ -45,6 +47,12 @@ public class MovimentacaoMendigo : MonoBehaviour
             anim.SetBool("Perseguindo", true);
             Vector2 direction2 = (Player_Grande.position - transform.position).normalized;
             transform.position += (Vector3)(direction2 * moveSpeed * Time.deltaTime);
+        }
+        else if(distanceToPlayer3 <= followDistance)
+        {
+            anim.SetBool("Perseguindo", true);
+            Vector2 direction3 = (Player_Giga.position - transform.position).normalized;
+            transform.position += (Vector3)(direction3 * moveSpeed * Time.deltaTime);
         }
         else
         {
@@ -71,6 +79,18 @@ public class MovimentacaoMendigo : MonoBehaviour
              SistemaDeVida vida = collision.gameObject.GetComponent<SistemaDeVida>();
 
             if (vida != null) 
+            {
+                vida.vida -= damege;
+                lastAttackTime = Time.time;
+                vida.AtualizarHudDeVida();
+            }
+        }
+
+        if(collision.gameObject.CompareTag("Player_Giga") && Time.time > lastAttackTime + attackCooldown)
+        {
+            SistemaDeVida vida = collision.gameObject.GetComponent<SistemaDeVida>();
+
+            if (vida != null)
             {
                 vida.vida -= damege;
                 lastAttackTime = Time.time;

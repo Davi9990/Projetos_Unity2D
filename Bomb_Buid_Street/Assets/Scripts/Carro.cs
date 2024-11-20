@@ -12,11 +12,13 @@ public class Carro : MonoBehaviour
 
     public Rigidbody2D playerRb; // Referência ao Player Normal
     public Rigidbody2D playerRbGrande; // Referência ao Player Grande
+    public Rigidbody2D playerRbGiga;
 
     private bool carroSpawnado = false;
 
     public float tempoParadoPlayer = 0f; // Tempo parado do Player Normal
     public float tempoParadoPlayerGrande = 0f; // Tempo parado do Player Grande
+    public float tempoParadoPlayerGiga = 0f;
 
     void Start()
     {
@@ -33,6 +35,13 @@ public class Carro : MonoBehaviour
             GameObject playerObject2 = GameObject.FindGameObjectWithTag("Player_Grande");
             if (playerObject2 != null)
                 playerRbGrande = playerObject2.GetComponent<Rigidbody2D>();
+        }
+
+        if(playerRbGiga == null)
+        {
+            GameObject playerObject3 = GameObject.FindGameObjectWithTag("Player_Giga");
+            if(playerObject3 != null)
+                playerRbGiga = playerObject3.GetComponent<Rigidbody2D>();
         }
 
         if (sprite == null)
@@ -52,7 +61,8 @@ public class Carro : MonoBehaviour
         if (collision.gameObject.CompareTag("Player") ||
             collision.gameObject.CompareTag("EndPoint2") ||
             collision.gameObject.CompareTag("Bola") ||
-            collision.gameObject.CompareTag("Player_Grande"))
+            collision.gameObject.CompareTag("Player_Grande") ||
+            collision.gameObject.CompareTag("Player_Giga"))
         {
             transform.position = startPoint.position;
             carroSpawnado = false;
@@ -98,6 +108,23 @@ public class Carro : MonoBehaviour
         else
         {
             tempoParadoPlayerGrande = 0f; // Reseta o tempo parado quando o jogador está desativado
+        }
+
+        // Verifica o estado do player Giga apenas se ele estiver ativo
+        if(playerRbGiga != null && playerRbGiga.gameObject.activeInHierarchy)
+        {
+            float playerSpeed3 = playerRbGiga.velocity.magnitude;
+
+            if(playerSpeed3 == 0)
+                tempoParadoPlayerGiga += Time.deltaTime;
+            else
+                tempoParadoPlayerGiga = 0f;
+
+            playerParado = tempoParadoPlayerGiga >= tempoParadoThreshold;
+        }
+        else
+        {
+            tempoParadoPlayerGiga = 0f; // Reseta o tempo parado quando o jogador está parado
         }
 
         // Spawn do carro

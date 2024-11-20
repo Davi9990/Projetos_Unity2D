@@ -303,21 +303,19 @@ public class Movimentacao : MonoBehaviour
         GameObject prefabAtual = null; // Objeto atual
         GameObject proximoPrefab = null; // Objeto que será ativado
 
-        switch (scoreAtual)
+        if(scoreAtual >= 4000 &&  scoreAtual < 16000)
         {
-            case 4000: // Troca para o Nível 2
-                prefabAtual = Osvaldo_Normal;
-                proximoPrefab = Osvaldo_Grande;
-                break;
-
-            case 16000: // Troca para o Nível 3
-                prefabAtual = Osvaldo_Grande;
-                proximoPrefab = Osvaldo_Giga;
-                break;
-
-            case 40000:
-                SceneManager.LoadScene("Vitoria");
-                return; // Sai da função para evitar execução adicional
+            prefabAtual = Osvaldo_Normal;
+            proximoPrefab = Osvaldo_Grande;
+        }
+        else if(scoreAtual >= 16000 && scoreAtual < 40000)
+        {
+            prefabAtual = Osvaldo_Grande;
+            proximoPrefab = Osvaldo_Giga;
+        }
+        else if(scoreAtual >= 40000)
+        {
+            SceneManager.LoadScene("Vitoria");
         }
 
         if (prefabAtual != null && proximoPrefab != null)
