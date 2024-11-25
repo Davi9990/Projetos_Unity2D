@@ -66,6 +66,8 @@ public class Movimentacao : MonoBehaviour
 
     void Start()
     {
+        DontDestroyOnLoad(this.gameObject);
+
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         //valor = GetComponent<ScoreManeger>();

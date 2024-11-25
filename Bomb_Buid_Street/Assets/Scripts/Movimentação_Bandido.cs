@@ -7,13 +7,13 @@ public class Movimentação_Bandido : MonoBehaviour
 {
     public Transform player;
     public Transform player_Grande;
-    public Transform player_Giga;
+   
 
     public Rigidbody2D playerRb;
     public Rigidbody2D playerRbGrande; // Referência ao Player Grande
     public Rigidbody2D playerRbGiga; // Referenccia ao Player Giga
 
-    public float followDistance = 10f;
+    
     public float moveSpeed = 2f;
     private Rigidbody2D rb;
 
@@ -30,11 +30,29 @@ public class Movimentação_Bandido : MonoBehaviour
     public Transform ShootPoint;
     public float ProjetilVelocity = 10f;
     public float LifeProjectTime = 5f;
+    public float JumpInterval = 2f;
+    private bool isGround = true;
+    private float jumpTimer;
+    private float fireTimer;
+    public float fireRate = 3f;
 
+    //Bandido Fase 3
+    public bool Fugindo;
+    public Transform player_Giga;
+    public float FugaDistance = 10f;
+    private SpriteRenderer render;
+
+    //Animator
+    private Animator anim;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        render = GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animator>();
+
+        jumpTimer = JumpInterval;
+        fireTimer = fireRate;
 
         if(playerRb == null)
         {
@@ -58,6 +76,14 @@ public class Movimentação_Bandido : MonoBehaviour
         if(playerRb != null && playerRb.gameObject.activeInHierarchy)
         {
             Covarde();
+        }
+        else if(playerRbGrande != null && playerRbGrande.gameObject.activeInHierarchy)
+        {
+            FrenteTrasPulo();
+        }
+        else if(playerRbGiga != null && playerRbGiga.gameObject.activeInHierarchy)
+        {
+            Frango();
         }
     }
 
@@ -86,6 +112,78 @@ public class Movimentação_Bandido : MonoBehaviour
         }
     }
 
+    void FrenteTrasPulo() 
+    {
+        float moveDirection = Mathf.PingPong(Time.time * moveSpeed, 2) - 1;
+        rb.velocity = new Vector2(moveDirection * moveSpeed, rb.velocity.y);
+
+        //Controle de Pulo
+        jumpTimer -= Time.deltaTime;
+        if(jumpTimer <= 0 && isGround)
+        {
+            Jump();
+            jumpTimer = JumpInterval;
+        }
+
+        //Controle de tiro fogo
+        fireTimer -= Time.deltaTime;
+        if(fireTimer <= 0)
+        {
+            ShootFire();
+            fireTimer = fireRate;
+        }
+    }
+
+    void Frango()
+    {
+        float distanciaParaJogador = Vector2.Distance(transform.position, player_Giga.position);
+
+        Flip();
+
+        //Se o jogador estiver dentro do raio de fuga, o inimigo foge
+        if(distanciaParaJogador <= FugaDistance)
+        {
+            direction = (transform.position - player_Giga.position).normalized;
+            transform.position += (Vector3)(direction * moveSpeed * Time.deltaTime);
+        }
+        else
+        {
+            FrenteTrasPulo();
+        }
+    }
+
+   void Flip()
+    {
+        if (player_Giga != null)
+        {
+            if(player_Giga.position.x < transform.position.x)
+            {
+                render.flipX = false;
+            }
+            else
+            {
+                render.flipX = true;
+            }
+        }
+    }
+
+    private void Jump()
+    {
+        anim.SetBool("Pulando", true);
+        rb.velocity = new Vector2(rb.velocity.x, JumpForce);
+    }
+
+    private void ShootFire()
+    {
+        GameObject fireball = Instantiate(prefabProjetil, ShootPoint.position, Quaternion.identity);
+        //Acessa o rigidbody2D do projétil instanciado
+        Rigidbody2D fireRb = fireball.GetComponent<Rigidbody2D>();
+
+        fireRb.velocity = new Vector2(-ProjetilVelocity, fireRb.velocity.y);
+
+        Destroy(fireball, LifeProjectTime);
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("PontoDePulo"))
@@ -102,6 +200,17 @@ public class Movimentação_Bandido : MonoBehaviour
             transform.position = starPoint.position;
             rb.velocity = Vector2.zero;
             movingToEnd = true;
+        }
+
+        if (collision.gameObject.CompareTag("Chao"))
+        {
+            anim.SetBool("Pulando", false);
+            isGround = true;
+        }
+
+        if (collision.gameObject.CompareTag("EndPoint2")) 
+        {
+            Destroy(gameObject);
         }
     }
 }

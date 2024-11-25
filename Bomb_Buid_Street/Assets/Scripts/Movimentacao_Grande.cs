@@ -67,6 +67,8 @@ public class Movimentacao_Grande : MonoBehaviour
 
     void Start()
     {
+        DontDestroyOnLoad(this.gameObject);
+
         if (Osvaldo_Grande == null)
         {
             Debug.LogError("O prefab 'Osvaldo_Grande' não foi configurado no Inspector!");

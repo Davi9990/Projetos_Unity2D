@@ -65,14 +65,7 @@ public class Movimentacao_Giga : MonoBehaviour
 
     void Start()
     {
-        //if (Osvaldo_Grande == null)
-        //{
-        //    Debug.LogError("O prefab 'Osvaldo_Grande' não foi configurado no Inspector!");
-        //}
-        //if (Osvaldo_Giga == null)
-        //{
-        //    Debug.LogError("O prefab 'Osvaldo_Giga' não foi configurado no Inspector!");
-        //}
+        DontDestroyOnLoad(this.gameObject);
 
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
