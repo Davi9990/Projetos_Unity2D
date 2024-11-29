@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Move : MonoBehaviour
 {
-    //Movimentação
+    //Movimentaï¿½ï¿½o
     public float speed;
     private Rigidbody2D rg;
-    private bool isFacingRight = true;
+    public bool isFacingRight = true;
 
     //Pulos
     public float JP;
@@ -21,9 +21,12 @@ public class Move : MonoBehaviour
     public float fireRate = 1f;
     public float nextFireTime = 0f;
 
+    SpriteRenderer visu;
+    public static bool virou = false;
     void Start()
     {
         rg = GetComponent<Rigidbody2D>();
+        visu = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -46,22 +49,19 @@ public class Move : MonoBehaviour
         float n = Input.GetAxisRaw("Horizontal");
         rg.velocity = new Vector2(n * speed, rg.velocity.y);
 
-        //Verifica a direção do movimento e inverte o sprite se necessario
+        //Verifica a direï¿½ï¿½o do movimento e inverte o sprite se necessario
 
-        if (n > 0 && !isFacingRight)
+        if (n < 0)
         {
-            //Inverte a direção do sprite
-            isFacingRight = !isFacingRight;
-            Vector3 scaler = transform.localScale;
-            scaler.x *= -1;
-            transform.localScale = scaler;
+            isFacingRight = true;
+            visu.flipX = true;
+            virou = true;
         }
-        else if (n < 0 && isFacingRight)
+        else if (n > 0)
         {
-            isFacingRight = !isFacingRight;
-            Vector3 scaler = transform.localScale;
-            scaler.x *= -1;
-            transform.localScale = scaler;
+            isFacingRight = false;
+            visu.flipX = false;
+            virou = false;
         }
     }
 
@@ -73,7 +73,7 @@ public class Move : MonoBehaviour
             CnJmp = false;
         }
 
-        // Pulo variável: reduz a velocidade do pulo se o jogador soltar o botão antes do pulo atingir o ponto máximo
+        // Pulo variï¿½vel: reduz a velocidade do pulo se o jogador soltar o botï¿½o antes do pulo atingir o ponto mï¿½ximo
         if (Input.GetButtonUp("Jump") && rg.velocity.y > 0)
         {
             rg.velocity = new Vector2(rg.velocity.x, rg.velocity.y * 0.5f);
@@ -85,14 +85,14 @@ public class Move : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.F) && Time.time >= nextFireTime)
         {
             GameObject newFire = Instantiate(Balas, Hand.position, Quaternion.identity);
-            // Acessa o Rigidbody2D do projétil instanciado
+            // Acessa o Rigidbody2D do projï¿½til instanciado
             Rigidbody2D firerb = newFire.GetComponent<Rigidbody2D>();
 
-            // Verifica a direção do player usando o isFacingRight
+            // Verifica a direï¿½ï¿½o do player usando o isFacingRight
             float direction = isFacingRight ? 1 : -1;
 
-            // Atribui uma velocidade ao projétil considerando a velocidade do jogador
-            float bulletSpeed = speedBulllets + Mathf.Abs(rg.velocity.x); // Soma a velocidade do projétil à do jogador
+            // Atribui uma velocidade ao projï¿½til considerando a velocidade do jogador
+            float bulletSpeed = speedBulllets + Mathf.Abs(rg.velocity.x); // Soma a velocidade do projï¿½til ï¿½ do jogador
             firerb.velocity = new Vector2(direction * bulletSpeed, 0);
 
             Destroy(newFire, 6f);

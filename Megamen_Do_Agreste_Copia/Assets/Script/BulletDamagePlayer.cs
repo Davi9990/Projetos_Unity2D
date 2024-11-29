@@ -4,27 +4,35 @@ using UnityEngine;
 
 public class BulletDamagePlayer : MonoBehaviour
 {
-    // Start is called before the first frame update
+    //public int damage;
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "EnemySniper")
         {
             VidaInimigo inimigo = collision.gameObject.GetComponent<VidaInimigo>();
-            VidaInimigoCabeça inimigo2 = collision.gameObject.GetComponent<VidaInimigoCabeça>();
+            //VidaInimigoCabeï¿½a inimigo2 = collision.gameObject.GetComponent<VidaInimigoCabeï¿½a>();
+            VidaInimigoCabeÃ§a inimigo2 = collision.gameObject.GetComponent<VidaInimigoCabeÃ§a>();
+            VidaShield inimigo3 = collision.gameObject.GetComponent<VidaShield>();
 
             // Aplica dano ao inimigo se o componente existir
             if (inimigo != null)
             {
-                inimigo.TakeDamege(1); // Corrigido o nome do método
+                inimigo.TakeDamege(1); // Corrigido o nome do mï¿½todo
             }
 
             // Aplica dano ao segundo tipo de inimigo, se o componente existir
             if (inimigo2 != null)
             {
-                inimigo2.TakeDamage(1); // Corrigido o nome do método
+                inimigo2.TakeDamage(1); // Corrigido o nome do mï¿½todo
             }
 
-            Destroy(gameObject); // Destroi a bala após a colisão
+            if(inimigo3 != null)
+            {
+                inimigo3.TakeDamege(1);
+            }
+
+            Destroy(gameObject); // Destroi a bala apï¿½s a colisï¿½o
         }
 
         if (collision.gameObject.tag == "EnemysBullets")

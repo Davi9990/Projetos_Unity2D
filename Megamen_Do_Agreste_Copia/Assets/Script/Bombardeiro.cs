@@ -2,18 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bombardeiro : MonoBehaviour
+public class Bombardeiro : Todos
 {
     public float shootingRange = 15f; //Distancia em que o inimigo começa a atirar no jogador
     public float fleeingRange = 5f; //Distencia em que o inimigo começa a fugir do jogador
-    public float moveSpeed = 2f; //Velocidade de movimento do inimigo
     public float shootingCooldown = 1f; //Tempo de recarga entre disparos
     public GameObject projectilePrefab; //Prefab do projetil
     public Transform shootingPoint1; //Ponto de onde o projetil é disparados
     public Transform shootingPoint2;
     public float projectileSpeed = 10f; //Velocidade do projetil
     public float projectileLifeTime = 5f; //Tempo de Vida do Projetil em segundos
-    private Animator anim;
 
     private float lastShotTime;
     private Transform player;
@@ -21,6 +19,8 @@ public class Bombardeiro : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
+        sp = GetComponent<SpriteRenderer>();
+        rb = GetComponent<Rigidbody2D>();
 
         //Encontra o jogador pela "Player"
         GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
@@ -62,7 +62,7 @@ public class Bombardeiro : MonoBehaviour
     {
         //Move o inimigo na direção oposta ao jogador
         Vector2 direction = (transform.position - player.transform.position).normalized;
-        transform.position += (Vector3)(direction * moveSpeed * Time.deltaTime);
+        transform.position += (Vector3)(direction * speed * Time.deltaTime);
     }
 
     void ShootAtPlayer()

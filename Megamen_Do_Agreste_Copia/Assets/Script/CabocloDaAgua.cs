@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CabocloDaAgua : MonoBehaviour
+public class CabocloDaAgua : Todos
 {
     public int dano = 1; // Dano causado ao jogador
     public float velocidade = 1; // Velocidade de perseguição horizontal
@@ -16,21 +16,21 @@ public class CabocloDaAgua : MonoBehaviour
     public float groundCheckRadius = 0.1f; // Raio para detectar o chão
     public string groundTag = "Chao"; // Tag para identificar o chão
 
-    private Rigidbody2D rb;
     private Transform player;
-    private SistemaDeVida vida;
+    private SistemaDeVida vid;
     private bool IsAttack = false;
     private bool causouDano = false; // Controle para garantir que o dano só seja aplicado uma vez
     private float lastAttackTime;
-    private Animator anim;
 
     void Start()
     {
         anim = GetComponent<Animator>();
+        sp = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
+
         rb.gravityScale = 0; // Inimigo "voa" no começo
         player = GameObject.FindWithTag("Player").transform; // Localiza o jogador automaticamente
-        vida = player.GetComponent<SistemaDeVida>(); // Acessa o sistema de vida do jogador
+        vid = player.GetComponent<SistemaDeVida>(); // Acessa o sistema de vida do jogador
     }
 
     void Update()
@@ -133,9 +133,9 @@ public class CabocloDaAgua : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player") && IsAttack && !causouDano)
         {
-            if (vida != null)
+            if (vid != null)
             {
-                vida.vida -= dano;
+                vid.vida -= dano;
                 causouDano = true; // Garante que o dano só seja aplicado uma vez por ataque
             }
         }

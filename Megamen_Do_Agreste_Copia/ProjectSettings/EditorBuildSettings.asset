@@ -8,4 +8,25 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/SelecaoDeFase.unity
+    guid: ebf25d9597b387d4ea1e7d5b8fa6e871
+  - enabled: 1
+    path: Assets/Scenes/TelaTitulo.unity
+    guid: 59962286ddf2ee7459805868c0de7eff
+  - enabled: 1
+    path: Assets/Scenes/TestandoInimigosGenericos.unity
+    guid: e33c9cedede2fa948a3b3a794bc58874
+  - enabled: 1
+    path: Assets/Scenes/Fases/FaseBoitata.unity
+    guid: 9b7577487fa203f4aa2d6da3b49cddbe
+  - enabled: 1
+    path: Assets/Scenes/Fases/FaseCurupira.unity
+    guid: 3b7d0ab4c0c3ea045a07b4dcf1b54253
+  - enabled: 1
+    path: Assets/Scenes/Fases/FaseFinal.unity
+    guid: 75f378829431acd4e8e16b8a1dfcd67d
+  - enabled: 1
+    path: Assets/Scenes/Fases/FaseIara.unity
+    guid: 2175d7318fdd8bc49b7126771da29284
   m_configObjects: {}

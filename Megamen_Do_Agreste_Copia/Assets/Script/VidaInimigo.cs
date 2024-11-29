@@ -29,7 +29,7 @@ public class VidaInimigo : MonoBehaviour
 
     void SpawnRandom()
     {
-        // Sorteia um número entre 0 e o tamanho total do array + 1 (incluindo a chance de não spawnar nada)
+        // Sorteia um nï¿½mero entre 0 e o tamanho total do array + 1 (incluindo a chance de nï¿½o spawnar nada)
         random = Random.Range(0, SpawnItens.Length + 1);
 
         // Se o valor sorteado for menor que o tamanho do array, spawna o item correspondente
@@ -37,6 +37,6 @@ public class VidaInimigo : MonoBehaviour
         {
             Instantiate(SpawnItens[random], transform.position, transform.rotation);
         }
-        // Caso contrário, não faz nada (chance de não spawnar nenhum item)
+        // Caso contrï¿½rio, nï¿½o faz nada (chance de nï¿½o spawnar nenhum item)
     }
 }

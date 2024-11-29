@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Capilobo : MonoBehaviour
+public class Capilobo : Todos
 {
     public Transform player;
     public float followDistance = 10f;
@@ -13,12 +13,10 @@ public class Capilobo : MonoBehaviour
     public int damage;
     public float TempoAgarrando;
     public float TempoLinguada;
-    private Animator anim;
 
     private float lastAttackTime;
-    private Rigidbody2D rb;
     public Rigidbody2D PlayerRb;
-    private SistemaDeVida vida;
+    private SistemaDeVida vid;
 
     public BoxCollider2D boxCollider1; // Colisor normal (para dano)
     public BoxCollider2D boxCollider2; // Colisor da linguada (Trigger)
@@ -34,7 +32,9 @@ public class Capilobo : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
+        sp = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
+
         PlayerRb = player.GetComponent<Rigidbody2D>();
         anim.SetBool("Linguada", false);
 
@@ -140,12 +140,12 @@ public class Capilobo : MonoBehaviour
         if (collision.CompareTag("Player") && Lambida)
         {
             // Obtém o sistema de vida do jogador
-            vida = collision.gameObject.GetComponent<SistemaDeVida>();
+            vid = collision.gameObject.GetComponent<SistemaDeVida>();
 
             if (vida != null)
             {
                 // Aplica dano ao jogador
-                vida.vida -= damage;
+                vid.vida -= damage;
 
                 // Trava completamente o jogador
                 PlayerRb.velocity = Vector2.zero;
@@ -180,12 +180,12 @@ public class Capilobo : MonoBehaviour
         if (collision.collider == boxCollider1 && collision.gameObject.CompareTag("Player"))
         {
             // Obtém o sistema de vida do jogador
-            vida = collision.gameObject.GetComponent<SistemaDeVida>();
+            vid = collision.gameObject.GetComponent<SistemaDeVida>();
 
             if (vida != null)
             {
                 // Aplica dano ao jogador
-                vida.vida -= damage;
+                vid.vida -= damage;
 
                 Debug.Log("Dano aplicado ao jogador: " + damage);
             }

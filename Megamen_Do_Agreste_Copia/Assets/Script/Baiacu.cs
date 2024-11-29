@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Baiacu : MonoBehaviour
+public class Baiacu : Todos
 {
     public int dano; // Dano causado ao jogador
     public float AreaDeDano; // Raio expandido da área de dano
@@ -12,11 +12,12 @@ public class Baiacu : MonoBehaviour
     private bool EstaExpandindo = false; // Flag para verificar se está expandindo
     private float lastAttackTime; // Controla o último ataque
 
-    private Animator anim;
-
     void Start()
     {
         anim = GetComponent<Animator>();
+        sp = GetComponent<SpriteRenderer>();
+        rb = GetComponent<Rigidbody2D>();
+
         circleCollider = GetComponent<CircleCollider2D>(); // Pega o CircleCollider2D do inimigo
         StartCoroutine(ExpandindoAreaDeDano()); // Inicia o ciclo de expansão e contração
     }
