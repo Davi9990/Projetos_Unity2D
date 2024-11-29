@@ -47,10 +47,28 @@ public class Escudo_de_Agua : MonoBehaviour
         if (collision.gameObject.CompareTag("EnemySniper"))
         {
             VidaInimigo Inimigo = collision.GetComponent<VidaInimigo>();
+            VidaEnemyBoss Inimigo2 = collision.GetComponent<VidaEnemyBoss>();
+            Vida_Enemy_Boss_Iara Inimigo3 = collision.GetComponent<Vida_Enemy_Boss_Iara>();
+            Vida_Enemy_Boss_Curupira Inimigo4 = collision.GetComponent<Vida_Enemy_Boss_Curupira>();
 
             if(Inimigo != null && Time.time >= lastAttackTime + 1f)
             {
                 Inimigo.TakeDamege(dano);
+                lastAttackTime = Time.time;
+            }
+            if(Inimigo2 != null && Time.time >= lastAttackTime + 1f)
+            {
+                Inimigo2.TakeDamege(dano);
+                lastAttackTime = Time.time;
+            }
+            if(Inimigo3 != null && Time.time >= lastAttackTime + 1f)
+            {
+                Inimigo3.TakeDamege(dano);
+                lastAttackTime = Time.time;
+            }
+             if(Inimigo4 != null && Time.time >= lastAttackTime + 1f)
+            {
+                Inimigo4.TakeDamege(dano);
                 lastAttackTime = Time.time;
             }
         }

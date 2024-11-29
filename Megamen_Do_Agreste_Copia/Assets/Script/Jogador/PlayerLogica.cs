@@ -35,14 +35,21 @@ public class PlayerLogica : MonoBehaviour
     private Rigidbody2D rb;
     private Animator anim;
     private SpriteRenderer sp;
-    private TrocadorDeCenas validacao;
+    private VidaEnemyBoss trava;
+    private Vida_Enemy_Boss_Curupira trava2;
+    private Vida_Enemy_Boss_Iara trava3;
+
+    public bool Boitata = false, curupira,Iara;
 
     void Start()
     {
         anim = GetComponent<Animator>();
         sp = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
-        validacao = GetComponent<TrocadorDeCenas>();
+        trava = GetComponent<VidaEnemyBoss>();
+        trava2 = GetComponent<Vida_Enemy_Boss_Curupira>();
+        trava3 = GetComponent<Vida_Enemy_Boss_Iara>();
+        //validacao = GetComponent<TrocadorDeCenas>();
 
         AtualizarArmaSelecionada();
         ConfigurarBotoes();
@@ -51,6 +58,8 @@ public class PlayerLogica : MonoBehaviour
 
     void Update()
     {
+       
+
         // Verifica se a tecla de pause foi pressionada
         if (Input.GetKeyDown(pauseKey))
         {
@@ -139,23 +148,46 @@ public class PlayerLogica : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            armaSelecionada = 1;
-            AtualizarArmaSelecionada();
-            sp.color = Color.red;
+            if(Boitata)
+            {
+                armaSelecionada = 1;
+                AtualizarArmaSelecionada();
+                sp.color = Color.red;
+            }
+            else
+            {
+                Debug.Log("Poder Boitata ainda não está Liberado");
+            }
         }
         else if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            armaSelecionada = 2;
-            AtualizarArmaSelecionada();
-            sp.color = Color.black;
+            if(curupira)
+            {
+                armaSelecionada = 2;
+                AtualizarArmaSelecionada();
+                sp.color = Color.black;
+            }
+            else
+            {
+                Debug.Log("Poder Curupiura ainda não está Liberado");
+            }
         }
         else if (Input.GetKeyDown(KeyCode.Alpha4))
         {
-            armaSelecionada = 3;
-            AtualizarArmaSelecionada();
-            sp.color = Color.blue;
+            if(Iara)
+            {
+                armaSelecionada = 3;
+                AtualizarArmaSelecionada();
+                sp.color = Color.blue;
+            }
+            else
+            {
+                Debug.Log("Poder da Iara ainda não está Liberado");
+            }
         }
     }
+
+  
 
     void AtualizarArmaSelecionada()
     {
