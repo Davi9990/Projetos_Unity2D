@@ -37,7 +37,7 @@ public class Escudo_de_Agua : MonoBehaviour
 
         yield return new WaitForSeconds(TempoDeExpansao);
 
-        circle2D.radius = 0.5f;
+        circle2D.radius = 0.1f;
 
         yield return new WaitForSeconds(TempoDeRecarga); // Espera o tempo de recarga
     }

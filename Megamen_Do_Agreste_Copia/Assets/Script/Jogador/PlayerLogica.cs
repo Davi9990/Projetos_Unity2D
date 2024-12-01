@@ -39,6 +39,8 @@ public class PlayerLogica : MonoBehaviour
     // Variáveis de poderes desbloqueados
     public bool Boitata = false, curupira = false, Iara = false;
 
+    
+
     void Start()
     {
         // Sincroniza os poderes do GameManager com o Player
@@ -78,6 +80,7 @@ public class PlayerLogica : MonoBehaviour
             {
                 rb.velocity = new Vector2(rb.velocity.x, JP);
                 CnJmp = false;
+                anim.SetBool("Pulando", true);
             }
 
             if (tempoacabando)
@@ -93,6 +96,7 @@ public class PlayerLogica : MonoBehaviour
             if (Input.GetButtonUp("Jump") && rb.velocity.y > 0)
             {
                 rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
+                anim.SetBool("Pulando", true);
             }
         }
     }
@@ -104,6 +108,7 @@ public class PlayerLogica : MonoBehaviour
             CnJmp = true;
             CoyoteJump = 0.5f;
             tempoacabando = false;
+            anim.SetBool("Pulando", false);
         }
     }
 
@@ -123,10 +128,16 @@ public class PlayerLogica : MonoBehaviour
         if (movimento < 0 && isFacingRight)
         {
             Flip();
+            anim.SetBool("Correndo", true);
         }
         else if (movimento > 0 && !isFacingRight)
         {
             Flip();
+            anim.SetBool("Correndo", true);
+        }
+        else if(movimento == 0)
+        {
+            anim.SetBool("Correndo", false);
         }
     }
 
