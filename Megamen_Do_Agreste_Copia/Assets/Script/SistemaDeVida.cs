@@ -12,26 +12,60 @@ public class SistemaDeVida : MonoBehaviour
     public Sprite cheio;  // Sprite para vida cheia
     public Sprite vazio;  // Sprite para vida vazia
 
-    void Start()
+    public GameObject hudPrefab; // Referência ao prefab da HUD
+    private GameObject hudInstance; // Instância atual da HUD
+
+    private void Awake()
     {
-        AtualizarHudDeVida();  // Atualiza o HUD assim que o jogo começa
+        // Garante que o sistema de vida e a HUD não serão destruídos ao carregar novas cenas
+        DontDestroyOnLoad(gameObject);
     }
 
-    void Update()
+    private void Start()
+    {
+        ConfigurarHUD(); // Certifica-se de que a HUD está configurada
+        AtualizarHudDeVida();
+    }
+
+    private void Update()
     {
         AtualizarHudDeVida();
         VerificarMorte();
     }
 
+    private void ConfigurarHUD()
+    {
+        // Se a HUD já foi criada, não faz nada
+        if (hudInstance != null)
+            return;
+
+        // Procura a HUD na cena
+        hudInstance = GameObject.FindGameObjectWithTag("HUD");
+
+        // Se a HUD não foi encontrada, instancia o prefab
+        if (hudInstance == null && hudPrefab != null)
+        {
+            hudInstance = Instantiate(hudPrefab);
+            DontDestroyOnLoad(hudInstance); // Preserva a HUD entre cenas
+        }
+
+        // Configura o array de Hits (imagens de vida) com base na HUD
+        if (hudInstance != null)
+        {
+            Hits = hudInstance.GetComponentsInChildren<Image>();
+        }
+    }
+
     void AtualizarHudDeVida()
     {
-        // Se a vida estiver maior que a vida máxima, ajusta para a vida máxima
+        if (Hits == null || Hits.Length == 0)
+            return;
+
         if (vida > vidaMaxima)
         {
             vida = vidaMaxima;
         }
 
-        // Atualiza cada barra de vida no HUD
         for (int i = 0; i < Hits.Length; i++)
         {
             if (i < vida)
@@ -43,7 +77,6 @@ public class SistemaDeVida : MonoBehaviour
                 Hits[i].sprite = vazio;
             }
 
-            // Ativa ou desativa a barra de vida dependendo do valor da vida máxima
             Hits[i].enabled = i < vidaMaxima;
         }
     }
@@ -59,7 +92,7 @@ public class SistemaDeVida : MonoBehaviour
     public void GanharVida(int quantidade)
     {
         vida += quantidade;
-        if(vida > vidaMaxima)
+        if (vida > vidaMaxima)
         {
             vida = vidaMaxima;
         }

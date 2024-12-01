@@ -35,22 +35,28 @@ public class PlayerLogica : MonoBehaviour
     private Rigidbody2D rb;
     private Animator anim;
     private SpriteRenderer sp;
-    private VidaEnemyBoss trava;
-    private Vida_Enemy_Boss_Curupira trava2;
-    private Vida_Enemy_Boss_Iara trava3;
 
-    public bool Boitata = false, curupira,Iara;
+    // Variáveis de poderes desbloqueados
+    public bool Boitata = false, curupira = false, Iara = false;
 
     void Start()
     {
+        // Sincroniza os poderes do GameManager com o Player
+        if (GameManager.Instance != null)
+        {
+            Boitata = GameManager.Instance.Boitata;
+            curupira = GameManager.Instance.Curupira;
+            Iara = GameManager.Instance.Iara;
+        }
+        else
+        {
+            Debug.LogWarning("GameManager não encontrado. Certifique-se de que está na cena inicial.");
+        }
+
+        // Inicialização dos componentes
         anim = GetComponent<Animator>();
         sp = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
-        trava = GetComponent<VidaEnemyBoss>();
-        trava2 = GetComponent<Vida_Enemy_Boss_Curupira>();
-        trava3 = GetComponent<Vida_Enemy_Boss_Iara>();
-        //validacao = GetComponent<TrocadorDeCenas>();
-
         AtualizarArmaSelecionada();
         ConfigurarBotoes();
         pauseMenu.SetActive(false); // Garante que o menu de pausa começa desativado
@@ -58,15 +64,11 @@ public class PlayerLogica : MonoBehaviour
 
     void Update()
     {
-       
-
-        // Verifica se a tecla de pause foi pressionada
         if (Input.GetKeyDown(pauseKey))
         {
             TogglePause();
         }
 
-        // Só realiza a movimentação e troca de armas se o jogo não estiver pausado
         if (!isPaused)
         {
             Movimentar();
@@ -148,7 +150,7 @@ public class PlayerLogica : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            if(Boitata)
+            if (Boitata)
             {
                 armaSelecionada = 1;
                 AtualizarArmaSelecionada();
@@ -156,12 +158,12 @@ public class PlayerLogica : MonoBehaviour
             }
             else
             {
-                Debug.Log("Poder Boitata ainda não está Liberado");
+                Debug.Log("Poder Boitata ainda não está liberado!");
             }
         }
         else if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            if(curupira)
+            if (curupira)
             {
                 armaSelecionada = 2;
                 AtualizarArmaSelecionada();
@@ -169,12 +171,12 @@ public class PlayerLogica : MonoBehaviour
             }
             else
             {
-                Debug.Log("Poder Curupiura ainda não está Liberado");
+                Debug.Log("Poder Curupira ainda não está liberado!");
             }
         }
         else if (Input.GetKeyDown(KeyCode.Alpha4))
         {
-            if(Iara)
+            if (Iara)
             {
                 armaSelecionada = 3;
                 AtualizarArmaSelecionada();
@@ -182,12 +184,10 @@ public class PlayerLogica : MonoBehaviour
             }
             else
             {
-                Debug.Log("Poder da Iara ainda não está Liberado");
+                Debug.Log("Poder Iara ainda não está liberado!");
             }
         }
     }
-
-  
 
     void AtualizarArmaSelecionada()
     {
@@ -210,20 +210,19 @@ public class PlayerLogica : MonoBehaviour
         AtualizarArmaSelecionada();
     }
 
-    // Função para alternar o estado de pausa
     void TogglePause()
     {
         isPaused = !isPaused;
 
         if (isPaused)
         {
-            Time.timeScale = 0;  // Pausa o jogo
-            pauseMenu.SetActive(true);  // Mostra o menu de pausa
+            Time.timeScale = 0; // Pausa o jogo
+            pauseMenu.SetActive(true); // Mostra o menu de pausa
         }
         else
         {
-            Time.timeScale = 1;  // Retorna o tempo ao normal
-            pauseMenu.SetActive(false);  // Esconde o menu de pausa
+            Time.timeScale = 1; // Retorna o tempo ao normal
+            pauseMenu.SetActive(false); // Esconde o menu de pausa
         }
     }
 }

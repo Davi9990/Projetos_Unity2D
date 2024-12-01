@@ -17,6 +17,9 @@ GameObject:
   - component: {fileID: 1143927163218756442}
   - component: {fileID: 3934706360104616273}
   - component: {fileID: 3712771769020172736}
+  - component: {fileID: 4170556796328770694}
+  - component: {fileID: 3036013462182876265}
+  - component: {fileID: 3833632849445566127}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -181,17 +184,18 @@ MonoBehaviour:
   vida: 9
   vidaMaxima: 9
   Hits:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 8335599144065196332, guid: 19625e87ad1664841a91daed34c706ae, type: 3}
+  - {fileID: 5829648546027724225, guid: b61301473f380214cbba45007728505a, type: 3}
+  - {fileID: 4263358303159908179, guid: 70a5f43aa7ce63b4f889137159aa57b4, type: 3}
+  - {fileID: 2975788401098660566, guid: ad121eb81a3bea147be910b1e168a0d1, type: 3}
+  - {fileID: 4387132857730486682, guid: 97a03294edf585d46bd1180b7bb28e17, type: 3}
+  - {fileID: 4636602370631882582, guid: 1daa8e19ac5aa2e47be9316283586902, type: 3}
+  - {fileID: 6816347270938233268, guid: 13114e841551bd44a88041c5618ace8a, type: 3}
+  - {fileID: 728628403702899243, guid: be95601ca16a0f847bd3ada865eba6d3, type: 3}
+  - {fileID: 4564978482354934384, guid: 2ad43ab1ab2e77346bf9f2bee9687d12, type: 3}
   cheio: {fileID: 21300000, guid: bb203aa4314ddba4eaa7593fc38f111a, type: 3}
   vazio: {fileID: 21300000, guid: fc426478d3ed9864ebbeeecc16a61457, type: 3}
+  hudPrefab: {fileID: 6332669112875906792, guid: f5e9964f0a3ea3745b012d679bd8e298, type: 3}
 --- !u!61 &700007897701366303
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -254,16 +258,20 @@ MonoBehaviour:
   JP: 9
   Hand: {fileID: 4109189928463670247}
   Balas: {fileID: 193206061566855938, guid: 03fd7b6756d10194eb8398ae13d369b6, type: 3}
-  TiroCarregado: {fileID: 1580444035086549643, guid: 18c94d8a643e35d4ba7376364e48732a, type: 3}
-  speedBulllets: 4
+  speedBulllets: 9
   fireRate: 0.25
-  TiroFogo: {fileID: 1580444035086549643, guid: 18c94d8a643e35d4ba7376364e48732a, type: 3}
-  EscudoDagua: {fileID: 1579984926090766532, guid: d08b053dffff7c84ea6d5d1eca093f9c, type: 3}
-  Rocha: {fileID: 7666352089470854296, guid: 1ad420f5ca2467f4587006155d63c5f8, type: 3}
-  Selecao: {fileID: 0}
-  b1: {fileID: 0}
-  b2: {fileID: 0}
-  b3: {fileID: 0}
+  scripts:
+  - {fileID: 3036013462182876265}
+  - {fileID: 3934706360104616273}
+  - {fileID: 3712771769020172736}
+  - {fileID: 4170556796328770694}
+  b1: {fileID: 1722945975431060361, guid: fb80dfdd8785dfa4e8820c9ced17f8f7, type: 3}
+  b2: {fileID: 4632964043502670829, guid: dc9c862a923f8cb4691ed4a03aecd26f, type: 3}
+  b3: {fileID: 879218692166537006, guid: 92b6a3418be35684dacd7526a9e4e772, type: 3}
+  pauseMenu: {fileID: 6332669112875906792, guid: f5e9964f0a3ea3745b012d679bd8e298, type: 3}
+  Boitata: 0
+  curupira: 0
+  Iara: 0
 --- !u!114 &3934706360104616273
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -278,11 +286,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Hand: {fileID: 4109189928463670247}
   Tiros: {fileID: 1580444035086549643, guid: 18c94d8a643e35d4ba7376364e48732a, type: 3}
-  speedBullets: 6
+  speedBullets: 9
   maxDamage: 10
   tempoMaxCarregamento: 1.5
   estaCarregando: 0
   Player: {fileID: 7684207303654062036}
+  cooldown: 0.25
 --- !u!114 &3712771769020172736
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -302,6 +311,74 @@ MonoBehaviour:
   fireRate: 0.25
   nextFireTime: 0.25
   Player: {fileID: 7684207303654062036}
+--- !u!114 &4170556796328770694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4291540473306641997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9f1967d7eeebc448a15735e40e5254a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dano: 2
+  AreaEscudo: 3.69
+  TempoDeExpansao: 3
+  TempoDeRecarga: 3
+--- !u!114 &3036013462182876265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4291540473306641997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d56b134e285dd1847b98755c28d75df9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Hand: {fileID: 4109189928463670247}
+  Balas: {fileID: 193206061566855938, guid: 03fd7b6756d10194eb8398ae13d369b6, type: 3}
+  speedBulllets: 9
+  fireRate: 0.25
+  Player: {fileID: 7684207303654062036}
+--- !u!58 &3833632849445566127
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4291540473306641997}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1001 &3391821888783418759
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -312,11 +389,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3617295142090557167, guid: 1628aadf75699ca44ba04a5758b64e21, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.37
+      value: 3.27
       objectReference: {fileID: 0}
     - target: {fileID: 3617295142090557167, guid: 1628aadf75699ca44ba04a5758b64e21, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.63
+      value: 3.18
       objectReference: {fileID: 0}
     - target: {fileID: 3617295142090557167, guid: 1628aadf75699ca44ba04a5758b64e21, type: 3}
       propertyPath: m_LocalPosition.z
@@ -378,11 +455,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7952641499575237423, guid: 3044b98c0ed360e47b70757cc754dfee, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.67
+      value: 6.09
       objectReference: {fileID: 0}
     - target: {fileID: 7952641499575237423, guid: 3044b98c0ed360e47b70757cc754dfee, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.7
+      value: 3.2500002
       objectReference: {fileID: 0}
     - target: {fileID: 7952641499575237423, guid: 3044b98c0ed360e47b70757cc754dfee, type: 3}
       propertyPath: m_LocalPosition.z

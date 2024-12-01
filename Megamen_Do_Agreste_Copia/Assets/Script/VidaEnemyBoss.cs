@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class VidaEnemyBoss : MonoBehaviour
 {
@@ -29,14 +30,15 @@ public class VidaEnemyBoss : MonoBehaviour
     {
         currentHealth -= Damege;
 
-        if(currentHealth <= 0)
+        if (currentHealth <= 0)
         {
             Destroy(gameObject);
-            BoitataON = true;
-            if(Player != null)
-            {
-                Player.Boitata = true;
-            }
+
+            // Atualiza o progresso global
+            GameManager.Instance.Boitata = true;
+
+            // Troca para a tela de seleção de fases
+            SceneManager.LoadScene("SelecaoDeFase");
         }
     }
 }
