@@ -11,7 +11,7 @@ public class PlayerLogica : MonoBehaviour
 
     // Pulo
     public float JP;
-    private bool CnJmp;
+    public bool CnJmp;
     private float CoyoteJump = 0.5f;
     private bool tempoacabando = false;
 
@@ -35,11 +35,11 @@ public class PlayerLogica : MonoBehaviour
     private Rigidbody2D rb;
     private Animator anim;
     private SpriteRenderer sp;
+    public bool isRunning = true;
 
     // Variáveis de poderes desbloqueados
     public bool Boitata = false, curupira = false, Iara = false;
-
-    
+    //public GameObject Bolha;
 
     void Start()
     {
@@ -62,10 +62,12 @@ public class PlayerLogica : MonoBehaviour
         AtualizarArmaSelecionada();
         ConfigurarBotoes();
         pauseMenu.SetActive(false); // Garante que o menu de pausa começa desativado
+        //Bolha.SetActive(false);
     }
 
     void Update()
     {
+
         if (Input.GetKeyDown(pauseKey))
         {
             TogglePause();
@@ -98,6 +100,35 @@ public class PlayerLogica : MonoBehaviour
                 rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
                 anim.SetBool("Pulando", true);
             }
+
+            if(isRunning)
+            {
+                anim.SetBool("Correndo", true);
+            }
+            else
+            {
+                anim.SetBool("Correndo", false);
+            }
+
+            if (Input.GetKeyDown(KeyCode.F)) // Ajuste para o botão de disparo
+            {
+                // Transição de animação para "Atirando" com base no estado de movimento
+                if (isRunning)
+                {
+                    anim.SetTrigger("Correndo_Atirando");
+                }
+                else if (CnJmp == false)
+                {
+                    if (anim.GetBool("Pulando"))
+                    {
+                        anim.SetTrigger("Pulando_Atirando");
+                    }
+                }
+                else
+                {
+                    anim.SetTrigger("Parado_Atirando");
+                }
+            }
         }
     }
 
@@ -129,15 +160,21 @@ public class PlayerLogica : MonoBehaviour
         {
             Flip();
             anim.SetBool("Correndo", true);
+            //anim.SetBool("Parado", false);
+            isRunning = true;
         }
         else if (movimento > 0 && !isFacingRight)
         {
             Flip();
             anim.SetBool("Correndo", true);
+            //anim.SetBool("Parado", false);
+            isRunning = true;
         }
         else if(movimento == 0)
         {
             anim.SetBool("Correndo", false);
+            //anim.SetBool("Parado", true);
+            isRunning = false;
         }
     }
 

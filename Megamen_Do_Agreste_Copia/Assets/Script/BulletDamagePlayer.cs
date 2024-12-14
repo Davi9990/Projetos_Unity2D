@@ -37,7 +37,7 @@ public class BulletDamagePlayer : MonoBehaviour
 
             if(inimigo4 != null)
             {
-                inimigo4.TakeDamege(1);
+                inimigo4.TakeDamage(1);
             }
 
             if(inimigo5 != null)

@@ -56,6 +56,13 @@ public class TiroCarregado : MonoBehaviour
             projetilCarregado = Instantiate(Tiros, Hand.position, Quaternion.identity);
             projetilCarregado.transform.SetParent(Hand); // Anexa ao ponto de disparo
 
+            // Ativa a animação de carregamento do projétil
+            Animator projAnimator = projetilCarregado.GetComponent<Animator>();
+            if (projAnimator != null)
+            {
+                projAnimator.SetBool("Carregando", true);
+            }
+
             // Inicia o Coroutine se não estiver rodando
             if (CoroutineCarregamento == null)
             {
@@ -112,6 +119,14 @@ public class TiroCarregado : MonoBehaviour
 
         // Desanexa o projétil do ponto de disparo
         projetilCarregado.transform.SetParent(null);
+
+        // Troca a animação para o estado de disparo
+        Animator projAnimator = projetilCarregado.GetComponent<Animator>();
+        if (projAnimator != null)
+        {
+            projAnimator.SetBool("Carregando", false);
+            projAnimator.SetTrigger("Disparo");
+        }
 
         Rigidbody2D firerb = projetilCarregado.GetComponent<Rigidbody2D>();
 
