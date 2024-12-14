@@ -960,6 +960,7 @@ GameObject:
   - component: {fileID: 488594519}
   - component: {fileID: 488594518}
   - component: {fileID: 488594517}
+  - component: {fileID: 488594522}
   m_Layer: 0
   m_Name: Enemy_Boss_Iara
   m_TagString: EnemySniper
@@ -1125,6 +1126,25 @@ Transform:
   - {fileID: 1323594941}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &488594522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 488594516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0e3260f5ba5f6b49b23cc77c06a7456, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pontoA: {fileID: 1126281084}
+  pontoB: {fileID: 1254867572}
+  velocidade: 15
+  Moves: 0
+  Jato: {fileID: 2478360027949185722, guid: 44a3e39f889d4be439b05654fd9f022d, type: 3}
+  amplitude: 2
+  frequencia: 2
 --- !u!4 &494476557 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8141111539137822868, guid: 29ce589a48dde4e42827af51f3a4ccbf, type: 3}
@@ -2036,8 +2056,8 @@ Transform:
   m_GameObject: {fileID: 1126281081}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.69, y: -3.48, z: 0}
-  m_LocalScale: {x: 0.50152034, y: 0.44164643, z: 1}
+  m_LocalPosition: {x: -12.69, y: 0.07, z: 0}
+  m_LocalScale: {x: 0.50152034, y: 7.866612, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -2242,8 +2262,8 @@ Transform:
   m_GameObject: {fileID: 1254867569}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.72, y: -3.48, z: 0}
-  m_LocalScale: {x: 0.50152034, y: 0.44164643, z: 1}
+  m_LocalPosition: {x: 11.72, y: -0.1, z: 0}
+  m_LocalScale: {x: 0.50152034, y: 7.6793485, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
