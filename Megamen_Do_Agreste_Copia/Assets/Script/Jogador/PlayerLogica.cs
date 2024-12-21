@@ -273,4 +273,12 @@ public class PlayerLogica : MonoBehaviour
             pauseMenu.SetActive(false); // Esconde o menu de pausa
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.CompareTag("Redemoinho"))
+        {
+            rb.velocity = Vector2.up * JP;
+        }
+    }
 }

@@ -7,40 +7,28 @@ using UnityEngine;
 
 public class IaraBossMoveSet : MonoBehaviour
 {
-    // Primeiro Ataque
-    public Transform pontoA;
-    public Transform pontoB;
-    public float velocidade = 15f;
+    public Transform pontoA, pontoB; // Pontos de movimenta√ß√£o
+    public float velocidade = 15f, amplitude = 2f, frequencia = 2f;
+    public int Moves = 0;
+
+    // Objetos de Ataque
+    public GameObject JatoPrefab, agua, Bolhas;
+    public Transform PontoDisparo, Jogador, Redemoinho1, Redemoinho2, PontoDeBolha, PontoDeBolha2;
+    public float TempoRecargaTiro = 2f, TempoDeVidaProjetil = 3f, TempoDeVidaRedemoinho = 3f, velocidadeProjettil = 10f;
+    public float forcaBolha = 3f, velBolha = 2.5f, lifeTimeProjetil = 5;
+
+    private Rigidbody2D rb;
     private Vector3 pontoAtual;
     private Vector2 direction;
-    private bool Flip = true;
-    private Rigidbody2D rb;
-    public float amplitude = 2f;
-    public float frequencia = 2f;
-    public int Moves = 0;
-    public float TempoRecargaTiro = 2f;
-    public GameObject JatoPrefab;
-    public Transform PontoDisparo;
-    public float TempoDeVidaProjetil;
+    private bool Flip = true, JaContouPonto = false;
     private float tempoUltimoTiro;
-    public float velocidadeProjettil = 10f;
-    private bool JaContouPonto = false;
-    public Transform Jogador;
 
-    // Segundo Ataque
-    public Transform Redemoinho1;
-    public Transform Redemoinho2;
-    public float TempoDeVidaRedemoinho;
-    public GameObject agua;
-
-    // Controle de padrıes
-    private bool trocandoPadrao = false;
+    private enum EstadoBoss { NadandoAtirando, RedemoinhoBrabo, MovimentoSimples }
+    private EstadoBoss estadoAtual = EstadoBoss.NadandoAtirando;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-
-        // Define a posiÁ„o inicial e o ponto atual
         transform.position = pontoB.position;
         pontoAtual = pontoB.position;
         direction = (pontoA.position - transform.position).normalized;
@@ -48,68 +36,75 @@ public class IaraBossMoveSet : MonoBehaviour
 
     void Update()
     {
-        TrocaDePadroes();
+        ControlarPadrao();
     }
 
-    public void TrocaDePadroes()
+    // Alternar entre padr√µes
+    void ControlarPadrao()
     {
-        if (Moves <= 4) // Primeiro padr„o: Nadando e Atirando
+        switch (estadoAtual)
         {
-            NadandoeAtirando();
-            AtirandoEmCorno();
-        }
-        else if (Moves <= 5) // Segundo padr„o: RedemoinhoBrabo + MovimentaÁ„o
-        {
-            if (!trocandoPadrao)
-            {
-                ReiniciarEstado(); // Reseta vari·veis essenciais para o novo padr„o
-            }
-            NadandoeAtirando();
-            RedemoinhoBrabo();
+            case EstadoBoss.NadandoAtirando:
+                NadandoeAtirando();
+                AtirarProjetil();
+                if (Moves > 4) ReiniciarEstado(EstadoBoss.RedemoinhoBrabo);
+                break;
+
+            case EstadoBoss.RedemoinhoBrabo:
+                NadandoeAtirando();
+                RedemoinhoBrabo();
+                if (Moves > 14) ReiniciarEstado(EstadoBoss.MovimentoSimples);
+                break;
+
+            case EstadoBoss.MovimentoSimples:
+                NadandoeAtirando();
+                AtirarBolhas();
+                if (Moves > 24) ReiniciarEstado(EstadoBoss.NadandoAtirando);
+                break;
         }
     }
 
-    public void NadandoeAtirando()
+    // Movimenta√ß√£o de ida e volta
+    void NadandoeAtirando()
     {
         MoveObjeto();
-
-        // Verifica se chegou prÛximo o suficiente ao ponto atual
-        if (Mathf.Abs(transform.position.x - pontoAtual.x) < 0.5f) // VerificaÁ„o no eixo X
+        if (Mathf.Abs(transform.position.x - pontoAtual.x) < 0.5f)
         {
-            // Troca o ponto de destino
-            if (pontoAtual == pontoA.position)
-            {
-                pontoAtual = pontoB.position;
-            }
-            else
-            {
-                pontoAtual = pontoA.position;
-            }
-
-            // Atualiza a direÁ„o
-            direction = (pontoAtual - transform.position).normalized;
-
-            // Realiza o Flip
-            Virar();
-
-            // Libera contagem de ponto
-            JaContouPonto = false;
+            TrocarPonto();
         }
     }
 
-    public void AtirandoEmCorno()
+    void MoveObjeto()
+    {
+        // Continuar o movimento horizontal e com a varia√ß√£o vertical
+        float horizontalVelocity = direction.x * velocidade;
+        float verticalOffset = Mathf.Sin(Time.time * frequencia) * amplitude;
+
+        rb.velocity = new Vector2(horizontalVelocity, verticalOffset);
+    }
+
+    void TrocarPonto()
+    {
+        pontoAtual = pontoAtual == pontoA.position ? pontoB.position : pontoA.position;
+        direction = (pontoAtual - transform.position).normalized;
+        Virar();
+        JaContouPonto = false;
+        Moves++;
+    }
+
+    // Tiro simples
+    void AtirarProjetil()
     {
         if (Time.time > tempoUltimoTiro + TempoRecargaTiro)
         {
             GameObject projetil = Instantiate(JatoPrefab, PontoDisparo.position, Quaternion.identity);
+            Vector2 direcaoTiro = Flip ? Vector2.left : Vector2.right;
 
-            Vector2 direction = Flip ? Vector2.left : Vector2.right;
-
-            Rigidbody2D rb = projetil.GetComponent<Rigidbody2D>();
-            if (rb != null)
+            Rigidbody2D rbProj = projetil.GetComponent<Rigidbody2D>();
+            if (rbProj != null)
             {
-                rb.gravityScale = 0;
-                rb.velocity = direction * velocidadeProjettil;
+                rbProj.gravityScale = 0;
+                rbProj.velocity = direcaoTiro * velocidadeProjettil;
             }
 
             Destroy(projetil, TempoDeVidaProjetil);
@@ -117,84 +112,88 @@ public class IaraBossMoveSet : MonoBehaviour
         }
     }
 
-    public void RedemoinhoBrabo()
+    // Ataque de redemoinho
+    void RedemoinhoBrabo()
+    {
+        // Removido rb.velocity = Vector2.zero para continuar movimento
+        if (Time.time > tempoUltimoTiro + TempoRecargaTiro)
+        {
+            CriarProjetil(Redemoinho1);
+            CriarProjetil(Redemoinho2);
+            tempoUltimoTiro = Time.time;
+            Moves++; // Incrementa ap√≥s a cria√ß√£o de projetis
+        }
+    }
+
+    void CriarProjetil(Transform spawnPoint)
+    {
+        GameObject projetil = Instantiate(agua, spawnPoint.position, Quaternion.identity);
+        Vector2 direcaoTiro = (Jogador.position - spawnPoint.position).normalized;
+
+        Rigidbody2D rbProj = projetil.GetComponent<Rigidbody2D>();
+        if (rbProj != null)
+        {
+            rbProj.gravityScale = 0;
+            rbProj.velocity = direcaoTiro * velocidadeProjettil;
+        }
+
+        Destroy(projetil, TempoDeVidaRedemoinho);
+    }
+
+    // Tiro de bolhas com movimento saltitante
+    void AtirarBolhas()
     {
         if (Time.time > tempoUltimoTiro + TempoRecargaTiro)
         {
-            GameObject newCirculo = Instantiate(agua, Redemoinho1.position, Quaternion.identity);
-            GameObject newCirculo2 = Instantiate(agua, Redemoinho2.position, Quaternion.identity);
-
-            Vector2 direction1 = (Jogador.position - Redemoinho1.position).normalized;
-            Vector2 direction2 = (Jogador.position - Redemoinho2.position).normalized;
-
-            Rigidbody2D AguaRb = newCirculo.GetComponent<Rigidbody2D>();
-            Rigidbody2D AguaRb2 = newCirculo2.GetComponent<Rigidbody2D>();
-
-            if (AguaRb != null && AguaRb2 != null)
-            {
-                AguaRb.gravityScale = 10;
-                AguaRb2.gravityScale = 10;
-                AguaRb.velocity = direction1 * velocidadeProjettil;
-                AguaRb2.velocity = direction2 * velocidadeProjettil;
-            }
-
+            CriarBolha(PontoDeBolha);
+            CriarBolha(PontoDeBolha2);
             tempoUltimoTiro = Time.time;
-            Destroy(newCirculo, TempoDeVidaRedemoinho);
-            Destroy(newCirculo2, TempoDeVidaRedemoinho);
+            Moves++; // Incrementa ap√≥s a cria√ß√£o de bolhas
         }
     }
 
-    void MoveObjeto()
+    void CriarBolha(Transform spawnPoint)
     {
-        // Calcula a velocidade horizontal
-        float horizontalVelocity = direction.x * velocidade;
+        GameObject bolha = Instantiate(Bolhas, spawnPoint.position, Quaternion.identity);
+        Rigidbody2D rbBolha = bolha.GetComponent<Rigidbody2D>();
+        rbBolha.velocity = Vector2.up * forcaBolha;
 
-        // Adiciona o movimento sinusoidal no eixo Y
-        float verticalOffset = Mathf.Sin(Time.time * frequencia) * amplitude;
+        // Adicionando um movimento saltitante
+        rbBolha.AddForce(Vector2.up * 3f, ForceMode2D.Impulse);
 
-        // Define a velocidade do Rigidbody2D
-        rb.velocity = new Vector2(horizontalVelocity, verticalOffset);
+        Destroy(bolha, lifeTimeProjetil);
     }
 
-    void ReiniciarEstado()
+    void ReiniciarEstado(EstadoBoss novoEstado)
     {
-        // Reseta a direÁ„o e o ponto atual
-        pontoAtual = transform.position.x > (pontoA.position.x + pontoB.position.x) / 2 ? pontoA.position : pontoB.position;
+        Moves = 0;
+        estadoAtual = novoEstado;
+
+        // Redefine o ponto atual sem parar o movimento
+        if (transform.position.x > (pontoA.position.x + pontoB.position.x) / 2)
+        {
+            pontoAtual = pontoA.position;
+        }
+        else
+        {
+            pontoAtual = pontoB.position;
+        }
+
+        // Recalcula a dire√ß√£o imediatamente
         direction = (pontoAtual - transform.position).normalized;
 
-        // Garante que o Rigidbody2D n„o esteja travado
-        rb.velocity = Vector2.zero;
-
-        // Reseta o Flip para garantir que o boss se oriente corretamente
-        if ((pontoAtual.x < transform.position.x && Flip) || (pontoAtual.x > transform.position.x && !Flip))
-        {
-            Virar();
-        }
-
-        trocandoPadrao = true; // Marca o estado como em transiÁ„o
+        // Mant√©m o Rigidbody2D em movimento direto
+        rb.velocity = new Vector2(direction.x * velocidade, Mathf.Sin(Time.time * frequencia) * amplitude);
     }
 
     void Virar()
     {
-        // Verifica a direÁ„o e realiza o Flip
         if ((pontoAtual.x < transform.position.x && !Flip) || (pontoAtual.x > transform.position.x && Flip))
         {
-            Flip = !Flip; // Inverte o estado de Flip
+            Flip = !Flip;
             Vector3 escala = transform.localScale;
-            escala.x *= -1; // Inverte a escala no eixo X
+            escala.x *= -1;
             transform.localScale = escala;
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("PontoA") || collision.gameObject.CompareTag("PontoB"))
-        {
-            if (!JaContouPonto)
-            {
-                Moves += 1;
-                JaContouPonto = true;
-            }
         }
     }
 }
