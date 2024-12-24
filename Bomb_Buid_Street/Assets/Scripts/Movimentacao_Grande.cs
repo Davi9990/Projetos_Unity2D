@@ -67,7 +67,7 @@ public class Movimentacao_Grande : MonoBehaviour
 
     void Start()
     {
-        DontDestroyOnLoad(this.gameObject);
+        //DontDestroyOnLoad(this.gameObject);
 
         if (Osvaldo_Grande == null)
         {

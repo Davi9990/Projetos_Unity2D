@@ -12,17 +12,16 @@ GameObject:
   - component: {fileID: 6750494469373094512}
   - component: {fileID: 6243925712188004994}
   - component: {fileID: 6337935323675350396}
-  - component: {fileID: 4061212452693782134}
   - component: {fileID: 1280637437129269639}
-  - component: {fileID: 2033102058310425954}
   - component: {fileID: 5778138699676689251}
   - component: {fileID: -6494983294950488951}
   - component: {fileID: -1629280988974078926}
   - component: {fileID: 1690293616044431984}
   - component: {fileID: 4025257853981820321}
   - component: {fileID: 5024588287557646602}
+  - component: {fileID: 3471869881595002066}
   m_Layer: 0
-  m_Name: Player
+  m_Name: Player 1
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -169,37 +168,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &4061212452693782134
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1768014927027302848}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 149b1b7b22fca2e4eb2e40c9366588fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  velocidade: 6
-  VerificarChao: {fileID: 7620874062639061863}
-  EstaNoChao: 0
-  chao:
-    serializedVersion: 2
-    m_Bits: 8
-  JumpForce: 10
-  pulo: {fileID: 5778138699676689251}
-  Escada: {fileID: -6494983294950488951}
-  Coletar: {fileID: 4025257853981820321}
-  Upar: {fileID: 0}
-  buttonLeft: {fileID: 2061678644146952878, guid: e150573c262339a47899a12850d96a70, type: 3}
-  buttonRight: {fileID: 5858928572914088698, guid: 628eb8927b282554f968d0b0902c607e, type: 3}
-  buttonJump: {fileID: 2336587913471713463, guid: ebd5b8bdeb7e7354fa06a3807f273e2d, type: 3}
-  buttonDown: {fileID: 592421331305911335, guid: 76d92a461b615bb42818a4d38915309a, type: 3}
-  buttonUp: {fileID: 5737372156324589566, guid: b488a4aca3a39994798ebc7b1e1176f1, type: 3}
-  Osvaldo_Normal: {fileID: 1768014927027302848}
-  Osvaldo_Grande: {fileID: 1171337842902898323, guid: 90b123ca1470e384f977c0ee0ec69ceb, type: 3}
-  Osvaldo_Giga: {fileID: 7944233108281902446, guid: 22185ab4c24db2447ac46eab4f4ecfc3, type: 3}
 --- !u!61 &1280637437129269639
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -245,29 +213,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.063609004, y: 0.15258549}
   m_EdgeRadius: 0
---- !u!114 &2033102058310425954
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1768014927027302848}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3048e0d3be6894c49aa976859cad3a84, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  vida: 4
-  vidaatual: 0
-  vidaMaxima: 4
-  Hits:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  cheio: {fileID: 21300000, guid: e9a974776e11a3a4daa16e82d06e3c4b, type: 3}
-  vazio: {fileID: 21300000, guid: 5c7f48e899e57354d8843ce1699cd430, type: 3}
-  Dano: {fileID: -1629280988974078926}
 --- !u!82 &5778138699676689251
 AudioSource:
   m_ObjectHideFlags: 0
@@ -278,7 +223,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 6c72c4906822bb244bddd8fcb0de899a, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 1c69e3699d274f64a8ec6f6f03273afd, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -769,6 +714,35 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &3471869881595002066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1768014927027302848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bb3aa51df6f85f479470fa34e849a18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocidade: 6
+  VerificarChao: {fileID: 7620874062639061863}
+  EstaNoChao: 0
+  chao:
+    serializedVersion: 2
+    m_Bits: 0
+  JumpForce: 10
+  pulo: {fileID: 5778138699676689251}
+  Escada: {fileID: -6494983294950488951}
+  Coletar: {fileID: 4025257853981820321}
+  Upar: {fileID: 1690293616044431984}
+  buttonLeft: {fileID: 0}
+  buttonRight: {fileID: 0}
+  buttonJump: {fileID: 0}
+  buttonDown: {fileID: 0}
+  buttonUp: {fileID: 0}
+  Osvaldo_Normal: {fileID: 1768014927027302848}
 --- !u!1 &6102338830454966422
 GameObject:
   m_ObjectHideFlags: 0
