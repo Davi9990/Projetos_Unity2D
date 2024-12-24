@@ -1,16 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PrefabPersistenceManager : MonoBehaviour
+public class PlayerManager : MonoBehaviour
 {
-     public static PrefabPersistenceManager Instance; // Singleton para garantir uma instância
-     private List<GameObject> prefabsToPersist = new List<GameObject>();
+    public static PlayerManager Instance;
+    public GameObject[] playerPrefabs; // Array com os prefabs do Player
+    private GameObject activePlayer; // Prefab ativo
+    public Vector3 spawnPosition; // Posição para instanciar na próxima cena
 
-    private void Awake()
+    void Awake()
     {
+        // Garantir que apenas um PlayerManager exista
         if (Instance == null)
         {
             Instance = this;
@@ -19,37 +21,61 @@ public class PrefabPersistenceManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
+            return;
         }
-    }
 
-    // Adiciona um prefab à lista de persistência
-    public void RegisterPrefab(GameObject prefab)
-    {
-        if (prefab != null && !prefabsToPersist.Contains(prefab))
-        {
-            prefabsToPersist.Add(prefab);
-            DontDestroyOnLoad(prefab);
-        }
-    }
-
-    // Remove um prefab da lista de persistência
-    public void UnregisterPrefab(GameObject prefab)
-    {
-        if (prefabsToPersist.Contains(prefab))
-        {
-            prefabsToPersist.Remove(prefab);
-        }
-    }
-
-    // Preserva todos os objetos da lista ao carregar uma nova cena
-    public void PersistAllPrefabs()
-    {
-        foreach (var prefab in prefabsToPersist)
+        // Inicializar os prefabs
+        foreach (GameObject prefab in playerPrefabs)
         {
             if (prefab != null)
             {
-                DontDestroyOnLoad(prefab);
+                Instantiate(prefab, transform.position, Quaternion.identity, transform);
+                prefab.SetActive(false); // Desativa todos no início
             }
+        }
+
+        // Ativar o primeiro prefab como padrão
+        if (playerPrefabs.Length > 0)
+        {
+            activePlayer = playerPrefabs[0];
+            activePlayer.SetActive(true);
+        }
+
+        // Ouvir evento de troca de cena
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // Reposicionar o Player na posição de reaparecimento
+        if (activePlayer != null)
+        {
+            activePlayer.transform.position = spawnPosition;
+        }
+    }
+
+    public void SetSpawnPosition(Vector3 newPosition)
+    {
+        spawnPosition = newPosition;
+    }
+
+    public void SwapPrefab(int prefabIndex)
+    {
+        if (prefabIndex < 0 || prefabIndex >= playerPrefabs.Length)
+            return;
+
+        // Desativar o prefab atual
+        if (activePlayer != null)
+        {
+            activePlayer.SetActive(false);
+        }
+
+        // Ativar o novo prefab
+        activePlayer = playerPrefabs[prefabIndex];
+        if (activePlayer != null)
+        {
+            activePlayer.transform.position = spawnPosition;
+            activePlayer.SetActive(true);
         }
     }
 }
