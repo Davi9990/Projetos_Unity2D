@@ -13,7 +13,7 @@ using Unity.VisualScripting;
 public class Movimentacao : MonoBehaviour
 {
     public static int pontuacao = 0;
-    //public static bool n1 = false, n2 = false, n3 = false;
+    //public static bool n1 = false, n2 = false, n3 = false;;
 
     // Movimentação
     public float velocidade;
@@ -237,16 +237,30 @@ public class Movimentacao : MonoBehaviour
             buttonUp.interactable = true;
             anim.SetBool("Escalando", true);
         }
+
+        if(collision.gameObject.tag == "item")
+        {
+            Coletar.Play();
+
+        }
     }
 
     void Fortalecer()
     {
+
+        if (ScoreManeger.Instance == null)
+        {
+            Debug.LogError("ScoreManeger.Instance está nulo!");
+            return;
+        }
+
         int scoreAtual = ScoreManeger.Instance.score;
         GameObject prefabAtual = null;
         GameObject proximoPrefab = null;
 
         if (scoreAtual >= 4000 && scoreAtual < 16000)
         {
+
             prefabAtual = Osvaldo_Normal;
             proximoPrefab = Osvaldo_Grande;
         }

@@ -38,12 +38,15 @@ public class Movimentação_Bandido : MonoBehaviour
 
     //Bandido Fase 3
     public bool Fugindo;
+    bool enterMedo = true;
     public Transform player_Giga;
     public float FugaDistance = 10f;
     private SpriteRenderer render;
 
     //Animator
     private Animator anim;
+
+    public AudioSource a;
 
     void Start()
     {
@@ -83,7 +86,13 @@ public class Movimentação_Bandido : MonoBehaviour
         }
         else if(playerRbGiga != null && playerRbGiga.gameObject.activeInHierarchy)
         {
+            if (enterMedo)
+            {
+                a.Play();
+                enterMedo = false;
+            }
             Frango();
+
         }
     }
 

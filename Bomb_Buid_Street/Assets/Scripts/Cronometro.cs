@@ -16,6 +16,7 @@ public class Cronometro : MonoBehaviour
         {
             timerIsRunning = true;
             UpdateTimerText();
+            DontDestroyOnLoad(gameObject);
         }
         else
         {

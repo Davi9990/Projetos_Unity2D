@@ -5,11 +5,13 @@ using UnityEngine;
 public class KnifeDamage : MonoBehaviour
 {
     public int damage = 1;
+    AudioSource jogar;
 
 
     void Start()
     {
-        
+        jogar = GetComponent<AudioSource>();
+        jogar.Play();
     }
 
     // Update is called once per frame

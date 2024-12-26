@@ -14,8 +14,6 @@ public class SistemaDeVida : MonoBehaviour
     public Sprite vazio;  // Sprite para vida vazia
 
     //Sons
-
-    //Ainda não dá pra tocar os sons aqui
     public AudioSource Dano;
 
     
@@ -26,7 +24,6 @@ public class SistemaDeVida : MonoBehaviour
 
     void Update()
     {
-        
         VerificarMorte();
     }
 
@@ -38,7 +35,7 @@ public class SistemaDeVida : MonoBehaviour
             vida = vidaMaxima;
         }
         
-        if(vida < vidaatual)
+        if(vidaatual < vida)
         {
             Dano.Play();
         }

@@ -186,7 +186,7 @@ MonoBehaviour:
   EstaNoChao: 0
   chao:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 0
   JumpForce: 10
   pulo: {fileID: 5778138699676689251}
   Escada: {fileID: -6494983294950488951}
@@ -278,7 +278,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 6c72c4906822bb244bddd8fcb0de899a, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 1c69e3699d274f64a8ec6f6f03273afd, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

@@ -52,7 +52,7 @@ public class MovimentacaoMendigo : MonoBehaviour
         {
             anim.SetBool("Perseguindo", true);
             Vector2 direction3 = (Player_Giga.position - transform.position).normalized;
-            transform.position += (Vector3)(direction3 * moveSpeed * Time.deltaTime);
+            transform.position -= (Vector3)(direction3 * moveSpeed * Time.deltaTime);
         }
         else
         {

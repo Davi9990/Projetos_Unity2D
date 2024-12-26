@@ -8,12 +8,12 @@ public class Conservar_Prefab : MonoBehaviour
     private void Awake()
     {
         // Registra o objeto no PrefabPersistenceManager
-        //PrefabPersistenceManager.Instance.RegisterPrefab(gameObject);
+        PrefabPersistenceManager.Instance.RegisterPrefab(gameObject);
     }
 
     private void OnDestroy()
     {
         // Remove o objeto da lista ao ser destruído
-        //PrefabPersistenceManager.Instance.UnregisterPrefab(gameObject);
+        PrefabPersistenceManager.Instance.UnregisterPrefab(gameObject);
     }
 }

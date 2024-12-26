@@ -14,6 +14,7 @@ TagManager:
   - Bola
   - Player_Grande
   - Player_Giga
+  - Chao
   layers:
   - Default
   - TransparentFX
