@@ -17,6 +17,7 @@ public class BulletDamagePlayer : MonoBehaviour
             VidaEnemyBoss inimigo4 = collision.gameObject.GetComponent<VidaEnemyBoss>();
             Vida_Enemy_Boss_Curupira inimigo5 = collision.gameObject.GetComponent<Vida_Enemy_Boss_Curupira>();
             Vida_Enemy_Boss_Iara inimigo6 = collision.gameObject.GetComponent<Vida_Enemy_Boss_Iara>();
+            Vida_Enemy_Boss_Corpo_Seco inimigo7 = collision.gameObject.GetComponent<Vida_Enemy_Boss_Corpo_Seco>();
 
             // Aplica dano ao inimigo se o componente existir
             if (inimigo != null)
@@ -27,7 +28,7 @@ public class BulletDamagePlayer : MonoBehaviour
             // Aplica dano ao segundo tipo de inimigo, se o componente existir
             if (inimigo2 != null)
             {
-                inimigo2.TakeDamage(1); // Corrigido o nome do m�todo
+                inimigo2.TakeDamage(1); 
             }
 
             if(inimigo3 != null)
@@ -47,6 +48,10 @@ public class BulletDamagePlayer : MonoBehaviour
             if(inimigo6 != null)
             {
                 inimigo6.TakeDamege(1);
+            }
+            if(inimigo7 != null)
+            {
+                inimigo7.TakeDamege(1);
             }
 
             Destroy(gameObject); // Destroi a bala ap�s a colis�o
