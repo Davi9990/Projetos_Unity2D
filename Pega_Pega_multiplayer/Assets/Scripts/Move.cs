@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Burst;
 using UnityEngine;
+using Unity.Netcode;
 
 
-public class Move : MonoBehaviour
+public class Move : NetworkBehaviour
 {
     public float speed; // Velocidade de movimento
     private Rigidbody2D rb; // Componente Rigidbody2D
