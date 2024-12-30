@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Corpo_Seco_Boss_Move_Set : MonoBehaviour
 {
-    // Primeiro Ataque
     private GameObject jogador;
     public float distanciaParaPorrada = 30f;
     public float velocidade = 13f;
@@ -15,11 +14,28 @@ public class Corpo_Seco_Boss_Move_Set : MonoBehaviour
     private float ultimoTempoAtaque;
     private bool estaAtacando = false;
     private bool podeAtacar = false;
-
     private Rigidbody2D rb;
     private SpriteRenderer render;
     private float tempoAtivo = 0f; // Tempo ativo no estado de ataque
     public int Moves = 0;
+    private float tempoParaIncrementar = 0f;
+
+    // Segundo Ataque
+    public float tempoRecargaTiro = 1f;
+    public GameObject prefabProjetil;
+    public Transform pontoDisparo1;
+    public Transform pontoDisparo2;
+    public Transform pontoDisparo3;
+    public float velocidadeProjetil = 10f;
+    public float tempoVidaProjetil = 5f;
+    private float tempoUltimoTiro;
+    public Transform Player;
+    private Vector3 pontoDisparoOffset;
+    private Vector3 pontoDisparoOffset2;
+    private Vector3 pontoDisparoOffset3;
+
+    // Nova variável para controlar quando o boss está parando para atirar
+    //private bool pararParaAtirar = false;
 
     void Start()
     {
@@ -42,9 +58,80 @@ public class Corpo_Seco_Boss_Move_Set : MonoBehaviour
         }
 
         StartCoroutine(EsperarParaAtacar());
+
+        pontoDisparoOffset = pontoDisparo1.localPosition;
+        pontoDisparoOffset2 = pontoDisparo2.localPosition;
+        pontoDisparoOffset3 = pontoDisparo3.localPosition;
     }
 
     void Update()
+    {
+        TrocaDePadroes();
+    }
+
+    public void TrocaDePadroes()
+    {
+        if (Moves <= 4)
+        {
+            ExecutarDash();
+            GerenciarAtaque();
+            IncrementarMovesSuavemente();
+        }
+        else if (Moves <= 14)
+        {
+            ExecutarDash();
+            GerenciarAtaque();
+            IncrementarMovesSuavemente();
+            AtirarNoJogador();
+        }
+    }
+
+    public void AtirarNoJogador()
+    {
+        // Verifica se o tempo de recarga de tiro passou e dispara
+        if (Time.time > tempoUltimoTiro + tempoRecargaTiro)
+        {
+           
+
+            GameObject projetil1 = Instantiate(prefabProjetil, pontoDisparo1.position, Quaternion.identity);
+            GameObject projetil2 = Instantiate(prefabProjetil, pontoDisparo2.position, Quaternion.identity);
+            GameObject projetil3 = Instantiate(prefabProjetil, pontoDisparo3.position, Quaternion.identity);
+
+            Vector2 direcao = (Player.position - pontoDisparo1.position).normalized;
+            Vector2 direcao2 = (Player.position - pontoDisparo2.position).normalized;
+            Vector2 direcao3 = (Player.position - pontoDisparo3.position).normalized;
+
+            Rigidbody2D rb1 = projetil1.GetComponent<Rigidbody2D>();
+            Rigidbody2D rb2 = projetil2.GetComponent<Rigidbody2D>();
+            Rigidbody2D rb3 = projetil3.GetComponent<Rigidbody2D>();
+
+            if (rb1 != null)
+            {
+                rb1.gravityScale = 0;
+                rb1.velocity = direcao * velocidadeProjetil;
+            }
+
+            if (rb2 != null)
+            {
+                rb2.gravityScale = 0;
+                rb2.velocity = direcao2 * velocidadeProjetil;
+            }
+
+            if (rb3 != null)
+            {
+                rb3.gravityScale = 0;
+                rb3.velocity = direcao3 * velocidadeProjetil;
+            }
+
+            Destroy(projetil1, tempoVidaProjetil);
+            Destroy(projetil2, tempoVidaProjetil);
+            Destroy(projetil3, tempoVidaProjetil);
+
+            tempoUltimoTiro = Time.time;
+        }
+    }
+
+    private void GerenciarAtaque()
     {
         if (jogador != null && podeAtacar)
         {
@@ -68,15 +155,16 @@ public class Corpo_Seco_Boss_Move_Set : MonoBehaviour
         }
     }
 
-    public void TrocaDePadroes()
+    private void IncrementarMovesSuavemente()
     {
-        if(Moves <= 4)
-        {
-            ExecutarDash();
-        }
-        else
-        {
+        tempoParaIncrementar += Time.deltaTime;
 
+        // Evitar pulos estranhos
+        if (tempoParaIncrementar >= 2f)
+        {
+            Moves += 1; // Incrementa Moves indefinidamente
+            tempoParaIncrementar -= 2f; // Subtrai o tempo de incremento para continuar suavemente
+            Debug.Log($"Moves Incrementado para: {Moves}");
         }
     }
 
@@ -124,5 +212,19 @@ public class Corpo_Seco_Boss_Move_Set : MonoBehaviour
     void Virar()
     {
         render.flipX = !render.flipX;
+
+        // Ajustar posições dos pontos de disparo com base na direção do flip
+        if (render.flipX)
+        {
+            pontoDisparo1.localPosition = new Vector3(-Mathf.Abs(pontoDisparoOffset.x), pontoDisparoOffset.y, pontoDisparoOffset.z);
+            pontoDisparo2.localPosition = new Vector3(-Mathf.Abs(pontoDisparoOffset2.x), pontoDisparoOffset2.y, pontoDisparoOffset2.z);
+            pontoDisparo3.localPosition = new Vector3(-Mathf.Abs(pontoDisparoOffset3.x), pontoDisparoOffset3.y, pontoDisparoOffset3.z);
+        }
+        else
+        {
+            pontoDisparo1.localPosition = new Vector3(Mathf.Abs(pontoDisparoOffset.x), pontoDisparoOffset.y, pontoDisparoOffset.z);
+            pontoDisparo2.localPosition = new Vector3(Mathf.Abs(pontoDisparoOffset2.x), pontoDisparoOffset2.y, pontoDisparoOffset2.z);
+            pontoDisparo3.localPosition = new Vector3(Mathf.Abs(pontoDisparoOffset3.x), pontoDisparoOffset3.y, pontoDisparoOffset3.z);
+        }
     }
 }

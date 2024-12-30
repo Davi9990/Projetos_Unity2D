@@ -503,7 +503,10 @@ Transform:
   m_LocalPosition: {x: 6.59, y: -3.3308, z: 0}
   m_LocalScale: {x: 0.81207395, y: 1.2151688, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 519749204}
+  - {fileID: 1822430740}
+  - {fileID: 965910736}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &271778754
@@ -519,11 +522,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distanciaParaPorrada: 30
-  velocidade: 6
+  velocidade: 5
   tempoRecargaAtaque: 3
   tempoDeAtaque: 5
   delayInicial: 3
-  Moves: 0
+  Moves: 6
+  tempoRecargaTiro: 5
+  prefabProjetil: {fileID: 5663474321583060660, guid: 79a3b5d7cd89416478eaf25226a3ef76, type: 3}
+  pontoDisparo1: {fileID: 519749204}
+  pontoDisparo2: {fileID: 1822430740}
+  pontoDisparo3: {fileID: 965910736}
+  velocidadeProjetil: 10
+  tempoVidaProjetil: 2
+  Player: {fileID: 1872015590}
 --- !u!1 &300925104
 GameObject:
   m_ObjectHideFlags: 0
@@ -1718,6 +1729,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1921177688}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &519749203
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 519749204}
+  m_Layer: 0
+  m_Name: Ponto_De_Disparo1
+  m_TagString: Untagged
+  m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &519749204
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519749203}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.11, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 271778753}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &534910066 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7290010070022116078, guid: f5e9964f0a3ea3745b012d679bd8e298, type: 3}
@@ -2339,6 +2381,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 858972259}
   m_CullTransparentMesh: 1
+--- !u!1 &965910735
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 965910736}
+  m_Layer: 0
+  m_Name: Ponto_De_Disparo3
+  m_TagString: Untagged
+  m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &965910736
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 965910735}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.44, y: 1.63, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 271778753}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &984460785
 GameObject:
   m_ObjectHideFlags: 0
@@ -3111,6 +3184,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1811714958}
     - target: {fileID: 1143927163218756442, guid: 73ebdf8131b7779479970aa9562d7873, type: 3}
+      propertyPath: speed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1143927163218756442, guid: 73ebdf8131b7779479970aa9562d7873, type: 3}
       propertyPath: pauseMenu
       value: 
       objectReference: {fileID: 1710094784}
@@ -3634,6 +3711,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1822430739
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1822430740}
+  m_Layer: 0
+  m_Name: Ponto_De_Disparo2
+  m_TagString: Untagged
+  m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1822430740
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1822430739}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.4100003, y: 0.68, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 271778753}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1863923540 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 605529924285430040, guid: f5e9964f0a3ea3745b012d679bd8e298, type: 3}
