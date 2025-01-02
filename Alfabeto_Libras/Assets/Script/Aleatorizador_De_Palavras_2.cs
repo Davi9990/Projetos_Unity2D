@@ -42,7 +42,8 @@ public class Aleatorizador_De_Palavras_2 : MonoBehaviour
         {"Rosa", new List<int>() {23, 17, 16, 4}},
         {"Laranja", new List<int>() {8, 4, 23, 27, 9, 12, 30}},
         {"Branco", new List<int>() {2, 23, 4, 9, 0, 17}},
-        {"Marrom", new List<int>() {13, 4, 23, 31, 17, 32}}
+        {"Marrom", new List<int>() {13, 4, 23, 31, 17, 32}},
+        {"Preto", new List<int> {25, 23, 3, 14, 17} }
     };
 
     void Start()

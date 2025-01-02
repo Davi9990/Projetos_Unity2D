@@ -205,7 +205,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 75148863}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1292912915}
+        m_TargetAssemblyTypeName: Aleatorizador_De_Palavras_2, Assembly-CSharp
+        m_MethodName: ValidarLetra
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &75148863
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -893,7 +905,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 250486432}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1292912915}
+        m_TargetAssemblyTypeName: Aleatorizador_De_Palavras_2, Assembly-CSharp
+        m_MethodName: ValidarLetra
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &250486432
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1014,7 +1038,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 254177037}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1292912915}
+        m_TargetAssemblyTypeName: Aleatorizador_De_Palavras_2, Assembly-CSharp
+        m_MethodName: ValidarLetra
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &254177037
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1939,7 +1975,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 483113963}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1292912915}
+        m_TargetAssemblyTypeName: Aleatorizador_De_Palavras_2, Assembly-CSharp
+        m_MethodName: ValidarLetra
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &483113963
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2060,7 +2108,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 502472313}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1292912915}
+        m_TargetAssemblyTypeName: Aleatorizador_De_Palavras_2, Assembly-CSharp
+        m_MethodName: ValidarLetra
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &502472313
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2161,7 +2221,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 508022549}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1292912915}
+        m_TargetAssemblyTypeName: Aleatorizador_De_Palavras_2, Assembly-CSharp
+        m_MethodName: ValidarLetra
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &508022549
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2436,7 +2508,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 517841252}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1292912915}
+        m_TargetAssemblyTypeName: Aleatorizador_De_Palavras_2, Assembly-CSharp
+        m_MethodName: ValidarLetra
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &517841252
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2814,7 +2898,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 553372893}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1292912915}
+        m_TargetAssemblyTypeName: Aleatorizador_De_Palavras_2, Assembly-CSharp
+        m_MethodName: ValidarLetra
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &553372893
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3069,7 +3165,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 587351196}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1292912915}
+        m_TargetAssemblyTypeName: Aleatorizador_De_Palavras_2, Assembly-CSharp
+        m_MethodName: ValidarLetra
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &587351196
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3190,7 +3298,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 614156579}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1292912915}
+        m_TargetAssemblyTypeName: Aleatorizador_De_Palavras_2, Assembly-CSharp
+        m_MethodName: ValidarLetra
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &614156579
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3311,7 +3431,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 665277071}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1292912915}
+        m_TargetAssemblyTypeName: Aleatorizador_De_Palavras_2, Assembly-CSharp
+        m_MethodName: ValidarLetra
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &665277071
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3432,7 +3564,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 693130175}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1292912915}
+        m_TargetAssemblyTypeName: Aleatorizador_De_Palavras_2, Assembly-CSharp
+        m_MethodName: ValidarLetra
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &693130175
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3762,7 +3906,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 845439769}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1292912915}
+        m_TargetAssemblyTypeName: Aleatorizador_De_Palavras_2, Assembly-CSharp
+        m_MethodName: ValidarLetra
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &845439769
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4033,7 +4189,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 927364253}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1292912915}
+        m_TargetAssemblyTypeName: Aleatorizador_De_Palavras_2, Assembly-CSharp
+        m_MethodName: ValidarLetra
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &927364253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4154,7 +4322,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 934971625}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1292912915}
+        m_TargetAssemblyTypeName: Aleatorizador_De_Palavras_2, Assembly-CSharp
+        m_MethodName: ValidarLetra
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &934971625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4484,7 +4664,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1046203026}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1292912915}
+        m_TargetAssemblyTypeName: Aleatorizador_De_Palavras_2, Assembly-CSharp
+        m_MethodName: ValidarLetra
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1046203026
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5216,7 +5408,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1158361986}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1292912915}
+        m_TargetAssemblyTypeName: Aleatorizador_De_Palavras_2, Assembly-CSharp
+        m_MethodName: ValidarLetra
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1158361986
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5950,7 +6154,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1227659336}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1292912915}
+        m_TargetAssemblyTypeName: Aleatorizador_De_Palavras_2, Assembly-CSharp
+        m_MethodName: ValidarLetra
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1227659336
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6071,7 +6287,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1237236036}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1292912915}
+        m_TargetAssemblyTypeName: Aleatorizador_De_Palavras_2, Assembly-CSharp
+        m_MethodName: ValidarLetra
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1237236036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6192,7 +6420,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1262063029}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1292912915}
+        m_TargetAssemblyTypeName: Aleatorizador_De_Palavras_2, Assembly-CSharp
+        m_MethodName: ValidarLetra
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1262063029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6447,7 +6687,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1285162387}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1292912915}
+        m_TargetAssemblyTypeName: Aleatorizador_De_Palavras_2, Assembly-CSharp
+        m_MethodName: ValidarLetra
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1285162387
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6873,7 +7125,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1301609149}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1292912915}
+        m_TargetAssemblyTypeName: Aleatorizador_De_Palavras_2, Assembly-CSharp
+        m_MethodName: ValidarLetra
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1301609149
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7282,7 +7546,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1411318520}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1292912915}
+        m_TargetAssemblyTypeName: Aleatorizador_De_Palavras_2, Assembly-CSharp
+        m_MethodName: ValidarLetra
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1411318520
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7821,7 +8097,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1502560380}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1292912915}
+        m_TargetAssemblyTypeName: Aleatorizador_De_Palavras_2, Assembly-CSharp
+        m_MethodName: ValidarLetra
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1502560380
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8048,7 +8336,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1517127508}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1292912915}
+        m_TargetAssemblyTypeName: Aleatorizador_De_Palavras_2, Assembly-CSharp
+        m_MethodName: ValidarLetra
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1517127508
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8409,7 +8709,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1624838854}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1292912915}
+        m_TargetAssemblyTypeName: Aleatorizador_De_Palavras_2, Assembly-CSharp
+        m_MethodName: ValidarLetra
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1624838854
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8530,7 +8842,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1669200059}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1292912915}
+        m_TargetAssemblyTypeName: Aleatorizador_De_Palavras_2, Assembly-CSharp
+        m_MethodName: ValidarLetra
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1669200059
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8651,7 +8975,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1681392304}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1292912915}
+        m_TargetAssemblyTypeName: Aleatorizador_De_Palavras_2, Assembly-CSharp
+        m_MethodName: ValidarLetra
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1681392304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8772,7 +9108,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1693112606}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1292912915}
+        m_TargetAssemblyTypeName: Aleatorizador_De_Palavras_2, Assembly-CSharp
+        m_MethodName: ValidarLetra
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1693112606
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9236,7 +9584,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1814923657}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1292912915}
+        m_TargetAssemblyTypeName: Aleatorizador_De_Palavras_2, Assembly-CSharp
+        m_MethodName: ValidarLetra
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1814923657
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9471,7 +9831,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1846323697}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1292912915}
+        m_TargetAssemblyTypeName: Aleatorizador_De_Palavras_2, Assembly-CSharp
+        m_MethodName: ValidarLetra
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1846323697
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9592,7 +9964,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1896550310}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1292912915}
+        m_TargetAssemblyTypeName: Aleatorizador_De_Palavras_2, Assembly-CSharp
+        m_MethodName: ValidarLetra
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1896550310
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10241,7 +10625,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2097043771}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1292912915}
+        m_TargetAssemblyTypeName: Aleatorizador_De_Palavras_2, Assembly-CSharp
+        m_MethodName: ValidarLetra
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2097043771
 MonoBehaviour:
   m_ObjectHideFlags: 0

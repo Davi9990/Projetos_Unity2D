@@ -4,20 +4,24 @@ using UnityEngine;
 
 public class PlayerSpawnManager : MonoBehaviour
 {
-    public GameObject player;  // Referência ao Player
-
-    void Start()
+    private void Start()
     {
-        // Verifica se existe uma posição salva
+        // Verifica se as coordenadas de spawn foram salvas
         if (PlayerPrefs.HasKey("PlayerSpawnX") && PlayerPrefs.HasKey("PlayerSpawnY") && PlayerPrefs.HasKey("PlayerSpawnZ"))
         {
-            // Recupera as coordenadas salvas
+            // Lê as coordenadas salvas e reposiciona o Player
             float x = PlayerPrefs.GetFloat("PlayerSpawnX");
             float y = PlayerPrefs.GetFloat("PlayerSpawnY");
             float z = PlayerPrefs.GetFloat("PlayerSpawnZ");
 
-            // Define a nova posição para o Player
-            player.transform.position = new Vector3(x, y, z);
+            // Reposiciona o player para as coordenadas salvas
+            transform.position = new Vector3(x, y, z);
+            Debug.Log($"Reposicionando para: X={x}, Y={y}, Z={z}");
+        }
+        else
+        {
+            // Se não houver coordenadas salvas, o player não será reposicionado
+            Debug.LogWarning("Nenhum ponto de spawn foi encontrado. O Player permanecerá na posição inicial.");
         }
     }
 }
