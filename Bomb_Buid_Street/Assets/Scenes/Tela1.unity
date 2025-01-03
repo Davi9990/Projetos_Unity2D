@@ -149,7 +149,7 @@ Transform:
   m_GameObject: {fileID: 7763756}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14.88, y: -0.92, z: -0.08514104}
+  m_LocalPosition: {x: -15.57, y: -0.92, z: -0.08514104}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -402,7 +402,7 @@ PrefabInstance:
       objectReference: {fileID: 536987888}
     - target: {fileID: 3817070996035557033, guid: 22185ab4c24db2447ac46eab4f4ecfc3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -17.93
+      value: 11.0199995
       objectReference: {fileID: 0}
     - target: {fileID: 3817070996035557033, guid: 22185ab4c24db2447ac46eab4f4ecfc3, type: 3}
       propertyPath: m_LocalPosition.y
@@ -817,7 +817,7 @@ GameObject:
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &763648338
 Transform:
   m_ObjectHideFlags: 0
@@ -844,11 +844,11 @@ GameObject:
   - component: {fileID: 776291234}
   m_Layer: 0
   m_Name: PontoSpawn3
-  m_TagString: EndPoint3
+  m_TagString: EndPoint5
   m_Icon: {fileID: 2488908585195742037, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &776291234
 Transform:
   m_ObjectHideFlags: 0
@@ -1019,7 +1019,8 @@ Transform:
   m_LocalPosition: {x: -14.912, y: -2.9402, z: 0}
   m_LocalScale: {x: 25.629295, y: 1.8678749, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1564798196}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &848537393 stripped
@@ -1551,11 +1552,11 @@ Transform:
   m_GameObject: {fileID: 1564798194}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.09, y: 0.76, z: 0}
-  m_LocalScale: {x: 21.223423, y: 1.9777716, z: 1}
+  m_LocalPosition: {x: 0.5783225, y: 1.9809679, z: 0}
+  m_LocalScale: {x: 0.82809234, y: 1.0588353, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 797237985}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1577216886 stripped
 MonoBehaviour:
@@ -2246,7 +2247,7 @@ PrefabInstance:
       objectReference: {fileID: 2075305556}
     - target: {fileID: 6024398092143342841, guid: 90b123ca1470e384f977c0ee0ec69ceb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -17.579998
+      value: 11.370002
       objectReference: {fileID: 0}
     - target: {fileID: 6024398092143342841, guid: 90b123ca1470e384f977c0ee0ec69ceb, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2537,11 +2538,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6096030074848736199, guid: 42f163e7c8bbaf6468928bcf29ebedf3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -28.39
+      value: 1.09
       objectReference: {fileID: 0}
     - target: {fileID: 6096030074848736199, guid: 42f163e7c8bbaf6468928bcf29ebedf3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.010000169
+      value: -0.08
       objectReference: {fileID: 0}
     - target: {fileID: 6096030074848736199, guid: 42f163e7c8bbaf6468928bcf29ebedf3, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3238,11 +3239,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2855566540496582533, guid: 93910062faa1d4247a833e6af4c355f2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -15.35
+      value: -14.32
       objectReference: {fileID: 0}
     - target: {fileID: 2855566540496582533, guid: 93910062faa1d4247a833e6af4c355f2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.68
+      value: -1.08
       objectReference: {fileID: 0}
     - target: {fileID: 2855566540496582533, guid: 93910062faa1d4247a833e6af4c355f2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3282,7 +3283,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6579542033315380298, guid: 93910062faa1d4247a833e6af4c355f2, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6579542033315380298, guid: 93910062faa1d4247a833e6af4c355f2, type: 3}
       propertyPath: m_TagString
@@ -3849,7 +3850,6 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 5622725259875929435}
-  - {fileID: 1564798196}
   - {fileID: 797237985}
   - {fileID: 562617987}
   - {fileID: 107680281}

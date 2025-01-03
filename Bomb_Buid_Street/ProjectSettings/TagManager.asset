@@ -17,6 +17,8 @@ TagManager:
   - Chao
   - EndPoint3
   - EndPoint4
+  - EndPoint5
+  - EndPoint7
   layers:
   - Default
   - TransparentFX
