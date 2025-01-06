@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Corpo_Seco_Boss_Move_Set : MonoBehaviour
 {
+    // Primeiro Ataque
     private GameObject jogador;
     public float distanciaParaPorrada = 30f;
     public float velocidade = 13f;
@@ -34,8 +35,26 @@ public class Corpo_Seco_Boss_Move_Set : MonoBehaviour
     private Vector3 pontoDisparoOffset2;
     private Vector3 pontoDisparoOffset3;
 
-    // Nova variável para controlar quando o boss está parando para atirar
-    //private bool pararParaAtirar = false;
+    // Terceiro Ataque
+    public GameObject Alma;
+    public Transform PontoDeInvocacao1, PontoDeInvocacao2, PontoDeInvocacao3, PontoDeInvocacao4, PontoDeInvocacao5, PontoDeInvocacao6;
+    public bool PodeInvocarAlmas = false;
+    public float velocidadeAlma = 5f;
+    public float followDistance = 30f;
+    public bool PodePular;
+    public float lastJumpTime = 0f;
+    public float jumpCoolDown = 1.5f;
+    public float JumpForce = 9f;
+    public float TempoDeRecarga2 = 2f;
+
+    //Quarto Ataque
+    public bool PodeInvocar = false;
+    public float tempoUltimaInvocacao;
+    public float TempoDeRecargaInvocar;
+    public Transform PontoCripta1, PontoCripta2;
+    public GameObject Minions;
+    private Vector3 pontoCriptaOffset1;
+    private Vector3 pontoCriptaOffset2;
 
     void Start()
     {
@@ -62,6 +81,9 @@ public class Corpo_Seco_Boss_Move_Set : MonoBehaviour
         pontoDisparoOffset = pontoDisparo1.localPosition;
         pontoDisparoOffset2 = pontoDisparo2.localPosition;
         pontoDisparoOffset3 = pontoDisparo3.localPosition;
+
+        pontoCriptaOffset1 = PontoCripta1.localPosition;
+        pontoCriptaOffset2 = PontoCripta2.localPosition;
     }
 
     void Update()
@@ -83,6 +105,25 @@ public class Corpo_Seco_Boss_Move_Set : MonoBehaviour
             GerenciarAtaque();
             IncrementarMovesSuavemente();
             AtirarNoJogador();
+            velocidade = 4;
+        }
+        else if(Moves <= 24)
+        {
+            IncrementarMovesSuavemente();
+            velocidade = 5;
+            PodeInvocarAlmas = true;
+            PulandoPerseguindo();
+        }
+        else if(Moves <= 34)
+        {
+            PodeInvocarAlmas = false;
+            PulandoPerseguindo();
+            PodeInvocar = true;
+        }
+        else if(Moves >= 35)
+        {
+            PodeInvocar = false;
+            Moves = 0;
         }
     }
 
@@ -91,8 +132,6 @@ public class Corpo_Seco_Boss_Move_Set : MonoBehaviour
         // Verifica se o tempo de recarga de tiro passou e dispara
         if (Time.time > tempoUltimoTiro + tempoRecargaTiro)
         {
-           
-
             GameObject projetil1 = Instantiate(prefabProjetil, pontoDisparo1.position, Quaternion.identity);
             GameObject projetil2 = Instantiate(prefabProjetil, pontoDisparo2.position, Quaternion.identity);
             GameObject projetil3 = Instantiate(prefabProjetil, pontoDisparo3.position, Quaternion.identity);
@@ -209,6 +248,100 @@ public class Corpo_Seco_Boss_Move_Set : MonoBehaviour
         }
     }
 
+    void InvocandoAlmasDoChao(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Chao"))
+        {
+            if(Time.time > tempoUltimoTiro + TempoDeRecarga2)
+            {
+                // Instanciação dos projéteis
+                GameObject[] projeteis = new GameObject[6];
+                projeteis[0] = Instantiate(Alma, PontoDeInvocacao1.position, Quaternion.identity);
+                projeteis[1] = Instantiate(Alma, PontoDeInvocacao2.position, Quaternion.identity);
+                projeteis[2] = Instantiate(Alma, PontoDeInvocacao3.position, Quaternion.identity);
+                projeteis[3] = Instantiate(Alma, PontoDeInvocacao4.position, Quaternion.identity);
+                projeteis[4] = Instantiate(Alma, PontoDeInvocacao5.position, Quaternion.identity);
+                projeteis[5] = Instantiate(Alma, PontoDeInvocacao6.position, Quaternion.identity);
+
+                // Força para propulsão vertical
+                float forcaPropulsao = 20f;
+
+                foreach (GameObject projetil in projeteis)
+                {
+                    Rigidbody2D rb = projetil.GetComponent<Rigidbody2D>();
+                    if (rb != null)
+                    {
+                        // Zera a velocidade inicial e aplica força para cima
+                        rb.velocity = Vector2.zero;
+                        rb.AddForce(Vector2.up * forcaPropulsao, ForceMode2D.Impulse);
+                    }
+
+                    // Destrói o projétil após o tempo de vida
+                    Destroy(projetil, tempoVidaProjetil);
+                }
+
+                // Atualiza o tempo do último tiro
+                tempoUltimoTiro = Time.time;
+            }
+        }
+    }
+
+    void PulandoPerseguindo()
+    {
+        float distanceToPlayer = Vector2.Distance(transform.position, Player.position);
+
+        if(distanceToPlayer <= followDistance && PodePular && Time.time >= lastJumpTime + jumpCoolDown)
+        {
+            Vector2 JumpDirection = (Player.position - transform.position).normalized;
+
+            rb.velocity = new Vector2(JumpDirection.x, 1) * JumpForce;
+
+            lastJumpTime = Time.time;
+        }
+    }
+
+    void InvocandoDemons(Collider2D collider)
+    {
+        if (collider.gameObject.CompareTag("Chao"))
+        {
+            Moves += 1;
+
+            if (Time.time > tempoUltimaInvocacao + TempoDeRecargaInvocar)
+            {
+                GameObject Cabrunco1 = Instantiate(Minions, PontoCripta1.position, Quaternion.identity);
+                GameObject Cabrunco2 = Instantiate(Minions, PontoCripta2.position, Quaternion.identity);
+
+                tempoUltimaInvocacao = Time.time;
+            }
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Chao"))
+        {
+            PodePular = true;
+        }
+
+        if(PodeInvocarAlmas == true)
+        {
+            InvocandoAlmasDoChao(collision.collider);
+        }
+
+        if(PodeInvocar == true)
+        {
+            InvocandoDemons(collision.collider);
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Chao"))
+        {
+            PodePular = false;
+        }
+    }
+
     void Virar()
     {
         render.flipX = !render.flipX;
@@ -219,12 +352,19 @@ public class Corpo_Seco_Boss_Move_Set : MonoBehaviour
             pontoDisparo1.localPosition = new Vector3(-Mathf.Abs(pontoDisparoOffset.x), pontoDisparoOffset.y, pontoDisparoOffset.z);
             pontoDisparo2.localPosition = new Vector3(-Mathf.Abs(pontoDisparoOffset2.x), pontoDisparoOffset2.y, pontoDisparoOffset2.z);
             pontoDisparo3.localPosition = new Vector3(-Mathf.Abs(pontoDisparoOffset3.x), pontoDisparoOffset3.y, pontoDisparoOffset3.z);
+
+            PontoCripta1.localPosition = new Vector3(-Mathf.Abs(pontoCriptaOffset1.x), pontoCriptaOffset1.y, pontoCriptaOffset1.z);
+            PontoCripta2.localPosition = new Vector3(-Mathf.Abs(pontoCriptaOffset2.x), pontoCriptaOffset2.y, pontoCriptaOffset2.z);
+
         }
         else
         {
             pontoDisparo1.localPosition = new Vector3(Mathf.Abs(pontoDisparoOffset.x), pontoDisparoOffset.y, pontoDisparoOffset.z);
             pontoDisparo2.localPosition = new Vector3(Mathf.Abs(pontoDisparoOffset2.x), pontoDisparoOffset2.y, pontoDisparoOffset2.z);
             pontoDisparo3.localPosition = new Vector3(Mathf.Abs(pontoDisparoOffset3.x), pontoDisparoOffset3.y, pontoDisparoOffset3.z);
+
+            PontoCripta1.localPosition = new Vector3(Mathf.Abs(PontoCripta1.localPosition.x), PontoCripta1.localPosition.y, PontoCripta1.localPosition.z);
+            PontoCripta2.localPosition = new Vector3(Mathf.Abs(PontoCripta2.localPosition.x), PontoCripta2.localPosition.y, PontoCripta2.localPosition.z);
         }
     }
 }

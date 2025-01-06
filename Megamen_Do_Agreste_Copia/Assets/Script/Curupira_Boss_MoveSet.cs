@@ -125,7 +125,7 @@ public class Curupira_Boss_MoveSet : MonoBehaviour
 
                 Vector2 direction =  (Player.position - transform.position).normalized;
                 Vector2 VelocidadeVertical = new Vector2(direction.x * VelocidadeLama, VelocidadeLama);
-                Vector2 VelocidadeVertical2 = new Vector2(direction.x * VelocidadeLama, VelocidadeLama);
+                Vector2 VelocidadeVertical2 = new Vector2(-direction.x * VelocidadeLama, VelocidadeLama);
 
                 Rigidbody2D rb1 = ProjetilLama1.GetComponent<Rigidbody2D>();
                 Rigidbody2D rb2 = ProjetilLama2.GetComponent<Rigidbody2D>();
