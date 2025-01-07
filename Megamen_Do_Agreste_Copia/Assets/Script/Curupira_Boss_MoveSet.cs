@@ -39,10 +39,12 @@ public class Curupira_Boss_MoveSet : MonoBehaviour
     public GameObject PrefabPedra;
 
     public float AlcanceParaComeçarPorrada = 30f;
+    private Animator anim;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -87,6 +89,8 @@ public class Curupira_Boss_MoveSet : MonoBehaviour
         // Verificar se pode atirar
         if (PodeAtirar && Time.time > tempoUltimoTiro + TempoDeReacargaTiro)
         {
+            anim.SetBool("Atirando", true);
+
             GameObject projetil = Instantiate(prefebProjetil, pontoDisparo.position, Quaternion.identity);
             Vector2 direcao = (PontoDePulo.position - pontoDisparo.position).normalized;
             Rigidbody2D rb = projetil.GetComponent<Rigidbody2D>();
@@ -97,7 +101,18 @@ public class Curupira_Boss_MoveSet : MonoBehaviour
             }
             Destroy(projetil, tempoVidaProjetil);
             tempoUltimoTiro = Time.time;
+
+            // Desativar a animação após o tiro (com um pequeno atraso, se necessário)
+            StartCoroutine(DesativarAnimacaoAtirando());
+
         }
+    }
+
+    // Coroutine para desativar a animação
+    IEnumerator DesativarAnimacaoAtirando()
+    {
+        yield return new WaitForSeconds(0.1f); // Ajuste o tempo de acordo com a duração da animação
+        anim.SetBool("Atirando", false);
     }
 
     void PulandoParaOInferno()
@@ -106,6 +121,8 @@ public class Curupira_Boss_MoveSet : MonoBehaviour
 
         if(distanceToPlayer <= followDistance && PodeAtirar && PodePular && Time.time >= lastJumpTime + jumpCooldown)
         {
+            anim.SetBool("Pulando", true);
+
             Vector2 JumpDirection = (Player.position - transform.position).normalized;
 
             rb.velocity = new Vector2(JumpDirection.x, 1) * JumpForce;
@@ -190,6 +207,8 @@ public class Curupira_Boss_MoveSet : MonoBehaviour
             PodeAtirar = true;
             PodePular = true;
             Moves += 1;
+
+            anim.SetBool("Pulando", false);
         }
 
         if (PodeAtirarLama == true)

@@ -39,9 +39,12 @@ public class BoitataBossMoveSet : MonoBehaviour
     //public Rigidbody2D ProjetillRb1;
     //public Rigidbody2D ProjetillRb2;
 
+    private Animator anim;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
         //ProjetillRb1 = GetComponent<Rigidbody2D>();
         //ProjetillRb2 = GetComponent<Rigidbody2D>();
         pontoAtual = pontoB.position;
@@ -64,9 +67,12 @@ public class BoitataBossMoveSet : MonoBehaviour
         {
             ColocandoFogoEmCriançasECorrendo();
             Chamas.transform.localScale = new Vector3(DistanciaLançaXanas, Chamas.transform.localScale.y, Chamas.transform.localScale.z);
+            Chamas.SetActive(true);
         }
         else if (Moves <= 14)
         {
+            anim.SetBool("Correndo", false);
+
             if (!trocouPadrão)
             {
                 // Delay para o inimigo parar antes de começar a pular
@@ -100,6 +106,8 @@ public class BoitataBossMoveSet : MonoBehaviour
 
     public void ColocandoFogoEmCriançasECorrendo()
     {
+        anim.SetBool("Correndo", true);
+
         // Move o inimigo em direção ao ponto atual
         Vector2 novaPosicao = Vector2.MoveTowards(rb.position, pontoAtual, velocidade * Time.fixedDeltaTime);
         rb.MovePosition(novaPosicao);
@@ -117,6 +125,8 @@ public class BoitataBossMoveSet : MonoBehaviour
             }
             Virar();
             jaContouPonto = false; // Reseta o contador ao atingir o ponto
+
+            
         }
     }
 
@@ -136,6 +146,7 @@ public class BoitataBossMoveSet : MonoBehaviour
 
             PodePular = false; // Desabilita o pulo até aterrissar novamente
             proximoPulo = Time.time + jumpCoolDown; // Define o cooldown do próximo pulo
+            anim.SetBool("Pulando", true);
         }
     }
 
@@ -227,6 +238,7 @@ public class BoitataBossMoveSet : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Chao"))
         {
+            anim.SetBool("Pulando", false);
             PodePular = true; // Habilita pulo ao tocar no chão
             Moves += 1;
         }

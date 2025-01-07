@@ -26,9 +26,12 @@ public class IaraBossMoveSet : MonoBehaviour
     private enum EstadoBoss { NadandoAtirando, RedemoinhoBrabo, MovimentoSimples }
     private EstadoBoss estadoAtual = EstadoBoss.NadandoAtirando;
 
+    private Animator anim;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
         transform.position = pontoB.position;
         pontoAtual = pontoB.position;
         direction = (pontoA.position - transform.position).normalized;
@@ -67,6 +70,7 @@ public class IaraBossMoveSet : MonoBehaviour
     // Movimentação de ida e volta
     void NadandoeAtirando()
     {
+        anim.SetBool("Nadando", true);
         MoveObjeto();
         if (Mathf.Abs(transform.position.x - pontoAtual.x) < 0.5f)
         {
@@ -168,6 +172,8 @@ public class IaraBossMoveSet : MonoBehaviour
     {
         Moves = 0;
         estadoAtual = novoEstado;
+
+        anim.SetBool("Nadando", false);
 
         // Redefine o ponto atual sem parar o movimento
         if (transform.position.x > (pontoA.position.x + pontoB.position.x) / 2)
