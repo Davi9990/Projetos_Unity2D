@@ -56,6 +56,8 @@ public class Corpo_Seco_Boss_Move_Set : MonoBehaviour
     private Vector3 pontoCriptaOffset1;
     private Vector3 pontoCriptaOffset2;
 
+    private Animator anim;
+
     void Start()
     {
         jogador = GameObject.FindGameObjectWithTag("Player");
@@ -75,6 +77,8 @@ public class Corpo_Seco_Boss_Move_Set : MonoBehaviour
         {
             Debug.LogError("SpriteRenderer não encontrado no inimigo!");
         }
+
+        anim = GetComponent<Animator>();
 
         StartCoroutine(EsperarParaAtacar());
 
@@ -98,9 +102,12 @@ public class Corpo_Seco_Boss_Move_Set : MonoBehaviour
             ExecutarDash();
             GerenciarAtaque();
             IncrementarMovesSuavemente();
+            anim.SetBool("Correndo", true);
         }
         else if (Moves <= 14)
         {
+            anim.SetBool("Correndo", false);
+            anim.SetBool("Correndo_Atirando", true);
             ExecutarDash();
             GerenciarAtaque();
             IncrementarMovesSuavemente();
@@ -109,6 +116,8 @@ public class Corpo_Seco_Boss_Move_Set : MonoBehaviour
         }
         else if(Moves <= 24)
         {
+            anim.SetBool("Correndo_Atirando", false);
+            anim.SetBool("Pulando_Atirando", true);
             IncrementarMovesSuavemente();
             velocidade = 5;
             PodeInvocarAlmas = true;
@@ -116,12 +125,15 @@ public class Corpo_Seco_Boss_Move_Set : MonoBehaviour
         }
         else if(Moves <= 34)
         {
+            anim.SetBool("Pulando_Atirando", false);
+            anim.SetBool("Invocando", true);
             PodeInvocarAlmas = false;
             PulandoPerseguindo();
             PodeInvocar = true;
         }
         else if(Moves >= 35)
         {
+            anim.SetBool("Invocando", false);
             PodeInvocar = false;
             Moves = 0;
         }
@@ -318,6 +330,7 @@ public class Corpo_Seco_Boss_Move_Set : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+
         if (collision.gameObject.CompareTag("Chao"))
         {
             PodePular = true;
