@@ -21,11 +21,17 @@ EditorBuildSettings:
     path: Assets/Scenes/Vitoria.unity
     guid: 46b2db6cf233c0542bd8a6a855e826a2
   - enabled: 1
+    path: Assets/Scenes/Tela1.unity
+    guid: 92d5a96cb3bf56549841c0f67abc8d31
+  - enabled: 1
+    path: Assets/Scenes/Tela4.unity
+    guid: 57326a56b3ee03c499fec48c3d949d2a
+  - enabled: 1
     path: Assets/Scenes/Tela2.unity
     guid: 6c8fc69166bb89d409a477a43c6d3494
   - enabled: 1
-    path: Assets/Scenes/Tela1.unity
-    guid: 92d5a96cb3bf56549841c0f67abc8d31
+    path: Assets/Scenes/Tela3.unity
+    guid: 01a3dc364aeebd643978988bd6b9f127
   - enabled: 1
     path: Assets/Scenes/TelaAY2.unity
     guid: 20190dd2bf05f964190dfd1f4abeb5b8

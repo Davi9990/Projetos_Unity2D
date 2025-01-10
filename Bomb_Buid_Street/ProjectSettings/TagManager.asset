@@ -19,6 +19,9 @@ TagManager:
   - EndPoint4
   - EndPoint5
   - EndPoint7
+  - EndPoint6
+  - SpawnPoint
+  - EndPoint8
   layers:
   - Default
   - TransparentFX

@@ -7,99 +7,89 @@ public class Player_Controller : MonoBehaviour
 {
     private static Player_Controller instance;
 
-    // Dicionário para associar cenas a tags de spawn
-    private Dictionary<string, string> spawnPorCena = new Dictionary<string, string>
-    {
-        { "Tela1", "EndPoint4" },  // Associa "Tela1" ao ponto "EndPoint4"
-        { "Tela2", "EndPoint5" },  // Exemplo: Associa "Tela2" ao ponto "EndPoint5"
-        { "Tela3", "EndPoint6" }   // Adicione mais cenas aqui conforme necessário
-    };
+    private GameObject pontoDeSpawnAtual;
 
     void Awake()
     {
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject); // Mantém o GameObject entre cenas
+            DontDestroyOnLoad(gameObject);
             SceneManager.sceneLoaded += OnSceneLoaded;
         }
         else
         {
-            Destroy(gameObject); // Evita múltiplas instâncias
+            Destroy(gameObject);
         }
     }
 
     private void OnSceneLoaded(Scene cena, LoadSceneMode loadSceneMode)
     {
-        // Tenta localizar o ponto de spawn específico para a cena
-        StartCoroutine(PosicionarNoPontoDeSpawn(cena.name));
+        StartCoroutine(PosicionarNoPontoDeSpawn());
     }
 
-    private IEnumerator PosicionarNoPontoDeSpawn(string nomeCenaAtual)
+    private IEnumerator PosicionarNoPontoDeSpawn()
     {
-        yield return null; // Espera 1 frame para garantir que os objetos sejam carregados
+        yield return null;
 
-        // Verifica se a cena atual tem um ponto de spawn definido no dicionário
-        if (spawnPorCena.ContainsKey(nomeCenaAtual))
+        // Se o ponto de spawn não foi setado ainda, tentamos encontrar o primeiro ponto de spawn na cena
+        if (pontoDeSpawnAtual == null)
         {
-            string tagPontoDeSpawn = spawnPorCena[nomeCenaAtual];
+            pontoDeSpawnAtual = GameObject.FindGameObjectWithTag("EndPoint8"); // Ou qualquer outro ponto inicial
+        }
 
-            // Procura o ponto de spawn pela tag definida
-            GameObject pontoDeSpawn = GameObject.FindGameObjectWithTag(tagPontoDeSpawn);
+        if (pontoDeSpawnAtual != null)
+        {
+            // Move o próprio GameObject
+            transform.position = pontoDeSpawnAtual.transform.position;
 
-            if (pontoDeSpawn != null)
+            // Agora, percorre todos os filhos e os move também
+            foreach (Transform child in transform)
             {
-                // Move o GameObject vazio (pai) para o ponto de spawn
-                this.transform.position = pontoDeSpawn.transform.position;
-
-                // Garantir que o player (filho) siga a posição do pai
-                Transform player = transform.GetChild(0); // Pega o primeiro filho (Player)))
-                if (player != null)
-                {
-                    player.position = pontoDeSpawn.transform.position; // Move o player para o ponto
-                }
-
-                // Debug para confirmar o posicionamento
-                Debug.Log($"Player posicionado no ponto {tagPontoDeSpawn} na cena {nomeCenaAtual}");
+                child.position = pontoDeSpawnAtual.transform.position;
             }
-            else
-            {
-                Debug.LogWarning($"Ponto de spawn com a tag {tagPontoDeSpawn} não encontrado na cena {nomeCenaAtual}");
-            }
+
+            Debug.Log($"Player posicionado no ponto de spawn com a tag {pontoDeSpawnAtual.tag}");
         }
         else
         {
-            Debug.LogWarning($"Nenhum ponto de spawn definido para a cena {nomeCenaAtual}");
+            Debug.LogWarning("Nenhum ponto de spawn encontrado na cena atual.");
         }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // Verifica se a colisão foi com um objeto de transição (ex: EndPoint2, EndPoint3)
+        // Se o player colidir com um ponto de spawn, muda o ponto de spawn atual
         if (collision.gameObject.CompareTag("EndPoint2"))
         {
-            // Muda para o ponto de spawn relacionado a "EndPoint3"
             MudarPontoDeSpawn("EndPoint3");
         }
         else if (collision.gameObject.CompareTag("EndPoint6"))
         {
-            // Se colidir com o "EndPoint3", muda para outro ponto (ex: EndPoint4)
             MudarPontoDeSpawn("EndPoint4");
         }
-        // Adicione outros pontos de colisão conforme necessário
+        else if (collision.gameObject.CompareTag("EndPoint3"))
+        {
+            MudarPontoDeSpawn("EndPoint2");
+        }
     }
 
     private void MudarPontoDeSpawn(string tagPonto)
     {
-        // Procura pelo ponto de spawn na próxima cena
-        GameObject NovoPonto = GameObject.FindGameObjectWithTag(tagPonto);
-        if (NovoPonto != null && NovoPonto.activeInHierarchy)
-        {
-            // Muda a posição do Player para o novo ponto de spawn
-            this.transform.position = NovoPonto.transform.position;
+        pontoDeSpawnAtual = GameObject.FindGameObjectWithTag(tagPonto);
 
-            // Debug para confirmar o reposicionamento
-            Debug.Log($"Player movido para {NovoPonto.transform.position} usando a tag {tagPonto}");
+        if (pontoDeSpawnAtual != null)
+        {
+            // Move o próprio GameObject
+            transform.position = pontoDeSpawnAtual.transform.position;
+
+            // Agora, percorre todos os filhos e os move também
+            foreach (Transform child in transform)
+            {
+                child.position = pontoDeSpawnAtual.transform.position;
+            }
+
+            Debug.Log($"Player movido para {pontoDeSpawnAtual.transform.position} usando a tag {tagPonto}");
         }
         else
         {

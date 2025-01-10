@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 5607147945915190029}
   - component: {fileID: 4581656778875434715}
   - component: {fileID: 8104203862719094018}
-  - component: {fileID: 335027127581536506}
+  - component: {fileID: 8994341474915651411}
   m_Layer: 0
-  m_Name: Creatina
+  m_Name: Batata_Doce
   m_TagString: item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -7.76, y: -0.84, z: 0}
-  m_LocalScale: {x: 8.034642, y: 8.101352, z: 13.422317}
+  m_LocalScale: {x: 10.018018, y: 10.421594, z: 17.26649}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 681617593, guid: 83f3d155f699a194db0113ce202810f3, type: 3}
+  m_Sprite: {fileID: -1352173878, guid: 9f114137e2cd47140b6611f990abd3cf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -98,8 +98,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7c6041cb4ea0ed4a8c0e431327a9b09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreValue: 8000
---- !u!61 &335027127581536506
+  scoreValue: 2000
+--- !u!61 &8994341474915651411
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -131,16 +131,16 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.008482365, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.14, y: 0.15}
+    oldSize: {x: 0.12, y: 0.14}
     newSize: {x: 1, y: 2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.14, y: 0.15}
+  m_Size: {x: 0.095495254, y: 0.14}
   m_EdgeRadius: 0
