@@ -11,9 +11,11 @@ public class Disparo_Padrao : MonoBehaviour
     private float nextFireTime = 0f;
     private PlayerLogica virando;
     public Rigidbody2D Player;
+    private PlayerLogica Pause;
 
     void Start()
     {
+        Pause = GetComponent<PlayerLogica>();
         virando = GetComponent<PlayerLogica>();
         Player = GetComponent<Rigidbody2D>();
     }
@@ -21,7 +23,10 @@ public class Disparo_Padrao : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Atirar();
+        if (Pause.isPaused == false)
+        {
+            Atirar();
+        }
     }
 
     private void Atirar()

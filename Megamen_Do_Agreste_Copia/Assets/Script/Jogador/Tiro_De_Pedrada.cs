@@ -12,6 +12,7 @@ public class Tiro_De_Pedrada : MonoBehaviour
     public float fireRate = 1f;
     public float nextFireTime = 0f;
     public Rigidbody2D Player;
+    private PlayerLogica Pause;
 
     private PlayerLogica virando;
 
@@ -28,8 +29,10 @@ public class Tiro_De_Pedrada : MonoBehaviour
 
     void Update()
     {
-        AtualizarPontosDeTiro();
-        AtirarPedraEmMendigo();
+       
+            AtualizarPontosDeTiro();
+            AtirarPedraEmMendigo();
+  
     }
 
     private void AtualizarPontosDeTiro()

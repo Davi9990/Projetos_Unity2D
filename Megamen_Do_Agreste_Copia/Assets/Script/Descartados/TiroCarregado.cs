@@ -18,6 +18,7 @@ public class TiroCarregado : MonoBehaviour
     private PlayerLogica virando2;
     private GameObject projetilCarregado; // Referência ao projétil carregado
     public Rigidbody2D Player;
+    private PlayerLogica Pause;
 
     public float cooldown = 1f; // Tempo de cooldown entre ataques
     private bool podeAtirar = true; // Controla se o jogador pode atirar
@@ -27,6 +28,7 @@ public class TiroCarregado : MonoBehaviour
         Player = GetComponent<Rigidbody2D>();
         virando = GetComponent<Move>();
         virando2 = GetComponent<PlayerLogica>();
+        Pause = GetComponent<PlayerLogica>();   
 
         if (virando2 == null)
         {
@@ -36,11 +38,14 @@ public class TiroCarregado : MonoBehaviour
 
     void Update()
     {
-        CarregandoTiro();
-
-        if (estaCarregando && projetilCarregado != null)
+        if (Pause.isPaused == false)
         {
-            projetilCarregado.transform.position = Hand.position;
+            CarregandoTiro();
+
+            if (estaCarregando && projetilCarregado != null)
+            {
+                projetilCarregado.transform.position = Hand.position;
+            }
         }
     }
 

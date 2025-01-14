@@ -9,9 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 70644805683903433}
+  - component: {fileID: 5469474764936173595}
   m_Layer: 0
   m_Name: FinalPoint
-  m_TagString: Untagged
+  m_TagString: EndPoint
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -32,6 +33,51 @@ Transform:
   - {fileID: 4970288818732950973}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &5469474764936173595
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2738192858819112710}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.06740093, y: 0.99624634}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.86519814, y: 4.273098}
+  m_EdgeRadius: 0
 --- !u!1 &3655477621922156617
 GameObject:
   m_ObjectHideFlags: 0
@@ -44,9 +90,10 @@ GameObject:
   - component: {fileID: 3107148575490596632}
   - component: {fileID: 6201004568468480573}
   - component: {fileID: 2853458951059250360}
+  - component: {fileID: 4422744903070770677}
   m_Layer: 0
   m_Name: Parede
-  m_TagString: EndPoint
+  m_TagString: EndPoint2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -60,7 +107,7 @@ Transform:
   m_GameObject: {fileID: 3655477621922156617}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.09, y: 1.04, z: -90}
+  m_LocalPosition: {x: 54.1, y: 1.04, z: -90}
   m_LocalScale: {x: 0.7875, y: 4.32, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -190,3 +237,47 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &4422744903070770677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3655477621922156617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: beec2bd2558750942860042fb2811a74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneNames:
+  - Tela1
+  - Tela2
+  - Tela3
+  - Tela4
+  - Tela5
+  - Tela6
+  - Tela7
+  - Tela8
+  - Tela9
+  - Tela10
+  - Tela11
+  - Tela12
+  - Tela13
+  - Tela14
+  - Tela15
+  - Tela16
+  - Tela17
+  - Tela18
+  - Tela19
+  - Tela20
+  - Tela21
+  - Tela22
+  - Tela23
+  - Tela24
+  - Tela25
+  - Tela26
+  - Tela27
+  - Tela28
+  - Tela29
+  - Tela30
+  - Tela31

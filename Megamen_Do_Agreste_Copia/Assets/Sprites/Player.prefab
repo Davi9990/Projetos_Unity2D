@@ -131,7 +131,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0006586611, y: -0.0004632324}
+  m_Offset: {x: 0.0018665679, y: -0.0004632324}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -142,7 +142,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.26244783, y: 0.29862544}
+  m_Size: {x: 0.21446857, y: 0.29862544}
   m_EdgeRadius: 0
 --- !u!50 &7684207303654062036
 Rigidbody2D:
@@ -230,7 +230,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0012357831, y: -0.0011077821}
+  m_Offset: {x: 0.0012894385, y: -0.0011077821}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -241,7 +241,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.26360208, y: 0.29733646}
+  m_Size: {x: 0.21562281, y: 0.29733646}
   m_EdgeRadius: 0
 --- !u!114 &1143927163218756442
 MonoBehaviour:
@@ -258,19 +258,22 @@ MonoBehaviour:
   speed: 4
   isFacingRight: 1
   JP: 9
+  CnJmp: 0
   Hand: {fileID: 4109189928463670247}
   Balas: {fileID: 193206061566855938, guid: 03fd7b6756d10194eb8398ae13d369b6, type: 3}
-  speedBulllets: 9
+  speedBulllets: 10
   fireRate: 0.25
   scripts:
   - {fileID: 3036013462182876265}
   - {fileID: 3934706360104616273}
   - {fileID: 3712771769020172736}
   - {fileID: 4170556796328770694}
-  b1: {fileID: 0}
-  b2: {fileID: 0}
-  b3: {fileID: 0}
-  pauseMenu: {fileID: 0}
+  b1: {fileID: 1722945975431060361, guid: fb80dfdd8785dfa4e8820c9ced17f8f7, type: 3}
+  b2: {fileID: 4632964043502670829, guid: dc9c862a923f8cb4691ed4a03aecd26f, type: 3}
+  b3: {fileID: 879218692166537006, guid: 92b6a3418be35684dacd7526a9e4e772, type: 3}
+  pauseMenu: {fileID: 8593157118799384352, guid: 01cf407021b8e0a4fb44bec46e9ac892, type: 3}
+  isPaused: 0
+  isRunning: 1
   Boitata: 0
   curupira: 0
   Iara: 0

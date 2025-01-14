@@ -130,7 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6ddc6996d9bee54a97ca83c022c2013, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 2610141958796565837, guid: 8e4871ce04251c3439fdf373d274ff9a, type: 3}
+  projectilePrefab: {fileID: 2610141958796565837, guid: 022270502d8efda4a92a8aac0d121d13, type: 3}
   firePointLeft: {fileID: 6830959190012292177}
   firePointRight: {fileID: 6494545657665319048}
   fireRate: 1
@@ -193,9 +193,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7d51ae7ef3c55e45923227f0a03cc2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
+  maxHealth: 20
   currentHealth: 0
-  SpawnItens: []
+  SpawnItens:
+  - {fileID: 7998784046919582555, guid: 0da268d2b781a4f40adea75d2f1e4789, type: 3}
 --- !u!95 &3859173049723645639
 Animator:
   serializedVersion: 5
@@ -272,7 +273,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7667256540509912226}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.75, y: -0.22, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

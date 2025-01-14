@@ -4,48 +4,51 @@ using UnityEngine.SceneManagement;
 public class PlayerSpawner : MonoBehaviour
 {
     public GameObject playerPrefab; // Prefab do jogador
-    public string[] fasesParaInstanciar; // Nomes das fases onde o jogador deve ser instanciado
-    private GameObject currentPlayerInstance; // Referência única ao jogador
+    public string[] fasesParaInstanciar; // Nomes das fases onde o jogador deve ser reposicionado
+    private static GameObject currentPlayerInstance; // Referência única ao jogador
 
-    void Awake()
+    private void Awake()
     {
-        SceneManager.sceneLoaded += OnSceneLoaded;
+        SceneManager.sceneLoaded += OnSceneLoaded; // Conecta o método ao evento de cena carregada
+
+        if (currentPlayerInstance == null)
+        {
+            SpawnPlayer(); // Instancia o jogador se ainda não existir
+        }
+        else
+        {
+            RepositionPlayer(); // Reposiciona o jogador existente
+        }
     }
 
-    void OnDestroy()
+    private void OnDestroy()
     {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
+        SceneManager.sceneLoaded -= OnSceneLoaded; // Remove o evento ao destruir o objeto
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // Verifica se a cena atual é uma das fases especificadas no array
         if (System.Array.Exists(fasesParaInstanciar, fase => fase == scene.name))
         {
-            if (currentPlayerInstance == null)
+            if (currentPlayerInstance != null)
             {
-                SpawnPlayer();
+                RepositionPlayer(); // Apenas reposiciona se o jogador já existe
             }
             else
             {
-                // Atualiza a posição do jogador para o ponto de spawn
-                currentPlayerInstance.transform.position = transform.position;
-            }
-        }
-        else
-        {
-            // Destroi o jogador se não estiver em uma das fases do array
-            if (currentPlayerInstance != null)
-            {
-                Destroy(currentPlayerInstance);
-                currentPlayerInstance = null;
+                SpawnPlayer(); // Cria o jogador se ele não existe
             }
         }
     }
 
     private void SpawnPlayer()
     {
-        currentPlayerInstance = Instantiate(playerPrefab, transform.position, Quaternion.identity);
-        DontDestroyOnLoad(currentPlayerInstance);
+        currentPlayerInstance = Instantiate(playerPrefab, transform.position, Quaternion.identity); // Instancia o jogador
+        DontDestroyOnLoad(currentPlayerInstance); // Garante que persista entre cenas
+    }
+
+    private void RepositionPlayer()
+    {
+        currentPlayerInstance.transform.position = transform.position; // Reposiciona na posição do spawn
     }
 }

@@ -10,12 +10,14 @@ public class Escudo_de_Agua : MonoBehaviour
     private float lastAttackTime;
     public float TempoDeExpansao;
     public float TempoDeRecarga;
+    private PlayerLogica Pause;
 
     // Referência à prefab do escudo
     public GameObject escudoPrefab; 
 
     void Start()
     {
+        Pause = GetComponent<PlayerLogica>();
         circle2D = GetComponent<CircleCollider2D>();
 
         // Desativa a prefab logo no começo
@@ -27,7 +29,10 @@ public class Escudo_de_Agua : MonoBehaviour
 
     void Update()
     {
-        ComandandoOLevantamentoDoEscudo();
+        if (Pause.isPaused == false)
+        {
+            ComandandoOLevantamentoDoEscudo();
+        }
     }
 
     public void ComandandoOLevantamentoDoEscudo()

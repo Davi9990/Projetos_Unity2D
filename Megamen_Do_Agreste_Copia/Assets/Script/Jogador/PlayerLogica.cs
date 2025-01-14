@@ -29,7 +29,7 @@ public class PlayerLogica : MonoBehaviour
 
     // Pausa
     public GameObject pauseMenu; // Referência ao painel de pausa
-    private bool isPaused = false;
+    public bool isPaused = false;
     private KeyCode pauseKey = KeyCode.Escape; // Tecla para pausar o jogo
 
     private Rigidbody2D rb;
