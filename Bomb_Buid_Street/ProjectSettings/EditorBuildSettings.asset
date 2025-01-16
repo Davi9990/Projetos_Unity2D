@@ -24,11 +24,92 @@ EditorBuildSettings:
     path: Assets/Scenes/Tela1.unity
     guid: 92d5a96cb3bf56549841c0f67abc8d31
   - enabled: 1
+    path: Assets/Scenes/Cemiterio/Tela29.unity
+    guid: ed0f02b8fbb9abf40ae133594360ac90
+  - enabled: 1
+    path: Assets/Scenes/Cemiterio/Tela30.unity
+    guid: e8faafc96d0a5254fbe4a91afd6024f8
+  - enabled: 1
+    path: Assets/Scenes/Cemiterio/Tela31.unity
+    guid: c545e107f9a60b142a8320b6d4bfbecd
+  - enabled: 1
     path: Assets/Scenes/Condominios/Tela4.unity
     guid: 57326a56b3ee03c499fec48c3d949d2a
   - enabled: 1
     path: Assets/Scenes/Condominios/Tela2.unity
     guid: 6c8fc69166bb89d409a477a43c6d3494
+  - enabled: 1
+    path: Assets/Scenes/Farmaciazinha/Tela11.unity
+    guid: af611de601cf7b9469cf7d7af3f11b14
+  - enabled: 1
+    path: Assets/Scenes/Farmaciazinha/Tela12.unity
+    guid: 061fca685cb2af7498ea7e8c9728c1f2
+  - enabled: 1
+    path: Assets/Scenes/Igreja/Tela23.unity
+    guid: 842e80b53ca9c4740a30b8cb9d68debb
+  - enabled: 1
+    path: Assets/Scenes/Igreja/Tela24.unity
+    guid: 420cd4557bb7ca14bbc29c0c43c3ea25
+  - enabled: 1
+    path: "Assets/Scenes/Lix\xE3o(Eu)/Tela8.unity"
+    guid: 8d1acca0a97425b47bf71c49e53ca9e1
+  - enabled: 1
+    path: "Assets/Scenes/Lix\xE3o(Eu)/Tela9.unity"
+    guid: 9a7417726b1bf8947bdc37180b2e3448
+  - enabled: 1
+    path: Assets/Scenes/Mercadinho/Tela5.unity
+    guid: 3c3adc9686341894c85040b9c1b130a8
+  - enabled: 1
+    path: Assets/Scenes/Mercadinho/Tela6.unity
+    guid: 0695138a9313bb649b503c9b722f22cf
+  - enabled: 1
+    path: Assets/Scenes/Metro/Tela14.unity
+    guid: e127a695a50c46043adb3b70a897feb2
+  - enabled: 1
+    path: Assets/Scenes/Praia/Tela20.unity
+    guid: fa9e258f5d3ead144b5ba863f6979766
+  - enabled: 1
+    path: Assets/Scenes/Praia/Tela21.unity
+    guid: a3f5cc2a46f1b744d96ca512048932f1
+  - enabled: 1
+    path: Assets/Scenes/Praia/Tela22.unity
+    guid: e89811d3592597846bba6cb4a951db68
+  - enabled: 1
+    path: Assets/Scenes/Metro/Tela15.unity
+    guid: fc91d66d5bedc394291b974fb28a37ad
+  - enabled: 1
+    path: Assets/Scenes/Metro/Tela16.unity
+    guid: 3bc1de2666960174ca89052c1a55fef9
+  - enabled: 1
+    path: Assets/Scenes/Mercadinho/Tela7.unity
+    guid: 6cf66439a8f3ebd4c96789925c3e2599
+  - enabled: 1
+    path: "Assets/Scenes/Lix\xE3o(Eu)/Tela10.unity"
+    guid: 942438f4812c76b40a47daecb364d8b5
+  - enabled: 1
+    path: Assets/Scenes/Igreja/Tela25.unity
+    guid: 6a3b69ae9245ee24089b15ca31f0e6cd
+  - enabled: 1
+    path: Assets/Scenes/PostoDeGasolina/Tela26.unity
+    guid: 74d4321c381664948860957df617a859
+  - enabled: 1
+    path: Assets/Scenes/PostoDeGasolina/Tela27.unity
+    guid: e0026d84671b41742a3f560e9a00b162
+  - enabled: 1
+    path: Assets/Scenes/PostoDeGasolina/Tela28.unity
+    guid: f184528d0198efd4cb0e1c6d754f0191
+  - enabled: 1
+    path: Assets/Scenes/Ponte/Tela17.unity
+    guid: 41e8bbdfaeb79404e865ee526e8723e0
+  - enabled: 1
+    path: Assets/Scenes/Ponte/Tela18.unity
+    guid: 46e275b86aaa4a949889695a264220b4
+  - enabled: 1
+    path: Assets/Scenes/Ponte/Tela19.unity
+    guid: db16d8a12963c494baef05956f5b309c
+  - enabled: 1
+    path: Assets/Scenes/Farmaciazinha/Tela13.unity
+    guid: 7f9626a409c991a418c92b5e6c8d5118
   - enabled: 1
     path: Assets/Scenes/Condominios/Tela3.unity
     guid: 01a3dc364aeebd643978988bd6b9f127
