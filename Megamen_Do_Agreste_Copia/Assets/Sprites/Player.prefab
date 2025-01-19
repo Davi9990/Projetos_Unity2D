@@ -257,7 +257,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 4
   isFacingRight: 1
-  JP: 9
+  JP: 12
   CnJmp: 0
   Hand: {fileID: 4109189928463670247}
   Balas: {fileID: 193206061566855938, guid: 03fd7b6756d10194eb8398ae13d369b6, type: 3}

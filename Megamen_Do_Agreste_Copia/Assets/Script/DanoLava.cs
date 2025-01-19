@@ -5,6 +5,7 @@ using UnityEngine;
 public class DanoLava : MonoBehaviour
 {
     public SistemaDeVida vida;
+    public VidaInimigo inimigo;
     public int damage = 1;
     public float NextTimeAttack;
     public bool PodeAtacar;
@@ -23,7 +24,8 @@ public class DanoLava : MonoBehaviour
 
     void OnTrigggerEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player") && PodeAtacar)
+        if (collision.gameObject.CompareTag("Player") && PodeAtacar ||
+            collision.gameObject.CompareTag("EnemySniper") && PodeAtacar)
         {
             AplicarDano(collision);
         }
@@ -31,7 +33,8 @@ public class DanoLava : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if(collision.gameObject.CompareTag("Player") && PodeAtacar)
+        if(collision.gameObject.CompareTag("Player") && PodeAtacar ||
+            collision.gameObject.CompareTag("EnemySniper") && PodeAtacar)
         {
             AplicarDano(collision);
         }
@@ -40,6 +43,7 @@ public class DanoLava : MonoBehaviour
     public void AplicarDano(Collision2D collision)
     {
         SistemaDeVida vida = collision.gameObject.GetComponent<SistemaDeVida>();
+        VidaInimigo Inimigo = collision.gameObject.GetComponent<VidaInimigo>(); 
 
         if(vida != null)
         {
@@ -51,6 +55,18 @@ public class DanoLava : MonoBehaviour
         else
         {
             Debug.Log("Componente SistemaVida não  encontrado no Jogador");
+        }
+
+        if(Inimigo != null)
+        {
+            Inimigo.currentHealth -= damage;
+            PodeAtacar = false;
+            Debug.Log("Ataque ao inimigo, cooldawn iniciado");
+            StartCoroutine(RecarregarAtaque());
+        }
+        else
+        {
+            Debug.Log("Componente de via não encontrado");
         }
     }
 
