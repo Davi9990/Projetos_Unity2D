@@ -16,6 +16,8 @@ public class CabocloDaAgua : Todos
     public float groundCheckRadius = 0.1f; // Raio para detectar o chão
     public string groundTag = "Chao"; // Tag para identificar o chão
 
+    public float distanciaDePerseguicao = 5f; // Distância para começar a perseguir o jogador
+
     private Transform player;
     private SistemaDeVida vid;
     private bool IsAttack = false;
@@ -35,25 +37,34 @@ public class CabocloDaAgua : Todos
 
     void Update()
     {
-        if (!IsAttack)
+        // Verifica se o jogador está dentro da distância de perseguição
+        if (Vector2.Distance(transform.position, player.position) <= distanciaDePerseguicao)
         {
-            // Seguir o jogador apenas horizontalmente (eixo x)
-            Vector2 targetPosition = new Vector2(player.position.x, transform.position.y);
-            transform.position = Vector2.MoveTowards(transform.position, targetPosition, velocidade * Time.deltaTime);
-            anim.SetBool("Movendo", true);
-            anim.SetBool("Estocada", false);
-
-            // Verifica se o inimigo está alinhado com o jogador no eixo x para atacar
-            if (Mathf.Abs(player.position.x - transform.position.x) < 0.5f && Time.time > lastAttackTime + attackCooldown)
+            if (!IsAttack)
             {
-                StartCoroutine(SubindoEDescendo());
+                // Seguir o jogador apenas horizontalmente (eixo x)
+                Vector2 targetPosition = new Vector2(player.position.x, transform.position.y);
+                transform.position = Vector2.MoveTowards(transform.position, targetPosition, velocidade * Time.deltaTime);
+                anim.SetBool("Movendo", true);
+                anim.SetBool("Estocada", false);
+
+                // Verifica se o inimigo está alinhado com o jogador no eixo x para atacar
+                if (Mathf.Abs(player.position.x - transform.position.x) < 0.5f && Time.time > lastAttackTime + attackCooldown)
+                {
+                    StartCoroutine(SubindoEDescendo());
+                }
+            }
+
+            // Verifica se o inimigo está encostando no chão
+            if (IsTouchingGround() && !IsAttack)
+            {
+                StartCoroutine(PararNoChao());
             }
         }
-
-        // Verifica se o inimigo está encostando no chão
-        if (IsTouchingGround() && !IsAttack)
+        else
         {
-            StartCoroutine(PararNoChao());
+            // Se o jogador estiver fora da distância de perseguição, interrompe o movimento
+            anim.SetBool("Movendo", false);
         }
     }
 
@@ -63,7 +74,6 @@ public class CabocloDaAgua : Todos
         IsAttack = true;
         causouDano = false; // Reseta a variável para permitir dano no próximo ataque
 
-        
         // Aumenta a gravidade para fazê-lo cair rapidamente
         rb.gravityScale = gravidadeAlta;
 
@@ -85,6 +95,7 @@ public class CabocloDaAgua : Todos
 
         anim.SetBool("Movendo", true);
         anim.SetBool("Estocada", false);
+
         // Reseta a gravidade para zero para voar de volta para cima
         rb.gravityScale = 0;
 

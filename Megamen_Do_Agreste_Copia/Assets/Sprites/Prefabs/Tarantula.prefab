@@ -175,7 +175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a85600dd9cc48d45aa28c67f8f111e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 5007796565457588414, guid: 73ebdf8131b7779479970aa9562d7873, type: 3}
   Distancia: 10
   velocidade: 10
   dashduration: 3

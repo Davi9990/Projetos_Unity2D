@@ -10,26 +10,42 @@ public class VidaInimigo : MonoBehaviour
     public GameObject[] SpawnItens;
     int random;
 
+    // Array de tags permitidas para causar dano
+    public string[] allowedTags;
+
     void Start()
     {
         currentHealth = maxHealth;
     }
 
-    // Update is called once per frame
-    public void TakeDamege(int damage)
+    // Método para aplicar dano, com verificação da tag
+    public void TakeDamage(int damage, GameObject damageSource)
     {
-        currentHealth -= damage;
-
-        if(currentHealth <= 0)
+        // Verifica se a tag do objeto que causou o dano está no array de tags permitidas
+        foreach (string tag in allowedTags)
         {
-            SpawnRandom();
-            Destroy(gameObject);
+            if (damageSource.CompareTag(tag))
+            {
+                // Aplica o dano se a tag for válida
+                currentHealth -= damage;
+
+                if (currentHealth <= 0)
+                {
+                    SpawnRandom();
+                    Destroy(gameObject);
+                }
+
+                return; // Sai do método após aplicar o dano
+            }
         }
+
+        // Opcional: Mensagem no console caso a tag não seja válida
+        Debug.Log($"Dano ignorado. Tag '{damageSource.tag}' não permitida.");
     }
 
     void SpawnRandom()
     {
-        // Sorteia um n�mero entre 0 e o tamanho total do array + 1 (incluindo a chance de n�o spawnar nada)
+        // Sorteia um número entre 0 e o tamanho total do array + 1 (incluindo a chance de não spawnar nada)
         random = Random.Range(0, SpawnItens.Length + 1);
 
         // Se o valor sorteado for menor que o tamanho do array, spawna o item correspondente
@@ -37,6 +53,6 @@ public class VidaInimigo : MonoBehaviour
         {
             Instantiate(SpawnItens[random], transform.position, transform.rotation);
         }
-        // Caso contr�rio, n�o faz nada (chance de n�o spawnar nenhum item)
+        // Caso contrário, não faz nada (chance de não spawnar nenhum item)
     }
 }

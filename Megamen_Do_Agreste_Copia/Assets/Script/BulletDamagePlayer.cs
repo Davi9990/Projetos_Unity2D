@@ -22,7 +22,7 @@ public class BulletDamagePlayer : MonoBehaviour
             // Aplica dano ao inimigo se o componente existir
             if (inimigo != null)
             {
-                inimigo.TakeDamege(1); // Corrigido o nome do m�todo
+                collision.gameObject.GetComponent<VidaInimigo>().TakeDamage(1, gameObject);
             }
 
             // Aplica dano ao segundo tipo de inimigo, se o componente existir
@@ -38,10 +38,10 @@ public class BulletDamagePlayer : MonoBehaviour
 
             if(inimigo4 != null)
             {
-                inimigo4.TakeDamage(1);
+                collision.gameObject.GetComponent<VidaEnemyBoss>().TakeDamage(1, collision.gameObject);
             }
 
-            if(inimigo5 != null)
+            if (inimigo5 != null)
             {
                 inimigo5.TakeDamege(1);
             }

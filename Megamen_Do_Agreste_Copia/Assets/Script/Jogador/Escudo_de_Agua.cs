@@ -81,12 +81,12 @@ public class Escudo_de_Agua : MonoBehaviour
 
             if (Inimigo != null && Time.time >= lastAttackTime + 1f)
             {
-                Inimigo.TakeDamege(dano);
+                collision.gameObject.GetComponent<VidaInimigo>().TakeDamage(1, gameObject);
                 lastAttackTime = Time.time;
             }
             if (Inimigo2 != null && Time.time >= lastAttackTime + 1f)
             {
-                Inimigo2.TakeDamage(dano);
+                collision.gameObject.GetComponent<VidaEnemyBoss>().TakeDamage(1, collision.gameObject);
                 lastAttackTime = Time.time;
             }
             if (Inimigo3 != null && Time.time >= lastAttackTime + 1f)

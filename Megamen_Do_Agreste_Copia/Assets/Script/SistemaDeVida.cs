@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class SistemaDeVida : MonoBehaviour
 {
@@ -17,8 +18,7 @@ public class SistemaDeVida : MonoBehaviour
 
     private void Awake()
     {
-        // Garante que o sistema de vida e a HUD não serão destruídos ao carregar novas cenas
-        DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(gameObject); // Garante que o sistema de vida persista entre cenas
     }
 
     private void Start()
@@ -35,21 +35,16 @@ public class SistemaDeVida : MonoBehaviour
 
     private void ConfigurarHUD()
     {
-        // Se a HUD já foi criada, não faz nada
-        if (hudInstance != null)
-            return;
+        if (hudInstance != null) return;
 
-        // Procura a HUD na cena
         hudInstance = GameObject.FindGameObjectWithTag("HUD");
 
-        // Se a HUD não foi encontrada, instancia o prefab
         if (hudInstance == null && hudPrefab != null)
         {
             hudInstance = Instantiate(hudPrefab);
-            DontDestroyOnLoad(hudInstance); // Preserva a HUD entre cenas
+            DontDestroyOnLoad(hudInstance);
         }
 
-        // Configura o array de Hits (imagens de vida) com base na HUD
         if (hudInstance != null)
         {
             Hits = hudInstance.GetComponentsInChildren<Image>();
@@ -58,25 +53,13 @@ public class SistemaDeVida : MonoBehaviour
 
     void AtualizarHudDeVida()
     {
-        if (Hits == null || Hits.Length == 0)
-            return;
+        if (Hits == null || Hits.Length == 0) return;
 
-        if (vida > vidaMaxima)
-        {
-            vida = vidaMaxima;
-        }
+        if (vida > vidaMaxima) vida = vidaMaxima;
 
         for (int i = 0; i < Hits.Length; i++)
         {
-            if (i < vida)
-            {
-                Hits[i].sprite = cheio;
-            }
-            else
-            {
-                Hits[i].sprite = vazio;
-            }
-
+            Hits[i].sprite = i < vida ? cheio : vazio;
             Hits[i].enabled = i < vidaMaxima;
         }
     }
@@ -85,17 +68,15 @@ public class SistemaDeVida : MonoBehaviour
     {
         if (vida <= 0)
         {
-            Destroy(gameObject);
+            FindObjectOfType<PlayerSpawner>().PlayerMorreu();
+            Destroy(gameObject); // Opcional: evita múltiplas execuções
         }
     }
 
     public void GanharVida(int quantidade)
     {
         vida += quantidade;
-        if (vida > vidaMaxima)
-        {
-            vida = vidaMaxima;
-        }
+        if (vida > vidaMaxima) vida = vidaMaxima;
         AtualizarHudDeVida();
     }
 }

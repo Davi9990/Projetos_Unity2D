@@ -11,12 +11,15 @@ public class VidaEnemyBoss : MonoBehaviour
 
     public PlayerLogica Player;
 
+    // Array de tags permitidas para causar dano
+    public string[] allowedTags;
+
     void Start()
     {
         currentHealth = maxHealth;
         if (Player == null)
         {
-            Player = FindObjectOfType<PlayerLogica>(); //Busca referência ao script do Player
+            Player = FindObjectOfType<PlayerLogica>(); // Busca referência ao script do Player
         }
     }
 
@@ -25,33 +28,42 @@ public class VidaEnemyBoss : MonoBehaviour
         // Se necessário, você pode adicionar lógicas extras aqui, como atualizações visuais de vida
     }
 
-    // Método que gerencia o dano que o inimigo recebe
-    public void TakeDamage(int damage)
+    // Método que gerencia o dano que o inimigo recebe, com verificação de tags
+    public void TakeDamage(int damage, GameObject damageSource)
     {
-        currentHealth -= damage;
-
-        // Checa se a vida do inimigo chegou a zero
-        if (currentHealth <= 0)
+        // Verifica se a tag do objeto que causou o dano está no array de tags permitidas
+        foreach (string tag in allowedTags)
         {
-            // Quando a vida chega a zero, o inimigo morre
-            Destroy(gameObject);
+            if (damageSource.CompareTag(tag))
+            {
+                // Aplica o dano se a tag for válida
+                currentHealth -= damage;
 
-            // Atualiza o progresso global
-            GameManager.Instance.Boitata = true;
+                // Checa se a vida do inimigo chegou a zero
+                if (currentHealth <= 0)
+                {
+                    // Quando a vida chega a zero, o inimigo morre
+                    Destroy(gameObject);
 
-            // Troca para a tela de seleção de fases
-            SceneManager.LoadScene("SelecaoDeFase");
+                    // Atualiza o progresso global
+                    GameManager.Instance.Boitata = true;
+
+                    // Troca para a tela de seleção de fases
+                    SceneManager.LoadScene("SelecaoDeFase");
+                }
+
+                return; // Sai do método após aplicar o dano
+            }
         }
+
+        // Opcional: Mensagem no console caso a tag não seja válida
+        Debug.Log($"Dano ignorado. Tag '{damageSource.tag}' não permitida.");
     }
 
-    //// Método que lida com as colisões do inimigo
-    //private void OnCollisionEnter2D(Collision2D collision)
-    //{
-    //    // Verifica se a colisão é com o ataque do jogador
-    //    if (collision.gameObject.CompareTag("BalasPlayer"))
-    //    {
-    //        // Aplica dano quando o ataque do jogador colide com o inimigo
-    //        TakeDamage(1);  // 1 é o dano aplicado, pode ser alterado conforme necessário
-    //    }
-    //}
+    // Exemplo de colisão com verificação de tags
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        // Chama o método TakeDamage apenas se o objeto colidido tiver uma tag válida
+        TakeDamage(1, collision.gameObject);
+    }
 }

@@ -17,13 +17,16 @@ public class BoitataBossMoveSet : MonoBehaviour
     private bool jaContouPonto = false;
     public float AlcanceParaComeçaAPorrada;
 
+    // Verificação por Tag
+    public string playerTag = "Player"; // Tag do jogador
+    private GameObject player; // Referência ao jogador
+
     // Segundo Ataque
-    public float JumpForce = 7f; // Ajuste da força do pulo
-    public float jumpCoolDown = 1.5f; // Tempo entre pulos
+    public float JumpForce = 7f;
+    public float jumpCoolDown = 1.5f;
     private bool PodePular = false;
     private float proximoPulo = 0f;
-    private bool trocouPadrão = false; // Flag para controlar o delay na troca de padrão
-    public Transform jogador; // Referência ao Transform do jogador
+    private bool trocouPadrão = false;
     public float TempoRecargaTiro = 2f;
     public GameObject PrefabProjetil;
     public Transform PontoDisparo;
@@ -31,13 +34,11 @@ public class BoitataBossMoveSet : MonoBehaviour
     private float tempoUltimoTiro;
     public float velocidadeProjetil = 10f;
 
-    //Terceiro Ataque
+    // Terceiro Ataque
     public Transform Molotov1;
     public Transform Molotov2;
     public GameObject Fogo;
     public float TempoDeVidaProjetilNoChao;
-    //public Rigidbody2D ProjetillRb1;
-    //public Rigidbody2D ProjetillRb2;
 
     private Animator anim;
 
@@ -45,19 +46,23 @@ public class BoitataBossMoveSet : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        //ProjetillRb1 = GetComponent<Rigidbody2D>();
-        //ProjetillRb2 = GetComponent<Rigidbody2D>();
         pontoAtual = pontoB.position;
         Chamas.SetActive(true);
     }
 
     void Update()
     {
-        float distanciaParaJogador = Vector2.Distance(transform.position, jogador.position);
+        // Procura pelo jogador com base na tag
+        player = GameObject.FindGameObjectWithTag(playerTag);
 
-        if (distanciaParaJogador <= AlcanceParaComeçaAPorrada)
+        if (player != null)
         {
-            TrocaDePadroes();
+            float distanciaParaJogador = Vector2.Distance(transform.position, player.transform.position);
+
+            if (distanciaParaJogador <= AlcanceParaComeçaAPorrada)
+            {
+                TrocaDePadroes();
+            }
         }
     }
 
@@ -75,7 +80,6 @@ public class BoitataBossMoveSet : MonoBehaviour
 
             if (!trocouPadrão)
             {
-                // Delay para o inimigo parar antes de começar a pular
                 StartCoroutine(DelayTrocaPadrão());
             }
             else
@@ -85,7 +89,7 @@ public class BoitataBossMoveSet : MonoBehaviour
             }
             Chamas.SetActive(false);
         }
-        else if(Moves <= 24)
+        else if (Moves <= 24)
         {
             if (!trocouPadrão)
             {
@@ -95,10 +99,9 @@ public class BoitataBossMoveSet : MonoBehaviour
             {
                 Pulando();
                 Molotov();
-                //Moves = 0;
             }
         }
-        else if(Moves >= 25)
+        else if (Moves >= 25)
         {
             Moves = 0;
         }
@@ -108,13 +111,11 @@ public class BoitataBossMoveSet : MonoBehaviour
     {
         anim.SetBool("Correndo", true);
 
-        // Move o inimigo em direção ao ponto atual
         Vector2 novaPosicao = Vector2.MoveTowards(rb.position, pontoAtual, velocidade * Time.fixedDeltaTime);
         rb.MovePosition(novaPosicao);
 
         if (Vector2.Distance(rb.position, pontoAtual) < 0.1f)
         {
-            // Troca o ponto atual
             if (pontoAtual == pontoA.position)
             {
                 pontoAtual = pontoB.position;
@@ -124,40 +125,34 @@ public class BoitataBossMoveSet : MonoBehaviour
                 pontoAtual = pontoA.position;
             }
             Virar();
-            jaContouPonto = false; // Reseta o contador ao atingir o ponto
-
-            
+            jaContouPonto = false;
         }
     }
 
     public void Pulando()
     {
-        if (Time.time >= proximoPulo && PodePular)
+        if (player != null && Time.time >= proximoPulo && PodePular)
         {
-            // Calcular a direção em direção ao jogador
-            Vector2 direcao = (jogador.position - transform.position).normalized; // jogador é a referência ao Transform do jogador
-
-            // Virar o inimigo para o lado do jogador antes de pular
+            Vector2 direcao = (player.transform.position - transform.position).normalized;
             VirarParaJogador();
 
-            // Aplicar a força de pulo na direção do jogador
-            Vector2 forcaPulo = new Vector2(direcao.x * velocidade, JumpForce); // Ajuste do valor JumpForce
+            Vector2 forcaPulo = new Vector2(direcao.x * velocidade, JumpForce);
             rb.AddForce(forcaPulo, ForceMode2D.Impulse);
 
-            PodePular = false; // Desabilita o pulo até aterrissar novamente
-            proximoPulo = Time.time + jumpCoolDown; // Define o cooldown do próximo pulo
+            PodePular = false;
+            proximoPulo = Time.time + jumpCoolDown;
             anim.SetBool("Pulando", true);
         }
     }
 
     public void AtirandoEmPaulista()
     {
-        if(Time.time > tempoUltimoTiro + TempoRecargaTiro)
+        if (player != null && Time.time > tempoUltimoTiro + TempoRecargaTiro)
         {
             GameObject projetil = Instantiate(PrefabProjetil, PontoDisparo.position, Quaternion.identity);
-            Vector2 direction = (jogador.position - PontoDisparo.position).normalized;
+            Vector2 direction = (player.transform.position - PontoDisparo.position).normalized;
             Rigidbody2D rb = projetil.GetComponent<Rigidbody2D>();
-            if(rb != null)
+            if (rb != null)
             {
                 rb.gravityScale = 0;
                 rb.velocity = direction * velocidadeProjetil;
@@ -169,59 +164,60 @@ public class BoitataBossMoveSet : MonoBehaviour
 
     public void Molotov()
     {
-        if (Time.time > tempoUltimoTiro + TempoRecargaTiro)
+        if (player != null && Time.time > tempoUltimoTiro + TempoRecargaTiro)
         {
             GameObject newFogo = Instantiate(Fogo, Molotov1.position, Quaternion.identity);
             GameObject newFogo2 = Instantiate(Fogo, Molotov2.position, Quaternion.identity);
 
-            Vector2 direction1 = (jogador.position - Molotov1.position).normalized;
-            Vector2 direction2 = (jogador.position - Molotov2.position).normalized;
+            Vector2 direction1 = (player.transform.position - Molotov1.position).normalized;
+            Vector2 direction2 = (player.transform.position - Molotov2.position).normalized;
 
             Rigidbody2D FogoRb = newFogo.GetComponent<Rigidbody2D>();
             Rigidbody2D FogoRb2 = newFogo2.GetComponent<Rigidbody2D>();
 
-           if(FogoRb != null && FogoRb2 != null)
-           {
+            if (FogoRb != null && FogoRb2 != null)
+            {
                 FogoRb.gravityScale = 10;
                 FogoRb2.gravityScale = 10;
                 FogoRb.velocity = direction1 * velocidadeProjetil;
                 FogoRb2.velocity = direction2 * velocidadeProjetil;
-           }
+            }
 
-           tempoUltimoTiro =  Time.time;
-           Destroy(newFogo, TempoDeVidaProjetilNoChao);
-           Destroy(newFogo2, TempoDeVidaProjetilNoChao);
+            tempoUltimoTiro = Time.time;
+            Destroy(newFogo, TempoDeVidaProjetilNoChao);
+            Destroy(newFogo2, TempoDeVidaProjetilNoChao);
         }
     }
 
     void Virar()
     {
-        // Verifica a direção com base no ponto atual
         if ((pontoAtual.x < transform.position.x && Flip) || (pontoAtual.x > transform.position.x && !Flip))
         {
-            Flip = !Flip; // Inverte o estado de Flip
+            Flip = !Flip;
             Vector3 escala = transform.localScale;
-            escala.x *= -1; // Inverte a escala no eixo X
+            escala.x *= -1;
             transform.localScale = escala;
         }
     }
 
     void VirarParaJogador()
     {
-        // Inverte o flip com base na posição do jogador
-        if (jogador.position.x < transform.position.x && Flip) // Jogador está à esquerda
+        if (player != null)
         {
-            Flip = false;
-            Vector3 escala = transform.localScale;
-            escala.x = -Mathf.Abs(escala.x); // Garante que o inimigo vire para a esquerda
-            transform.localScale = escala;
-        }
-        else if (jogador.position.x > transform.position.x && !Flip) // Jogador está à direita
-        {
-            Flip = true;
-            Vector3 escala = transform.localScale;
-            escala.x = Mathf.Abs(escala.x); // Garante que o inimigo vire para a direita
-            transform.localScale = escala;
+            if (player.transform.position.x < transform.position.x && Flip)
+            {
+                Flip = false;
+                Vector3 escala = transform.localScale;
+                escala.x = -Mathf.Abs(escala.x);
+                transform.localScale = escala;
+            }
+            else if (player.transform.position.x > transform.position.x && !Flip)
+            {
+                Flip = true;
+                Vector3 escala = transform.localScale;
+                escala.x = Mathf.Abs(escala.x);
+                transform.localScale = escala;
+            }
         }
     }
 
@@ -254,8 +250,7 @@ public class BoitataBossMoveSet : MonoBehaviour
 
     private IEnumerator DelayTrocaPadrão()
     {
-        // Atrasar a troca de padrão para evitar que o inimigo pule imediatamente
-        yield return new WaitForSeconds(1f); // Tempo de delay (1 segundo)
+        yield return new WaitForSeconds(1f);
         trocouPadrão = true;
     }
 }

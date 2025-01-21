@@ -38,7 +38,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3.763511, y: 3.8575985, z: 3.763511}
+  m_LocalScale: {x: 4.707397, y: 4.825082, z: 4.707397}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4109189928463670247}
@@ -255,7 +255,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c869878b91691f478a27d2eebda850d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
+  speed: 5
   isFacingRight: 1
   JP: 12
   CnJmp: 0
@@ -274,9 +274,9 @@ MonoBehaviour:
   pauseMenu: {fileID: 8593157118799384352, guid: 01cf407021b8e0a4fb44bec46e9ac892, type: 3}
   isPaused: 0
   isRunning: 1
-  Boitata: 0
-  curupira: 0
-  Iara: 0
+  Boitata: 1
+  curupira: 1
+  Iara: 1
 --- !u!114 &3934706360104616273
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -607,6 +607,10 @@ PrefabInstance:
     - target: {fileID: 5104706033072006352, guid: f527dbb5f89231f4f93dc9a873f9270e, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5104706033072006352, guid: f527dbb5f89231f4f93dc9a873f9270e, type: 3}
+      propertyPath: m_TagString
+      value: BalasPlayer
       objectReference: {fileID: 0}
     - target: {fileID: 6713279966655200164, guid: f527dbb5f89231f4f93dc9a873f9270e, type: 3}
       propertyPath: m_LocalScale.x

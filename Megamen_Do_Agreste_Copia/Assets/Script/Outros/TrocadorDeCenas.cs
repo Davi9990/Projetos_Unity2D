@@ -7,7 +7,7 @@ public class TrocadorDeCenas : MonoBehaviour
 {
     public GameObject fasef;
 
-    public bool Iara = false, Boitata = false, Curupira = false;
+    public bool Iara = true, Boitata = true, Curupira = true;
 
     private void Start()
     {

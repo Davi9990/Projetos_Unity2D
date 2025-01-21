@@ -1057,9 +1057,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae1d3531bb7355e4892dd2e56b0436ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Boitata: 0
-  Curupira: 0
-  Iara: 0
+  Boitata: 1
+  Curupira: 1
+  Iara: 1
 --- !u!1 &1783584198
 GameObject:
   m_ObjectHideFlags: 0

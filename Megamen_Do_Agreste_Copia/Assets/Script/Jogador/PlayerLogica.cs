@@ -38,7 +38,7 @@ public class PlayerLogica : MonoBehaviour
     public bool isRunning = true;
 
     // Variáveis de poderes desbloqueados
-    public bool Boitata = false, curupira = false, Iara = false;
+    public bool Boitata = true, curupira = true, Iara = true;
     //public GameObject Bolha;
 
     void Start()

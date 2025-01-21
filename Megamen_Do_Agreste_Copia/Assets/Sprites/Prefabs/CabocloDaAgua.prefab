@@ -61,7 +61,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5754921126730298767}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 5.9057, y: 1.9833, z: 10}
   m_LocalScale: {x: 5.4021297, y: 5.743194, z: 1.0354}
   m_ConstrainProportionsScale: 0
@@ -153,7 +153,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0003937781, y: -0.0008695498}
+  m_Offset: {x: -0.021513134, y: -0.01924476}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -164,7 +164,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.2750942, y: 0.32904124}
+  m_Size: {x: 0.13148299, y: 0.2922908}
   m_EdgeRadius: 0
 --- !u!50 &6314047455128645804
 Rigidbody2D:
@@ -205,6 +205,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d79706facc92b6c4c846c0527c39ce5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  vida: 0
+  speed: 0
   dano: 1
   velocidade: 7
   velocidadeDeDescida: 7
@@ -230,7 +232,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 5
   currentHealth: 0
-  SpawnItens: []
+  SpawnItens:
+  - {fileID: 7998784046919582555, guid: 0da268d2b781a4f40adea75d2f1e4789, type: 3}
+  allowedTags:
+  - BalasPlayer
 --- !u!95 &5563919275189214057
 Animator:
   serializedVersion: 5
