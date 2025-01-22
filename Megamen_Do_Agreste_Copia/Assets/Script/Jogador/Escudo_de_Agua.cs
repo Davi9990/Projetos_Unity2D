@@ -91,12 +91,12 @@ public class Escudo_de_Agua : MonoBehaviour
             }
             if (Inimigo3 != null && Time.time >= lastAttackTime + 1f)
             {
-                Inimigo3.TakeDamege(dano);
+                collision.gameObject.GetComponent<Vida_Enemy_Boss_Iara>().TakeDamege(dano, collision.gameObject);
                 lastAttackTime = Time.time;
             }
             if (Inimigo4 != null && Time.time >= lastAttackTime + 1f)
             {
-                Inimigo4.TakeDamege(dano);
+                collision.gameObject.GetComponent<Vida_Enemy_Boss_Curupira>().TakeDamege(dano, collision.gameObject);
                 lastAttackTime = Time.time;
             }
         }

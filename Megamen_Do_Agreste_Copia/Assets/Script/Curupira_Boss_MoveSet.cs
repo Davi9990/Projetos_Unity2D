@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Curupira_Boss_MoveSet : MonoBehaviour
 {
-    //Primeiro Ataque
+    // Primeiro Ataque
     public float velocidade = 5f;
     public GameObject prefebProjetil;
     public Transform pontoDisparo;
@@ -16,7 +16,7 @@ public class Curupira_Boss_MoveSet : MonoBehaviour
     public float TempoDeReacargaTiro;
     private float tempoUltimoTiro;
     public float Moves = 0;
-    public Transform Player;
+    private Transform playerTransform; // Substituição da referência direta ao jogador
     public float followDistance = 30f;
     public bool PodePular;
     public float JumpForce = 9f;
@@ -25,14 +25,14 @@ public class Curupira_Boss_MoveSet : MonoBehaviour
     private Rigidbody2D rb;
     private bool Flip;
 
-    //Segundo Ataque
+    // Segundo Ataque
     public GameObject Lama1, Lama2;
     public Transform PontoDeLama1;
     public Transform PontoDeLama2;
     public bool PodeAtirarLama = false;
     public float VelocidadeLama = 5f;
 
-    //Terceiro Ataque
+    // Terceiro Ataque
     public Transform PontoDeDisparoPedra1;
     public Transform PontoDeDisparoPedra2;
     public bool PodeTacarPedra = false;
@@ -45,13 +45,25 @@ public class Curupira_Boss_MoveSet : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+
+        // Procurar o jogador pela tag
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+        {
+            playerTransform = player.transform;
+        }
+        else
+        {
+            Debug.LogWarning("Jogador não encontrado! Certifique-se de que há um objeto com a tag 'Player'.");
+        }
     }
 
-    // Update is called once per frame
     void Update()
     {
+        if (playerTransform == null) return; // Impedir erros se o jogador não for encontrado
+
         Virar();
-        float distanciaParaJogador = Vector2.Distance(transform.position, Player.position);
+        float distanciaParaJogador = Vector2.Distance(transform.position, playerTransform.position);
 
         if (distanciaParaJogador <= AlcanceParaComeçarPorrada)
         {
@@ -61,7 +73,7 @@ public class Curupira_Boss_MoveSet : MonoBehaviour
 
     public void TrocaDePadroes()
     {
-        if(Moves <= 4)
+        if (Moves <= 4)
         {
             AtirandoEmCorno();
             PulandoParaOInferno();
@@ -71,13 +83,13 @@ public class Curupira_Boss_MoveSet : MonoBehaviour
             PodeAtirarLama = true;
             PulandoParaOInferno();
         }
-        else if(Moves <= 24)
+        else if (Moves <= 24)
         {
             PodeAtirarLama = false;
             PulandoParaOInferno();
             PodeTacarPedra = true;
         }
-        else if(Moves >= 25)
+        else if (Moves >= 25)
         {
             PodeTacarPedra = false;
             Moves = 0;
@@ -86,7 +98,6 @@ public class Curupira_Boss_MoveSet : MonoBehaviour
 
     void AtirandoEmCorno()
     {
-        // Verificar se pode atirar
         if (PodeAtirar && Time.time > tempoUltimoTiro + TempoDeReacargaTiro)
         {
             anim.SetBool("Atirando", true);
@@ -102,28 +113,27 @@ public class Curupira_Boss_MoveSet : MonoBehaviour
             Destroy(projetil, tempoVidaProjetil);
             tempoUltimoTiro = Time.time;
 
-            // Desativar a animação após o tiro (com um pequeno atraso, se necessário)
             StartCoroutine(DesativarAnimacaoAtirando());
-
         }
     }
 
-    // Coroutine para desativar a animação
     IEnumerator DesativarAnimacaoAtirando()
     {
-        yield return new WaitForSeconds(0.1f); // Ajuste o tempo de acordo com a duração da animação
+        yield return new WaitForSeconds(0.1f);
         anim.SetBool("Atirando", false);
     }
 
     void PulandoParaOInferno()
     {
-        float distanceToPlayer = Vector2.Distance(transform.position, Player.position);
+        if (playerTransform == null) return;
 
-        if(distanceToPlayer <= followDistance && PodeAtirar && PodePular && Time.time >= lastJumpTime + jumpCooldown)
+        float distanceToPlayer = Vector2.Distance(transform.position, playerTransform.position);
+
+        if (distanceToPlayer <= followDistance && PodeAtirar && PodePular && Time.time >= lastJumpTime + jumpCooldown)
         {
             anim.SetBool("Pulando", true);
 
-            Vector2 JumpDirection = (Player.position - transform.position).normalized;
+            Vector2 JumpDirection = (playerTransform.position - transform.position).normalized;
 
             rb.velocity = new Vector2(JumpDirection.x, 1) * JumpForce;
 
@@ -133,23 +143,22 @@ public class Curupira_Boss_MoveSet : MonoBehaviour
 
     void BrotandoDoChao(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Chao"))
+        if (collision.gameObject.CompareTag("Chao") && playerTransform != null)
         {
             if (Time.time > tempoUltimoTiro + TempoDeReacargaTiro)
             {
                 GameObject ProjetilLama1 = Instantiate(Lama1, PontoDeLama1.position, Quaternion.identity);
                 GameObject ProjetilLama2 = Instantiate(Lama2, PontoDeLama2.position, Quaternion.identity);
 
-                Vector2 direction =  (Player.position - transform.position).normalized;
+                Vector2 direction = (playerTransform.position - transform.position).normalized;
                 Vector2 VelocidadeVertical = new Vector2(direction.x * VelocidadeLama, VelocidadeLama);
                 Vector2 VelocidadeVertical2 = new Vector2(-direction.x * VelocidadeLama, VelocidadeLama);
 
                 Rigidbody2D rb1 = ProjetilLama1.GetComponent<Rigidbody2D>();
                 Rigidbody2D rb2 = ProjetilLama2.GetComponent<Rigidbody2D>();
 
-                if(rb1 != null && rb2 != null)
+                if (rb1 != null && rb2 != null)
                 {
-                    //Define a gravidade e aplica a velocidade de lançamento para criar a parábola
                     rb1.gravityScale = 1;
                     rb1.velocity = VelocidadeVertical;
 
@@ -158,7 +167,7 @@ public class Curupira_Boss_MoveSet : MonoBehaviour
                 }
 
                 Destroy(ProjetilLama1, tempoVidaProjetil);
-                Destroy(ProjetilLama2 , tempoVidaProjetil);
+                Destroy(ProjetilLama2, tempoVidaProjetil);
 
                 tempoUltimoTiro = Time.time;
             }
@@ -167,24 +176,22 @@ public class Curupira_Boss_MoveSet : MonoBehaviour
 
     void PegandoPedraETacandoEFumando(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Chao"))
+        if (collision.gameObject.CompareTag("Chao") && playerTransform != null)
         {
-            if(Time.time > tempoUltimoTiro + TempoDeReacargaTiro)
+            if (Time.time > tempoUltimoTiro + TempoDeReacargaTiro)
             {
                 GameObject ProjetilPedra = Instantiate(PrefabPedra, PontoDeDisparoPedra1.position, Quaternion.identity);
                 GameObject ProjetilPedra2 = Instantiate(PrefabPedra, PontoDeDisparoPedra2.position, Quaternion.identity);
 
-                Vector2 direction = (Player.position - transform.position).normalized;
+                Vector2 direction = (playerTransform.position - transform.position).normalized;
                 Vector2 VelocidadeVertical = new Vector2(direction.x * VelocidadeLama, VelocidadeLama);
                 Vector2 VelocidadeVertical2 = new Vector2(direction.x * VelocidadeLama, VelocidadeLama);
 
                 Rigidbody2D rb1 = ProjetilPedra.GetComponent<Rigidbody2D>();
                 Rigidbody2D rb2 = ProjetilPedra2.GetComponent<Rigidbody2D>();
 
-
                 if (rb1 != null && rb2 != null)
                 {
-                    //Define a gravidade e aplica a velocidade de lançamento para criar a parábola
                     rb1.gravityScale = 1;
                     rb1.velocity = VelocidadeVertical;
 
@@ -211,12 +218,12 @@ public class Curupira_Boss_MoveSet : MonoBehaviour
             anim.SetBool("Pulando", false);
         }
 
-        if (PodeAtirarLama == true)
+        if (PodeAtirarLama)
         {
             BrotandoDoChao(collision.collider);
         }
 
-        if(PodeTacarPedra == true)
+        if (PodeTacarPedra)
         {
             PegandoPedraETacandoEFumando(collision.collider);
         }
@@ -233,14 +240,16 @@ public class Curupira_Boss_MoveSet : MonoBehaviour
 
     void Virar()
     {
-        if(Player.position.x < transform.position.x && Flip)
+        if (playerTransform == null) return;
+
+        if (playerTransform.position.x < transform.position.x && Flip)
         {
             Flip = false;
             Vector3 escala = transform.localScale;
             escala.x = Mathf.Abs(escala.x);
             transform.localScale = escala;
         }
-        else if(Player.position.x > transform.position.x && !Flip)
+        else if (playerTransform.position.x > transform.position.x && !Flip)
         {
             Flip = true;
             Vector3 escala = transform.localScale;

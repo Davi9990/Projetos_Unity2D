@@ -11,34 +11,60 @@ public class Vida_Enemy_Boss_Iara : MonoBehaviour
 
     public PlayerLogica Player;
 
+    // Array de tags permitidas para causar dano
+    public string[] allowedTags;
+
     void Start()
     {
         currentHealth = maxHealth;
         if (Player == null)
         {
-            Player = FindObjectOfType<PlayerLogica>();//Busca referancia ao script do Player
+            Player = FindObjectOfType<PlayerLogica>(); // Busca referência ao script do Player
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        // Se necessário, você pode adicionar lógicas extras aqui, como atualizações visuais de vida
     }
 
-    public void TakeDamege(int Damege)
+    // Método que gerencia o dano que o inimigo recebe, com verificação de tags
+    public void TakeDamege(int damage, GameObject damageSource)
     {
-        currentHealth -= Damege;
-
-        if (currentHealth <= 0)
+        // Verifica se a tag do objeto que causou o dano está no array de tags permitidas
+        foreach (string tag in allowedTags)
         {
-            Destroy(gameObject);
+            if (damageSource.CompareTag(tag))
+            {
+                // Aplica o dano se a tag for válida
+                currentHealth -= damage;
 
-            // Atualiza o progresso global
-            GameManager.Instance.Iara = true;
+                // Checa se a vida do inimigo chegou a zero
+                if (currentHealth <= 0)
+                {
+                    // Quando a vida chega a zero, o inimigo morre
+                    Destroy(gameObject);
 
-            // Troca para a tela de seleção de fases
-            SceneManager.LoadScene("SelecaoDeFase");
+                    // Atualiza o progresso global
+                    GameManager.Instance.Iara = true;
+
+                    // Troca para a tela de seleção de fases
+                    SceneManager.LoadScene("SelecaoDeFase");
+                }
+
+                return; // Sai do método após aplicar o dano
+            }
         }
+
+        // Opcional: Mensagem no console caso a tag não seja válida
+        Debug.Log($"Dano ignorado. Tag '{damageSource.tag}' não permitida.");
+    }
+
+    // Exemplo de colisão com verificação de tags
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        // Chama o método TakeDamege apenas se o objeto colidido tiver uma tag válida
+        TakeDamege(1, collision.gameObject);
     }
 }

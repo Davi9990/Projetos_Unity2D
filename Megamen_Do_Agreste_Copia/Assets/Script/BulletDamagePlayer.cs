@@ -43,11 +43,11 @@ public class BulletDamagePlayer : MonoBehaviour
 
             if (inimigo5 != null)
             {
-                inimigo5.TakeDamege(1);
+                collision.gameObject.GetComponent<Vida_Enemy_Boss_Curupira>().TakeDamege(1, collision.gameObject);
             }
             if(inimigo6 != null)
             {
-                inimigo6.TakeDamege(1);
+                collision.gameObject.GetComponent<Vida_Enemy_Boss_Iara>().TakeDamege(1, collision.gameObject);
             }
             if(inimigo7 != null)
             {

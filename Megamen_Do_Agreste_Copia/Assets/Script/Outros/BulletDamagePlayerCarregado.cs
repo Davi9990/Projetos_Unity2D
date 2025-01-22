@@ -41,12 +41,12 @@ public class BulletDamagePlayerCarregado : MonoBehaviour
 
             if(inimigo5 != null)
             {
-                inimigo5.TakeDamege(damage);
+                collision.gameObject.GetComponent<Vida_Enemy_Boss_Curupira>().TakeDamege(damage, collision.gameObject);
             }
 
             if(inimigo6 != null)
             {
-                inimigo6.TakeDamege(damage);
+                collision.gameObject.GetComponent<Vida_Enemy_Boss_Iara>().TakeDamege(damage, collision.gameObject);
             }
 
             Destroy(gameObject); // Destroi a bala ap�s a colis�o

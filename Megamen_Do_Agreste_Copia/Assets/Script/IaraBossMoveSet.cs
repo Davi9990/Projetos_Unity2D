@@ -13,7 +13,7 @@ public class IaraBossMoveSet : MonoBehaviour
 
     // Objetos de Ataque
     public GameObject JatoPrefab, agua, Bolhas;
-    public Transform PontoDisparo, Jogador, Redemoinho1, Redemoinho2, PontoDeBolha, PontoDeBolha2;
+    public Transform PontoDisparo, Redemoinho1, Redemoinho2, PontoDeBolha, PontoDeBolha2;
     public float TempoRecargaTiro = 2f, TempoDeVidaProjetil = 3f, TempoDeVidaRedemoinho = 3f, velocidadeProjettil = 10f;
     public float forcaBolha = 3f, velBolha = 2.5f, lifeTimeProjetil = 5;
 
@@ -23,6 +23,10 @@ public class IaraBossMoveSet : MonoBehaviour
     private bool Flip = true, JaContouPonto = false;
     private float tempoUltimoTiro;
 
+    private Transform jogador; // Referência ao Transform do jogador
+
+    // Novo parâmetro para distância de detecção
+    public float distanciaDeDeteccao = 10f;  // Distância mínima para o boss começar a atacar
     private enum EstadoBoss { NadandoAtirando, RedemoinhoBrabo, MovimentoSimples }
     private EstadoBoss estadoAtual = EstadoBoss.NadandoAtirando;
 
@@ -35,11 +39,24 @@ public class IaraBossMoveSet : MonoBehaviour
         transform.position = pontoB.position;
         pontoAtual = pontoB.position;
         direction = (pontoA.position - transform.position).normalized;
+
+        // Localiza o jogador com a tag "Player"
+        GameObject objetoJogador = GameObject.FindGameObjectWithTag("Player");
+        if (objetoJogador != null)
+        {
+            jogador = objetoJogador.transform;
+        }
     }
 
     void Update()
     {
-        ControlarPadrao();
+        if (jogador == null) return; // Verifica se o jogador existe
+
+        // Verifica a distância para decidir quando o boss vai atacar
+        if (Vector2.Distance(transform.position, jogador.position) <= distanciaDeDeteccao)
+        {
+            ControlarPadrao();
+        }
     }
 
     // Alternar entre padrões
@@ -119,20 +136,19 @@ public class IaraBossMoveSet : MonoBehaviour
     // Ataque de redemoinho
     void RedemoinhoBrabo()
     {
-        // Removido rb.velocity = Vector2.zero para continuar movimento
         if (Time.time > tempoUltimoTiro + TempoRecargaTiro)
         {
             CriarProjetil(Redemoinho1);
             CriarProjetil(Redemoinho2);
             tempoUltimoTiro = Time.time;
-            Moves++; // Incrementa após a criação de projetis
+            Moves++;
         }
     }
 
     void CriarProjetil(Transform spawnPoint)
     {
         GameObject projetil = Instantiate(agua, spawnPoint.position, Quaternion.identity);
-        Vector2 direcaoTiro = (Jogador.position - spawnPoint.position).normalized;
+        Vector2 direcaoTiro = (jogador.position - spawnPoint.position).normalized;
 
         Rigidbody2D rbProj = projetil.GetComponent<Rigidbody2D>();
         if (rbProj != null)
@@ -152,7 +168,7 @@ public class IaraBossMoveSet : MonoBehaviour
             CriarBolha(PontoDeBolha);
             CriarBolha(PontoDeBolha2);
             tempoUltimoTiro = Time.time;
-            Moves++; // Incrementa após a criação de bolhas
+            Moves++;
         }
     }
 
@@ -161,10 +177,7 @@ public class IaraBossMoveSet : MonoBehaviour
         GameObject bolha = Instantiate(Bolhas, spawnPoint.position, Quaternion.identity);
         Rigidbody2D rbBolha = bolha.GetComponent<Rigidbody2D>();
         rbBolha.velocity = Vector2.up * forcaBolha;
-
-        // Adicionando um movimento saltitante
         rbBolha.AddForce(Vector2.up * 3f, ForceMode2D.Impulse);
-
         Destroy(bolha, lifeTimeProjetil);
     }
 
@@ -175,7 +188,6 @@ public class IaraBossMoveSet : MonoBehaviour
 
         anim.SetBool("Nadando", false);
 
-        // Redefine o ponto atual sem parar o movimento
         if (transform.position.x > (pontoA.position.x + pontoB.position.x) / 2)
         {
             pontoAtual = pontoA.position;
@@ -185,10 +197,8 @@ public class IaraBossMoveSet : MonoBehaviour
             pontoAtual = pontoB.position;
         }
 
-        // Recalcula a direção imediatamente
         direction = (pontoAtual - transform.position).normalized;
 
-        // Mantém o Rigidbody2D em movimento direto
         rb.velocity = new Vector2(direction.x * velocidade, Mathf.Sin(Time.time * frequencia) * amplitude);
     }
 

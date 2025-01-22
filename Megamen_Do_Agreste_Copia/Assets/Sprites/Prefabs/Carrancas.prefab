@@ -130,7 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6ddc6996d9bee54a97ca83c022c2013, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 2610141958796565837, guid: 022270502d8efda4a92a8aac0d121d13, type: 3}
+  projectilePrefab: {fileID: 2610141958796565837, guid: d7888f7f812c8cc478bc75ac7364a2ec, type: 3}
   firePointLeft: {fileID: 6830959190012292177}
   firePointRight: {fileID: 6494545657665319048}
   fireRate: 1
@@ -168,7 +168,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0029420853, y: -0.002162926}
+  m_Offset: {x: -0.0014857948, y: -0.0021629333}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -179,7 +179,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.11253342, y: 0.33020288}
+  m_Size: {x: 0.04464043, y: 0.33020288}
   m_EdgeRadius: 0
 --- !u!114 &3341358767541121222
 MonoBehaviour:
@@ -197,6 +197,8 @@ MonoBehaviour:
   currentHealth: 0
   SpawnItens:
   - {fileID: 7998784046919582555, guid: 0da268d2b781a4f40adea75d2f1e4789, type: 3}
+  allowedTags:
+  - BalasPlayer
 --- !u!95 &3859173049723645639
 Animator:
   serializedVersion: 5
@@ -243,7 +245,7 @@ Transform:
   m_GameObject: {fileID: 4149974921221238146}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.034, y: 0.053, z: 0}
+  m_LocalPosition: {x: -0.0583, y: 0.053, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -260,7 +262,7 @@ GameObject:
   - component: {fileID: 1528207766007199669}
   m_Layer: 0
   m_Name: Carrancas
-  m_TagString: Untagged
+  m_TagString: Chao
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -275,7 +277,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.75, y: -0.22, z: -10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.782965, y: 1.3659813, z: 1.1503}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5898096383468490104}
@@ -306,7 +308,7 @@ Transform:
   m_GameObject: {fileID: 8840197227938158041}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.033, y: -0.111, z: 0}
+  m_LocalPosition: {x: 0.0514, y: -0.111, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

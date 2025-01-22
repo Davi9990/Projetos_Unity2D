@@ -31,12 +31,20 @@ public class CabocloDaAgua : Todos
         rb = GetComponent<Rigidbody2D>();
 
         rb.gravityScale = 0; // Inimigo "voa" no começo
-        player = GameObject.FindWithTag("Player").transform; // Localiza o jogador automaticamente
-        vid = player.GetComponent<SistemaDeVida>(); // Acessa o sistema de vida do jogador
+
+        // Inicializa a referência ao jogador
+        AtualizarReferenciaPlayer();
     }
 
     void Update()
     {
+        // Atualiza a referência caso o player tenha sido recriado
+        if (player == null || vid == null)
+        {
+            AtualizarReferenciaPlayer();
+            return; // Aguarda até que a referência seja atualizada
+        }
+
         // Verifica se o jogador está dentro da distância de perseguição
         if (Vector2.Distance(transform.position, player.position) <= distanciaDePerseguicao)
         {
@@ -65,6 +73,17 @@ public class CabocloDaAgua : Todos
         {
             // Se o jogador estiver fora da distância de perseguição, interrompe o movimento
             anim.SetBool("Movendo", false);
+        }
+    }
+
+    // Método para atualizar a referência ao Player
+    private void AtualizarReferenciaPlayer()
+    {
+        GameObject jogador = GameObject.FindWithTag("Player");
+        if (jogador != null)
+        {
+            player = jogador.transform; // Atualiza o transform do jogador
+            vid = jogador.GetComponent<SistemaDeVida>(); // Atualiza o sistema de vida
         }
     }
 

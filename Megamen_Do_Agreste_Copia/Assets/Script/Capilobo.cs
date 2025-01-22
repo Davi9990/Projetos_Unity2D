@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Capilobo : Todos
 {
-    public Transform player;
+    public string playerTag = "Player"; // Tag do jogador
     public float followDistance = 10f;
     public float LinguadaDistance;
     public float velocidade = 2f;
@@ -14,14 +14,14 @@ public class Capilobo : Todos
     public float TempoAgarrando;
     public float TempoLinguada;
 
+    private Transform player; // Referência ao transform do jogador
     private float lastAttackTime;
     public Rigidbody2D PlayerRb;
     private SistemaDeVida vid;
 
     public BoxCollider2D boxCollider1; // Colisor normal (para dano)
     public BoxCollider2D boxCollider2; // Colisor da linguada (Trigger)
-    
-    // Referência para o objeto vazio que servirá de guia
+
     public Transform GuiaLinguada;
 
     private Vector2 initialColliderSize;
@@ -35,7 +35,9 @@ public class Capilobo : Todos
         sp = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
 
-        PlayerRb = player.GetComponent<Rigidbody2D>();
+        // Inicializa o jogador
+        AtualizarReferenciaPlayer();
+
         anim.SetBool("Linguada", false);
 
         // Armazena o tamanho e offset inicial do BoxCollider2D para resetá-los depois
@@ -45,9 +47,29 @@ public class Capilobo : Todos
 
     void Update()
     {
+        if (player == null) // Verifica se o jogador foi perdido (provavelmente devido à morte)
+        {
+            AtualizarReferenciaPlayer();
+            return; // Sai para evitar erros enquanto o jogador não é encontrado
+        }
+
         if (!Lambida) // Garante que o inimigo não se mova durante a linguada
         {
             Caminhando();
+        }
+    }
+
+    private void AtualizarReferenciaPlayer()
+    {
+        GameObject playerObject = GameObject.FindGameObjectWithTag(playerTag);
+        if (playerObject != null)
+        {
+            player = playerObject.transform;
+            PlayerRb = playerObject.GetComponent<Rigidbody2D>();
+        }
+        else
+        {
+            Debug.LogWarning("Jogador não encontrado!");
         }
     }
 
@@ -127,7 +149,6 @@ public class Capilobo : Todos
 
     private void ResetLinguadaCollider()
     {
-        // Reseta o tamanho e o offset do BoxCollider2D de linguada para o estado inicial
         boxCollider2.size = initialColliderSize;
         boxCollider2.offset = initialColliderOffset;
 
@@ -137,21 +158,17 @@ public class Capilobo : Todos
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player") && Lambida)
+        if (collision.CompareTag(playerTag) && Lambida)
         {
-            // Obtém o sistema de vida do jogador
             vid = collision.gameObject.GetComponent<SistemaDeVida>();
 
-            if (vida != null)
+            if (vid != null)
             {
-                // Aplica dano ao jogador
                 vid.vida -= damage;
 
-                // Trava completamente o jogador
                 PlayerRb.velocity = Vector2.zero;
                 PlayerRb.constraints = RigidbodyConstraints2D.FreezeAll; // Congela o jogador completamente
 
-                // Inicia a corrotina de agarrar o jogador
                 StartCoroutine(AgarrandoJogador());
             }
         }
@@ -159,32 +176,26 @@ public class Capilobo : Todos
 
     private IEnumerator AgarrandoJogador()
     {
-        // Trava o jogador por um tempo
         Debug.Log("Agarrando o Jogador");
         yield return new WaitForSeconds(TempoAgarrando);
 
-        // Liberta o jogador após o tempo de agarrar
         PlayerRb.constraints = RigidbodyConstraints2D.None; // Libera o jogador
-        PlayerRb.constraints = RigidbodyConstraints2D.FreezeRotation; // Mantém a rotação congelada, mas libera o movimento
+        PlayerRb.constraints = RigidbodyConstraints2D.FreezeRotation;
 
         lastAttackTime = Time.time;
 
-        // Após agarrar o jogador, desativa a linguada e reseta o colisor
         Lambida = false;
         ResetLinguadaCollider();
     }
 
-    // Novo método OnCollisionEnter2D para aplicar dano com o boxCollider1
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider == boxCollider1 && collision.gameObject.CompareTag("Player"))
+        if (collision.collider == boxCollider1 && collision.gameObject.CompareTag(playerTag))
         {
-            // Obtém o sistema de vida do jogador
             vid = collision.gameObject.GetComponent<SistemaDeVida>();
 
-            if (vida != null)
+            if (vid != null)
             {
-                // Aplica dano ao jogador
                 vid.vida -= damage;
 
                 Debug.Log("Dano aplicado ao jogador: " + damage);
