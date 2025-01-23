@@ -6,6 +6,7 @@ public class Corpo_Seco_Boss_Move_Set : MonoBehaviour
 {
     // Primeiro Ataque
     private GameObject jogador;
+    public string playerTag = "Player";
     public float distanciaParaPorrada = 30f;
     public float velocidade = 13f;
     public float tempoRecargaAtaque = 4f; // Tempo de recarga entre ataques
@@ -30,7 +31,7 @@ public class Corpo_Seco_Boss_Move_Set : MonoBehaviour
     public float velocidadeProjetil = 10f;
     public float tempoVidaProjetil = 5f;
     private float tempoUltimoTiro;
-    public Transform Player;
+    //public Transform Player;
     private Vector3 pontoDisparoOffset;
     private Vector3 pontoDisparoOffset2;
     private Vector3 pontoDisparoOffset3;
@@ -60,7 +61,7 @@ public class Corpo_Seco_Boss_Move_Set : MonoBehaviour
 
     void Start()
     {
-        jogador = GameObject.FindGameObjectWithTag("Player");
+        jogador = GameObject.FindGameObjectWithTag(playerTag);
         if (jogador == null)
         {
             Debug.LogError("Jogador não encontrado! Certifique-se de que o jogador tem a tag 'Player'.");
@@ -92,7 +93,17 @@ public class Corpo_Seco_Boss_Move_Set : MonoBehaviour
 
     void Update()
     {
-        TrocaDePadroes();
+        jogador = GameObject.FindGameObjectWithTag(playerTag);
+
+        if (jogador != null)
+        {
+            float distanciaParaJogador = Vector2.Distance(transform.position, jogador.transform.position);
+
+            if (distanciaParaJogador <= distanciaParaPorrada)
+            {
+                TrocaDePadroes();
+            }
+        }
     }
 
     public void TrocaDePadroes()
@@ -148,9 +159,9 @@ public class Corpo_Seco_Boss_Move_Set : MonoBehaviour
             GameObject projetil2 = Instantiate(prefabProjetil, pontoDisparo2.position, Quaternion.identity);
             GameObject projetil3 = Instantiate(prefabProjetil, pontoDisparo3.position, Quaternion.identity);
 
-            Vector2 direcao = (Player.position - pontoDisparo1.position).normalized;
-            Vector2 direcao2 = (Player.position - pontoDisparo2.position).normalized;
-            Vector2 direcao3 = (Player.position - pontoDisparo3.position).normalized;
+            Vector2 direcao = (jogador.transform.position - pontoDisparo1.position).normalized;
+            Vector2 direcao2 = (jogador.transform.position - pontoDisparo2.position).normalized;
+            Vector2 direcao3 = (jogador.transform.position - pontoDisparo3.position).normalized;
 
             Rigidbody2D rb1 = projetil1.GetComponent<Rigidbody2D>();
             Rigidbody2D rb2 = projetil2.GetComponent<Rigidbody2D>();
@@ -300,11 +311,11 @@ public class Corpo_Seco_Boss_Move_Set : MonoBehaviour
 
     void PulandoPerseguindo()
     {
-        float distanceToPlayer = Vector2.Distance(transform.position, Player.position);
+        float distanceToPlayer = Vector2.Distance(transform.position, jogador.transform.position);
 
         if(distanceToPlayer <= followDistance && PodePular && Time.time >= lastJumpTime + jumpCoolDown)
         {
-            Vector2 JumpDirection = (Player.position - transform.position).normalized;
+            Vector2 JumpDirection = (jogador.transform.position - transform.position).normalized;
 
             rb.velocity = new Vector2(JumpDirection.x, 1) * JumpForce;
 

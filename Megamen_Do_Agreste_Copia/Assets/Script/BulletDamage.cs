@@ -20,7 +20,8 @@ public class BulletDamage : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if(collision.gameObject.tag == "BalasPlayer" || collision.gameObject.tag == "EnemySniper")
+        if(collision.gameObject.tag == "BalasPlayer" || collision.gameObject.tag == "EnemySniper" ||
+            collision.gameObject.tag == "Chao")
         {
             Destroy(gameObject);
         }

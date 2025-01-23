@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class Bombardeiro : Todos
 {
-    public float shootingRange = 15f; //Distancia em que o inimigo começa a atirar no jogador
-    public float fleeingRange = 5f; //Distencia em que o inimigo começa a fugir do jogador
-    public float shootingCooldown = 1f; //Tempo de recarga entre disparos
-    public GameObject projectilePrefab; //Prefab do projetil
-    public Transform shootingPoint1; //Ponto de onde o projetil é disparados
+    public float shootingRange = 15f; // Distância em que o inimigo começa a atirar no jogador
+    public float fleeingRange = 5f; // Distância em que o inimigo começa a fugir do jogador
+    public float shootingCooldown = 1f; // Tempo de recarga entre disparos
+    public GameObject projectilePrefab; // Prefab do projétil
+    public Transform shootingPoint1; // Ponto de onde o projétil é disparado
     public Transform shootingPoint2;
-    public float projectileSpeed = 10f; //Velocidade do projetil
-    public float projectileLifeTime = 5f; //Tempo de Vida do Projetil em segundos
+    public float projectileSpeed = 10f; // Velocidade do projétil
+    public float projectileLifeTime = 5f; // Tempo de vida do projétil em segundos
 
     private float lastShotTime;
     private Transform player;
@@ -22,7 +22,7 @@ public class Bombardeiro : Todos
         sp = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
 
-        //Encontra o jogador pela "Player"
+        // Encontra o jogador pela "Player"
         GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
         if (playerObject != null)
         {
@@ -30,29 +30,34 @@ public class Bombardeiro : Todos
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
+        // Verifica se o jogador foi destruído, e se for o caso, encontra o novo jogador
         if (player == null)
         {
-            return;
+            GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
+            if (playerObject != null)
+            {
+                player = playerObject.transform;
+            }
+            return; // Sai do Update caso o jogador ainda não tenha sido encontrado
         }
 
-        //Calcula a distancia entre o inimigo e o jogador
+        // Calcula a distância entre o inimigo e o jogador
         float distanceToPlayer = Vector2.Distance(transform.position, player.position);
 
-        //Se oo jogador estiver dentro do raio de fuga, o inimigo foge
+        // Se o jogador estiver dentro do raio de fuga, o inimigo foge
         if (distanceToPlayer <= fleeingRange)
         {
             FleeFromPlayer();
             anim.SetBool("Atirando", true);
         }
-        //Se o inimigo estiver dentro do raio de fuga, o inmigo foge
+        // Se o inimigo estiver dentro do raio de tiro, o inimigo atira
         else if (distanceToPlayer <= shootingRange)
         {
             ShootAtPlayer();
         }
-        else if(distanceToPlayer >= fleeingRange)
+        else if (distanceToPlayer >= fleeingRange)
         {
             anim.SetBool("Atirando", false);
         }
@@ -60,7 +65,7 @@ public class Bombardeiro : Todos
 
     void FleeFromPlayer()
     {
-        //Move o inimigo na direção oposta ao jogador
+        // Move o inimigo na direção oposta ao jogador
         Vector2 direction = (transform.position - player.transform.position).normalized;
         transform.position += (Vector3)(direction * speed * Time.deltaTime);
     }
@@ -97,5 +102,11 @@ public class Bombardeiro : Todos
             // Atualiza o tempo do último disparo
             lastShotTime = Time.time;
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, shootingRange);
     }
 }

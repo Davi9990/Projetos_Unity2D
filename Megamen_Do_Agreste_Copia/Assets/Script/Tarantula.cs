@@ -108,4 +108,10 @@ public class Tarantula : MonoBehaviour
             render.flipY = true; // Inverte o sprite
         }
     }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, Distancia);
+    }
 }

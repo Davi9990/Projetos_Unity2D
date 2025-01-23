@@ -57,7 +57,7 @@ public class BulletDamagePlayer : MonoBehaviour
             Destroy(gameObject); // Destroi a bala ap�s a colis�o
         }
 
-        if (collision.gameObject.tag == "EnemysBullets")
+        if (collision.gameObject.tag == "EnemysBullets" || collision.gameObject.tag == "BalasPlayer")
         {
             Destroy(gameObject); // Destroi a bala se colidir com outra bala inimiga
         }

@@ -38,7 +38,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4.707397, y: 4.825082, z: 4.707397}
+  m_LocalScale: {x: 5.456344, y: 5.5927525, z: 5.456344}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4109189928463670247}
@@ -255,9 +255,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c869878b91691f478a27d2eebda850d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 6
   isFacingRight: 1
-  JP: 12
+  JP: 14
   CnJmp: 0
   Hand: {fileID: 4109189928463670247}
   Balas: {fileID: 193206061566855938, guid: 03fd7b6756d10194eb8398ae13d369b6, type: 3}

@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2670973541723914209}
   m_Layer: 0
   m_Name: EstatuaCospidora
-  m_TagString: Untagged
+  m_TagString: Chao
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.00027928862, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 6.4011, y: -2.7822, z: -90}
-  m_LocalScale: {x: 13.820231, y: 7.6925325, z: 1.1503}
+  m_LocalScale: {x: -23.162004, y: 17.21358, z: 1.1503}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4157611821695330700}
@@ -122,7 +122,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.025800973, y: -0.014158184}
+  m_Offset: {x: -0.025800973, y: 0.00013833493}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -133,7 +133,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.2530982, y: 0.10681237}
+  m_Size: {x: 0.2530982, y: 0.07821934}
   m_EdgeRadius: 0
 --- !u!50 &1975683813728603693
 Rigidbody2D:
@@ -174,7 +174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e1a12f2d6e55884096cb936698c1d48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 2610141958796565837, guid: 8e4871ce04251c3439fdf373d274ff9a, type: 3}
+  projectilePrefab: {fileID: 2610141958796565837, guid: 022270502d8efda4a92a8aac0d121d13, type: 3}
   firePoint: {fileID: 4157611821695330700}
   fireRate: 1
   targetTag: Circle
@@ -256,7 +256,7 @@ Transform:
   m_GameObject: {fileID: 8205833704135932590}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.626, y: 0.001, z: 0}
+  m_LocalPosition: {x: 0.626, y: -0.025, z: 0}
   m_LocalScale: {x: 0.07361541, y: 0.13400841, z: 1.4066}
   m_ConstrainProportionsScale: 0
   m_Children: []
