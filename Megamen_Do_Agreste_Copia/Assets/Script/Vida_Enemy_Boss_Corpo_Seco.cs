@@ -32,6 +32,7 @@ public class Vida_Enemy_Boss_Corpo_Seco : MonoBehaviour
         if (currentHealth <= 0)
         {
             Destroy(gameObject);
+            SceneManager.LoadScene("SelecaoDeFase");
         }
     }
 }

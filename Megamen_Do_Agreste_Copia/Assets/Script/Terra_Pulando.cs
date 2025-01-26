@@ -6,15 +6,8 @@ public class Terra_Pulando : MonoBehaviour
 {
     private Rigidbody2D rb;
     public float JumpForce = 5f;
-    public Transform Player;
 
     void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
     {
         rb = GetComponent<Rigidbody2D>();
     }
@@ -23,9 +16,21 @@ public class Terra_Pulando : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Pulo"))
         {
-            Vector2 JumpDirection = (Player.position - transform.position).normalized;
+            // Encontra o jogador pela tag "Player"
+            GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
 
-            rb.velocity = new Vector2(JumpDirection.x, 1) * JumpForce;
+            if (playerObject != null)
+            {
+                // Calcula a direção do pulo em relação ao jogador
+                Vector2 jumpDirection = (playerObject.transform.position - transform.position).normalized;
+
+                // Aplica a força no Rigidbody2D
+                rb.velocity = new Vector2(jumpDirection.x, 1) * JumpForce;
+            }
+            else
+            {
+                Debug.LogWarning("Nenhum objeto com a tag 'Player' foi encontrado!");
+            }
         }
     }
 }

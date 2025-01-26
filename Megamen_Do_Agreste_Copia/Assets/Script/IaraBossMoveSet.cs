@@ -24,6 +24,7 @@ public class IaraBossMoveSet : MonoBehaviour
     private float tempoUltimoTiro;
 
     private Transform jogador; // Referência ao Transform do jogador
+    public string playerTag = "Player"; //Tag do jogador
 
     // Novo parâmetro para distância de detecção
     public float distanciaDeDeteccao = 10f;  // Distância mínima para o boss começar a atacar
@@ -40,22 +41,36 @@ public class IaraBossMoveSet : MonoBehaviour
         pontoAtual = pontoB.position;
         direction = (pontoA.position - transform.position).normalized;
 
-        // Localiza o jogador com a tag "Player"
-        GameObject objetoJogador = GameObject.FindGameObjectWithTag("Player");
-        if (objetoJogador != null)
-        {
-            jogador = objetoJogador.transform;
-        }
+        AtualizarJogador();
     }
 
     void Update()
     {
-        if (jogador == null) return; // Verifica se o jogador existe
+        if (jogador == null || !jogador.gameObject.activeInHierarchy)
+        {
+            AtualizarJogador(); // Atualiza a referência ao jogador, caso ele não seja mais válido
+        }
+
+        if (jogador == null) return; // Se ainda não encontrou o jogador, aguarde
 
         // Verifica a distância para decidir quando o boss vai atacar
         if (Vector2.Distance(transform.position, jogador.position) <= distanciaDeDeteccao)
         {
             ControlarPadrao();
+        }
+    }
+
+    // Atualiza a referência do jogador usando a tag
+    private void AtualizarJogador()
+    {
+        GameObject objetoJogador = GameObject.FindGameObjectWithTag(playerTag);
+        if (objetoJogador != null)
+        {
+            jogador = objetoJogador.transform;
+        }
+        else
+        {
+            Debug.LogWarning("Nenhum objeto com a tag 'Player' foi encontrado!");
         }
     }
 
@@ -97,7 +112,6 @@ public class IaraBossMoveSet : MonoBehaviour
 
     void MoveObjeto()
     {
-        // Continuar o movimento horizontal e com a variação vertical
         float horizontalVelocity = direction.x * velocidade;
         float verticalOffset = Mathf.Sin(Time.time * frequencia) * amplitude;
 
@@ -211,5 +225,11 @@ public class IaraBossMoveSet : MonoBehaviour
             escala.x *= -1;
             transform.localScale = escala;
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, distanciaDeDeteccao);
     }
 }

@@ -33,7 +33,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.54, y: -3.41, z: 0}
-  m_LocalScale: {x: 3.0760057, y: 3.5928771, z: 3.8782957}
+  m_LocalScale: {x: 3.369807, y: 3.9360468, z: 4.2487264}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -193,6 +193,8 @@ MonoBehaviour:
   currentHealth: 0
   SpawnItens:
   - {fileID: 7998784046919582555, guid: 0da268d2b781a4f40adea75d2f1e4789, type: 3}
+  allowedTags:
+  - BalasPlayer
 --- !u!114 &7662632636957348470
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -205,7 +207,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 059c8db287fa33d46af3ed56db92f999, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vida: {fileID: 1587911978231766277, guid: 73ebdf8131b7779479970aa9562d7873, type: 3}
   damage: 1
 --- !u!95 &4173530958974153578
 Animator:

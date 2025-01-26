@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1899536389594575376}
   - component: {fileID: 1646240628657090477}
   - component: {fileID: 3986322485617852313}
-  - component: {fileID: 7491690479908485227}
+  - component: {fileID: 2901719866467428918}
   m_Layer: 0
   m_Name: Terra
   m_TagString: EnemysBullets
@@ -219,8 +219,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   JumpForce: 7
-  Player: {fileID: 5007796565457588414, guid: 73ebdf8131b7779479970aa9562d7873, type: 3}
---- !u!114 &7491690479908485227
+--- !u!114 &2901719866467428918
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -229,7 +228,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6969363260530439934}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 946525a0dc65a4b4eaf862dfc6184f7d, type: 3}
+  m_Script: {fileID: 11500000, guid: 3c31096de11919c42ba69dbf79ba723c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1

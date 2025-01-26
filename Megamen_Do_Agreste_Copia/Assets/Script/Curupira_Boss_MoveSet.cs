@@ -46,21 +46,47 @@ public class Curupira_Boss_MoveSet : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
 
-        // Procurar o jogador pela tag
+        // Inicializando a referência do jogador
+        AtualizarReferenciaJogador();
+    }
+
+    private void OnEnable()
+    {
+        // Esse método será chamado toda vez que o objeto for ativado, garantindo que
+        // a referência ao jogador seja atualizada sempre que o objeto for reabilitado (como após respawn).
+        AtualizarReferenciaJogador();
+    }
+
+    private void OnDisable()
+    {
+        // Esse método será chamado quando o objeto for desabilitado (como quando o jogador morrer).
+        playerTransform = null;
+    }
+
+    private void AtualizarReferenciaJogador()
+    {
+        // Atualiza a referência do jogador toda vez que for necessário.
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
         {
             playerTransform = player.transform;
+            Debug.Log("Jogador atualizado com sucesso.");
         }
         else
         {
-            Debug.LogWarning("Jogador não encontrado! Certifique-se de que há um objeto com a tag 'Player'.");
+            Debug.LogWarning("Jogador não encontrado! Certifique-se de que o jogador foi instanciado.");
         }
     }
 
     void Update()
     {
-        if (playerTransform == null) return; // Impedir erros se o jogador não for encontrado
+        // Verifica se o jogador foi encontrado
+        if (playerTransform == null)
+        {
+            // Se não encontrou, tenta novamente
+            AtualizarReferenciaJogador();
+            if (playerTransform == null) return; // Se ainda não encontrou, termina a execução
+        }
 
         Virar();
         float distanciaParaJogador = Vector2.Distance(transform.position, playerTransform.position);

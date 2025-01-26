@@ -41,7 +41,7 @@ public class BulletDamagePlayerCarregado : MonoBehaviour
 
             if(inimigo5 != null)
             {
-                collision.gameObject.GetComponent<Vida_Enemy_Boss_Curupira>().TakeDamege(damage, collision.gameObject);
+                collision.gameObject.GetComponent<Vida_Enemy_Boss_Curupira>().TakeDamege(5, collision.gameObject);
             }
 
             if(inimigo6 != null)
@@ -52,7 +52,8 @@ public class BulletDamagePlayerCarregado : MonoBehaviour
             Destroy(gameObject); // Destroi a bala ap�s a colis�o
         }
 
-        if (collision.gameObject.tag == "EnemysBullets" || collision.gameObject.tag == "BalasPlayer")
+        if (collision.gameObject.tag == "EnemysBullets" || collision.gameObject.tag == "BalasPlayer" ||
+            collision.gameObject.tag == "Chao")
         {
             Destroy(gameObject); // Destroi a bala se colidir com outra bala inimiga
         }
