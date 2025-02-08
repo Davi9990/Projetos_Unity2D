@@ -3,28 +3,46 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class Configurador : MonoBehaviour
 {
-    public Text wordText; // Texto que exibe a palavra em português
-    public Transform buttonsParent; // Pai dos botões
-    public GameObject buttonPrefab; // Prefab do botão
-    public Sprite[] librasImages; // Imagens em Libras (ordem A-Z)
-    public string[] words; // Lista de palavras em português
-    public GameObject gameOverPanel; // Painel de Game Over
-    public GameObject[] successIcons; // Ícones de acertos
-    public GameObject[] errorIcons; // Ícones de erros
+    public Text wordText;
+    public Transform buttonsParent;
+    public GameObject buttonPrefab;
+    public Sprite[] librasImages;
+    public string[] words;
+    public GameObject gameOverPanel;
+    public GameObject[] successIcons; // Ícones de sucesso
+    public GameObject[] errorIcons;
 
     private string currentWord;
-    private List<int> correctOrder = new List<int>(); // Ordem correta das letras
-    private List<Button> activeButtons = new List<Button>(); // Botões ativos
-    private int currentSuccesses = 0; // Contador de acertos
-    private int currentErrors = 0; // Contador de erros
-    private int nextIndex = 0; // Índice atual da sequência correta
+    private List<int> correctOrder = new List<int>();
+    private List<Button> activeButtons = new List<Button>();
+    private int currentErrors = 0;
+    private int nextIndex = 0;
+    private int successCount = 0; // Conta quantas palavras foram acertadas
+
+    private Dictionary<string, List<int>> wordSequences = new Dictionary<string, List<int>>()
+    {
+        { "Lilas", new List<int> { 11, 8, 11, 0, 18 } },
+        { "Rosa", new List<int> { 17, 14, 18, 0 } },
+        { "Amarelo", new List<int> { 0, 12, 0, 17, 4, 11, 14 } },
+        { "Verde", new List<int> { 21, 4, 17, 3, 4 } },
+        { "Azul", new List<int> { 0, 25, 20, 11 } },
+        { "Roxo", new List<int> { 17, 14, 23, 14 } },
+        { "Laranja", new List<int> { 11, 0, 17, 0, 13, 9, 0 } },
+        { "Branco", new List<int> { 1, 17, 0, 13, 2, 14 } },
+        { "Marrom", new List<int> { 12, 0, 17, 17, 14, 12 } },
+        { "Preto", new List<int> { 15, 17, 4, 19, 14 } },
+    };
 
     void Start()
     {
         StartNewRound();
+
+        foreach (GameObject icon in successIcons)
+            icon.SetActive(false);
     }
 
     void StartNewRound()
@@ -35,86 +53,69 @@ public class Configurador : MonoBehaviour
             return;
         }
 
-        // Reseta os contadores para a nova rodada
         nextIndex = 0;
+        currentErrors = 0;
 
-        // Desativa os ícones de sucesso e erro
-        foreach (GameObject icon in successIcons)
-        {
-            icon.SetActive(false);
-        }
-
+        // Não desativamos os ícones de sucesso para manter o progresso
         foreach (GameObject icon in errorIcons)
-        {
             icon.SetActive(false);
-        }
 
-        // Seleciona uma palavra aleatória
+       
+
         currentWord = words[Random.Range(0, words.Length)];
         wordText.text = currentWord.ToUpper();
 
-        // Configurar botões para a palavra
+        if (!wordSequences.ContainsKey(currentWord))
+        {
+            Debug.LogError($"Palavra '{currentWord}' não encontrada no dicionário!");
+            return;
+        }
+
+        correctOrder = new List<int>(wordSequences[currentWord]);
+
         SetupButtons();
 
-        // Mostrar palavra por 5 segundos
         StartCoroutine(ShowWordAndShuffle());
     }
 
     void SetupButtons()
     {
-        // Limpar botões antigos
         foreach (Button btn in activeButtons)
-        {
             Destroy(btn.gameObject);
-        }
-        activeButtons.Clear();
-        correctOrder.Clear();
 
-        // Criar botões para cada letra da palavra
-        for (int i = 0; i < currentWord.Length; i++)
+        activeButtons.Clear();
+
+        for (int i = 0; i < correctOrder.Count; i++)
         {
-            char letter = currentWord[i];
-            int letterIndex = char.ToUpper(letter) - 'A';
+            int letterIndex = correctOrder[i];
 
             if (letterIndex < 0 || letterIndex >= librasImages.Length)
             {
-                Debug.LogError($"Letra '{letter}' não tem imagem correspondente!");
+                Debug.LogError($"Índice '{letterIndex}' não tem imagem correspondente!");
                 continue;
             }
 
-            // Criar botão e configurar
             GameObject buttonObj = Instantiate(buttonPrefab, buttonsParent);
             Button button = buttonObj.GetComponent<Button>();
             button.image.sprite = librasImages[letterIndex];
-            buttonObj.SetActive(false); // Botões começam desativados
+            buttonObj.SetActive(false);
             activeButtons.Add(button);
-            correctOrder.Add(letterIndex);
 
-            // Adiciona o evento ao botão
-            int index = i; // Para evitar problemas de referência no loop
+            int index = i;
             button.onClick.AddListener(() => ValidateButtonPress(index));
         }
     }
 
     IEnumerator ShowWordAndShuffle()
     {
-        // Mostrar palavra em português
         wordText.gameObject.SetActive(true);
         yield return new WaitForSeconds(5);
-
-        // Esconder palavra em português
         wordText.gameObject.SetActive(false);
 
-        // Ativar botões com letras em Libras
         foreach (Button btn in activeButtons)
-        {
             btn.gameObject.SetActive(true);
-        }
 
-        // Mostrar botões na ordem correta por 5 segundos
         yield return new WaitForSeconds(5);
-
-        // Embaralhar botões
         ShuffleButtons();
     }
 
@@ -122,11 +123,8 @@ public class Configurador : MonoBehaviour
     {
         List<Transform> buttonTransforms = new List<Transform>();
         foreach (Button btn in activeButtons)
-        {
             buttonTransforms.Add(btn.transform);
-        }
 
-        // Embaralhar posições
         for (int i = 0; i < buttonTransforms.Count; i++)
         {
             Transform temp = buttonTransforms[i];
@@ -135,53 +133,42 @@ public class Configurador : MonoBehaviour
             buttonTransforms[randomIndex] = temp;
         }
 
-        // Atualizar posições na hierarquia
         foreach (Transform t in buttonTransforms)
-        {
             t.SetSiblingIndex(Random.Range(0, buttonTransforms.Count));
-        }
     }
 
     public void ValidateButtonPress(int buttonIndex)
     {
-        if (nextIndex < correctOrder.Count && correctOrder[nextIndex] == buttonIndex)
+        if (nextIndex < correctOrder.Count && buttonIndex == nextIndex)
         {
-            // Jogador acertou o botão correto na sequência
             nextIndex++;
 
-            // Mostra um ícone de sucesso
-            if (nextIndex <= successIcons.Length)
-            {
-                successIcons[nextIndex - 1].SetActive(true);
-            }
-
-            // Verifica se completou a palavra
+            // Somente ativa um ícone de sucesso quando TODA a sequência for concluída
             if (nextIndex == correctOrder.Count)
             {
-                currentSuccesses++;
-                if (currentSuccesses == 3)
+                Debug.Log("Palavra completada!");
+
+                if (successCount < successIcons.Length)
                 {
-                    Debug.Log("Você venceu!");
-                    // Aqui você pode adicionar a lógica para finalizar o jogo
-                    return;
+                    successIcons[successCount].SetActive(true);
+                    successCount++;
+
+                    if(successCount == 3)
+                    {
+                        SceneManager.LoadScene("Tela_Selecao");
+                    }
                 }
 
-                Debug.Log("Palavra completada!");
-                StartNewRound();
+                StartCoroutine(NextRoundAfterDelay());
             }
         }
         else
         {
-            // Jogador errou
             currentErrors++;
 
-            // Mostra um ícone de erro
             if (currentErrors <= errorIcons.Length)
-            {
                 errorIcons[currentErrors - 1].SetActive(true);
-            }
 
-            // Verifica se o jogador perdeu
             if (currentErrors == 3)
             {
                 Debug.Log("Game Over!");
@@ -190,10 +177,15 @@ public class Configurador : MonoBehaviour
         }
     }
 
+    IEnumerator NextRoundAfterDelay()
+    {
+        yield return new WaitForSeconds(2); // Tempo para mostrar o sucesso antes da próxima palavra
+        StartNewRound();
+    }
+
     void GameOver()
     {
         gameOverPanel.SetActive(true);
-        Debug.Log("Game Over!");
     }
 }
 

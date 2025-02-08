@@ -1702,11 +1702,11 @@ MonoBehaviour:
   - {fileID: 1370911383, guid: b054bae978642f04fb548055571f27a3, type: 3}
   - {fileID: 180255090, guid: b054bae978642f04fb548055571f27a3, type: 3}
   words:
-  - Verde
-  - Amarelo
   - Lilas
-  - Azul
   - Rosa
+  - Amarelo
+  - Verde
+  - Azul
   - Roxo
   - Laranja
   - Branco
@@ -1822,6 +1822,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1191332497}
     m_Modifications:
+    - target: {fileID: 737807693923470096, guid: 1753664c66480b744afe63acbea5e19d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 737807694219132507, guid: 1753664c66480b744afe63acbea5e19d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 0
@@ -1860,27 +1864,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 737807694219132508, guid: 1753664c66480b744afe63acbea5e19d, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 737807694219132508, guid: 1753664c66480b744afe63acbea5e19d, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 737807694219132508, guid: 1753664c66480b744afe63acbea5e19d, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 737807694219132508, guid: 1753664c66480b744afe63acbea5e19d, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 737807694219132508, guid: 1753664c66480b744afe63acbea5e19d, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 54.478
+      value: 215
       objectReference: {fileID: 0}
     - target: {fileID: 737807694219132508, guid: 1753664c66480b744afe63acbea5e19d, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 58.489
+      value: 286.03
       objectReference: {fileID: 0}
     - target: {fileID: 737807694219132508, guid: 1753664c66480b744afe63acbea5e19d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1912,11 +1916,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 737807694219132508, guid: 1753664c66480b744afe63acbea5e19d, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -277
+      value: 567.755
       objectReference: {fileID: 0}
     - target: {fileID: 737807694219132508, guid: 1753664c66480b744afe63acbea5e19d, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 41
+      value: -153.015
       objectReference: {fileID: 0}
     - target: {fileID: 737807694219132508, guid: 1753664c66480b744afe63acbea5e19d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
