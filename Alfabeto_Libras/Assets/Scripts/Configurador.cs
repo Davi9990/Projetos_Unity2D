@@ -23,18 +23,50 @@ public class Configurador : MonoBehaviour
     private int nextIndex = 0;
     private int successCount = 0; // Conta quantas palavras foram acertadas
 
+    private bool buttonsShuffled = false;
+
+
     private Dictionary<string, List<int>> wordSequences = new Dictionary<string, List<int>>()
     {
-        { "Lilas", new List<int> { 11, 8, 11, 0, 18 } },
+        //Cores
+
+        { "Lima", new List<int> { 11, 8, 12, 0} },
         { "Rosa", new List<int> { 17, 14, 18, 0 } },
-        { "Amarelo", new List<int> { 0, 12, 0, 17, 4, 11, 14 } },
-        { "Verde", new List<int> { 21, 4, 17, 3, 4 } },
+        { "Malto", new List<int> { 12, 0, 11, 19, 14 } },
+        { "Vinho", new List<int> { 21, 8, 13, 7, 14 } },
         { "Azul", new List<int> { 0, 25, 20, 11 } },
-        { "Roxo", new List<int> { 17, 14, 23, 14 } },
-        { "Laranja", new List<int> { 11, 0, 17, 0, 13, 9, 0 } },
+        { "Ciano", new List<int> { 2, 8, 0, 13, 14 } },
+        { "Cobre", new List<int> { 2, 14, 1, 17, 4} },
         { "Branco", new List<int> { 1, 17, 0, 13, 2, 14 } },
-        { "Marrom", new List<int> { 12, 0, 17, 17, 14, 12 } },
+        { "Cinza", new List<int> { 2, 8, 13, 25, 0} },
         { "Preto", new List<int> { 15, 17, 4, 19, 14 } },
+
+        // Verbos
+
+        {"Causei", new List<int>() {2, 0, 20, 18, 4, 8}},
+        {"Dizer", new List<int>() {3, 8, 25, 4, 17}},
+        {"Fugir", new List<int>() {5, 20, 6, 8, 17}},
+        {"Molhar", new List<int>() {12, 14, 11, 7, 0, 17}},
+        {"Puxem", new List<int>() {15, 20, 23, 4, 12}},
+        {"Brindamos", new List<int>() {1, 17, 8, 13, 3, 0, 12, 14, 18}},
+        {"Tocar", new List<int>() {19, 14, 2, 0, 17}},
+        {"Zombar", new List<int>() {25, 14, 12, 1, 0, 17}},
+        {"Jogar", new List<int> { 9, 14, 6, 0, 17} },
+        {"Falou", new List<int> {5, 0, 11, 14, 20} },
+
+        //Cumprimentos
+
+        {"BomDia", new List<int>() {1, 14, 12, 3, 8, 0}},
+        {"BoaTarde", new List<int>() {1, 14, 0, 19, 4, 17, 3, 4}},
+        {"BoaNoite", new List<int>() {1, 14, 0, 13, 14, 8, 19, 4}},
+        {"Oi", new List<int>() {14, 8}},
+        {"Ola", new List<int>() {14, 11, 0}},
+        {"Obrigado", new List<int>() {14, 1, 17, 8, 6, 0, 3, 14}},
+        {"Desculpa", new List<int>() {3, 4, 18, 2, 20, 11, 15, 0}},
+        {"Licenca", new List<int>() {11, 8, 2, 4, 13, 2, 0 }},
+        {"PorFavor", new List<int> { 15, 14, 17, 5, 0, 21, 14, 17} },
+        {"Adeus", new List<int> {0, 3, 4, 20, 18} }
+
     };
 
     void Start()
@@ -115,8 +147,10 @@ public class Configurador : MonoBehaviour
         foreach (Button btn in activeButtons)
             btn.gameObject.SetActive(true);
 
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(2);
         ShuffleButtons();
+
+        buttonsShuffled = true; // Agora os botões podem ser pressionados
     }
 
     void ShuffleButtons()
@@ -139,8 +173,13 @@ public class Configurador : MonoBehaviour
 
     public void ValidateButtonPress(int buttonIndex)
     {
+        if(!buttonsShuffled) return;
+
         if (nextIndex < correctOrder.Count && buttonIndex == nextIndex)
         {
+            //Mudar a cor do botão para verde ao acertar
+            activeButtons[buttonIndex].image.color = Color.green;
+
             nextIndex++;
 
             // Somente ativa um ícone de sucesso quando TODA a sequência for concluída

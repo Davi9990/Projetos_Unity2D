@@ -3,27 +3,57 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SocialPlatforms;
 
 public class Aleatorizador_De_Palavras_2 : MonoBehaviour
 {
     public TextMeshProUGUI Text; // Referência ao TextMeshPro
-    public float TempoEmbaralhando = 4f; // Tempo de "embaralhamento"
-    public float TempoEmTela = 5f; // Tempo que a palavra fica visível
+    public float TempoEmbaralhando = 2f; // Tempo de "embaralhamento"
+    public float TempoEmTela = 3f; // Tempo que a palavra fica visível
     public Button[] Alfabeto; // Botões correspondentes às letras do alfabeto
     public Transform[] Slots; // Objetos vazios para posicionar os botões
 
     public List<string> Palavras = new List<string>
     {
-        "Verde",
-        "Amarelo",
-        "Lilás",
-        "Azul",
+
+        //Cores
+
+        "Malto",
         "Rosa",
-        "Roxo",
-        "Laranja",
+        "Vinho",
+        "Lima",
+        "Azul",
+        "Ciano",
+        "Cobre",
         "Branco",
-        "Marrom",
-        "Preto"
+        "Cinza",
+        "Preto",
+
+        //Verbos
+
+        "Causei",
+        "Dizer",
+        "Fugir",
+        "Molhar",
+        "Puxem",
+        "Brindamos",
+        "Tocar",
+        "Zombar",
+        "Jogar",
+        "Falou",
+
+        //Cumprimentos
+
+        "BomDia",
+        "BoaTarde",
+        "BoaNoite",
+        "Ola",
+        "Oi",
+        "Adeus",
+        "Desculpe",
+        "Obrigado",
+        "Licenca",
+        "PorFavor"
     };
 
     public GameObject[] slotsErro; // Slots visuais para os erros
@@ -35,15 +65,45 @@ public class Aleatorizador_De_Palavras_2 : MonoBehaviour
 
     private Dictionary<string, List<int>> PalavrasParaBotoes = new Dictionary<string, List<int>>()
     {
-        {"Verde", new List<int>() {18, 3, 23, 1, 26}},
-        {"Amarelo", new List<int>() {4, 13, 27, 23, 3, 8, 17}},
-        {"Lilais", new List<int>() {8, 11, 28, 4, 29, 16}},
+        //Cores
+
+        {"Malto", new List<int>() {13, 4, 8, 14, 17}},
+        {"Vinho", new List<int>() {18, 11, 9, 10, 17}},
+        {"Lima", new List<int>() {8, 11, 13, 4}},
         {"Azul", new List<int>() {4, 21, 15, 8}},
         {"Rosa", new List<int>() {23, 17, 16, 4}},
-        {"Laranja", new List<int>() {8, 4, 23, 27, 9, 12, 30}},
+        {"Ciano", new List<int>() {0, 11, 4, 9, 17}},
         {"Branco", new List<int>() {2, 23, 4, 9, 0, 17}},
-        {"Marrom", new List<int>() {13, 4, 23, 31, 17, 32}},
-        {"Preto", new List<int> {25, 23, 3, 14, 17} }
+        {"Cobre", new List<int>() {0, 17, 2, 23, 3}},
+        {"Cinza", new List<int> { 0, 11, 9, 21, 4} },
+        {"Preto", new List<int> {25, 23, 3, 14, 17} },
+
+
+        // Verbos
+
+        {"Causei", new List<int>() {0, 4, 15, 16, 3, 11}},
+        {"Dizer", new List<int>() {1, 11, 21, 3, 23}},
+        {"Fugir", new List<int>() {5, 15, 7, 11, 23}}, 
+        {"Molhar", new List<int>() {13, 17, 8, 10, 4, 23}},
+        {"Puxem", new List<int>() {25, 15, 19, 13}}, 
+        {"Brindamos", new List<int>() {2, 23, 11, 9, 1, 4, 13, 17, 16}},
+        {"Tocar", new List<int>() {14, 17, 0, 4, 23}},
+        {"Zombar", new List<int>() {21, 17, 13, 2, 4, 23}},
+        {"Jogar", new List<int> { 12, 17, 7, 4, 23} },
+        {"Falou", new List<int> {5, 4, 8, 17, 15} },
+
+        //Cumprimentos
+
+        {"BomDia", new List<int>() {2, 17, 13, 1, 11, 4}},
+        {"BoaTarde", new List<int>() {2, 17, 4, 14, 4, 23, 1, 3}},
+        {"BoaNoite", new List<int>() {2, 17, 4, 9, 17, 11, 14, 3}},
+        {"Oi", new List<int>() {17, 11}},
+        {"Ola", new List<int>() {17, 8, 4}},
+        {"Obrigado", new List<int>() {17, 2, 23, 11, 7, 4, 1, 17}},
+        {"Desculpa", new List<int>() {1, 3, 16, 0, 15, 8, 25, 4}},
+        {"Licenca", new List<int>() {8, 11, 0, 3, 9, 0, 4 }},
+        {"PorFavor", new List<int> { 25, 17, 23, 5, 4, 18, 17, 23} },
+        {"Adeus", new List<int> {4, 1, 3, 15, 16} }
     };
 
     void Start()
@@ -83,9 +143,20 @@ public class Aleatorizador_De_Palavras_2 : MonoBehaviour
         palavraAtual = RandomPalavra();
         float tempoRestante = TempoEmbaralhando;
 
+        // Desativa a interatividade de todos os botões no array
+        foreach (Button botao in Alfabeto)
+        {
+            if (botao != null)
+            {
+                botao.interactable = false;
+            }
+        }
+
         // Enquanto o tempo de embaralhamento não acabar
         while (tempoRestante > 0)
         {
+
+
             // Exibe uma palavra aleatória da lista durante o efeito de embaralhamento
             Text.text = RandomPalavra();
 
@@ -98,6 +169,9 @@ public class Aleatorizador_De_Palavras_2 : MonoBehaviour
 
         // Após o embaralhamento, exibe a palavra sorteada
         Text.text = palavraAtual;
+
+
+
 
         // Espera o tempo de exibição da palavra sorteada
         yield return new WaitForSeconds(TempoEmTela);
@@ -126,6 +200,15 @@ public class Aleatorizador_De_Palavras_2 : MonoBehaviour
 
         // Torna o Text invisível, já que agora apenas os botões devem permanecer
         Text.gameObject.SetActive(false);
+
+        // Ativa a interatividade de todos os botões no array
+        foreach (Button botao in Alfabeto)
+        {
+            if (botao != null)
+            {
+                botao.interactable = true;
+            }
+        }
     }
 
     void AtivarButton(int indice, Transform slot)
