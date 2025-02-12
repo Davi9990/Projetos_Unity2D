@@ -526,10 +526,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bacaff20a230ad342bf836748771e38d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fasef: {fileID: 0}
-  Iara: 0
-  Boitata: 0
-  Curupira: 0
+  fasef: {fileID: 5828397871336352814, guid: dccc18c3d6758b14a8eb1982f20164db, type: 3}
+  Iara: 1
+  Boitata: 1
+  Curupira: 1
 --- !u!1 &652523101
 GameObject:
   m_ObjectHideFlags: 0
@@ -826,9 +826,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae1d3531bb7355e4892dd2e56b0436ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Boitata: 0
-  Curupira: 0
-  Iara: 0
+  Boitata: 1
+  Curupira: 1
+  Iara: 1
 --- !u!4 &943086892
 Transform:
   m_ObjectHideFlags: 0
