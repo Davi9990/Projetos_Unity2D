@@ -258,13 +258,13 @@ public class Movimentacao : MonoBehaviour
         GameObject prefabAtual = null;
         GameObject proximoPrefab = null;
 
-        if (scoreAtual >= 4000 && scoreAtual < 16000)
+        if (scoreAtual >= 13000 && scoreAtual < 30000)
         {
 
             prefabAtual = Osvaldo_Normal;
             proximoPrefab = Osvaldo_Grande;
         }
-        else if (scoreAtual >= 16000 && scoreAtual < 40000)
+        else if (scoreAtual >= 30000 && scoreAtual < 40000)
         {
             prefabAtual = Osvaldo_Grande;
             proximoPrefab = Osvaldo_Giga;
@@ -297,6 +297,22 @@ public class Movimentacao : MonoBehaviour
             buttonDown.interactable = false;
             buttonUp.interactable = false;
             anim.SetBool("Escalando", false);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "Chao")
+        {
+            EstaNoChao = true;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "Chao")
+        {
+            EstaNoChao = false;
         }
     }
 }

@@ -120,7 +120,7 @@ public class TelaPrincipal : MonoBehaviour
         if(ciclo >= 30)
         {
             //Lembrar de criar um script especifico para telas aleatórias de gameplay e fazer ela ser chamada tanto aqui quanto no fim de cada tela
-            SceneManager.LoadScene("Tela1");
+            SceneManager.LoadScene("ConDia");
         }
 
         

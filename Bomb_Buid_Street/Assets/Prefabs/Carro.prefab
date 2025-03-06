@@ -78,7 +78,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 49
   m_Sprite: {fileID: -449020638, guid: 8abf823fedf0a41409c04464d8d292e5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -177,9 +177,14 @@ MonoBehaviour:
   startPoint: {fileID: 0}
   endPoint: {fileID: 0}
   speed: 2
-  tempoParado: 0
-  objeto: {fileID: 4981475685065509462}
+  tempoParadoThreshold: 10
   sprite: {fileID: 698521444559331095}
+  playerRb: {fileID: 0}
+  playerRbGrande: {fileID: 0}
+  playerRbGiga: {fileID: 0}
+  tempoParadoPlayer: 0
+  tempoParadoPlayerGrande: 0
+  tempoParadoPlayerGiga: 0
 --- !u!114 &8107060407388128178
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,6 +198,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vida: {fileID: 0}
+  vida2: {fileID: 0}
+  vida3: {fileID: 0}
   damage: 1
 --- !u!82 &5941762835920504933
 AudioSource:
