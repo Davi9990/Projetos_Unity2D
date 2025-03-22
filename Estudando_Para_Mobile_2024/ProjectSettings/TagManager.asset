@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Chao
   - PontoA
+  - Inimigo
   layers:
   - Default
   - TransparentFX

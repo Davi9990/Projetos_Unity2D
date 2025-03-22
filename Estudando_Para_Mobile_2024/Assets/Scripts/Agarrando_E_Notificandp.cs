@@ -20,7 +20,7 @@ public class Agarrando_E_Notificandp3 : MonoBehaviour
         {
             Touch touch = Input.GetTouch(0);  
 
-            if(touch.phase == TouchPhase.Began || touch.phase == TouchPhase.Moved || touch.phase == TouchPhase.Stationary)
+            if(touch.phase == TouchPhase.Moved || touch.phase == TouchPhase.Stationary)
             {
                 Vector3 touchPos = Camera.main.ScreenToWorldPoint(touch.position);
                 touchPos.z = 0f;
