@@ -6,6 +6,21 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/Scenes/Tela 1.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/Game Over.unity
+    guid: e4db8d0e1c882ac4cbc4d48d75094a72
+  - enabled: 1
+    path: Assets/Scenes/Tela de Vitoria.unity
+    guid: bf502afc1205c46489ee99b857486c41
+  - enabled: 1
+    path: Assets/Scenes/Tela 2.unity
+    guid: 1c535e54cad34964ca7eebd0289e6305
+  - enabled: 1
+    path: Assets/Scenes/Tela 3.unity
+    guid: 1c38ec47f56e5514f80c2f303980f1b3
+  - enabled: 1
+    path: Assets/Scenes/Tela 4.unity
+    guid: 697cb160470346d4b80fd8f930ce5159
   m_configObjects: {}
