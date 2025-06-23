@@ -7,6 +7,11 @@ TagManager:
   - Escada
   - chao
   - Rope
+  - EndPoint
+  - EndPoint2
+  - EndPoint3
+  - EndPoint4
+  - EndPoint5
   layers:
   - Default
   - TransparentFX
