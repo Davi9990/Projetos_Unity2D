@@ -15,11 +15,98 @@ EditorBuildSettings:
     path: Assets/Scenes/TelaAY.unity
     guid: 6f7330467565c9f49ba3a67f5df224d4
   - enabled: 1
+    path: Assets/Scenes/Cemiterio/CemDia.unity
+    guid: c7301cd5e268f314193974cc498446e1
+  - enabled: 1
+    path: Assets/Scenes/Praia/PraNoi.unity
+    guid: 376b9f2bfa318ac479d6bbdb622f8e07
+  - enabled: 1
+    path: Assets/Scenes/Praia/PraTar.unity
+    guid: d825572323ef86b409e3ae8037c152e0
+  - enabled: 1
+    path: Assets/Scenes/Praia/PraDia.unity
+    guid: f0876088c313bc14296ba86f57f251ae
+  - enabled: 1
+    path: Assets/Scenes/PostoDeGasolina/PosDia.unity
+    guid: 0566db476c73ce74b8fda175b23b0976
+  - enabled: 1
+    path: Assets/Scenes/PostoDeGasolina/PosNoi.unity
+    guid: 6cb8b2fde0882054c96f9a9f0abeb812
+  - enabled: 1
+    path: Assets/Scenes/PostoDeGasolina/PosTar.unity
+    guid: d3aa0cb2a9bc0ed4eabe56d29577d24c
+  - enabled: 1
     path: Assets/Scenes/TelaTitulo.unity
     guid: 05af21f5d3b4c41469f80fdc21999ab0
   - enabled: 1
+    path: Assets/Scenes/Condominios/ConDia.unity
+    guid: dc07549f6d77a364dba822fe694d9bdc
+  - enabled: 1
+    path: Assets/Scenes/Condominios/ConNoi.unity
+    guid: d74cc18603c35834f973c0d95bd1407b
+  - enabled: 1
+    path: Assets/Scenes/Ponte/PonDia.unity
+    guid: c29429354d9424b41ab3b0904809fe1a
+  - enabled: 1
+    path: Assets/Scenes/Ponte/PonNoi.unity
+    guid: 6518fb8544019b842a8093c77dcfa2cb
+  - enabled: 1
+    path: Assets/Scenes/Ponte/PonTar.unity
+    guid: 90a91d5a1c3afaa41ab630c662398427
+  - enabled: 1
+    path: Assets/Scenes/Metro/MetTar.unity
+    guid: bd556577a4328f94c95cac548d43de1a
+  - enabled: 1
+    path: Assets/Scenes/Farmaciazinha/FarDia.unity
+    guid: d6384d6bfa533b04989753775b0f1747
+  - enabled: 1
+    path: Assets/Scenes/Farmaciazinha/FarTar.unity
+    guid: 30426c0f2b68d5c47adf4b76c7a41bdf
+  - enabled: 1
+    path: Assets/Scenes/Igreja/IgrNoi.unity
+    guid: 4d36c2bae6cc41f4a92418ddfcfb8441
+  - enabled: 1
+    path: Assets/Scenes/Metro/MetDia.unity
+    guid: 5bb8308dd7ac40e4aa0967ab8ae49b87
+  - enabled: 1
+    path: Assets/Scenes/Metro/MetNoi.unity
+    guid: 6a0345357ce498747bf415cd2665d9c3
+  - enabled: 1
+    path: Assets/Scenes/Mercadinho/MerDia.unity
+    guid: 26ed9ff9a7e52d346b34ed826d30c9ab
+  - enabled: 1
+    path: Assets/Scenes/Mercadinho/MerNoi.unity
+    guid: 577dbe15edad0d1408352cc2f1341afe
+  - enabled: 1
+    path: Assets/Scenes/Mercadinho/MerTar.unity
+    guid: 011d1b522e96d724d87f7eeac9d4763c
+  - enabled: 1
+    path: "Assets/Scenes/Lix\xE3o(Eu)/LixDia.unity"
+    guid: 8ab21e8bbe811af4aa6de9106e1f0b62
+  - enabled: 1
+    path: "Assets/Scenes/Lix\xE3o(Eu)/LixNoi.unity"
+    guid: bc42950e6aa200540b4962299842215e
+  - enabled: 1
+    path: "Assets/Scenes/Lix\xE3o(Eu)/LixTar.unity"
+    guid: 8ab60fc441519b54c9c322d24f15dc5e
+  - enabled: 1
+    path: Assets/Scenes/Igreja/IgrTar.unity
+    guid: 08f172a1dcd081341b79616823de13c6
+  - enabled: 1
+    path: Assets/Scenes/Igreja/IgrDia.unity
+    guid: d30785c5adb6d554d805d863e79c7d30
+  - enabled: 1
+    path: Assets/Scenes/Condominios/ConTar.unity
+    guid: 59f2e71cef6a98a4cb4e0eef4868beae
+  - enabled: 1
     path: Assets/Scenes/Vitoria.unity
     guid: 46b2db6cf233c0542bd8a6a855e826a2
+  - enabled: 1
+    path: Assets/Scenes/Cemiterio/CemNoi.unity
+    guid: 61d6a7da26248da47bfb33867202501c
+  - enabled: 1
+    path: Assets/Scenes/Cemiterio/CemTar.unity
+    guid: 0978c2cdeee64384f9e9af5fae300e3e
   - enabled: 1
     path: Assets/Scenes/Tela1.unity
     guid: 92d5a96cb3bf56549841c0f67abc8d31
