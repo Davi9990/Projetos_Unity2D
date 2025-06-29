@@ -12,6 +12,13 @@ TagManager:
   - EndPoint3
   - EndPoint4
   - EndPoint5
+  - ParedeFinal1
+  - ParedeFinal2
+  - PontoDeSpawn
+  - PontoDeSpawn2
+  - ParedeFinal3
+  - PontoDeSpawn3
+  - PontoDeSpawn1
   layers:
   - Default
   - TransparentFX
