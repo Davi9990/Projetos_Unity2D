@@ -8,7 +8,7 @@ public class Crocodilo : MonoBehaviour
     public float TempoBocaFechado;
     public bool HoradedarDano = false;
     public int Dano;
-    public SistemasDeVidas vida;
+    //public SistemasDeVidas vida;
 
     void Start()
     {
@@ -42,10 +42,19 @@ public class Crocodilo : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Player") && HoradedarDano == true)
         {
-            Debug.Log("Está dando Dano");
-            vida.vidaatual = vida.vida;
-            vida.vida -= Dano;
-            vida.AtualizarHudDeVida();
+            SistemasDeVidas vida = collision.gameObject.GetComponent<SistemasDeVidas>();
+
+            if(vida != null)
+            {
+                Debug.Log("Está dando Dano");
+                vida.vidaatual = vida.vida;
+                vida.vida -= Dano;
+                vida.AtualizarHudDeVida();
+            }
+            else
+            {
+                Debug.LogWarning("Sistema não encontrado no objeto Player");
+            }
         }
     }
 }

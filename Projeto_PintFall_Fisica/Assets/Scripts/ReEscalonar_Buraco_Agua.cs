@@ -10,7 +10,7 @@ public class ReEscalonar_Buraco_Agua : MonoBehaviour
     public float openTimer;
     public float closedTimer;
     public bool isOpen = false;
-    public SistemasDeVidas vida;
+    //public SistemasDeVidas vida;
     public int dano;
 
     void Start()
@@ -51,10 +51,19 @@ public class ReEscalonar_Buraco_Agua : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            SistemasDeVidas vida = collision.gameObject.GetComponent<SistemasDeVidas>();
+
+            if (vida != null)
+            {
+                vida.vidaatual = vida.vida;
+                vida.vida -= dano;
+                vida.AtualizarHudDeVida();
+            }
+            else
+            {
+                Debug.LogWarning("SistemasDeVidas não encontrado no objeto do player");
+            }
             Debug.Log("Levando Dano continuo");
-            vida.vidaatual = vida.vida;
-            vida.vida -= dano;
-            vida.AtualizarHudDeVida();
         }
     }
 }

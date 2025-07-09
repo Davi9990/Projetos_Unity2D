@@ -16,17 +16,23 @@ public class Movimentacao : MonoBehaviour
     //Pulo
     public float JumpForce;
     public bool EstaNoChao;
+    public Transform groundCheck;
+    public float groundCheckRadius = 0.2f;
 
     //Escadas
     private bool escalando;
     private float vertical;
     public bool escada;
 
+    //Animator
+    private Animator anim;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         hingeJoing = gameObject.GetComponent<HingeJoint2D>();
         hingeJoing.enabled = false;
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -48,6 +54,22 @@ public class Movimentacao : MonoBehaviour
             if(EstaNoChao && Input.GetButtonDown("Jump"))
             {
                 Jump();
+            }
+            else if (!EstaNoChao)
+            {
+                anim.SetBool("Pulando", true);
+            }
+        }
+
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheck.position, groundCheckRadius);
+        EstaNoChao = false;
+        foreach(Collider2D collider in colliders)
+        {
+            if (collider.CompareTag("chao"))
+            {
+                EstaNoChao = true;
+                anim.SetBool("Pulando", false);
+                break;
             }
         }
     }
@@ -94,9 +116,15 @@ public class Movimentacao : MonoBehaviour
         if(xAxis > 0 && !isFacingRight)
         {
             Flip();
+            anim.SetBool("Andando", true);
         }else if(xAxis < 0 && isFacingRight)
         {
             Flip();
+            anim.SetBool("Andando", true);
+        }
+        else if(xAxis == 0)
+        {
+            anim.SetBool("Andando", false);
         }
     }
 
@@ -134,27 +162,28 @@ public class Movimentacao : MonoBehaviour
         rb.velocity = Vector2.zero; //Para o movimento brusco
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("chao"))
-        {
-            EstaNoChao = true;
-        }
-    }
+    //private void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    if (collision.gameObject.CompareTag("chao"))
+    //    {
+    //        EstaNoChao = true;
+    //    }
+    //}
 
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("chao"))
-        {
-            EstaNoChao = false;
-        }
-    }
+    //private void OnCollisionExit2D(Collision2D collision)
+    //{
+    //    if (collision.gameObject.CompareTag("chao"))
+    //    {
+    //        EstaNoChao = false;
+    //    }
+    //}
 
     private void OnTriggerStay2D(Collider2D other)
     {
         if(other.CompareTag("Rope") && Input.GetButton("Jump") && !isSwinging)
         {
             GrabRope(other.transform);
+            anim.SetBool("Cipando", true);
         }
     }
 
@@ -163,6 +192,7 @@ public class Movimentacao : MonoBehaviour
         if (collision.CompareTag("Escada"))
         {
             escada = true;
+            anim.SetBool("Escalando", true);
         }
 
         if (collision.CompareTag("Rope"))
@@ -178,6 +208,12 @@ public class Movimentacao : MonoBehaviour
             escada = false;
             escalando = false;
             rb.velocity = new Vector2(rb.velocity.x, 0);
+            anim.SetBool("Escalando", false);
+        }
+
+        if (collision.CompareTag("Rope"))
+        {
+            anim.SetBool("Cipando", false);
         }
     }
 }

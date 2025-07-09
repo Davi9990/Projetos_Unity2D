@@ -178,5 +178,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d989ccc17444f345be6ffc76c5bcb24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vida: {fileID: 0}
+  vida: {fileID: 77820244569267375, guid: 0e8dbb2fe6a3bfa4aa81732cf891c537, type: 3}
   damage: 1

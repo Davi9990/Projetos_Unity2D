@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Tela 1.unity
+    path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
     path: Assets/Scenes/Game Over.unity
@@ -23,4 +23,49 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Tela 4.unity
     guid: 697cb160470346d4b80fd8f930ce5159
+  - enabled: 1
+    path: Assets/Scenes/Tela 5.unity
+    guid: cd8771a103386dd429ef2def48fca222
+  - enabled: 1
+    path: Assets/Scenes/Tela 6.unity
+    guid: ea4beed5ec5a5ea4eac1ebc5e1b4bf2e
+  - enabled: 1
+    path: Assets/Scenes/Tela 7.unity
+    guid: 2556338792f3d5f48b21fb4d9625509b
+  - enabled: 1
+    path: Assets/Scenes/Tela 8.unity
+    guid: 3fc6e4aa83eafd745bb4f83e02985cc0
+  - enabled: 1
+    path: Assets/Scenes/Tela 9.unity
+    guid: f325c3e3085f4934ba72229f75b03bd5
+  - enabled: 1
+    path: Assets/Scenes/Tela 10.unity
+    guid: d91242af231e09549aef709095163847
+  - enabled: 1
+    path: Assets/Scenes/Tela 11.unity
+    guid: 3d1d6bc8788d5b64c8eecdab1cc7aedf
+  - enabled: 1
+    path: Assets/Scenes/Tela 12.unity
+    guid: ebe2f6d6a5905e34eade72a0041f4abd
+  - enabled: 1
+    path: Assets/Scenes/Tela 13.unity
+    guid: a2ea0fed54b47024baf433bb2088873e
+  - enabled: 1
+    path: Assets/Scenes/Tela 14.unity
+    guid: 9b697dd124c26644a977eddf2616f08e
+  - enabled: 1
+    path: Assets/Scenes/Tela 15.unity
+    guid: ba35de5f015b31f49b65649d4595ecde
+  - enabled: 1
+    path: Assets/Scenes/Tela 16.unity
+    guid: 61f5f8fe96ad6e74eb5976b540bc97c4
+  - enabled: 1
+    path: Assets/Scenes/Tela 17.unity
+    guid: c8745680f0f2f9f45a6851dffebe99de
+  - enabled: 1
+    path: Assets/Scenes/Tela 18.unity
+    guid: 559af2de25b570847879e861615ea2e8
+  - enabled: 1
+    path: Assets/Scenes/Tela 19.unity
+    guid: 12ccc31d494071841a91f9441a86c12e
   m_configObjects: {}

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyDamage : MonoBehaviour
 {
-    public SistemasDeVidas vida;
+    //public SistemasDeVidas vida;
     public int damage = 1;
     
     void Start()
@@ -15,11 +15,20 @@ public class EnemyDamage : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.CompareTag("Player"))
         {
-            vida.vidaatual = vida.vida;
-            vida.vida -= damage;
-            vida.AtualizarHudDeVida();
+            SistemasDeVidas vida = collision.gameObject.GetComponent<SistemasDeVidas>();
+
+            if (vida != null)
+            {
+                vida.vidaatual = vida.vida;
+                vida.vida -= damage;
+                vida.AtualizarHudDeVida();
+            }
+            else
+            {
+                Debug.LogWarning("SistemasDeVidas não encontrado no objeto Player.");
+            }
         }
     }
 }
