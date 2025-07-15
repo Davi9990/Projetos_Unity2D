@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class ReEscalonar_Buraco : MonoBehaviour
 {
@@ -12,7 +13,8 @@ public class ReEscalonar_Buraco : MonoBehaviour
     //ublic bool TimerIsRunning = true;
     public float closedTimer;
     public bool isOpen = false;
-    public BoxCollider2D chao;
+    //public BoxCollider2D chao;
+    public TilemapCollider2D colider;
 
     void Start()
     {
@@ -23,7 +25,8 @@ public class ReEscalonar_Buraco : MonoBehaviour
             targetTransform.localScale = new Vector3(openScaleX, targetTransform.localScale.y, targetTransform.localScale.z);
         }
 
-        chao.enabled = true;
+        //ao.enabled = true;
+        colider.enabled = true;
     }
 
     // Update is called once per frame
@@ -32,23 +35,25 @@ public class ReEscalonar_Buraco : MonoBehaviour
         if (!isOpen)
         {
             closedTimer += Time.deltaTime;
-            if(closedTimer >= 2f )
+            if(closedTimer >= 3f )
             {
                 targetTransform.localScale = new Vector3(openScaleX, targetTransform.localScale.y, targetTransform.localScale.z);
                 isOpen = true;
                 closedTimer = 0f;
-                chao.enabled = false;
+                //chao.enabled = false;
+                colider.enabled = false;
             }
         }
         else
         {
             openTimer += Time.deltaTime;
-            if(openTimer >= 2f)
+            if(openTimer >= 3f)
             {
                 targetTransform.localScale = new Vector3(originalScaleX, targetTransform.localScale.y, targetTransform.localScale.z);
                 isOpen = false;
                 openTimer = 0f;
-                chao.enabled = true;
+                //chao.enabled = true;
+                colider.enabled = true;
             }
         }
 

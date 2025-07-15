@@ -57,7 +57,7 @@ public class ScoreManeger : MonoBehaviour
 
     public void PontuacaoFinal()
     {
-        if(score == 3000)
+        if(score == 113249)
         {
             SceneManager.LoadScene("Tela de Vitoria");
             Destroy(gameObject);

@@ -10,9 +10,10 @@ public class Crocodilo : MonoBehaviour
     public int Dano;
     //public SistemasDeVidas vida;
 
+    private Animator anim;
     void Start()
     {
-        
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -21,7 +22,8 @@ public class Crocodilo : MonoBehaviour
         if (!HoradedarDano)
         {
             TempoBocaFechado += Time.deltaTime;
-            if(TempoBocaFechado >= 4)
+            anim.SetBool("Abrir", false);
+            if (TempoBocaFechado >= 4)
             {
                 HoradedarDano = true;
                 TempoBocaFechado = 0f;
@@ -30,7 +32,8 @@ public class Crocodilo : MonoBehaviour
         else
         {
             TempoBocaAberta += Time.deltaTime;
-            if(TempoBocaAberta >= 4)
+            anim.SetBool("Abrir", true);
+            if (TempoBocaAberta >= 4)
             {
                 HoradedarDano = false;
                 TempoBocaAberta = 0f;

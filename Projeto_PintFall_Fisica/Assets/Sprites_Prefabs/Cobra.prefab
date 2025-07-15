@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8946753284527361690}
   - component: {fileID: 713349173513037730}
   - component: {fileID: 1047901642218213224}
+  - component: {fileID: 4522853232936541143}
   m_Layer: 0
   m_Name: Cobra
   m_TagString: Untagged
@@ -76,8 +77,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.6037736, g: 0.4463715, b: 0.19651122, a: 1}
+  m_Sprite: {fileID: -806417045, guid: 5016fffb6d021cb4593a131499649a98, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -119,18 +120,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.03246112, y: -0.037098527}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 0.8125, y: 0.8125}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.6444744, y: 0.75886095}
   m_EdgeRadius: 0
 --- !u!50 &713349173513037730
 Rigidbody2D:
@@ -171,5 +172,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d989ccc17444f345be6ffc76c5bcb24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vida: {fileID: 0}
   damage: 1
+--- !u!95 &4522853232936541143
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 115917320697982678}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 852b8aca599b2914eb3b8cbb601394e1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
