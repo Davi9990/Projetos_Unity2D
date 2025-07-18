@@ -27,12 +27,18 @@ public class Movimentacao : MonoBehaviour
     //Animator
     private Animator anim;
 
+    //Sons
+    public AudioClip jumpSound;
+    public AudioClip ropeGrabSound;
+    private AudioSource audioSource;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         hingeJoing = gameObject.GetComponent<HingeJoint2D>();
         hingeJoing.enabled = false;
         anim = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -133,6 +139,11 @@ public class Movimentacao : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Space) && EstaNoChao && !escalando)
         {
             rb.velocity = Vector2.up * JumpForce;
+
+            if(jumpSound != null)
+            {
+                audioSource.PlayOneShot(jumpSound);
+            }
         }
     }
 
@@ -160,6 +171,11 @@ public class Movimentacao : MonoBehaviour
         hingeJoing.autoConfigureConnectedAnchor = false;
         hingeJoing.connectedAnchor = Vector2.zero;
         rb.velocity = Vector2.zero; //Para o movimento brusco
+
+        if(ropeGrabSound != null)
+        {
+            audioSource.PlayOneShot(ropeGrabSound);
+        }
     }
 
     //private void OnCollisionEnter2D(Collision2D collision)

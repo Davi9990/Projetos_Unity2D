@@ -6,10 +6,11 @@ public class EnemyDamage : MonoBehaviour
 {
     //public SistemasDeVidas vida;
     public int damage = 1;
+    public AudioClip damageSound;
     
     void Start()
     {
-        
+       
     }
 
 
@@ -28,6 +29,11 @@ public class EnemyDamage : MonoBehaviour
             else
             {
                 Debug.LogWarning("SistemasDeVidas não encontrado no objeto Player.");
+            }
+
+            if(damageSound != null)
+            {
+                AudioSource.PlayClipAtPoint(damageSound, Camera.main.transform.position,1.0f);
             }
         }
     }

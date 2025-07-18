@@ -6380,8 +6380,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1548572108870452303, guid: 0e8dbb2fe6a3bfa4aa81732cf891c537, type: 3}
       propertyPath: m_ConnectedAnchor.y
-      value: -0.4599985
+      value: -0.1699985
       objectReference: {fileID: 0}
+    - target: {fileID: 4738274286046698755, guid: 0e8dbb2fe6a3bfa4aa81732cf891c537, type: 3}
+      propertyPath: Priority
+      value: 81
+      objectReference: {fileID: 0}
+    - target: {fileID: 4738274286046698755, guid: 0e8dbb2fe6a3bfa4aa81732cf891c537, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 2cea230f5944f6d42b35f9d34b9721a2, type: 3}
     - target: {fileID: 4846591690154846426, guid: 0e8dbb2fe6a3bfa4aa81732cf891c537, type: 3}
       propertyPath: m_LocalPosition.y
       value: -0.92
@@ -6394,6 +6402,14 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7096768128288870035, guid: 0e8dbb2fe6a3bfa4aa81732cf891c537, type: 3}
+      propertyPath: MinDistance
+      value: 1.0821357
+      objectReference: {fileID: 0}
+    - target: {fileID: 7096768128288870035, guid: 0e8dbb2fe6a3bfa4aa81732cf891c537, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 2cea230f5944f6d42b35f9d34b9721a2, type: 3}
     - target: {fileID: 7665511102007093704, guid: 0e8dbb2fe6a3bfa4aa81732cf891c537, type: 3}
       propertyPath: m_LocalPosition.x
       value: -13.44
@@ -6435,9 +6451,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8243061745398024999, guid: 0e8dbb2fe6a3bfa4aa81732cf891c537, type: 3}
+      propertyPath: jumpSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 2cea230f5944f6d42b35f9d34b9721a2, type: 3}
+    - target: {fileID: 8243061745398024999, guid: 0e8dbb2fe6a3bfa4aa81732cf891c537, type: 3}
       propertyPath: groundCheck
       value: 
       objectReference: {fileID: 3295440517959657584}
+    - target: {fileID: 8243061745398024999, guid: 0e8dbb2fe6a3bfa4aa81732cf891c537, type: 3}
+      propertyPath: ropeGrabSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 3801b897a698e38428c7dfdfdbdf7bd1, type: 3}
     - target: {fileID: 8266200502000653067, guid: 0e8dbb2fe6a3bfa4aa81732cf891c537, type: 3}
       propertyPath: m_Size.x
       value: 0.292579
@@ -6453,6 +6477,14 @@ PrefabInstance:
     - target: {fileID: 8266200502000653067, guid: 0e8dbb2fe6a3bfa4aa81732cf891c537, type: 3}
       propertyPath: m_Offset.y
       value: 0.0017015934
+      objectReference: {fileID: 0}
+    - target: {fileID: 8954941212579782656, guid: 0e8dbb2fe6a3bfa4aa81732cf891c537, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 3801b897a698e38428c7dfdfdbdf7bd1, type: 3}
+    - target: {fileID: 8954941212579782656, guid: 0e8dbb2fe6a3bfa4aa81732cf891c537, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
