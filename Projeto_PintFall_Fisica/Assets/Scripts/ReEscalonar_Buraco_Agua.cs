@@ -12,6 +12,7 @@ public class ReEscalonar_Buraco_Agua : MonoBehaviour
     public bool isOpen = false;
     //public SistemasDeVidas vida;
     public int dano;
+    public AudioClip damageSound;
 
     void Start()
     {
@@ -64,6 +65,11 @@ public class ReEscalonar_Buraco_Agua : MonoBehaviour
                 Debug.LogWarning("SistemasDeVidas não encontrado no objeto do player");
             }
             Debug.Log("Levando Dano continuo");
+
+            if(damageSound != null)
+            {
+                AudioSource.PlayClipAtPoint(damageSound, Camera.main.transform.position, 1.0f);
+            }
         }
     }
 }

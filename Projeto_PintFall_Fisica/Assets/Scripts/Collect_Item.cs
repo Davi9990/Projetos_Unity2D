@@ -19,7 +19,7 @@ public class CollectItem : MonoBehaviour
 
             if(itemsound != null)
             {
-                AudioSource.PlayClipAtPoint(itemsound, Camera.main.transform.position, 1.0f);
+                AudioSource.PlayClipAtPoint(itemsound, Camera.main.transform.position, 0.236f);
             }
 
             Destroy(gameObject);

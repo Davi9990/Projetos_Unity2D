@@ -8,6 +8,7 @@ public class Crocodilo : MonoBehaviour
     public float TempoBocaFechado;
     public bool HoradedarDano = false;
     public int Dano;
+    public AudioClip damageSound;
     //public SistemasDeVidas vida;
 
     private Animator anim;
@@ -57,6 +58,11 @@ public class Crocodilo : MonoBehaviour
             else
             {
                 Debug.LogWarning("Sistema não encontrado no objeto Player");
+            }
+
+            if(damageSound != null)
+            {
+                AudioSource.PlayClipAtPoint(damageSound, Camera.main.transform.position, 1.0f);
             }
         }
     }

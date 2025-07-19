@@ -25,13 +25,28 @@ public class TrocaDeCena : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            if(cena.Length > 0)
+            if(cena.Length == 0)
             {
-                randomIndex = Random.Range(0, cena.Length);
+                Debug.LogWarning("Nenhuma cena disponível no array para troca");
+                return;
             }
 
-            while(randomIndex == faseatual)
-            
+            int tentativa = 0;
+
+            do
+            {
+                randomIndex = Random.Range(0, cena.Length);
+                tentativa++;
+
+
+                // Se não achar outra cenas depois de 100 tenativas, quebra o Loop por segurança
+                if(tentativa > 100)
+                {
+                    Debug.LogError("Loop de seleção de cena excedeu limite de tentativas");
+                    break;
+                }
+            } while (randomIndex == faseatual && cena.Length > 1);
+
             faseatual = randomIndex;
 
             SceneManager.LoadScene(cena[randomIndex]);
