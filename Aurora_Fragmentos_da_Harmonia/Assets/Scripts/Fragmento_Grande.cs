@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Fragmento_Grande : MonoBehaviour
 {
     private SpriteRenderer sprite_Cristal;
     public Inventario inventario;
     public Dialogo dialogo;
+    public TextMeshProUGUI text;
 
     void Start()
     {
@@ -30,8 +32,12 @@ public class Fragmento_Grande : MonoBehaviour
         {
             inventario.Index_Cristais += 1;
             dialogo.AbrirDialogoDireto(inventario.Index_Cristais);
+
+            //Incrementa o placar global (só o cristal final faz isso!)
+            GameManeger.Instance.AddScore(1);
+
             Destroy(gameObject);
-            Debug.Log("Cristal destruido!");
+            Debug.Log("Cristal destruido e pontuação adicionada!");
         }
     }
 }
