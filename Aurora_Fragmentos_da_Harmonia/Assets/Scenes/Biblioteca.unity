@@ -462,8 +462,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 9.01, y: -9.04}
-  m_SizeDelta: {x: 439.18, y: 336.09}
+  m_AnchoredPosition: {x: 23.89, y: 69.21}
+  m_SizeDelta: {x: 668.52, y: 577.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &129083240
 MonoBehaviour:
@@ -480,12 +480,12 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_RaycastPadding: {x: 84.19, y: 30.63, z: 96.53, w: 37.17}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 521c34d0cc86df3428216c2983564766, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9c132c57d42448f43b79ec89c8c4ac7a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -537,8 +537,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -5.32, y: -24}
-  m_SizeDelta: {x: 1333.04, y: 288.93}
+  m_AnchoredPosition: {x: -54, y: -0.000010967}
+  m_SizeDelta: {x: 1333.04, y: 251.47}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &207975576
 CanvasRenderer:
@@ -577,8 +577,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -631,7 +631,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -14.335609, y: 0, z: -4.7788086, w: -9.557083}
+  m_margin: {x: -14.335609, y: 0, z: 97.82202, w: -9.557083}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1160,29 +1160,29 @@ MonoBehaviour:
   - "Agora que minhas palavras foram ouvidas, sinto coregem e esperan\xE7a de que
     minha voz importar\xE1."
   falasIniciais:
-  - "\"A biblioteca... Onde est\xE3o todos os livros de hist\xF3ria? Sinto que este
+  - "A biblioteca... Onde est\xE3o todos os livros de hist\xF3ria? Sinto que este
     lugar, que deveria guardar mem\xF3rias, est\xE1 perdendo suas cores. Um novo
     fragmento est\xE1 aqui. Sinto que ele est\xE1 escondido em uma hist\xF3ria esquecida."
   falasCristal1:
   - "Oi, senhor. Que lindo esse lugar. O senhor poderia me contar sobre o que viu
     aqui? Sobre a hist\xF3ria deste lugar?"
-  - "\"\xC0s vezes, eu sinto que as minhas mem\xF3rias, as minhas hist\xF3rias de
-    vida, est\xE3o sendo esquecidas. Como se o tempo apagasse as marcas que a gente
-    deixa no mundo."
+  - "\xC0s vezes, eu sinto que as minhas mem\xF3rias, as minhas hist\xF3rias de vida,
+    est\xE3o sendo esquecidas. Como se o tempo apagasse as marcas que a gente deixa
+    no mundo."
   - "Eu entendo que \xE9 triste ver o passado ser esquecido. Mas saiba que eu me
     importo. E eu quero saber. Por favor, me conte suas hist\xF3rias."
   falasCristal2:
-  - "\"N\xE3o ser ouvido me faz sentir desconectado. \xC9 como se a minha exist\xEAncia
+  - "N\xE3o ser ouvido me faz sentir desconectado. \xC9 como se a minha exist\xEAncia
     n\xE3o tivesse valor para essa nova gera\xE7\xE3o. Me sinto invis\xEDvel."
   - "Suas hist\xF3rias s\xE3o como os livros dessa biblioteca. Elas nos ensinam quem
     n\xF3s somos. Elas nos conectam. E eu preciso ouvi-las."
   falasCristal3:
   - "Quando algu\xE9m demonstra interesse nas minhas lembran\xE7as, nos meus ensinamentos,
     a vida ganha uma nova cor. \xC9 como se a minha exist\xEAncia fosse reconhecida."
-  - "\"O que fez o senhor vir at\xE9 aqui? Eu sinto que o mestre tem muito a me ensinar
+  - "O que fez o senhor vir at\xE9 aqui? Eu sinto que o mestre tem muito a me ensinar
     sobre a vida e sobre Lumina."
   falasCristal4:
-  - "\"Finalmente, minhas hist\xF3rias foram acolhidas. \xC9 como se a minha jornada
+  - "Finalmente, minhas hist\xF3rias foram acolhidas. \xC9 como se a minha jornada
     tivesse um novo prop\xF3sito. Sinto que meu lugar no mundo importa novamente!"
   - "Obrigada, Mestre Sebasti\xE3o, por compartilhar suas mem\xF3rias comigo. Elas
     me lembram que Lumina n\xE3o foi constru\xEDda do nada. Nossas ra\xEDzes s\xE3o
@@ -1207,14 +1207,13 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 207975575}
-  - {fileID: 1466568666}
   - {fileID: 73232048}
   m_Father: {fileID: 1517171349}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 161.39001, y: -345.40002}
-  m_SizeDelta: {x: -369.82, y: -660.55}
+  m_AnchoredPosition: {x: 234.19, y: -384.63}
+  m_SizeDelta: {x: 389.9, y: -485.52}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &704517084
 MonoBehaviour:
@@ -1229,14 +1228,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ccf08d97326290341be204356eab7a27, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 72e19d3382ba8f24e99dccd339e6bdfb, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1420,7 +1419,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: fcc7e8a09cea58e4882cb76c844856cc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ff58112db325d874992dbb3200c46adf, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1703,7 +1702,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: fcc7e8a09cea58e4882cb76c844856cc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ff58112db325d874992dbb3200c46adf, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1852,7 +1851,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: fcc7e8a09cea58e4882cb76c844856cc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ff58112db325d874992dbb3200c46adf, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1906,8 +1905,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 734, y: -469}
-  m_SizeDelta: {x: 152.98, y: 28.753}
+  m_AnchoredPosition: {x: 830, y: -469}
+  m_SizeDelta: {x: 124.67, y: 49.09}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1393587052
 MonoBehaviour:
@@ -1928,18 +1927,18 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 2
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 1, g: 0.051886797, b: 0.051886797, a: 1}
+    m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 21300000, guid: 7529621a65e5c4446ab4fc18c238d68b, type: 3}
     m_SelectedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
@@ -1985,8 +1984,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: b03d0c50c770c1e4d8313aead26e062a, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -2183,7 +2182,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.3066038, b: 0.9258054, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2256,11 +2255,11 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 129083239}
-  m_Father: {fileID: 704517083}
+  m_Father: {fileID: 1517171349}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -920.64996, y: -23.71997}
+  m_AnchoredPosition: {x: -759.2599, y: -369.12}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1491368507
@@ -2313,7 +2312,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.34117648, g: 0.33333334, b: 0.33333334, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2376,6 +2375,7 @@ RectTransform:
   - {fileID: 1424273912}
   - {fileID: 555895432}
   - {fileID: 1857127437}
+  - {fileID: 1466568666}
   - {fileID: 704517083}
   - {fileID: 1393587051}
   m_Father: {fileID: 0}
@@ -2687,7 +2687,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 98746c97087a02a4ca548394fa591833, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 83c3194f9c8878c42b6581040a4e39ab, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2754,7 +2754,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Fechar
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

@@ -293,7 +293,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c6ad7370ad092ff4fbe319d2b3e02ef2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a8d4c67a499aef24c84472f2f7c8cf05, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -366,8 +366,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 734, y: -469}
-  m_SizeDelta: {x: 152.98, y: 28.753}
+  m_AnchoredPosition: {x: 829.04, y: -453.77}
+  m_SizeDelta: {x: 128.29, y: 53.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &302318032
 MonoBehaviour:
@@ -388,18 +388,18 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 2
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 1, g: 0.051886797, b: 0.051886797, a: 1}
+    m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 21300000, guid: 7529621a65e5c4446ab4fc18c238d68b, type: 3}
     m_SelectedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
@@ -445,8 +445,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: b03d0c50c770c1e4d8313aead26e062a, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -643,7 +643,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.3066038, b: 0.9258054, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -937,7 +937,7 @@ Transform:
   m_GameObject: {fileID: 465879306}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.88, y: -0.28, z: 0}
+  m_LocalPosition: {x: -1.75, y: -0.67, z: 0}
   m_LocalScale: {x: 0.41614085, y: 0.47582495, z: 1.8308}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1119,7 +1119,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9e5b33ce25854b646809e70e21f4a9db, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 94ce5ed8c30627c41bbddb543c115628, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1153,8 +1153,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 653.68, y: 27.50998}
-  m_SizeDelta: {x: 735.38, y: 740.45}
+  m_AnchoredPosition: {x: 647.8399, y: 27.50998}
+  m_SizeDelta: {x: 723.7, y: 740.45}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &525138683
 GameObject:
@@ -1185,7 +1185,7 @@ Transform:
   m_GameObject: {fileID: 525138683}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.71, y: -0.24, z: 0}
+  m_LocalPosition: {x: -5.54, y: 0.87, z: 0}
   m_LocalScale: {x: 0.39204705, y: 0.44827554, z: 1.7248}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1375,17 +1375,17 @@ MonoBehaviour:
   - "Agora que minhas palavras foram ouvidas, sinto coregem e esperan\xE7a de que
     minha voz importar\xE1."
   falasIniciais:
-  - "\"Este jardim... As cores parecem fora de lugar. Sinto que um novo fragmento
-    est\xE1 aqui, mas a sua frequ\xEAncia \xE9 diferente de tudo que eu j\xE1 senti.
-    Preciso tentar entender. Preciso sentir a sua melodia."
+  - "Este jardim... As cores parecem fora de lugar. Sinto que um novo fragmento est\xE1
+    aqui, mas a sua frequ\xEAncia \xE9 diferente de tudo que eu j\xE1 senti. Preciso
+    tentar entender. Preciso sentir a sua melodia."
   falasCristal1:
   - "Oi. Eu n\xE3o entendo muito sobre cristais, mas o seu parece ser \xFAnico."
   - "Eu me sinto fora do ritmo. Minha mente pensa de um jeito diferente e isso me
     faz sentir isolado, como se eu n\xE3o estivesse dan\xE7ando na mesma m\xFAsica
     que todo mundo."
-  - "\"Eu entendo que \xE9 dif\xEDcil quando as pessoas n\xE3o veem as coisas do
-    jeito que a gente v\xEA. Mas, por favor, me diga o que voc\xEA enxerga nesse
-    cristal. Me diga o que voc\xEA enxerga no mundo."
+  - "Eu entendo que \xE9 dif\xEDcil quando as pessoas n\xE3o veem as coisas do jeito
+    que a gente v\xEA. Mas, por favor, me diga o que voc\xEA enxerga nesse cristal.
+    Me diga o que voc\xEA enxerga no mundo."
   falasCristal2:
   - "\xC9 doloroso quando minhas ideias s\xE3o descartadas. Ningu\xE9m entende o
     meu ponto de vista e isso machuca mais do que qualquer coisa que me digam. \xC9
@@ -1395,13 +1395,13 @@ MonoBehaviour:
   falasCristal3:
   - "Quando algu\xE9m se esfor\xE7a para tentar me compreender, eu sinto que posso
     existir plenamente. Sinto que eu tamb\xE9m sou parte da can\xE7\xE3o."
-  - "\"Eu sinto que voc\xEA tem uma vis\xE3o especial do mundo. E ela \xE9 valiosa.
+  - "Eu sinto que voc\xEA tem uma vis\xE3o especial do mundo. E ela \xE9 valiosa.
     Preciso entender o que voc\xEA tem a me dizer"
   falasCristal4:
-  - "\"Sinto que o meu modo de ver o mundo, com todas as suas cores e nuances, importa
+  - "Sinto que o meu modo de ver o mundo, com todas as suas cores e nuances, importa
     de verdade. Agora, eu sei que posso encontrar o meu lugar, assim como todos os
     pedacinhos de um cristal se juntam para formar uma s\xF3 pe\xE7a."
-  - "\"A sua percep\xE7\xE3o me abriu os olhos. O mundo n\xE3o \xE9 uma s\xF3 cor.
+  - "A sua percep\xE7\xE3o me abriu os olhos. O mundo n\xE3o \xE9 uma s\xF3 cor.
     Nem uma s\xF3 m\xFAsica. A beleza de Lumina \xE9 a sua diversidade. Sua voz me
     ensinou que o mundo se torna mais belo quando todos podem ser quem s\xE3o. A
     sua forma de ver as coisas n\xE3o s\xF3 importa, como \xE9 essencial para que
@@ -1423,14 +1423,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ccf08d97326290341be204356eab7a27, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 72e19d3382ba8f24e99dccd339e6bdfb, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1461,14 +1461,13 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1007803555}
-  - {fileID: 1865333123}
   - {fileID: 161774895}
   m_Father: {fileID: 941118509}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 161.39001, y: -345.40002}
-  m_SizeDelta: {x: -369.82, y: -660.55}
+  m_AnchoredPosition: {x: 244.34003, y: -384.63}
+  m_SizeDelta: {x: 357.52, y: -485.53}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &775023139
 GameObject:
@@ -1510,7 +1509,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: fcc7e8a09cea58e4882cb76c844856cc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b6b540ff49c635641ba032ebdbe273a8, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2029,6 +2028,7 @@ RectTransform:
   - {fileID: 2066203487}
   - {fileID: 422944583}
   - {fileID: 1479802703}
+  - {fileID: 1865333123}
   - {fileID: 618794300}
   - {fileID: 302318031}
   m_Father: {fileID: 0}
@@ -2085,8 +2085,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2139,7 +2139,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -14.335609, y: 0, z: -4.7788086, w: -9.557083}
+  m_margin: {x: -14.335609, y: 0, z: 19.362549, w: 62.86718}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -2169,8 +2169,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -5.32, y: -24}
-  m_SizeDelta: {x: 1333.04, y: 288.93}
+  m_AnchoredPosition: {x: -96, y: -39}
+  m_SizeDelta: {x: 1212.33, y: 330.19}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1122295165
 GameObject:
@@ -2423,7 +2423,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: fcc7e8a09cea58e4882cb76c844856cc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b6b540ff49c635641ba032ebdbe273a8, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2566,8 +2566,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 9.01, y: -9.04}
-  m_SizeDelta: {x: 439.18, y: 336.09}
+  m_AnchoredPosition: {x: 30.37, y: 54.32}
+  m_SizeDelta: {x: 628.35, y: 554.83}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1527903255
 MonoBehaviour:
@@ -2584,12 +2584,12 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_RaycastPadding: {x: 68.83, y: 41.93, z: 105.39, w: 52.8}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 521c34d0cc86df3428216c2983564766, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9c132c57d42448f43b79ec89c8c4ac7a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2647,7 +2647,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: fcc7e8a09cea58e4882cb76c844856cc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b6b540ff49c635641ba032ebdbe273a8, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2813,7 +2813,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Fechar
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2921,7 +2921,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.34117648, g: 0.33333334, b: 0.33333334, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2994,11 +2994,11 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1527903254}
-  m_Father: {fileID: 618794300}
+  m_Father: {fileID: 941118509}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -920.64996, y: -23.71997}
+  m_AnchoredPosition: {x: -759.2599, y: -369.12}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1926542443
@@ -3065,7 +3065,7 @@ Transform:
   m_GameObject: {fileID: 2027270046}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.33, y: 3.02, z: 0}
+  m_LocalPosition: {x: 7.18, y: 2.36, z: 0}
   m_LocalScale: {x: 0.2735101, y: 0.31273767, z: 1.2033}
   m_ConstrainProportionsScale: 0
   m_Children: []

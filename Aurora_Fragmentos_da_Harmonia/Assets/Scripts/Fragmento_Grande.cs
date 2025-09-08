@@ -18,7 +18,7 @@ public class Fragmento_Grande : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        sprite_Cristal.color = Color.yellow;
+        sprite_Cristal.color = Color.white;
     }
 
     private void OnMouseExit()

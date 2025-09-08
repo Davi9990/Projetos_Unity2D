@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Menu_Inicial.unity
+    guid: f7b3e0e58e66ea64c85d8bc380695bef
+  - enabled: 1
     path: "Assets/Scenes/Pra\xE7a.unity"
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
@@ -21,12 +24,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Jardim_Colorido.unity
     guid: e3a9a73cf4563bd43835f10b427cc77d
   - enabled: 1
-    path: Assets/Scenes/Menu_Inicial.unity
-    guid: f7b3e0e58e66ea64c85d8bc380695bef
-  - enabled: 1
     path: Assets/Scenes/Tela_de_Introducao.unity
     guid: 0ba02854adf8d9f49b37d2c841ec6029
   - enabled: 1
     path: Assets/Scenes/Tela_Final.unity
     guid: 9e8381ab2357d4d418c34c1291309345
+  - enabled: 1
+    path: Assets/Scenes/Creditos.unity
+    guid: 0e8756d12e1b7f14d897dd297f43453b
   m_configObjects: {}

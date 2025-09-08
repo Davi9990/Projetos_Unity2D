@@ -16,7 +16,7 @@ public class Objeto_Identificado : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        sprite_Cristal.color = Color.yellow;
+        sprite_Cristal.color = Color.white;
     }
 
     private void OnMouseExit()
