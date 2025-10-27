@@ -1,0 +1,35 @@
+{
+    "version": 1,
+    "name": "PlayerControls",
+    "maps": [
+        {
+            "name": "Player",
+            "id": "86609824-4b16-4930-84e4-83a16a82db24",
+            "actions": [
+                {
+                    "name": "Jump",
+                    "type": "Button",
+                    "id": "49fcac84-0e88-45a9-81a5-0b69efcf78ba",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "9fe58c10-b931-4832-840f-0dc746421b46",
+                    "path": "<Touchscreen>/Press",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
