@@ -9,20 +9,23 @@ public class PlayerMobile : MonoBehaviour
     public float velocidade = 6f;              
     public float velocidadeRotacao = 10f;     
     public float gravidade = 30f;              
-    public Joystick joystick;                 
+    public Joystick joystick;
+    private AudioSource audioPassos;
 
     [Header("Componentes")]
     private CharacterController controller;   
-    private Animator animator;                 
+    private Animator animator;               
 
     private Vector3 direcaoMovimento = Vector3.zero;
     private Vector3 forcaGravidade = Vector3.zero;
-    private bool andandoAtual = false;         
+    private bool andandoAtual = false;    
+    
 
     void Start()
     {
         controller = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
+        audioPassos = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -36,11 +39,27 @@ public class PlayerMobile : MonoBehaviour
         // Aqui faz a verificacao do movimento
         bool andando = direcaoMovimento.magnitude > 0.15f;
 
-        // Aqui faz a atualizacao as animações
+        // Aqui faz a atualizacao as animações e o som do player andando.
         if (andando != andandoAtual)
         {
             animator.SetBool("isWalking", andando);
             animator.SetBool("isIdle", !andando);
+            
+            if (andando)
+            {
+                if (!audioPassos.isPlaying)
+                {
+                    audioPassos.Play();
+                }
+            }
+            else
+            {
+                if (audioPassos.isPlaying)
+                {
+                    audioPassos.Stop();
+                }
+            }
+
             andandoAtual = andando;
         }
 

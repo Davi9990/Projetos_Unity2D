@@ -6,45 +6,47 @@ using UnityEngine.UI;
 [System.Serializable]
 public class LinhaDialogo
 {
+    public Sprite fotoDoNPC;
     public string nomeNPC;
     [TextArea(2, 5)]
-    public string texto;
+    public string texto;     
 }
 
 public class SistemadeDialogo : MonoBehaviour
 {
-    [Header("Refer�ncias UI")]
+    [Header("Referencias UI")]
     public GameObject painelDialogo;    
+    public Image retratoNPC;
     public Text nomeNPCText;            
     public Text textoDialogoText;       
-    public Button botaoAvancar;        
+    public Button botaoAvancar;  
 
-    [Header("Configura��o de Di�logo")]
-    public List<LinhaDialogo> linhas;   // Lista de falas do NPC
-
+    [Header("Configuracao de Dialogo")]
+    public List<LinhaDialogo> linhas;   // Lista de falas do NPC Janio,Quintiliano e NegoDan
     private int indiceAtual = 0;
     private bool dialogoAtivo = false;
-
-    public Action aoFinalizarDialogo;    // Evento disparado quando o di�logo termina
-
+    public Action aoFinalizarDialogo;    
+   
     void Start()
     {
         painelDialogo.SetActive(false);
         if (botaoAvancar != null)
-            botaoAvancar.onClick.AddListener(AvancarDialogo);
+        {
+            botaoAvancar.onClick.AddListener(AvancarDialogo);     
+        }                   
     }
-
-    // Inicia o di�logo
+    // Inicia o dialogo
     public void IniciarDialogo()
     {
-        if (linhas == null || linhas.Count == 0) return;
-
+        if (linhas == null || linhas.Count == 0)
+        {
+            return;
+        } 
         indiceAtual = 0;
         dialogoAtivo = true;
         painelDialogo.SetActive(true);
         MostrarLinhaAtual();
     }
-
     // Mostra a fala atual na tela
     void MostrarLinhaAtual()
     {
@@ -53,16 +55,27 @@ public class SistemadeDialogo : MonoBehaviour
             var linha = linhas[indiceAtual];
             nomeNPCText.text = linha.nomeNPC;
             textoDialogoText.text = linha.texto;
-        }
-    }
 
-    // Avan�a para a pr�xima fala ou encerra o di�logo
+             // Mostra a imagem do NPC se houver
+            if (retratoNPC != null && linha.fotoDoNPC != null)
+            {
+                retratoNPC.sprite = linha.fotoDoNPC;
+                retratoNPC.enabled = true;
+            }
+            else
+            {
+                retratoNPC.enabled = false;
+            }
+        }      
+    }
+    // Avanca para a proxima fala ou encerra o dialogo
     void AvancarDialogo()
     {
-        if (!dialogoAtivo) return;
-
+        if (!dialogoAtivo)            
+        {
+            return;
+        }
         indiceAtual++;
-
         if (indiceAtual < linhas.Count)
         {
             MostrarLinhaAtual();
@@ -70,10 +83,9 @@ public class SistemadeDialogo : MonoBehaviour
         else
         {
             EncerrarDialogo();
-        }
+        }      
     }
-
-    // Encerra o di�logo
+    // Encerra o dialogo
     void EncerrarDialogo()
     {
         painelDialogo.SetActive(false);

@@ -7,7 +7,7 @@ public class MenuIniciar : MonoBehaviour
     [Header("Painéis do Menu")] //Aqui vai mostar os paineis no menu iniciar sme precisar ir 
     //                            para outra cena, voces veirifam ai que ainda falta eu 
     //                            implementar o retorno para o menu normal. Ass. Bruno Barreiros
-    public GameObject painelSair, painelCreditos, painelConfiguracao;
+    public GameObject painelSair, painelCreditos, painelConfiguracao, painelAjuda;
     public Slider volumeSlider;
 
     void Start()
@@ -34,6 +34,12 @@ public class MenuIniciar : MonoBehaviour
         painelCreditos.SetActive(true);
         print("Creditos");
     }
+    public void AJuda()
+    {
+        FecharTodosPaineis();
+        painelAjuda.SetActive(true);
+        print("Ajuda");
+    }
     public void Configuracao()
     {
         FecharTodosPaineis();
@@ -44,20 +50,17 @@ public class MenuIniciar : MonoBehaviour
     {
         AudioListener.volume = volume;
     }
-    // Aqui vai abrir o painel de confirmacao de saida
     public void Sair()
     {
         FecharTodosPaineis();
         painelSair.SetActive(true);
         print("Deseja sair?");
     }
-    // AQui tem o Botao "Sim" do painel
     public void ConfirmarSair()
     {
         Application.Quit();
         print("Saiu do jogo");
     }
-    // Aqui tem o Botao "Nao" do painel pra cancelar a saida
     public void CancelarSair()
     {
         painelSair.SetActive(false);
@@ -67,6 +70,7 @@ public class MenuIniciar : MonoBehaviour
     {
         painelSair.SetActive(false);
         painelCreditos.SetActive(false);
+        painelAjuda.SetActive(false );
         painelConfiguracao.SetActive(false);
     }
 }

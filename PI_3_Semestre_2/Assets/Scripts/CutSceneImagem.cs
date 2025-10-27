@@ -9,12 +9,11 @@ public class CutSceneImagem : MonoBehaviour
     public class Cutscene
     {
         [TextArea(3, 5)]
-        public string texto;             // Texto narrado
-        public Sprite imagem;            // Imagem de fundo
-        public AudioClip audioNarracao;  // Narração/efeito sonoro
-        public float tempoExibicao = 6f; // Tempo de exibição
+        public string texto;             
+        public Sprite imagem;            
+        public AudioClip audioNarracao;  
+        public float tempoExibicao = 6f; 
     }
-
     [Header("Configuração das Cutscenes")]
     public Cutscene[] cutscenes;  
     private int index = 0;
@@ -33,44 +32,35 @@ public class CutSceneImagem : MonoBehaviour
     {
         StartCoroutine(ExecutarCutscenes());
     }
-
     IEnumerator ExecutarCutscenes()
     {
         while (index < cutscenes.Length)
         {
             Cutscene atual = cutscenes[index];
 
-            // Troca a imagem
+            // Vai trocando a imagem 
             fundo.sprite = atual.imagem;
-
-            // Troca o texto
+            // aqui vai troca o texto 
             textoUI.text = atual.texto;
-
-            // Toca áudio (se existir)
+            // Toca áudio, mas estou pensando em tirar por que nao quero falar no audio não
             if (atual.audioNarracao != null)
             {
                 audioSource.Stop();
                 audioSource.clip = atual.audioNarracao;
                 audioSource.Play();
             }
-
-            // Mostra com fade
+            // Mostra com fade a tela escura que serve para transição da cena
             yield return StartCoroutine(FadeIn());
-
-            // Espera o tempo de exibição
+            // Aqui é para esperar o tempo de exibição para nao passar rapido 
             yield return new WaitForSeconds(atual.tempoExibicao);
-
             // Fade out
             yield return StartCoroutine(FadeOut());
-
             index++;
         }
-
-        // Depois das cutscenes, carregar a cena configurada no Inspector
+        // Depois das cutscenes, carregar a cena configurada no Inspector que vai ir para outra cutscene , porem essa primeira vai para o menu
         if (!string.IsNullOrEmpty(proximaCena))
             SceneManager.LoadScene(proximaCena);
     }
-
     IEnumerator FadeIn()
     {
         fadePanel.alpha = 1;
@@ -80,7 +70,6 @@ public class CutSceneImagem : MonoBehaviour
             yield return null;
         }
     }
-
     IEnumerator FadeOut()
     {
         fadePanel.alpha = 0;
