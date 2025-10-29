@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7378663084157203878
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2385997831550710623}
+  - component: {fileID: 3777218503285662809}
+  m_Layer: 0
+  m_Name: CutsceneController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2385997831550710623
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7378663084157203878}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 972.21625, y: 536.1749, z: 2.578985}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3777218503285662809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7378663084157203878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b28eaa49f09ff4a4a9d48c8aec6a0362, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cutscenes:
+  - texto: "A hist\xF3ria do racismo \xE9 antiga e dolorosa. "
+    imagem: {fileID: 21300000, guid: 0aca40ee1a0721e4d8cbdca01b084241, type: 3}
+    audioNarracao: {fileID: 8300000, guid: 0ff09649d60d7a14b9638fa2204932f5, type: 3}
+    tempoExibicao: 5
+  - texto: "Ela n\xE3o come\xE7a apenas na escravid\xE3o, mas ganha for\xE7a quando
+      povos foram arrancados de suas terras e tratados como meras mercadoria. "
+    imagem: {fileID: 21300000, guid: 630ee6d9bdb70ef4387b889961edb3d3, type: 3}
+    audioNarracao: {fileID: 8300000, guid: b8132fa72f5342143b40494186fdf097, type: 3}
+    tempoExibicao: 12
+  - texto: "Este jogo \xE9 um convite para voc\xEA caminhar pelo tempo e entender
+      como o racismo se construiu e como pode ser combatido."
+    imagem: {fileID: 21300000, guid: 6b6b0aa282f1ae042880e95f5ceb76a7, type: 3}
+    audioNarracao: {fileID: 8300000, guid: a4101a7d9fe1e2e47aeaa59e535ae232, type: 3}
+    tempoExibicao: 11
+  proximaCena: Menu
+  fundo: {fileID: 0}
+  textoUI: {fileID: 0}
+  audioSource: {fileID: 0}
+  fadePanel: {fileID: 0}
