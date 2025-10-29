@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Cutscene.unity
+    guid: bb6cd3fae67fb5540a6ff721d8efbe2e
+  - enabled: 1
+    path: Assets/Scenes/Cutscene 1.unity
+    guid: 18069f4bd9e8ade4b8f40d4f3170a3ee
+  - enabled: 1
+    path: Assets/Scenes/Cutscene 2.unity
+    guid: cb144845f2477ac49891b154c5f7aa00
+  - enabled: 1
+    path: Assets/Scenes/Cutscene 3.unity
+    guid: aafc4891530450b4bb2ebe7da5ad0ca4
+  - enabled: 1
+    path: Assets/Scenes/Fase1.unity
+    guid: b01baa4ed0739d5438a48718a4917dcc
+  - enabled: 1
+    path: Assets/Scenes/Fase2.unity
+    guid: 6545f73fdcf0a9c4b99a85e4ea971fee
+  - enabled: 1
+    path: Assets/Scenes/Fase3.unity
+    guid: 9f2e8e73be66c9840b123297662c0a45
+  - enabled: 1
+    path: Assets/Scenes/Menu.unity
+    guid: c4eb4c951ff36af428e92ce53e6facf3
+  - enabled: 1
+    path: Assets/Scenes/Armazem.unity
+    guid: b2e7ac0150d51fb43a173f6665224e29
+  - enabled: 1
+    path: Assets/Scenes/SampleScene.unity
+    guid: c850ee8c3b14cc8459e7e186857cf567
+  m_configObjects:
+    com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000,
+      guid: 6fac636494c0f3249a2edea68d62fedf, type: 2}
