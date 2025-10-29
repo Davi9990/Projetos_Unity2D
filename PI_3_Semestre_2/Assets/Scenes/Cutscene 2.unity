@@ -736,12 +736,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1080, y: 1920}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -920,8 +920,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000061035, y: -407.99}
-  m_SizeDelta: {x: 2778, y: 190.64}
+  m_AnchoredPosition: {x: -6.7222, y: -326.66937}
+  m_SizeDelta: {x: 2187.9, y: 149.5636}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &3265466623148089615
 MonoBehaviour:
@@ -985,29 +985,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cutscenes:
   - texto: "Parab\xE9ns! Voc\xEA conseguiu passar da primeira fase, agora vamos para
-      a Luta! "
-    imagem: {fileID: 21300000, guid: 0aca40ee1a0721e4d8cbdca01b084241, type: 3}
+      a Luta!"
+    imagem: {fileID: 21300000, guid: 6a11ac8cb7bec794987affbd58311a1b, type: 3}
     audioNarracao: {fileID: 0}
-    tempoExibicao: 4
-  - texto: "Agora iremos fazer os preparativos para a Rebeli\xE3o.\n \r\n"
-    imagem: {fileID: 21300000, guid: 0aca40ee1a0721e4d8cbdca01b084241, type: 3}
+    tempoExibicao: 2
+  - texto: "Agora iremos fazer os preparativos para a Rebeli\xE3o."
+    imagem: {fileID: 21300000, guid: b0a342a3b1f812a4880489d618c9ab10, type: 3}
     audioNarracao: {fileID: 0}
-    tempoExibicao: 3
+    tempoExibicao: 2
   - texto: "Voc\xEA precisa coletar itens-chaves sem chamar muita aten\xE7\xE3o do
       feitor."
-    imagem: {fileID: 21300000, guid: 0aca40ee1a0721e4d8cbdca01b084241, type: 3}
+    imagem: {fileID: 21300000, guid: 82c3e79da38847d49bce183f0c63e7e9, type: 3}
+    audioNarracao: {fileID: 0}
+    tempoExibicao: 2
+  - texto: "Colete ferramentas, armas improvisadas, mapas do engenho, chaves e leve
+      at\xE9 o local indicado no mapa."
+    imagem: {fileID: 21300000, guid: 2c5e7a942aff38048bf0adfa1c049294, type: 3}
+    audioNarracao: {fileID: 0}
+    tempoExibicao: 2
+  - texto: "Deixe tudo pronto para o levante sem ser descoberto, cuidado com o feitor
+      e o senhor do engenho, eles est\xE3o lhe observando."
+    imagem: {fileID: 21300000, guid: 15ca5f0f3a118e14a85fe59783c30100, type: 3}
     audioNarracao: {fileID: 0}
     tempoExibicao: 3
-  - texto: Colete ferramentas, armas improvisadas, mapas do engenho, chaves e leve
-      ate o local indicado no mapa.
-    imagem: {fileID: 21300000, guid: 0aca40ee1a0721e4d8cbdca01b084241, type: 3}
-    audioNarracao: {fileID: 0}
-    tempoExibicao: 5
-  - texto: "Deixe tudo pronto para o levante sem ser descoberto.\nO feitor e o senhor
-      do engenho  est\xE3o lhe observando."
-    imagem: {fileID: 21300000, guid: 0aca40ee1a0721e4d8cbdca01b084241, type: 3}
-    audioNarracao: {fileID: 0}
-    tempoExibicao: 5
   proximaCena: Fase2
   fundo: {fileID: 83589480058313737}
   textoUI: {fileID: 3095689235833670168}
@@ -1088,8 +1088,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 2778, y: 1284}
+  m_AnchoredPosition: {x: -6.7123, y: -0.011992}
+  m_SizeDelta: {x: 2187.934, y: 1004.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &7495255077157262694
 GameObject:
@@ -1126,8 +1126,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.00809, y: -407.9939}
-  m_SizeDelta: {x: 2532, y: 190.6419}
+  m_AnchoredPosition: {x: -3.1238, y: -327.477}
+  m_SizeDelta: {x: 1952.738, y: 112.5528}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &7986347663022103978
 RectTransform:
@@ -1168,8 +1168,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -6.72583, y: -0.012023926}
+  m_SizeDelta: {x: 68.2849, y: 26.112}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!4 &8797343278048563011
 Transform:

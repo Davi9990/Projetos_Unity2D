@@ -6,14 +6,14 @@ public class AjustarTelaDoCelular : MonoBehaviour
 {    
     void Awake()
     {
-        // 🔒 Trava o jogo na horizontal
+        //  Trava o jogo na horizontal
         Screen.autorotateToPortrait = false;
         Screen.autorotateToPortraitUpsideDown = false;
         Screen.autorotateToLandscapeLeft = true;
         Screen.autorotateToLandscapeRight = true;
         Screen.orientation = ScreenOrientation.LandscapeLeft;
 
-        // 🔧 Usa a resolução nativa do dispositivo
+        // Usa a resolução nativa do dispositivo
         int largura = Screen.currentResolution.width;
         int altura = Screen.currentResolution.height;
 

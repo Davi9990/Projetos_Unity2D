@@ -671,11 +671,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 4380235591343242934}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 2778, y: 1284}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 22.6141, y: 131.80698}
+  m_SizeDelta: {x: 2185.2512, y: 1039.2567}
+  m_Pivot: {x: 0.5130028, y: 0.1603666}
 --- !u!225 &2046307424253722402
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -757,8 +757,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.00809, y: -407.9939}
-  m_SizeDelta: {x: 2532, y: 190.6419}
+  m_AnchoredPosition: {x: -11.9439, y: -350.1738}
+  m_SizeDelta: {x: 1992.811, y: 120.7476}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &4380235591343242934
 RectTransform:
@@ -798,23 +798,18 @@ MonoBehaviour:
   cutscenes:
   - texto: "A Revolta no Engenho de Santana \xE9 uma obra de fic\xE7\xE3o baseada
       em acontecimentos hist\xF3ricos."
-    imagem: {fileID: 21300000, guid: 0aca40ee1a0721e4d8cbdca01b084241, type: 3}
-    audioNarracao: {fileID: 8300000, guid: fd1c0730c8e510849bf4e7da642d1fbc, type: 3}
-    tempoExibicao: 4
-  - texto: "A hist\xF3ria do racismo \xE9 antiga e dolorosa. "
-    imagem: {fileID: 21300000, guid: 0aca40ee1a0721e4d8cbdca01b084241, type: 3}
+    imagem: {fileID: 21300000, guid: baa23c29c1494a54a911c06c16872670, type: 3}
     audioNarracao: {fileID: 8300000, guid: fd1c0730c8e510849bf4e7da642d1fbc, type: 3}
     tempoExibicao: 3
+  - texto: "A hist\xF3ria do racismo \xE9 antiga e dolorosa."
+    imagem: {fileID: 21300000, guid: 54686883820de0944b8e7cfb8b660000, type: 3}
+    audioNarracao: {fileID: 8300000, guid: fd1c0730c8e510849bf4e7da642d1fbc, type: 3}
+    tempoExibicao: 2
   - texto: "Ela n\xE3o come\xE7a apenas na escravid\xE3o, mas ganha for\xE7a quando
-      povos foram arrancados de suas terras e tratados como mercadorias. "
-    imagem: {fileID: 21300000, guid: 0aca40ee1a0721e4d8cbdca01b084241, type: 3}
+      povos foram arrancados de suas terras e tratados como mercadorias."
+    imagem: {fileID: 21300000, guid: 17e962bcc4007d541bdcefd1bed93482, type: 3}
     audioNarracao: {fileID: 8300000, guid: fd1c0730c8e510849bf4e7da642d1fbc, type: 3}
-    tempoExibicao: 5
-  - texto: "Este jogo \xE9 um convite para voc\xEA caminhar pelo tempo e entender
-      como o racismo se construiu e como pode ser combatido."
-    imagem: {fileID: 21300000, guid: 0aca40ee1a0721e4d8cbdca01b084241, type: 3}
-    audioNarracao: {fileID: 8300000, guid: fd1c0730c8e510849bf4e7da642d1fbc, type: 3}
-    tempoExibicao: 5
+    tempoExibicao: 3
   proximaCena: Menu
   fundo: {fileID: 5995546483047841557}
   textoUI: {fileID: 8712940288837986564}
@@ -870,12 +865,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1080, y: 1920}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -1079,11 +1074,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 4380235591343242934}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000061035, y: -407.99}
-  m_SizeDelta: {x: 2778, y: 190.64}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 14.538, y: 139.84863}
+  m_SizeDelta: {x: 2225.9, y: 145.0625}
+  m_Pivot: {x: 0.5, y: 0.4999999}
 --- !u!114 &9173209453651001875
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -8,14 +8,14 @@ public class BotaoFecharPainel : MonoBehaviour
     public GameObject painel;
 
     [Header("Referência ao script principal do quiz")]
-    public QuizAntirracismo quizAntirracismo; 
+    public QuizAntirracismo quizAntirracismo;
 
     public void Fechar()
     {
-        painel.SetActive(false);       
-        if (quizAntirracismo != null)
+        // Quando clicar em "Fechar", anima o encolhimento do painel
+        if (quizAntirracismo != null && painel.activeSelf)
         {
-            quizAntirracismo.ResetarQuiz();
+            quizAntirracismo.StartCoroutine(quizAntirracismo.AnimarFechamentoPainel());
         }
     }
 }

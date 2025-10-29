@@ -676,12 +676,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1080, y: 1920}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -742,10 +742,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 8469920444852144248}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000061035, y: -407.99}
-  m_SizeDelta: {x: 2778, y: 190.64}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: -3.8208, y: 145.41693}
+  m_SizeDelta: {x: 2172.3, y: 148.9857}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &3578144896534634442
 MonoBehaviour:
@@ -824,43 +824,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cutscenes:
-  - texto: "O racismo come\xE7ou quando culturas inteiras foram desumanizadas para
-      justificar a escravid\xE3o."
-    imagem: {fileID: 21300000, guid: 0aca40ee1a0721e4d8cbdca01b084241, type: 3}
+  - texto: "Voc\xEA deve completar todas as tarefas para passar para pr\xF3xima fase."
+    imagem: {fileID: 21300000, guid: 7aa1c01636ffc6d4ca3e80c566888c91, type: 3}
     audioNarracao: {fileID: 0}
-    tempoExibicao: 5
-  - texto: "Chamam-nos de inferiores, mas temem nossa for\xE7a e nossa f\xE9."
-    imagem: {fileID: 21300000, guid: 0aca40ee1a0721e4d8cbdca01b084241, type: 3}
+    tempoExibicao: 2
+  - texto: "Preste aten\xE7\xE3o nas miss\xF5es, e o que ela pede para voc\xEA fazer."
+    imagem: {fileID: 21300000, guid: 203fbc4b1dbc8144d990b52a10705b0f, type: 3}
     audioNarracao: {fileID: 0}
-    tempoExibicao: 4
-  - texto: "Os senhores nos chamam de b\xE1rbaros, mas s\xE3o eles que negam a humanidade."
-    imagem: {fileID: 21300000, guid: 0aca40ee1a0721e4d8cbdca01b084241, type: 3}
+    tempoExibicao: 2
+  - texto: "Lembre-se, qualquer miss\xE3o fora da sequ\xEAncia voc\xEA ser\xE1 punido!"
+    imagem: {fileID: 21300000, guid: 9932f6c28e1e4eb4dbc09b2d6dc268b2, type: 3}
     audioNarracao: {fileID: 0}
-    tempoExibicao: 4
-  - texto: "Nosso tom de pele \xE9 o reflexo do sol que nunca nos abandonou.\nEnquanto
-      houver quem julgue pela cor, haver\xE1 quem lute por igualdade."
-    imagem: {fileID: 21300000, guid: 0aca40ee1a0721e4d8cbdca01b084241, type: 3}
-    audioNarracao: {fileID: 0}
-    tempoExibicao: 4
-  - texto: "O racismo n\xE3o nos fez menores; fez de n\xF3s gigantes na resist\xEAncia.
-      Eles escrevem leis para nos calar, mas nossa voz atravessa s\xE9culos."
-    imagem: {fileID: 21300000, guid: 0aca40ee1a0721e4d8cbdca01b084241, type: 3}
-    audioNarracao: {fileID: 0}
-    tempoExibicao: 4
-  - texto: "Deus n\xE3o criou cores para dividir,  foram os homens que pintaram o
-      \xF3dio. "
-    imagem: {fileID: 21300000, guid: 0aca40ee1a0721e4d8cbdca01b084241, type: 3}
-    audioNarracao: {fileID: 0}
-    tempoExibicao: 4
-  - texto: "Nossa pele \xE9 heran\xE7a de reis e rainhas, n\xE3o de correntes. Negro
-      n\xE3o \xE9 sin\xF4nimo de dor,  \xE9 sin\xF4nimo de for\xE7a."
-    imagem: {fileID: 21300000, guid: 0aca40ee1a0721e4d8cbdca01b084241, type: 3}
-    audioNarracao: {fileID: 0}
-    tempoExibicao: 4
-  - texto: "Quando a cor da pele \xE9 motivo de \xF3dio, a humanidade est\xE1 doente."
-    imagem: {fileID: 21300000, guid: 0aca40ee1a0721e4d8cbdca01b084241, type: 3}
-    audioNarracao: {fileID: 0}
-    tempoExibicao: 4
+    tempoExibicao: 2
   proximaCena: Fase1
   fundo: {fileID: 1906991964303837659}
   textoUI: {fileID: 3578144896534634442}
@@ -912,10 +887,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 8469920444852144248}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 2778, y: 1284}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: -3.8134, y: -455.0085}
+  m_SizeDelta: {x: 2172.249, y: 1006.908}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &5322996559414666926
 MonoBehaviour:
@@ -990,10 +965,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 8469920444852144248}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: -3.8212, y: -455.01}
+  m_SizeDelta: {x: 2172.3, y: 1006.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &8258874743246636165
 RectTransform:
@@ -1009,10 +984,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 8469920444852144248}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.00809, y: -407.9939}
-  m_SizeDelta: {x: 2532, y: 190.6419}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 2.1247, y: 146.6311}
+  m_SizeDelta: {x: 2012.5308, y: 117.4923}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &8312090073749897396
 GameObject:
@@ -1047,8 +1022,8 @@ RectTransform:
   m_Children:
   - {fileID: 5127483823128928145}
   - {fileID: 3527399102325351130}
-  - {fileID: 8258874743246636165}
   - {fileID: 7526206988212956399}
+  - {fileID: 8258874743246636165}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
