@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class MissoesNoturnas : MonoBehaviour
 {
-    [Header("ReferÍncias UI")]
+    [Header("Refer√™ncias UI")]
     public Text textoMissao, textoInteracao, textoVidas, textoAlerta;
     public Button botaoInteragir;
     public Slider barraProgresso;
@@ -13,12 +13,12 @@ public class MissoesNoturnas : MonoBehaviour
     public float duracaoAlerta = 2f;
     public int vidas = 3;
 
-    [Header("¡udio e AnimaÁ„o")]
+    [Header("√Åudio e Anima√ß√£o")]
     public AudioSource audioSource;
     public AudioClip somInteragir, somConcluirMissao, somErro;
     public Animator animator;
 
-    [Header("Seta Miss„o")]
+    [Header("Seta Miss√£o")]
     public SetaMissao setaMissoes;
     public Transform[] locaisMissoes;
 
@@ -27,43 +27,71 @@ public class MissoesNoturnas : MonoBehaviour
     private int progressoNecessario = 3;
     private string objetoProximo = "";
 
+    // Controle dos pontos das missoes
+    private HashSet<Transform> pontosVisitados = new HashSet<Transform>();
+    private int indicePontoAtual = 0;
+
     void Start()
     {
-        AtualizarMissao("1∞ Miss„o\nMapeie o engenho: observe 3 ponto estratÈgicos(rotas, esconderijos e patrulhas)");
+        AtualizarMissao("1¬™ Miss√£o\nMapeie o engenho: observe 3 pontos estrat√©gicos a rota, o esconderijo e a patrulha).");
         textoInteracao.text = "";
         botaoInteragir.gameObject.SetActive(false);
         barraProgresso.maxValue = progressoNecessario;
         barraProgresso.value = 0;
 
-        if(textoVidas != null)
-        {
+        if (textoVidas != null)
             textoVidas.text = "Vidas: " + vidas;
-        }
 
         botaoInteragir.onClick.AddListener(Interagir);
         AtualizarSeta();
     }
-
     private void OnTriggerEnter(Collider other)
     {
         objetoProximo = other.tag;
 
-        switch (objetoProximo) 
+        switch (objetoProximo)
         {
-            case "PontoMapa": MostrarInteracao("Toque para observar a ·rea");  break;
+            case "PontoMapa": MostrarInteracao("Toque para observar a √°rea"); break;
             case "Ferramenta": MostrarInteracao("Toque para coletar a ferramenta"); break;
-            case "Companheiro": MostrarInteracao("Toque para entregar objeto"); break;
-            case "PontoVigilancia": MostrarInteracao("Toque para observar a vigil‚ncia"); break;
+            case "Companheiro": MostrarInteracao("Toque para entregar o objeto"); break;
+            case "PontoVigilancia": MostrarInteracao("Toque para observar a vigil√¢ncia"); break;
             case "SabotagemTocha": MostrarInteracao("Toque para apagar a tocha"); break;
-            case "SabotagemCarroca": MostrarInteracao("Toque para danificar carroÁa"); break;
-            case "SabotagemSuprimentos": MostrarInteracao("Toque para esconder suprimentos"); break;
+            case "SabotagemCarroca": MostrarInteracao("Toque para danificar a carro√ßa"); break;
+            case "SabotagemSuprimentos": MostrarInteracao("Toque para esconder os suprimentos"); break;
+            case "Aliados": MostrarInteracao("Toque para se reunir com os aliados"); break;
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        objetoProximo = collision.collider.tag;
+
+        switch (objetoProximo)
+        {
+            case "PontoMapa": MostrarInteracao("Toque para observar a √°rea"); break;
+            case "Ferramenta": MostrarInteracao("Toque para coletar a ferramenta"); break;
+            case "Companheiro": MostrarInteracao("Toque para entregar o objeto"); break;
+            case "PontoVigilancia": MostrarInteracao("Toque para observar a vigil√¢ncia"); break;
+            case "SabotagemTocha": MostrarInteracao("Toque para apagar a tocha"); break;
+            case "SabotagemCarroca": MostrarInteracao("Toque para danificar a carro√ßa"); break;
+            case "SabotagemSuprimentos": MostrarInteracao("Toque para esconder os suprimentos"); break;
             case "Aliados": MostrarInteracao("Toque para se reunir com os aliados"); break;
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if(other.tag == objetoProximo)
+        if (other.tag == objetoProximo)
+        {
+            objetoProximo = "";
+            textoInteracao.text = "";
+            botaoInteragir.gameObject.SetActive(false);
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if(collision.collider.tag == objetoProximo)
         {
             objetoProximo = "";
             textoInteracao.text = "";
@@ -76,95 +104,177 @@ public class MissoesNoturnas : MonoBehaviour
         textoInteracao.text = msg;
         botaoInteragir.gameObject.SetActive(true);
     }
-
     void Interagir()
     {
-        if(objetoProximo == "" || vidas <= 0) return;
+        if (objetoProximo == "" || vidas <= 0) return;
         bool acaoCorreta = false;
 
         audioSource?.PlayOneShot(somInteragir);
 
         switch (objetoProximo)
         {
-            //Etapa 1: Mapeamento do engenho
+            // Etapa 1: Mapeamento
             case "PontoMapa":
-                if(etapa == 0)
+                if (etapa == 0)
                 {
-                    acaoCorreta = true;
-                    IncrementarProgresso("2∞ Miss„o\nColete 4 ferramentas no armazem.", 1, 3, 4);
+                    Collider pontoAtual = null;
+                    foreach (var col in Physics.OverlapSphere(transform.position, 2f))
+                        if (col.CompareTag("PontoMapa")) { pontoAtual = col; break; }
+
+                    if (pontoAtual != null && !pontosVisitados.Contains(pontoAtual.transform))
+                    {
+                        pontosVisitados.Add(pontoAtual.transform);
+                        progressoAtual++;
+                        barraProgresso.value = progressoAtual;
+                        acaoCorreta = true;
+
+                        indicePontoAtual++;
+                        if (indicePontoAtual < locaisMissoes.Length)
+                            setaMissoes.DefinirAlvo(locaisMissoes[indicePontoAtual]);
+                        else
+                            setaMissoes.DefinirAlvo(null);
+
+                        if (progressoAtual >= 3)
+                        {
+                            IncrementarProgresso("2¬™ Miss√£o\nColete 4 ferramentas no armaz√©m.", 1, 3, 4);
+                            pontosVisitados.Clear();
+                            indicePontoAtual = 0;
+                        }
+                    }
                 }
                 break;
 
-            //Etapa 2: Coleta de Ferramentas
+            // Etapa 2: Coleta de ferramentas
             case "Ferramenta":
-                if (etapa == 1) 
+                if (etapa == 1)
                 {
-                    acaoCorreta = true;
-                    IncrementarProgresso("3∞ Miss„o\nEntregue os objetos escondidos aos companheiros.", 2, 4, 2);                    
+                    Collider ferramentaAtual = null;
+                    foreach (var col in Physics.OverlapSphere(transform.position, 2f))
+                        if (col.CompareTag("Ferramenta")) { ferramentaAtual = col; break; }
+
+                    if (ferramentaAtual != null && !pontosVisitados.Contains(ferramentaAtual.transform))
+                    {
+                        pontosVisitados.Add(ferramentaAtual.transform);
+                        progressoAtual++;
+                        barraProgresso.value = progressoAtual;
+                        acaoCorreta = true;
+
+                        Destroy(ferramentaAtual.gameObject);
+                        Debug.Log($"Ferramenta destru√≠da: {ferramentaAtual.name}");
+
+                        AtualizarSeta();
+
+                        if (progressoAtual >= 4)
+                        {
+                            IncrementarProgresso("3¬™ Miss√£o\nEntregue os objetos escondidos aos companheiros.", 2, 4, 2);
+                            pontosVisitados.Clear();
+                        }
+                    }
                 }
                 break;
-
-            //Etapa 3: Entrega de objetos
+            // Etapa 3: Entrega de objetos
             case "Companheiro":
-                if(etapa == 2)
+                if (etapa == 2)
                 {
-                    acaoCorreta = true;
-                    IncrementarProgresso("4∞ Miss„o\nObserve 3 ·reas vigiadas para identificas pontos fracos", 3, 2, 3);
+                    Collider comp = null;
+                    foreach (var col in Physics.OverlapSphere(transform.position, 2f))
+                        if (col.CompareTag("Companheiro")) { comp = col; break; }
+
+                    if (comp != null && !pontosVisitados.Contains(comp.transform))
+                    {
+                        pontosVisitados.Add(comp.transform);
+                        progressoAtual++;
+                        barraProgresso.value = progressoAtual;
+                        acaoCorreta = true;
+
+                        AtualizarSeta();
+
+                        if (progressoAtual >= 4)
+                        {
+                            IncrementarProgresso("4¬™ Miss√£o\nObserve 3 √°reas vigiadas para identificar pontos fracos.", 3, 4, 3);
+                            pontosVisitados.Clear();
+                            progressoAtual = 0;
+                            barraProgresso.value = 0;
+                            indicePontoAtual = 0;
+                        }
+                    }
                 }
                 break;
-
-            //Etapa 4: Observar ·reas de vigil‚ncia
+            // Etapa 4: Vigil√¢ncia
             case "PontoVigilancia":
-                if(etapa == 3)
+                if (etapa == 3)
                 {
-                    acaoCorreta = true;
-                    IncrementarProgresso("5∞ Miss„o\nRealize sabotagens: apague tochas, danifique carroÁa e esconda suprimentos.", 4, 3, 3);
+                    Collider vig = null;
+                    foreach (var col in Physics.OverlapSphere(transform.position, 2f))
+                        if (col.CompareTag("PontoVigilancia")) { vig = col; break; }
+
+                    if (vig != null && !pontosVisitados.Contains(vig.transform))
+                    {
+                        pontosVisitados.Add(vig.transform);
+                        progressoAtual++;
+                        barraProgresso.value = progressoAtual;
+                        acaoCorreta = true;
+
+                        AtualizarSeta();
+
+                        if (progressoAtual >= progressoNecessario)
+                        {
+                            IncrementarProgresso("5¬™ Miss√£o\nRealize sabotagens: apague tochas, danifique carro√ßas e esconda suprimentos.", 4, 3, 3);
+                            pontosVisitados.Clear();
+                            progressoAtual = 0;
+                            barraProgresso.value = 0;
+                        }
+                    }
                 }
                 break;
-
-            //Etapa 5: Sabotagens
+            // Etapa 5: Sabotagens
             case "SabotagemTocha":
             case "SabotagemCarroca":
             case "SabotagemSuprimentos":
-                if(etapa == 4)
+                if (etapa == 4)
                 {
-                    acaoCorreta = true;
-                    IncrementarProgresso("6∞ Miss„o\nRe˙na-se com seus aliados no ponto de encontro", 5, 3, 1);
+                    Collider sab = null;
+                    foreach (var col in Physics.OverlapSphere(transform.position, 2f))
+                        if (col.CompareTag(objetoProximo)) { sab = col; break; }
+
+                    if (sab != null && !pontosVisitados.Contains(sab.transform))
+                    {
+                        pontosVisitados.Add(sab.transform);
+                        progressoAtual++;
+                        barraProgresso.value = progressoAtual;
+                        acaoCorreta = true;
+                        AtualizarSeta();
+
+                        if (progressoAtual >= progressoNecessario)
+                        {
+                            IncrementarProgresso("6¬™ Miss√£o\nRe√∫na-se com seus aliados no ponto de encontro.", 5, 3, 1);
+                            pontosVisitados.Clear();
+                            progressoAtual = 0;
+                            barraProgresso.value = 0;
+                        }
+                    }
                 }
                 break;
-
-            //Etapa 6: Reuni„o com aliados
+            // Etapa 6: Reuni√£o final
             case "Aliados":
-                if(etapa == 5)
+                if (etapa == 5)
                 {
                     acaoCorreta = true;
                     ConcluirFase();
                 }
                 break;
         }
-
         if (!acaoCorreta)
-        {
             PerderVida();
-        }
     }
-
     void IncrementarProgresso(string proximaMissao, int proximaEtapa, int progressoEtapaAnterior, int novoProgressoNecessario)
     {
-        progressoAtual++;
-
-        barraProgresso.value = progressoAtual;
-
-        if(progressoAtual >= progressoNecessario)
-        {
-            progressoAtual = 0;
-            barraProgresso.value = 0;
-            progressoNecessario = novoProgressoNecessario;
-            ProximaEtapa(proximaMissao, proximaEtapa);
-            audioSource?.PlayOneShot(somConcluirMissao);
-        }
+        progressoAtual = 0;
+        barraProgresso.value = 0;
+        progressoNecessario = novoProgressoNecessario;
+        ProximaEtapa(proximaMissao, proximaEtapa);
+        audioSource?.PlayOneShot(somConcluirMissao);
     }
-    
     void ProximaEtapa(string msg, int novaEtapa)
     {
         etapa = novaEtapa;
@@ -172,64 +282,94 @@ public class MissoesNoturnas : MonoBehaviour
         botaoInteragir.gameObject.SetActive(false);
         AtualizarSeta();
     }
-
     void AtualizarMissao(string msg)
     {
         textoMissao.text = msg;
         Debug.Log(msg);
     }
-
+    //  NOVA VERSAO COMPLETA DA ATUALIZACAO DA SETA PARA QUE FUNCIONE O QUE ESTAVA DANDO ERRO, MAS NAO MODIFIQUEI NADA LA QUE VOCE FEZ
     void AtualizarSeta()
     {
-        if (setaMissoes == null || locaisMissoes == null || locaisMissoes.Length == 0)
-            return;
+        if (setaMissoes == null) return;
 
-        if (etapa < locaisMissoes.Length) 
+        switch (etapa)
         {
-            setaMissoes.DefinirAlvo(locaisMissoes[etapa]);
-        }
-        else
-        {
-            setaMissoes.DefinirAlvo(null);
+            case 0:
+                if (indicePontoAtual < locaisMissoes.Length)
+                    setaMissoes.DefinirAlvo(locaisMissoes[indicePontoAtual]);
+                else
+                    setaMissoes.DefinirAlvo(null);
+                break;
+
+            case 1: AtualizarSetaPorTag("Ferramenta"); break;
+            case 2: AtualizarSetaPorTag("Companheiro"); break;
+            case 3: AtualizarSetaPorTag("PontoVigilancia"); break;
+            case 4: AtualizarSetaPorTagMultipla(new string[] { "SabotagemTocha", "SabotagemCarroca", "SabotagemSuprimentos" }); break;
+            case 5: AtualizarSetaPorTag("Aliados"); break;
+            default: setaMissoes.DefinirAlvo(null); break;
         }
     }
-
+    void AtualizarSetaPorTag(string tag)
+    {
+        GameObject[] objetos = GameObject.FindGameObjectsWithTag(tag);
+        foreach (GameObject obj in objetos)
+        {
+            if (!pontosVisitados.Contains(obj.transform))
+            {
+                setaMissoes.DefinirAlvo(obj.transform);
+                return;
+            }
+        }
+        setaMissoes.DefinirAlvo(null);
+    }
+    void AtualizarSetaPorTagMultipla(string[] tags)
+    {
+        foreach (string tag in tags)
+        {
+            GameObject[] objetos = GameObject.FindGameObjectsWithTag(tag);
+            foreach (GameObject obj in objetos)
+            {
+                if (!pontosVisitados.Contains(obj.transform))
+                {
+                    setaMissoes.DefinirAlvo(obj.transform);
+                    return;
+                }
+            }
+        }
+        setaMissoes.DefinirAlvo(null);
+    }
     void ConcluirFase()
     {
-        AtualizarMissao("VocÍ se reuniu com seus aliados!\nTodas as tarefas foram concluidas");
+        AtualizarMissao("Voc√™ se reuniu com seus aliados!\nTodas as tarefas foram conclu√≠das!");
         audioSource?.PlayOneShot(somConcluirMissao);
         Invoke(nameof(CarregarProximaFase), 3f);
     }
-
     void CarregarProximaFase()
     {
         SceneManager.LoadScene("Fase3");
     }
-
     void PerderVida()
     {
         vidas--;
         audioSource?.PlayOneShot(somErro);
         textoVidas.text = "Vidas: " + vidas;
-        MostrarAlerta("AÁ„o incorreta! VocÍ perdeu uma vida!");
+        MostrarAlerta("A√ß√£o incorreta! Voc√™ perdeu uma vida!");
 
-        if (vidas <= 0) 
+        if (vidas <= 0)
         {
-            textoMissao.text = "Fim de jogo! VocÍ perdeu todas as vidas!";
+            textoMissao.text = "Fim de jogo! Voc√™ perdeu todas as vidas!";
             botaoInteragir.gameObject.SetActive(false);
             textoInteracao.text = "";
             Invoke(nameof(ReiniciarFase), 3f);
         }
     }
-
     void ReiniciarFase()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
-
     void MostrarAlerta(string mensagem)
     {
-        if(textoAlerta != null)
+        if (textoAlerta != null)
         {
             textoAlerta.text = mensagem;
             textoAlerta.gameObject.SetActive(true);
@@ -237,24 +377,25 @@ public class MissoesNoturnas : MonoBehaviour
             Invoke(nameof(EsconderAlerta), duracaoAlerta);
         }
 
-        if (painelAlerta != null) 
+        if (painelAlerta != null)
         {
             painelAlerta.SetActive(true);
             CancelInvoke(nameof(EsconderPainelAlerta));
             Invoke(nameof(EsconderPainelAlerta), duracaoAlerta);
         }
     }
-
     void EsconderAlerta()
     {
         if (textoAlerta != null)
+        {
             textoAlerta.gameObject.SetActive(false);
+        }            
     }
-
     void EsconderPainelAlerta()
     {
         if (painelAlerta != null)
+        {
             painelAlerta.SetActive(false);
+        }            
     }
-
 }
