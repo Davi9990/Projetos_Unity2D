@@ -27,6 +27,12 @@ TagManager:
   - PontoMapa
   - Ferramenta
   - Armazem
+  - Companheiro
+  - PontoVigilancia
+  - SabotagemTocha
+  - SabotagemCarroca
+  - SabotagemSuprimentos
+  - Aliados
   layers:
   - Default
   - TransparentFX
