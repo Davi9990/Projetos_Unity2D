@@ -20,7 +20,7 @@ public class SetaMissao : MonoBehaviour
         setaImagem.rectTransform.rotation = Quaternion.Euler(0, 0, -angulo);
 
         float distancia = Vector3.Distance(jogador.position, alvoMissao.position);
-        setaImagem.enabled = distancia > 2f && distancia < distanciaMaxima;
+        setaImagem.enabled = distancia > 1f && distancia < distanciaMaxima;
     }
 
     public void DefinirAlvo(Transform novoAlvo)

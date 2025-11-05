@@ -31,6 +31,7 @@ public class MissoesNoturnas : MonoBehaviour
     private HashSet<Transform> pontosVisitados = new HashSet<Transform>();
     private int indicePontoAtual = 0;
 
+
     void Start()
     {
         AtualizarMissao("1ª Missão\nMapeie o engenho: observe 3 pontos estratégicos a rota, o esconderijo e a patrulha).");
@@ -47,6 +48,12 @@ public class MissoesNoturnas : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
+        if (other.CompareTag("MorteRio"))
+        {
+            MorrerNoRio();
+            return;
+        }
+
         objetoProximo = other.tag;
 
         switch (objetoProximo)
@@ -64,6 +71,12 @@ public class MissoesNoturnas : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        if (collision.collider.CompareTag("MorteRio"))
+        {
+            MorrerNoRio();
+            return;
+        }
+
         objetoProximo = collision.collider.tag;
 
         switch (objetoProximo)
@@ -91,11 +104,33 @@ public class MissoesNoturnas : MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
-        if(collision.collider.tag == objetoProximo)
+        if (collision.collider.tag == objetoProximo)
         {
             objetoProximo = "";
             textoInteracao.text = "";
             botaoInteragir.gameObject.SetActive(false);
+        }
+    }
+
+    void MorrerNoRio()
+    {
+        //Perde 3 vidas de uma vez
+        vidas -= 3;
+
+        if (textoVidas != null)
+        {
+            textoVidas.text = "Vidas: " + Mathf.Max(vidas, 0);
+
+            audioSource?.PlayOneShot(somErro);
+            MostrarAlerta("Você caiu no rio e se afogou!");
+
+            if (vidas <= 0)
+            {
+                textoMissao.text = "Fim de jogo! Você se afogou!";
+                botaoInteragir.gameObject.SetActive(false);
+                textoInteracao.text = "";
+                Invoke(nameof(ReiniciarFase), 3f);
+            }
         }
     }
 
@@ -148,19 +183,27 @@ public class MissoesNoturnas : MonoBehaviour
             case "Ferramenta":
                 if (etapa == 1)
                 {
-                    Collider ferramentaAtual = null;
-                    foreach (var col in Physics.OverlapSphere(transform.position, 2f))
-                        if (col.CompareTag("Ferramenta")) { ferramentaAtual = col; break; }
+                    GameObject ferramentaMaisProxima = null;
+                    float menorDistance = Mathf.Infinity;
 
-                    if (ferramentaAtual != null && !pontosVisitados.Contains(ferramentaAtual.transform))
+                    foreach (GameObject f in GameObject.FindGameObjectsWithTag("Ferramenta"))
                     {
-                        pontosVisitados.Add(ferramentaAtual.transform);
+                        float distance = Vector3.Distance(transform.position, f.transform.position);
+                        if (distance < menorDistance)
+                        {
+                            menorDistance = distance;
+                            ferramentaMaisProxima = f;
+                        }
+                    }
+
+                    if (ferramentaMaisProxima != null && !pontosVisitados.Contains(ferramentaMaisProxima.transform))
+                    {
+                        pontosVisitados.Add(ferramentaMaisProxima.transform);
                         progressoAtual++;
                         barraProgresso.value = progressoAtual;
                         acaoCorreta = true;
 
-                        Destroy(ferramentaAtual.gameObject);
-                        Debug.Log($"Ferramenta destruída: {ferramentaAtual.name}");
+                        Destroy(ferramentaMaisProxima);
 
                         AtualizarSeta();
 
@@ -169,6 +212,10 @@ public class MissoesNoturnas : MonoBehaviour
                             IncrementarProgresso("3ª Missão\nEntregue os objetos escondidos aos companheiros.", 2, 4, 2);
                             pontosVisitados.Clear();
                         }
+                    }
+                    else
+                    {
+                        Debug.Log("Nenhuma Ferramenta próxima encontrada para destruir");
                     }
                 }
                 break;
@@ -243,6 +290,10 @@ public class MissoesNoturnas : MonoBehaviour
                         progressoAtual++;
                         barraProgresso.value = progressoAtual;
                         acaoCorreta = true;
+
+                        if (sab.CompareTag("SabotagemTocha"))
+                            Destroy(sab.gameObject);
+
                         AtualizarSeta();
 
                         if (progressoAtual >= progressoNecessario)
@@ -324,19 +375,34 @@ public class MissoesNoturnas : MonoBehaviour
     }
     void AtualizarSetaPorTagMultipla(string[] tags)
     {
+        Transform proximoAlvo = null;
+        float menorDistancia = Mathf.Infinity;
+
         foreach (string tag in tags)
         {
             GameObject[] objetos = GameObject.FindGameObjectsWithTag(tag);
             foreach (GameObject obj in objetos)
             {
-                if (!pontosVisitados.Contains(obj.transform))
+                if (obj == null || pontosVisitados.Contains(obj.transform)) continue;
+
+                float dist = Vector3.Distance(transform.position, obj.transform.position);
+                if (dist < menorDistancia)
                 {
-                    setaMissoes.DefinirAlvo(obj.transform);
-                    return;
+                    menorDistancia = dist;
+                    proximoAlvo = obj.transform;
                 }
             }
         }
-        setaMissoes.DefinirAlvo(null);
+
+        if (setaMissoes != null && setaMissoes.alvoMissao != null)
+        {
+            if (pontosVisitados.Contains(setaMissoes.alvoMissao))
+            {
+                proximoAlvo = null;
+            }
+        }
+
+        setaMissoes.DefinirAlvo(proximoAlvo);
     }
     void ConcluirFase()
     {
@@ -389,13 +455,13 @@ public class MissoesNoturnas : MonoBehaviour
         if (textoAlerta != null)
         {
             textoAlerta.gameObject.SetActive(false);
-        }            
+        }
     }
     void EsconderPainelAlerta()
     {
         if (painelAlerta != null)
         {
             painelAlerta.SetActive(false);
-        }            
+        }
     }
 }

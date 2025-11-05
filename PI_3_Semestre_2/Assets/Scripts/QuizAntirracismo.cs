@@ -78,63 +78,59 @@ public class QuizAntirracismo : MonoBehaviour
         ResetarQuiz();                                  // Reinicia o quiz
         painelQuiz.SetActive(false);                    // Desativa o painel
     }
-
     // Cria as perguntas e respostas
     void CarregarPerguntas()
     {
         perguntas.Add(new Pergunta
         {
-            pergunta = "O que o racismo tenta fazer com os povos negros?",
+            pergunta = "O que levou os escravizados do Engenho de Santana a se revoltarem em 1789?",
             opcoes = new string[]
             {
-                "Unir e fortalecer",
-                "Apagar sua história e cultura",
-                "Ensinar igualdade",
-                "Promover justiça"
-            },
-            indiceCorreto = 1
-        });
-
-        perguntas.Add(new Pergunta
-        {
-            pergunta = "Qual dessas frases expressa resistência negra?",
-            opcoes = new string[]
-            {
-                "Enquanto houver quem julgue pela cor, haverá quem lute por igualdade.",
-                "A cor da pele define o valor de uma pessoa.",
-                "O racismo é natural e sempre existirá.",
-                "Devemos nos calar diante da injustiça."
+                "A) Castigos e jornadas desumanas nas plantações.",
+                "B) A chegada de novos senhores bondosos.",
+                "C) A liberdade já ter sido concedida por lei.",
+                "D) A falta de trabalho no engenho."                
             },
             indiceCorreto = 0
         });
-
         perguntas.Add(new Pergunta
         {
-            pergunta = "O que representa a luta contra o racismo?",
+            pergunta = "Como o racismo se manifestava na sociedade baiana do século XVIII?",
+            opcoes = new string[]
+            {       
+                "A) Por meio da igualdade entre todos.",                 
+                "B) Por meio da exclusão dos negros da educação, poder e liberdade.",                
+                "C) Através do apoio dos senhores aos escravizados.",
+                "D) Não havia racismo no período colonial."
+            },
+            indiceCorreto = 1
+        });
+        perguntas.Add(new Pergunta
+        {
+            pergunta = "Qual foi uma das principais formas de resistência dos escravizados?",
             opcoes = new string[]
             {
-                "A busca por privilégios.",
-                "A negação da história.",
-                "A defesa da igualdade e da dignidade.",
-                "A divisão entre povos."
+                "A) Trabalhar mais para agradar os senhores.",
+                "B) Permanecer calados diante das injustiças.",
+                "C) Fugir e formar quilombos.",
+                "D) Pedir ajuda às autoridades coloniais."                                            
             },
             indiceCorreto = 2
         });
-
         perguntas.Add(new Pergunta
         {
-            pergunta = "O que é racismo?",
+            pergunta = "Quem eram os líderes da revolta no Engenho de Santana?",
             opcoes = new string[]
             {
-                "Uma forma de expressar orgulho cultural e étnico sem prejudicar outras pessoas.",
-                "Uma atitude neutra em relação às diferenças raciais.",
-                "Uma forma de humor que não tem impacto social.",
-                "A crença de que existem raças humanas superiores e inferiores, levando à discriminação e desigualdade."
+                "A) Comerciantes do porto.",
+                "B) Capitães portugueses.",
+                "C) Padres europeus.",
+                "D) Escravizados como Gregório Luís, Ventura, Cosme e Zeferina que representa o papel fundamental das mulheres negras na resistência."
+                      
             },
             indiceCorreto = 3
         });
     }
-
     // Exibe a pergunta atual na tela
     void MostrarPergunta()
     {
@@ -159,7 +155,6 @@ public class QuizAntirracismo : MonoBehaviour
         textoMensagem.text = "";
         podeResponder = true;
     }
-
     // Verifica se o jogador respondeu certo ou errado
     void Responder(int indice)
     {
@@ -181,7 +176,6 @@ public class QuizAntirracismo : MonoBehaviour
 
         StartCoroutine(ProximaPergunta()); // Avança após 3 segundos
     }
-
     // Espera alguns segundos e vai para a próxima pergunta
     IEnumerator ProximaPergunta()
     {
@@ -189,7 +183,6 @@ public class QuizAntirracismo : MonoBehaviour
         perguntaAtual++;
         MostrarPergunta();
     }
-
     // Quando o quiz termina
     void FimDoQuiz()
     {
@@ -204,7 +197,7 @@ public class QuizAntirracismo : MonoBehaviour
         int percentualArredondado = Mathf.RoundToInt(percentualAcertos);
 
         // Mostra a mensagem de resultado
-        textoMensagem.text = "Você acertou " + percentualArredondado + "% das perguntas.\nUm dia, a liberdade não terá cor.";
+        textoMensagem.text = "Você acertou " + percentualArredondado + "% das perguntas.\nA Revolta no Engenho de Santana foi uma das primeiras expressões da luta por liberdade no Brasil.\nMesmo enfrentando racismo, violência e opressão, os escravizados da Bahia deixaram um legado de coragem e resistência.";
 
         // Verifica se o jogador passou
         if (percentualAcertos >= 70f)
@@ -218,21 +211,18 @@ public class QuizAntirracismo : MonoBehaviour
             StartCoroutine(FecharQuiz());
         }
     }
-
     // Avança para a próxima cena
     IEnumerator IrParaFase2()
     {
         yield return new WaitForSeconds(4f);
         SceneManager.LoadScene("Cutscene 2");
     }
-
     // Fecha o quiz após 4 segundos
     IEnumerator FecharQuiz()
     {
         yield return new WaitForSeconds(4f);
         StartCoroutine(AnimarFechamentoPainel()); // Encolhe o painel antes de fechar
     }
-
     // Reseta todas as variáveis do quiz
     public void ResetarQuiz()
     {
@@ -252,21 +242,19 @@ public class QuizAntirracismo : MonoBehaviour
             textoInteracaoQuiz.text = "Pressione para jogar o quiz novamente";
         }
     }
-
     // Retorna uma mensagem positiva aleatória
     string MensagemAleatoriaPositiva()
     {
         string[] mensagens =
         {
-            "O racismo é a corrente invisível e nós a rompemos com dignidade.",
-            "Nossa pele é herança de reis e rainhas, não de correntes.",
-            "Enquanto houver quem julgue pela cor, haverá quem lute por igualdade.",
-            "O racismo não nos fez menores; fez de nós gigantes na resistência.",
-            "Eles tentam nos esconder na sombra, mas somos o próprio sol."
+            "A revolta foi uma resposta à violência e exploração dos senhores de engenho. Os escravizados lutavam por liberdade e dignidade.",
+            "O racismo estruturava toda a sociedade colonial. Negros eram vistos como propriedade, não como pessoas, uma das maiores injustiças da história.",
+            "A fuga e a formação de quilombos eram atos de coragem e resistência contra um sistema brutal e racista.",
+            "Os líderes eram homens e mulheres escravizados que arriscaram a vida por liberdade, os verdadeiros símbolos de resistência.",
+            "Mesmo com a repressão, a revolta inspirou outras lutas e mostrou que a liberdade era um direito inegociável."
         };
         return mensagens[UnityEngine.Random.Range(0, mensagens.Length)];
     }
-
     // Detecta quando o jogador se aproxima
     private void OnTriggerEnter(Collider other)
     {
@@ -283,7 +271,6 @@ public class QuizAntirracismo : MonoBehaviour
             }
         }
     }
-
     // Detecta quando o jogador sai da área
     private void OnTriggerExit(Collider other)
     {
@@ -294,7 +281,6 @@ public class QuizAntirracismo : MonoBehaviour
             textoInteracaoQuiz.gameObject.SetActive(false);
         }
     }
-
     // Abre o quiz com animação de expansão
     void AbrirQuiz()
     {

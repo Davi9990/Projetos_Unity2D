@@ -35,6 +35,9 @@ public class MissoesMobile : MonoBehaviour
     public SetaMissao setaMissoes;
     public Transform[] locaisMissoes;
 
+    // Controla quais missões já foram concluídas
+    private HashSet<string> missoesConcluidas = new HashSet<string>();
+
     void Start()
     {
         AtualizarMissao("1ª Missão\nPlante 3 canas-de-açúcar que fica localizado às margens do rio.");
@@ -47,12 +50,15 @@ public class MissoesMobile : MonoBehaviour
             textoVidas.text = "Vidas: " + vidas;
 
         botaoInteragir.onClick.AddListener(Interagir);
-        AtualizarSeta(); // seta começa apontando para a primeira missão
+        AtualizarSeta();
     }
-
     void OnTriggerEnter(Collider other)
     {
         objetoProximo = other.tag;
+
+        // Se essa missão já foi concluída, não mostra o botão
+        if (missoesConcluidas.Contains(objetoProximo))
+            return;
 
         if (other.CompareTag("MorteRio"))
         {
@@ -85,8 +91,11 @@ public class MissoesMobile : MonoBehaviour
     }
     void MostrarInteracao(string msg)
     {
-        textoInteracao.text = msg;
-        botaoInteragir.gameObject.SetActive(true);
+        if (!botaoInteragir.gameObject.activeSelf)
+        {
+            textoInteracao.text = msg;
+            botaoInteragir.gameObject.SetActive(true);
+        }
     }
     void Interagir()
     {
@@ -99,6 +108,7 @@ public class MissoesMobile : MonoBehaviour
 
         switch (objetoProximo)
         {
+            // Missão com 3 interações — não marca como concluída ainda
             case "Planta":
                 if (etapa == 0)
                 {
@@ -106,6 +116,7 @@ public class MissoesMobile : MonoBehaviour
                     IncrementarProgresso("2ª Missão\nColete 3 canas de açúcar nas margens do rio.", 1);
                 }
                 break;
+
             case "Cana":
                 if (etapa == 1)
                 {
@@ -113,35 +124,52 @@ public class MissoesMobile : MonoBehaviour
                     IncrementarProgresso("3ª Missão\nLeve as canas ao depósito perto do moinho.", 2);
                 }
                 break;
+
             case "Deposito":
                 if (etapa == 2)
                 {
                     acaoCorreta = true;
                     ProximaEtapa("4ª Missão\nProcure o Capataz que anda pelo mapa.", 3);
+                    missoesConcluidas.Add("Deposito");
                 }
                 break;
+
             case "Capataz":
                 if (etapa == 3)
                 {
                     acaoCorreta = true;
                     ProximaEtapa("5ª Missão\nConverse com Jânio perto das árvores antigas.", 4);
+                    missoesConcluidas.Add("Capataz");
                 }
                 break;
+
             case "NPCDialogoJanio":
                 if (etapa == 4)
+                {
                     acaoCorreta = true;
                     IniciarDialogoNPC("6ª Missão\nVá até NegoDan, próximo ao Jânio.", 5);
+                    missoesConcluidas.Add("NPCDialogoJanio");
+                }
                 break;
+
             case "NPCDialogoNegoDan":
                 if (etapa == 5)
+                {
                     acaoCorreta = true;
                     IniciarDialogoNPC("7ª Missão\nConverse com Quintiliano, próximo a NegoDan.", 6);
+                    missoesConcluidas.Add("NPCDialogoNegoDan");
+                }
                 break;
+
             case "NPCDialogoQuintiliano":
                 if (etapa == 6)
+                {
                     acaoCorreta = true;
                     IniciarDialogoNPC("8ª Missão\nColete 3 troncos nas margens do rio.", 7);
+                    missoesConcluidas.Add("NPCDialogoQuintiliano");
+                }
                 break;
+
             case "Arvore":
                 if (etapa == 7)
                 {
@@ -150,14 +178,17 @@ public class MissoesMobile : MonoBehaviour
                     IncrementarProgresso("9ª Missão\nLeve os troncos para a fornalha do moinho.", 8);
                 }
                 break;
+
             case "Fornalha":
                 if (etapa == 8)
                 {
                     acaoCorreta = true;
                     animator?.SetTrigger("Entregar");
                     ProximaEtapa("10ª Missão\nFale com o Vovô e pegue o mapa.", 9);
+                    missoesConcluidas.Add("Fornalha");
                 }
                 break;
+
             case "NPCMapa":
                 if (etapa == 9)
                 {
@@ -166,8 +197,10 @@ public class MissoesMobile : MonoBehaviour
                     animator?.SetTrigger("Pegar");
                     ProximaEtapa("11ª Missão\nVá até o tronco da opressão em frente à casa grande.", 10);
                     audioSource?.PlayOneShot(somConcluirMissao);
+                    missoesConcluidas.Add("NPCMapa");
                 }
                 break;
+
             case "Tronco":
                 if (etapa == 10)
                 {
@@ -176,13 +209,32 @@ public class MissoesMobile : MonoBehaviour
                     ProximaEtapa("Você destruiu o tronco da opressão!\nTodas as missões foram concluídas!", 11);
                     if (tronco != null) Destroy(tronco);
                     audioSource?.PlayOneShot(somConcluirMissao);
+                    missoesConcluidas.Add("Tronco");
                 }
                 break;
         }
-
         if (!acaoCorreta)
         {
             PerderVida();
+        }
+        textoInteracao.text = "";
+        botaoInteragir.gameObject.SetActive(false);
+    }
+    void IncrementarProgresso(string proximaMissao, int proximaEtapa)
+    {
+        progressoAtual++;
+        barraProgresso.value = progressoAtual;
+
+        if (progressoAtual >= progressoNecessario)
+        {
+            //Missão completa, agora sim marcamos como concluída
+            if (!missoesConcluidas.Contains(objetoProximo))
+                missoesConcluidas.Add(objetoProximo);
+
+            progressoAtual = 0;
+            barraProgresso.value = 0;
+            etapa = proximaEtapa - 1;
+            ProximaEtapa(proximaMissao, proximaEtapa);
         }
     }
     void IniciarDialogoNPC(string proximaMissao, int proximaEtapa)
@@ -198,19 +250,6 @@ public class MissoesMobile : MonoBehaviour
                     ProximaEtapa(proximaMissao, proximaEtapa);
             };
             npcDialogo.IniciarDialogo();
-        }
-    }
-    void IncrementarProgresso(string proximaMissao, int proximaEtapa)
-    {
-        progressoAtual++;
-        barraProgresso.value = progressoAtual;
-
-        if (progressoAtual >= progressoNecessario)
-        {
-            progressoAtual = 0;
-            barraProgresso.value = 0;
-            etapa = proximaEtapa - 1;
-            ProximaEtapa(proximaMissao, proximaEtapa);
         }
     }
     void ProximaEtapa(string msg, int novaEtapa)
@@ -246,7 +285,7 @@ public class MissoesMobile : MonoBehaviour
         textoInteracao.text = "";
         Invoke(nameof(CarregarGameOver), 3f);
     }
-    void PerderVida()
+    public void PerderVida()
     {
         vidas--;
         audioSource?.PlayOneShot(somErro);
@@ -273,7 +312,6 @@ public class MissoesMobile : MonoBehaviour
             CancelInvoke(nameof(EsconderAlerta));
             Invoke(nameof(EsconderAlerta), duracaoAlerta);
         }
-
         if (painelAlerta != null)
         {
             painelAlerta.SetActive(true);
