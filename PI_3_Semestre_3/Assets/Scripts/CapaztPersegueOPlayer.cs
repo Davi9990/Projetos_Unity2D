@@ -102,6 +102,8 @@ public class CapaztPersegueOPlayer : MonoBehaviour
 
         if(esferaVisao != null)
         {
+            esferaVisao.transform.position = transform.position + Vector3.up * 0.05f;
+
             float diametro = raioDeVisao * 2f;
             if(!Mathf.Approximately(esferaVisao.transform.localScale.x, diametro))
                 AtualizarIndicadorVisao();
@@ -296,10 +298,13 @@ public class CapaztPersegueOPlayer : MonoBehaviour
     #region Indicador de Visão (Esfera translúcida)
     void CriarIndicadorVisao()
     {
-        esferaVisao = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-        esferaVisao.name = "EsferaVisao";
-        esferaVisao.transform.SetParent(transform);
-        esferaVisao.transform.localPosition = Vector3.zero;
+        esferaVisao = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+        esferaVisao.name = "IndicadorVisao_" + gameObject.name;
+        //esferaVisao.transform.SetParent(transform);
+
+        //esferaVisao.transform.localPosition = new Vector3(0f, 0.05f, 0f);
+
+        esferaVisao.transform.localPosition = new Vector3(0f,0.05f,0f);
 
         // remove o collider
         var col = esferaVisao.GetComponent<Collider>();
@@ -307,7 +312,7 @@ public class CapaztPersegueOPlayer : MonoBehaviour
 
         // material transparente
         Material mat = new Material(Shader.Find("Standard"));
-        mat.color = new Color(1f, 0f, 0f, 0.05f); // vermelho quase invisível
+        mat.color = new Color(1f, 0f, 0f, 0.5f); // vermelho quase invisível
         mat.SetFloat("_Mode", 3); // transparente
         mat.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
         mat.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
@@ -320,7 +325,6 @@ public class CapaztPersegueOPlayer : MonoBehaviour
         // força o refresh imediato para o Unity renderizar transparente
         Renderer rend = esferaVisao.GetComponent<Renderer>();
         rend.sharedMaterial = mat;
-        rend.enabled = false;
         rend.enabled = true;
 
         AtualizarIndicadorVisao();
@@ -331,7 +335,11 @@ public class CapaztPersegueOPlayer : MonoBehaviour
         if (esferaVisao != null)
         {
             float diametro = raioDeVisao * 2f;
-            esferaVisao.transform.localScale = Vector3.one * diametro;
+            float espessura = 0.1f; // Altura do disco
+
+            esferaVisao.transform.localScale = new Vector3(diametro, espessura, diametro);
+
+            esferaVisao.SetActive(raioDeVisao > 0f);
         }
     }
     #endregion
